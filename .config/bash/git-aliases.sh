@@ -25,3 +25,6 @@ alias glpw,='git log --color=always --decorate --patch --word-diff=color | less 
   alias gtk='gitk --branches --tags HEAD &'
 # I don't use --all because I don't want stashes to be shown, they are annoying
  alias gtkr='gitk --branches --tags --remotes HEAD &'
+
+# checkout previous branch/commit (like `cd -`)
+   alias g-='git checkout -'

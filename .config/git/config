@@ -16,6 +16,8 @@
     c = checkout
     co = checkout   # I prefer 'c', but many people are used to 'co'
     c0 = checkout HEAD~0   # detach HEAD e.g. for throw-away experiments
+    c1 = checkout HEAD~1
+    c2 = checkout HEAD~2
     cb = checkout -b
 
     k = commit   # no git command starts with 'k', and 'k' matches pronunciation!
@@ -42,6 +44,9 @@
     lo = log --color=always --decorate --oneline --graph
     lp = log --color=always --decorate --patch
     lpw = log --color=always --decorate --patch --word-diff=color
+
+    # push to a new branch on the remote with the same name
+    psu = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
 
     rba = rebase --abort
     rb = rebase
