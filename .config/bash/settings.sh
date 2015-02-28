@@ -25,8 +25,8 @@ export PATH="$PATH:~/bin/"
 # faster key repetition (150 ms delay, 80 reps/sec) - life is too short to wait!
 xset r rate 150 80
 
-# remap CAPSLOCK to control
-/usr/bin/setxkbmap -option "ctrl:nocaps"
+#load my own keyboard layout
+xkbcomp -I/home/janek/.config/xkb /home/janek/.config/xkb/janek.xkb -w 0 $DISPLAY
 
 
 

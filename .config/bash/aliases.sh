@@ -63,6 +63,7 @@ alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate le
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
 alias sagi='sudo apt-get install'
 alias confed='ved ~/.config/git/config ~/.config/bash/*aliases*'
+alias kb='xkbcomp -I/home/janek/.config/xkb /home/janek/.config/xkb/janek.xkb -w 4 $DISPLAY'
 
 # Show a notification when a command finishes - use like this:  sleep 10; alert
 # Taken from Ubuntu's default .bashrc.

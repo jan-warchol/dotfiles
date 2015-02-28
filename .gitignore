@@ -8,6 +8,7 @@
 /.config/*
 !/.config/bash
 !/.config/git
+!/.config/xkb
 
 # and a selection of hidden configuration files.
 !/.*rc
