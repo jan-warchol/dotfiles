@@ -4,7 +4,7 @@
 # useful for provisioning a completely new computer (or a VM).
 #
 # To use with Vagrant, add this to your Vagrantfile:
-# config.vm.provision "shell", privileged: false, path: "https://raw.githubusercontent.com/janek-warchol/dotfiles/master/.install-utilities.sh"
+# config.vm.provision "shell", privileged: false, path: "https://raw.githubusercontent.com/janek-warchol/dotfiles/janek/.install-utilities.sh"
 
 # TODO: make this OS-agnostic?
 
