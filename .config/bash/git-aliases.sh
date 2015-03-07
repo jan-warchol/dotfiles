@@ -28,3 +28,5 @@ gtkr() { gitk --branches --remotes HEAD "$@" & }
 
 # checkout previous branch/commit (like `cd -`)
 alias g-='git checkout -'
+
+alias gs='git s' # lol I'm crazy

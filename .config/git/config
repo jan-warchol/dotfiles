@@ -12,6 +12,10 @@
 
     b = branch
     bv = branch --verbose --verbose   # lists branches with SHAs and upstreams
+    ba = branch --all
+    br = branch --remotes
+    bd = branch --delete
+    BD = branch -D
 
     c = checkout
     co = checkout   # I prefer 'c', but many people are used to 'co'
@@ -19,6 +23,8 @@
     c1 = checkout HEAD~1
     c2 = checkout HEAD~2
     cb = checkout -b
+    cm = checkout master
+    com = checkout origin/master
 
     # --verbose flag shows a preview of changes that will be committed when editing
     # commit message - I no longer have to double-check with 'git diff' before committing!
@@ -29,6 +35,7 @@
     kma = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
                             # and won't get confused with amending
     amn = commit --amend
+    amna = commit --amend --all
 
     d = diff --color=always   # force coloring for use with less -R
     dc = diff --color=always --cached   # preview changes staged for commit
@@ -55,6 +62,8 @@
     rbo = rebase --onto   # quite useful, see examples in 'git help rebase'
     rbi = rebase --interactive
     rbi5 = rebase --interactive HEAD~5
+    rbim = rebase --interactive master
+    rbm = rebase master
 
     rt = remote --verbose
 
@@ -66,6 +75,8 @@
 
     s = status --short   # I prefer terse output.  See also --branch option.
     st = status
+
+    unpushed = !gitk --branches --not --remotes
 
 
 
@@ -91,6 +102,9 @@
 
     # and a two-line log showing all branches
     l2a = !"git l2 --branches --remotes"
+
+    # reflog with dates
+    rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %C(auto)%h%C(reset) %<(25,trunc)%s (%gs) %C(dim white)- %ci%C(reset)'
 
 
 
@@ -143,6 +157,11 @@
     unignore = update-index --no-assume-unchanged
     ignored = !git ls-files -v | grep "^[a-z]"
 
+    # gethub X Y Z - fetch branch Z from repo Y of github user X
+    gethub = !sh -c 'git fetch https://github.com/$1/$2 $3 && \
+        git checkout FETCH_HEAD && \
+        git checkout -b "$1/$2/$3"' -
+
 
 
 [color]
@@ -153,6 +172,8 @@
     quotepath = false
 
 [diff]
+    mnemonicprefix = true
+
     # detect renamed files and show only actual differences between versions
     renames = copies
 
@@ -170,6 +191,9 @@
 [rebase]
     # automatically process "fixup!" commits when rebasing interactively
     autosquash = true
+
+    # stash unstaged changes if rebasing a dirty tree
+    autostash = true
 
 [rerere]
     # Reuse recorded resolution of conflicted merges, see 'git help rerere'
