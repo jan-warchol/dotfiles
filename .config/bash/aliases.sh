@@ -52,3 +52,6 @@ alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate 
 # Show a notification when a command finishes - use like this:  sleep 10; alert
 # Taken from Ubuntu's default .bashrc.
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# let aliases work after sudo (see http://askubuntu.com/a/22043)
+alias sudo='sudo '
