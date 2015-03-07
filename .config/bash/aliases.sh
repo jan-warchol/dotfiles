@@ -2,21 +2,34 @@
 
 # redefine some commands by adding "default" settings
 alias ls='ls --color=auto --group-directories-first'
+alias df='df --human-readable'
+alias mkdir='mkdir --parents'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias rgrep='rgrep --color=auto'
 alias less='less --RAW-CONTROL-CHARS --ignore-case'  # parses color codes!
+alias wget='wget --continue'
 
 # color-forced grep (will color matches even when piped to less!)
 alias grp='grep --line-number --color=always'
 alias rgp='rgrep --line-number --color=always'
 alias egp='egrep --line-number --color=always'
+alias grp2='grp --context=2'
+alias grp3='grp --context=3'
+alias grp4='grp --context=4'
+alias grp5='grp --context=5'
 
 # common ls aliases
 alias l='ls --file-type --ignore-backups'
 alias la='ls --almost-all --file-type'
 alias ll='ls -l --human-readable --almost-all --file-type'
 alias lk='ls -l --human-readable --file-type'
+
+# du
+alias du0='du --human-readable --summarize'
+alias du1='du --human-readable --max-depth=1 | sort --reverse --human-numeric-sort'
+alias du2='du --human-readable --max-depth=2 | sort --reverse --human-numeric-sort'
+alias du3='du --human-readable --max-depth=3 | sort --reverse --human-numeric-sort'
 
 # tree
 alias tre2='tree -C -L 2 --dirsfirst --filelimit 50'
@@ -45,9 +58,12 @@ alias L='less'  # typing |L is very convenient, especially using left shift
 
 # miscellaneous
 mdc() { mkdir --parents "$@"; cd "$@"; }
+ved() { kate "$@" &>/dev/null & }
 alias op='nautilus $(pwd)'
+alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
 alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate left'
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
+alias sagi='sudo apt-get install'
 
 # Show a notification when a command finishes - use like this:  sleep 10; alert
 # Taken from Ubuntu's default .bashrc.
