@@ -2,31 +2,39 @@
 
 # Install all stuff that I want to have on my own system.
 
-set -o xtrace
 set -o nounset
 set -o errexit
 
-cd "$HOME"
+cd
+for d in */; do rmdir --ignore-fail-on-non-empty "$d"; done
 ./.provision-quick.sh
 . ~/.config/bash/locations.sh
 
 APT_PACKAGES=(
+    "baobab"
+    "build-essential"
     "flip"
-    "git" # its installed by provision-quick already, but needs upgrading
+    "freefilesync"
+    "git"
+    "gitk"
     "gparted"
     "indicator-multiload"
     "kate"
     "keepass2 xdotool" # xdotool is a library for auto-type in keepass
-    "kompare"
     "libdvdread4" # DVD decryption
+    "python-dev python-pip python-virtualenv"
+    "terminator"
+    "vim"
+    "virtualbox"
     "vlc"
     "xbacklight" # changing screen brightness
     #"gimp"
     #"guake"
     #"imagemagick"
+    #"kompare"
 )
-# Add PPA with latest git (default distro packages are usually old)
-sudo add-apt-repository --yes ppa:git-core/ppa
+sudo add-apt-repository --yes ppa:git-core/ppa   # default git is too old
+sudo add-apt-repository --yes ppa:freefilesync/ffs
 sudo apt-get --yes update
 sudo apt-get --quiet --yes install ${APT_PACKAGES[*]}
 
@@ -34,13 +42,17 @@ sudo apt-get --quiet --yes install ${APT_PACKAGES[*]}
 sudo /usr/share/doc/libdvdread4/install-css.sh
 
 # LilyPond, with dependencies:
-sudo apt-get --quiet --yes build-dep lilypond
+sudo apt-get --quiet --yes build-dep lilypond || true # make this work on Linux Mint
 sudo apt-get --quiet --yes install autoconf dblatex texlive-lang-cyrillic
-git clone git://git.sv.gnu.org/lilypond.git $MY_REPOS/lilypond-git
+if [ ! -d "$MY_REPOS/lilypond-git" ]; then
+    git clone git://git.sv.gnu.org/lilypond.git "$MY_REPOS/lilypond-git"
+fi
 
 # Frescobaldi, with dependencies:
 sudo apt-get --quiet --yes install python python-qt4 python-poppler-qt4 python-pypm
-git clone git://github.com/wbsoft/frescobaldi.git $OTHER_REPOS/frescobaldi
-cd $OTHER_REPOS/frescobaldi
-sudo python setup.py install
-cd
+if [ ! -d ~/bin/frescobaldi ]; then
+    git clone git://github.com/wbsoft/frescobaldi.git ~/bin/frescobaldi
+    cd ~/bin/frescobaldi
+    sudo python setup.py install
+    cd
+fi
