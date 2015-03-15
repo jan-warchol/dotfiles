@@ -13,9 +13,6 @@ shopt -s autocd
 # make "**" match all files in all levels of subdirectories
 shopt -s globstar
 
-# make <esc> switch to vi-like command mode
-bind "set editing-mode vi"
-
 
 
 # HISTORY
