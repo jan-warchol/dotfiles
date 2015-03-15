@@ -15,6 +15,21 @@ shopt -s globstar
 
 
 
+# ~= UGH! =~
+# These settings *should* be simply put inside ~/.profile, which is executed
+# at login.  However, it seems that they are later overridden by system
+# defaults (I don't know how to make Ubuntu run .profile *after* applying
+# default settings) - so right now I have to manually open a new terminal
+# to have these settings applied.
+
+# faster key repetition (150 ms delay, 80 reps/sec) - life is too short to wait!
+xset r rate 150 80
+
+# remap CAPSLOCK to control
+/usr/bin/setxkbmap -option "ctrl:nocaps"
+
+
+
 # HISTORY
 
 # save LOTS of history
