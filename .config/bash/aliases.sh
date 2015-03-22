@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # redefine some commands by adding "default" settings
 alias ls='ls --color=auto --group-directories-first'
 alias df='df --human-readable'
