@@ -13,6 +13,8 @@ shopt -s autocd
 # make "**" match all files in all levels of subdirectories
 shopt -s globstar
 
+export PATH="$PATH:~/bin/"
+
 
 
 # ~= UGH! =~
