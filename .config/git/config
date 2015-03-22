@@ -41,6 +41,7 @@
     dc = diff --color=always --cached   # preview changes staged for commit
     wd = diff --color=always --word-diff=color   # mnemonic: Word-Diff
     wdc = diff --color=always --word-diff=color --cached
+    du = diff --color=always @{upstream}
 
     f = fetch --prune
     fa = fetch --all --prune
@@ -64,6 +65,7 @@
     rbi = rebase --interactive
     rbi5 = rebase --interactive HEAD~5
     rbim = rebase --interactive master
+    rbiu = rebase --interactive @{upstream}
     rbm = rebase master
 
     rt = remote --verbose
@@ -79,6 +81,8 @@
 
     unpushed = !gitk --branches --not --remotes
     unmerged = !gitk --remotes --not --branches
+
+    who = shortlog --summary --numbered
 
 
 
