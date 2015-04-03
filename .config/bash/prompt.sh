@@ -7,6 +7,10 @@ pathcolor="\[${CYAN}\]"
 usercolor="\[${MAGENTA}\]"
 RESETALL="\[${RESETALL}\]"
 
+if [ $EUID = 0 ]; then
+    usercolor="\[${RED}\]"
+fi
+
 # When I'm logged in via ssh, display the path in scp-like format (-> easy
 # selecting with a double click) and highlight hostname with a different color.
 if [ -z "$SSH_CONNECTION" ]; then
