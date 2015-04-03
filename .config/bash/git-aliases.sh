@@ -19,8 +19,15 @@ gl2a() { git l2a "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glp() { git lp "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glpw() { git lpw "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 
-# HEAD has to be listed explicitly so that it will be displayed even when it's detached
-gtk() { gitk --branches HEAD "$@" & }
+# HEAD has to be listed explicitly so that it will be displayed even when it's detached.
+# Also list HEAD's upstream (if exists).
+gtk() {
+    gitk \
+    --branches \
+    HEAD \
+    `git for-each-ref --format='%(upstream:short)' HEAD $(git symbolic-ref --quiet HEAD)` \
+    "$@" &
+}
 # I don't use --all because I don't want stashes to be shown, they are annoying
 gtkr() { gitk --branches --remotes HEAD "$@" & }
 
