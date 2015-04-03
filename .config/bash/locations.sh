@@ -1,7 +1,6 @@
 # env variables pointing to various locations in my system
 export MY_DROPBOX=$HOME/Dropbox
 export MY_REPOS=$HOME/repos
-export OTHER_REPOS=$HOME/repos
 # LilyPond-related
 export LILYPOND_BUILD_DIR=$HOME/bin/lily
 export LILYPOND_GIT=$MY_REPOS/lilypond
