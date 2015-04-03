@@ -3,8 +3,8 @@ export MY_DROPBOX=$HOME/Dropbox
 export MY_REPOS=$HOME/repos
 export OTHER_REPOS=$HOME/repos
 # LilyPond-related
-export LILYPOND_BUILD_DIR=$HOME/lily-builds
-export LILYPOND_GIT=$MY_REPOS/lilypond-git
+export LILYPOND_BUILD_DIR=$HOME/bin/lily
+export LILYPOND_GIT=$MY_REPOS/lilypond
 export LILY_SCRIPTS=$MY_REPOS/cli-tools/lilypond
 export TRUNKNE_LIED_HOME=$MY_REPOS/nuty/trunkne-lied
 
