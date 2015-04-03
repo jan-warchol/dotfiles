@@ -1,0 +1,4 @@
+[Default Applications]
+text/plain=kde4-kate.desktop
+text/x-python=kde4-kate.desktop
+text/x-lilypond=frescobaldi.desktop
