@@ -25,6 +25,7 @@
     cb = checkout -b
     cm = checkout master
     com = checkout origin/master
+    cu = checkout @{upstream}
 
     # --verbose flag shows a preview of changes that will be committed when editing the
     # commit message - I no longer have to double-check with 'git diff' before committing!
@@ -54,6 +55,8 @@
     l = log --color=always --decorate --graph   # force coloring for use with less -R
     lp = log --color=always --decorate --patch
     lpw = log --color=always --decorate --patch --word-diff=color
+
+    ff = merge --ff-only
 
     # push to a new branch on the remote with the same name
     psu = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
@@ -171,6 +174,9 @@
     gethub = !sh -c 'git fetch https://github.com/$1/$2 $3 && \
         git checkout FETCH_HEAD && \
         git checkout -b "$1/$2/$3"' -
+
+    # "merge-base diff"
+    mbd = !git diff `git merge-base HEAD $1`
 
 
 
