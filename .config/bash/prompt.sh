@@ -5,7 +5,7 @@
 # Using \[ and \] around color codes is necessary to prevent strange issues!
 pathcolor="\[${CYAN}\]"
 usercolor="\[${MAGENTA}\]"
-RESETALL="\[${RESETALL}\]"
+resetall="\[${RESETALL}\]"
 
 if [ $EUID = 0 ]; then
     usercolor="\[${RED}\]"
@@ -28,5 +28,5 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
 
-export PS1="${usercolor}\u${hostcolor}@\h${separator}${pathcolor}\w${RESETALL}\$(__git_ps1)\n\\$ "
+export PS1="${usercolor}\u${hostcolor}@\h${separator}${pathcolor}\w${resetall}\$(__git_ps1)\n\\$ "
 export PS4="$(tput bold)>>> $(tput sgr0)"
