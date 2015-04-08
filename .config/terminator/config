@@ -1,0 +1,60 @@
+[global_config]
+  suppress_multiple_term_dialog = True
+  inactive_color_offset = 1.0
+[keybindings]
+[profiles]
+  [[default]]
+    palette = "#000000:#ed2626:#42c400:#c7bb08:#1781eb:#d932b5:#23ccbf:#b4b9bd:#000000:#f71e1e:#55cc00:#d1ca00:#1781eb:#e02dba:#20d1c4:#ced2d6"
+    background_image = None
+    use_system_font = False
+    background_color = "#382232"
+    font = Ubuntu Mono 12
+    foreground_color = "#b4b9bd"
+    scrollback_infinite = True
+  [[old-ubuntulike]]
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    background_image = None
+    background_darkness = 0.9
+    background_type = transparent
+    use_system_font = False
+    foreground_color = "#ffffff"
+    font = Ubuntu Mono 12
+    background_color = "#300a24"
+    scrollback_infinite = True
+  [[solarized]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#839496:#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#839496"
+    background_image = None
+    background_color = "#002b36"
+    foreground_color = "#839496"
+    scrollback_infinite = True
+  [[solarlike]]
+    palette = "#000000:#de2828:#41b300:#baae00:#2178cf:#cc33ab:#29bdb1:#97a1a1:#000000:#eb1e1e:#4eba00:#c7c000:#1975d1:#cf29ab:#28bfb4:#afbaba"
+    background_image = None
+    background_color = "#002b36"
+    foreground_color = "#97a1a1"
+    scrollback_infinite = True
+  [[solarlike-violet]]
+    palette = "#000000:#de2828:#41b300:#baae00:#2178cf:#cc33ab:#29bdb1:#97a1a1:#000000:#eb1e1e:#4eba00:#c7c000:#1975d1:#cf29ab:#28bfb4:#afbaba"
+    background_image = None
+    use_system_font = False
+    background_color = "#382232"
+    font = Ubuntu Mono 12
+    foreground_color = "#97a1a1"
+    scrollback_infinite = True
+  [[mintlike-transparent]]
+    palette = "#000000:#ed2626:#42c400:#c7bb08:#1781eb:#d932b5:#23ccbf:#e0e0e0:#000000:#f71e1e:#55cc00:#d1ca00:#1781eb:#e02dba:#20d1c4:#f0f0f0"
+    background_image = None
+    background_darkness = 0.7
+    background_type = transparent
+    background_color = "#101010"
+    foreground_color = "#e0e0e0"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
