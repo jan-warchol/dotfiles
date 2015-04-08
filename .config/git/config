@@ -186,6 +186,7 @@
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them
     quotepath = false
+    editor = vim
 
 [diff]
     mnemonicprefix = true
