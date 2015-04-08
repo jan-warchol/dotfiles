@@ -11,3 +11,7 @@
 
 # and a selection of hidden configuration files.
 !/.*rc
+
+# however, do ignore these:
+.config/git/gitk
+.dmrc
