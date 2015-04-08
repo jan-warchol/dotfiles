@@ -110,7 +110,7 @@
     ll = !git lu --stat-graph-width=30 --stat-count=30 --date-order
 
     # two-line version, useful when your terminal window is narrow
-    l2 = lu --date=iso --date-order \
+    l2 = !git lu --date=iso --date-order \
     --format=tformat:'%C(auto)%h%C(reset) %s%n        %C(blue)%an%C(reset)%C(dim), %ad%C(reset)%C(auto)%d%C(reset)'
 
     # and a two-line log showing all branches
