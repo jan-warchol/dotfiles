@@ -13,6 +13,12 @@
     font = Ubuntu Mono 12
     background_color = "#300a24"
     scrollback_infinite = True
+  [[solarized]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#839496:#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#839496"
+    background_image = None
+    background_color = "#002b36"
+    foreground_color = "#839496"
+    scrollback_infinite = True
 [layouts]
   [[default]]
     [[[child1]]]
