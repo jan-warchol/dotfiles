@@ -101,7 +101,7 @@
 
     # basic one-line log, I use it all the time
     ls = !git lu --date=relative \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim white)- %an, %ad%C(reset)'
+    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
 
     # as above, but includes all local and remote branches
     la = !git ls --branches --remotes
@@ -111,13 +111,13 @@
 
     # two-line version, useful when your terminal window is narrow
     l2 = lu --date=iso --date-order \
-    --format=tformat:'%C(auto)%h%C(reset) %s%n        %C(blue)%an%C(reset)%C(dim white), %ad%C(reset)%C(auto)%d%C(reset)'
+    --format=tformat:'%C(auto)%h%C(reset) %s%n        %C(blue)%an%C(reset)%C(dim), %ad%C(reset)%C(auto)%d%C(reset)'
 
     # and a two-line log showing all branches
     l2a = !"git l2 --branches --remotes"
 
     # reflog with dates
-    rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %C(auto)%h%C(reset) %<(25,trunc)%s (%gs) %C(dim white)- %ci%C(reset)'
+    rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %C(auto)%h%C(reset) %<(25,trunc)%s (%gs) %C(dim)- %ci%C(reset)'
 
 
 
