@@ -9,7 +9,7 @@
     use_system_font = False
     foreground_color = "#97a1a1"
     font = Ubuntu Mono 12
-    background_color = "#382232"
+    background_color = "#3b1d32"
     scrollback_infinite = True
   [[default]]
     palette = "#000000:#ed2626:#42c400:#c7bb08:#1781eb:#d932b5:#23ccbf:#b4b9bd:#000000:#f71e1e:#55cc00:#d1ca00:#1781eb:#e02dba:#20d1c4:#ced2d6"
@@ -17,7 +17,7 @@
     use_system_font = False
     foreground_color = "#b4b9bd"
     font = Ubuntu Mono 12
-    background_color = "#382232"
+    background_color = "#3b1d32"
     scrollback_infinite = True
   [[old-ubuntulike]]
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
