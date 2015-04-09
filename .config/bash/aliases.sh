@@ -52,7 +52,7 @@ alias v='vim'
 alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
-alias L='less'  # typing |L is very convenient, especially using left shift
+alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
 
 # miscellaneous
 mdc() { mkdir --parents "$@"; cd "$@"; }
