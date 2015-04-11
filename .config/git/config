@@ -48,6 +48,7 @@
     fa = fetch --all --prune
 
     g = grep --color=always --line-number
+    g3 = grep --color=always --line-number --context 3
     g5 = grep --color=always --line-number --context 5
     gh5 = grep --color=always --heading --context 5
 
