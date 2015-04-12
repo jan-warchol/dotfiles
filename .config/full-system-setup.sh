@@ -15,6 +15,7 @@ install_apt_packages() {
     APT_PACKAGES=(
         "baobab"
         "build-essential"
+        "dconf-cli dconf-editor"  # desktop environment configuration
         "flip"
         "freefilesync"
         "git"
@@ -28,13 +29,13 @@ install_apt_packages() {
         "libdvdread4" # DVD decryption
         "openjdk-7-jre"
         "python-dev python-pip python-virtualenv"
-        "python-numpy python-scipy python-matplotlib"
+        "python-numpy python-scipy python-matplotlib python-tk"
         "ranger"
         "terminator"
         "trash-cli"
         "tree"
         "vim"
-        "virtualbox"
+        "virtualbox virtualbox-dkms"
         "vlc"
         "xbacklight" # changing screen brightness
         #"gimp"
@@ -44,6 +45,8 @@ install_apt_packages() {
     )
     sudo add-apt-repository --yes ppa:git-core/ppa   # default git is too old
     sudo add-apt-repository --yes ppa:freefilesync/ffs
+    # FreeFileSync isn't available in Utopic Unicorn repos yet
+    sudo sed -i 's/utopic/trusty/' /etc/apt/sources.list.d/freefilesync*
     sudo apt-get --yes update
     sudo apt-get --quiet --yes install ${APT_PACKAGES[*]}
 
@@ -76,13 +79,21 @@ copy_data() {
         "media"
         "repos"
         "zasoby"
+        ".fonts"
         ".mozilla"
         ".ssh"
         ".bash_history"
         ".config/dotfiles-git-dir"
+        ".config/terminator"
+        ".config/gtk-3.0/bookmarks"
+        ".config/monitors.xml"
+        ".kde/share/apps/kate"
+        ".kde/share/config/katerc"
+        ".vagrant.d"
+        ".vim"
+        ".vimrc"
         #.chrome
         #virtualbox vms
-        #vagrant boxes
     )
 
     SRC_PARTITION=$(df -P "$SRC" | tail -1 | cut -d' ' -f1)
@@ -101,6 +112,7 @@ copy_data() {
                 mv "./$path" "./$path.old" --backup=numbered
             fi
             echo -n Processing "$path" ...
+            mkdir --parents "$DEST"/$(dirname "$path")/
             $command "$SRC"/"$path" "$DEST"/$(dirname "$path")/
             echo -e ${GREEN} done.${RESET}
         fi
@@ -125,7 +137,7 @@ install_dotfiles() {
 }
 
 install_lilypond() {
-    # TODO make this work on Linux Mint
+    # FIXME I'm getting "Unable to find a source package for lilypond" on Mint 17.1
     sudo apt-get --quiet --yes build-dep lilypond || true
     sudo apt-get --quiet --yes install autoconf dblatex texlive-lang-cyrillic
     if [ ! -d "$MY_REPOS/lilypond-git" ]; then
@@ -156,8 +168,9 @@ apply_settings() {
     # set terminator as default system terminal
     gsettings set org.gnome.desktop.default-applications.terminal exec 'terminator'
 
-    # make nautilus open executable text files in editor by default
+    # make nautilus/nemo open executable text files in editor by default
     dconf write /org/gnome/nautilus/preferences/executable-text-activation "'open'"
+    dconf write /org/nemo/preferences/executable-text-activation "'display'"
 }
 
 cleanup_home
