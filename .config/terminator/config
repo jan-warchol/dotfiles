@@ -3,14 +3,6 @@
   inactive_color_offset = 1.0
 [keybindings]
 [profiles]
-  [[solarlike-violet]]
-    palette = "#000000:#de2828:#41b300:#baae00:#2178cf:#cc33ab:#29bdb1:#97a1a1:#000000:#eb1e1e:#4eba00:#c7c000:#1975d1:#cf29ab:#28bfb4:#afbaba"
-    background_image = None
-    use_system_font = False
-    foreground_color = "#97a1a1"
-    font = Ubuntu Mono 12
-    background_color = "#3b1d32"
-    scrollback_infinite = True
   [[default]]
     palette = "#000000:#ed2626:#42c400:#c7bb08:#1781eb:#d932b5:#23ccbf:#b4b9bd:#000000:#f71e1e:#55cc00:#d1ca00:#1781eb:#e02dba:#20d1c4:#ced2d6"
     background_image = None
@@ -49,6 +41,12 @@
     background_image = None
     scrollback_infinite = True
     foreground_color = "#839496"
+  [[selenized]]
+    palette = "#073642:#de2828:#50a100:#bd9700:#2875e0:#cc35ab:#12b0a2:#99a0a3:#073642:#de2828:#50a100:#bd9700:#2875e0:#cc35ab:#12b0a2:#99a0a3"
+    background_color = "#032342"
+    background_image = None
+    scrollback_infinite = True
+    foreground_color = "#99a0a3"
 [layouts]
   [[default]]
     [[[child1]]]
