@@ -4,7 +4,7 @@
 [keybindings]
 [profiles]
   [[default]]
-    palette = "#000000:#ed2626:#42c400:#c7bb08:#1781eb:#d932b5:#23ccbf:#b4b9bd:#000000:#f71e1e:#55cc00:#d1ca00:#1781eb:#e02dba:#20d1c4:#ced2d6"
+    palette = "#000000:#f02b2b:#5cba00:#d6ab00:#2d83fa:#e63cc0:#15c9b9:#b4b9bd:#000000:#f02b2b:#5cba00:#d6ab00:#2d83fa:#e63cc0:#15c9b9:#b4b9bd"
     background_image = None
     use_system_font = False
     foreground_color = "#b4b9bd"
