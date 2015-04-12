@@ -7,10 +7,9 @@ set -o errexit
 # First argument should point to directory with my data.
 
 RED="\e[31m"; GREEN="\e[32m"; RESET="\e[0m"
-echo ""
 
 install_apt_packages() {
-    echo -e "Installing software..."
+    echo -e "\nInstalling packages:\n${APT_PACKAGES[*]}"
 
     APT_PACKAGES=(
         "baobab"
@@ -47,17 +46,18 @@ install_apt_packages() {
     sudo add-apt-repository --yes ppa:freefilesync/ffs
     # FreeFileSync isn't available in Utopic Unicorn repos yet
     sudo sed -i 's/utopic/trusty/' /etc/apt/sources.list.d/freefilesync*
-    sudo apt-get --yes update
-    sudo apt-get --quiet --yes install ${APT_PACKAGES[*]}
+    sudo apt-get update --quiet --yes
+    sudo apt-get install --quiet --yes ${APT_PACKAGES[*]}
 
     # finish DVD decryption installation
     sudo /usr/share/doc/libdvdread4/install-css.sh
 
-    echo -e "${GREEN}Done.\n${RESET}"
+    echo -e "${GREEN}Finished installing software.${RESET}"
+    sleep 3
 }
 
 cleanup_home() {
-    echo -e "Removing default XDG directories (Pictures, Music etc.)..."
+    echo -e "\nRemoving default XDG directories (Pictures, Music etc.)..."
 
     if [[ $(ls "$HOME"/*/ 2>/dev/null) ]]; then
         for d in "$HOME"/*/; do
@@ -72,7 +72,7 @@ copy_data() {
     SRC="$1"
     DEST="$2"
 
-    echo -e "Copying/moving personal data from $SRC to $DEST..."
+    echo -e "\nTransferring personal data from $SRC to $DEST..."
 
     PATHS_TO_COPY=(
         "jan"
@@ -101,36 +101,42 @@ copy_data() {
 
     if [ $SRC_PARTITION = $DEST_PARTITION ]; then
         command="mv"
+        verb="Moving"
     else
         command="cp --recursive"
+        verb="Copying"
     fi
 
     for path in ${PATHS_TO_COPY[*]}; do
         if [ -e "$SRC"/"$path" ]; then
             if [ -e "$DEST"/"$path" ]; then
                 echo -e ${RED}"$DEST"/"$path" already exists, renaming...${RESET}
+                echo "$path" >> ~/conflicting-paths.txt
                 mv "./$path" "./$path.old" --backup=numbered
             fi
-            echo -n Processing "$path" ...
+            echo -n $verb "$path"...
             mkdir --parents "$DEST"/$(dirname "$path")/
             $command "$SRC"/"$path" "$DEST"/$(dirname "$path")/
             echo -e ${GREEN} done.${RESET}
         fi
+        sleep 0.1
     done
 
     mkdir --parents "$DEST"/media
-    echo -e "${GREEN}Done.\n${RESET}"
+    echo -e "${GREEN}Data transferred.\n${RESET}"
+    sleep 3
 }
 
 install_dotfiles() {
     if [ ! -f "$HOME/.config/dotfiles-git-dir" ]; then
-        echo -e "Installing dotfiles..."
+        echo -e "\nInstalling dotfiles..."
         git clone https://github.com/janek-warchol/dotfiles ~/repos/dotfiles --branch janek
         ~/repos/dotfiles/.install-dotfiles.sh
     else
-        echo -e "Dotfiles already installed, updating files..."
-        git --work-tree="$HOME" --git-dir="$(cat $HOME/.config/dotfiles-git-dir)" status --short
-        git --work-tree="$HOME" --git-dir="$(cat $HOME/.config/dotfiles-git-dir)" stash
+        echo -e "\nDotfiles already installed, updating files..."
+        DOTFILES_REPO=$(cat "$HOME/.config/dotfiles-git-dir")
+        git --work-tree="$HOME" --git-dir="$DOTFILES_REPO" status --short --untracked-files=no
+        git --work-tree="$HOME" --git-dir="$DOTFILES_REPO" stash
         echo -e "${GREEN}Done.\n${RESET}"
     fi
     source .config/bash/*.sh
@@ -138,30 +144,34 @@ install_dotfiles() {
 
 install_lilypond() {
     # FIXME I'm getting "Unable to find a source package for lilypond" on Mint 17.1
-    sudo apt-get --quiet --yes build-dep lilypond || true
-    sudo apt-get --quiet --yes install autoconf dblatex texlive-lang-cyrillic
+    sudo apt-get build-dep --quiet --yes lilypond || true
+    sudo apt-get install --quiet --yes autoconf dblatex texlive-lang-cyrillic
     if [ ! -d "$MY_REPOS/lilypond-git" ]; then
         git clone git://git.sv.gnu.org/lilypond.git "$MY_REPOS/lilypond-git"
     fi
 }
 
 install_frescobaldi() {
-    sudo apt-get --quiet --yes install python python-qt4 python-poppler-qt4 python-pypm
-    if [ ! -d ~/bin/frescobaldi ]; then
-        git clone git://github.com/wbsoft/frescobaldi.git ~/bin/frescobaldi
+    if [ -z `which frescobaldi` ]; then
+        sudo apt-get install --quiet --yes python python-qt4 python-poppler-qt4 python-pypm
+        if [ ! -d ~/bin/frescobaldi ]; then
+            git clone git://github.com/wbsoft/frescobaldi.git ~/bin/frescobaldi
+        fi
+        cd ~/bin/frescobaldi
+        sudo python setup.py install
+        cd -
     fi
-    cd ~/bin/frescobaldi
-    sudo python setup.py install
-    cd -
 }
 
 install_vagrant() {
-    # version in apt repos is ancient, so we scrape Vagrant's website for the latest .deb 
-    VAGRANT_PKG_URL=$(wget --quiet https://www.vagrantup.com/downloads.html -O- | \
-                      grep -P "\d+\.\d+\.\d+_x86_64\.deb" | cut -d'"' -f2)
-    wget $VAGRANT_PKG_URL -O vagrant.deb
-    sudo dpkg --install vagrant.deb
-    rm vagrant.deb
+    if [ -z `which vagrant` ]; then
+        # version in apt repos is ancient, so we scrape Vagrant's website for the latest .deb
+        VAGRANT_PKG_URL=$(wget --quiet https://www.vagrantup.com/downloads.html -O- | \
+                        grep -P "\d+\.\d+\.\d+_x86_64\.deb" | cut -d'"' -f2)
+        wget $VAGRANT_PKG_URL -O vagrant.deb
+        sudo dpkg --install vagrant.deb
+        rm vagrant.deb
+    fi
 }
 
 apply_settings() {
@@ -174,8 +184,8 @@ apply_settings() {
 }
 
 cleanup_home
-install_apt_packages  # some of the later operations require git
 copy_data "$1" "$HOME"
+install_apt_packages  # some of the later operations require git
 install_dotfiles
 install_vagrant
 install_frescobaldi
