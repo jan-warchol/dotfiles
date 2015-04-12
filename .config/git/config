@@ -112,7 +112,7 @@
 
     # two-line version, useful when your terminal window is narrow
     l2 = !git lu --date=iso --date-order \
-    --format=tformat:'%C(auto)%h%C(reset) %s%n        %C(blue)%an%C(reset)%C(dim), %ad%C(reset)%C(auto)%d%C(reset)'
+    --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(dim), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
 
     # and a two-line log showing all branches
     l2a = !"git l2 --branches --remotes"
