@@ -96,26 +96,25 @@
     # The names are mnemonics based on common aliases of 'ls' command.
     # Partially inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
-    # log both HEAD and its upstream (if present)
-    lu = !git log --color=always --decorate --graph \
-    HEAD `git for-each-ref --format='%(upstream:short)' HEAD $(git symbolic-ref --quiet HEAD)`
-
     # basic one-line log, I use it all the time
-    ls = !git lu --date=relative \
+    ls = !git log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
 
     # as above, but includes all local and remote branches
-    la = !git ls --branches --remotes
+    la = !git ls HEAD --branches --remotes
 
     # "Long" format - full commit message and summary of changes
-    ll = !git lu --stat-graph-width=30 --stat-count=30 --date-order
+    ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --date-order
+
+    # similar to ls, but always include both HEAD and its upstream (if present)
+    lu = !git ls HEAD `git for-each-ref --format='%(upstream:short)' HEAD $(git symbolic-ref --quiet HEAD)`
 
     # two-line version, useful when your terminal window is narrow
-    l2 = !git lu --date=iso --date-order \
+    l2 = !git log --color=always --decorate --graph --date=iso --date-order \
     --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(dim), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
 
     # and a two-line log showing all branches
-    l2a = !"git l2 --branches --remotes"
+    l2a = !"git l2 HEAD --branches --remotes"
 
     # reflog with dates
     rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %C(auto)%h%C(reset) %<(25,trunc)%s (%gs) %C(dim)- %ci%C(reset)'
