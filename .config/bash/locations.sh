@@ -4,7 +4,7 @@ export MY_REPOS=$HOME/repos
 # LilyPond-related
 export LILYPOND_BUILD_DIR=$HOME/bin/lily
 export LILYPOND_GIT=$MY_REPOS/lilypond
-export LILY_SCRIPTS=$MY_REPOS/cli-tools/lilypond
+export LILYPOND_SCRIPTS=$MY_REPOS/cli-tools/lilypond
 export TRUNKNE_LIED_HOME=$MY_REPOS/nuty/trunkne-lied
 
 # "shortcut" aliases for quick navigation
