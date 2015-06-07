@@ -9,7 +9,7 @@ set -o errexit
 RED="\e[31m"; GREEN="\e[32m"; RESET="\e[0m"
 
 install_apt_packages() {
-    echo -e "\nInstalling packages:\n${APT_PACKAGES[*]}"
+    echo -e "\nInstalling software"
 
     APT_PACKAGES=(
         "baobab"
@@ -87,6 +87,7 @@ copy_data() {
         ".config/terminator"
         ".config/gtk-3.0/bookmarks"
         ".config/monitors.xml"
+        ".config/system-setup-todo"
         ".kde/share/apps/kate"
         ".kde/share/config/katerc"
         ".vagrant.d"
@@ -177,6 +178,7 @@ install_vagrant() {
 apply_settings() {
     # set terminator as default system terminal
     gsettings set org.gnome.desktop.default-applications.terminal exec 'terminator'
+    gsettings set org.cinnamon.desktop.default-applications.terminal exec 'terminator'
 
     # make nautilus/nemo open executable text files in editor by default
     dconf write /org/gnome/nautilus/preferences/executable-text-activation "'open'"
@@ -190,3 +192,4 @@ install_dotfiles
 install_vagrant
 install_frescobaldi
 install_lilypond
+apply_settings
