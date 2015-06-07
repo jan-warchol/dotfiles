@@ -43,10 +43,11 @@
 
     d = diff --color=always
     dc = diff --color=always --cached   # preview changes staged for commit
-    wd = diff --color=always --word-diff=color   # mnemonic: Word-Diff
-    wdc = diff --color=always --word-diff=color --cached
+    ds = diff --color=always --stat   # force coloring for use with less -R
     dm = diff --color=always master
     du = diff --color=always @{upstream}
+    wd = diff --color=always --word-diff=color   # mnemonic: Word-Diff
+    wdc = diff --color=always --word-diff=color --cached
 
     f = fetch --prune
     fa = fetch --all --prune
@@ -94,6 +95,7 @@
 
     s = status --short   # see also --branch option
     st = status
+    su = status --short --untracked-files=all
 
     unpushed = !gitk --branches --not --remotes
     unmerged = !gitk --remotes --not --branches
@@ -114,8 +116,12 @@
     # as above, but includes all local and remote branches
     la = !git ls HEAD --branches --remotes
 
+    lm = !git ls HEAD master
+
     # "Long" format - full commit message and summary of changes
     ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+
+    lmpr = log --color=always --decorate --reverse --patch master..HEAD
 
     # similar to ls, but always include both HEAD and its upstream (if present)
     lu = !git ls HEAD `git for-each-ref --format='%(upstream:short)' HEAD $(git symbolic-ref --quiet HEAD)`
