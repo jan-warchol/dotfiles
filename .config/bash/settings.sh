@@ -34,4 +34,4 @@ stty -ixon
 xset r rate 150 80
 
 #load my own keyboard layout
-xkbcomp -I/home/janek/.config/xkb /home/janek/.config/xkb/janek.xkb -w 0 $DISPLAY
+xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 0 $DISPLAY

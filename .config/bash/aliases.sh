@@ -1,6 +1,7 @@
 # redefine some commands by adding "default" settings
 alias ls='ls --color=auto --group-directories-first'
 alias df='df --human-readable'
+alias du='du --human-readable'
 alias mkdir='mkdir --parents'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -55,17 +56,20 @@ alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
+alias -- -='cd -'
 
 # miscellaneous
 mdc() { mkdir --parents "$@"; cd "$@"; }
-ved() { kate "$@" &>/dev/null & }
+ve() { gedit "$@" &>/dev/null & }
 alias op='nemo $(pwd)'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
 alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate left'
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
-alias sagi='sudo apt-get install'
-alias confed='ved ~/.config/git/config ~/.config/bash/*aliases*'
-alias kb='xkbcomp -I/home/janek/.config/xkb /home/janek/.config/xkb/janek.xkb -w 4 $DISPLAY'
+alias sag='sudo apt-get --assume-yes'
+alias sagi='sudo apt-get --assume-yes install'
+alias conf='ve ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings*'
+alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
+alias please='sudo $(history -p \!\!)'
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 alert() {
@@ -74,5 +78,6 @@ alert() {
     notify-send -i $icon "$last_cmd"
 }
 
-# let aliases work after sudo (see http://askubuntu.com/a/22043)
+# let bash expand aliases after certain commands (see http://askubuntu.com/a/22043)
 alias sudo='sudo '
+alias man='man '
