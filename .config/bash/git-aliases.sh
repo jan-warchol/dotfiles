@@ -3,16 +3,18 @@
 
 gd() { git d "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gdc() { git dc "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
+gdu() { git du "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 # word-diff is especially useful for files with very long lines of text
 # (e.g. a paragraph per line) - in that case we actually want wrapped lines
 gwd() { git wd "$@" | less --RAW-CONTROL-CHARS; }
 gwdc() { git wdc "$@" | less --RAW-CONTROL-CHARS; }
-gdm() { git d master "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
+gdm() { git dm "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 
 gl() { git l "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gls() { git ls "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gla() { git la "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gll() { git ll "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
+glu() { git lu "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2() { git l2 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2a() { git l2a "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glp() { git lp "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }

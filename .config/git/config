@@ -29,6 +29,8 @@
     com = checkout origin/master
     cu = checkout @{upstream}
 
+    chp = cherry-pick
+
     # commit --verbose shows a preview of staged changes when editing the commit
     # message - you no longer have to run 'git diff' before every commit :)
     k = commit --verbose   # no git command starts with 'k', and 'k' matches pronunciation!
@@ -37,12 +39,13 @@
     kma = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
                             # and won't get confused with amending
     amn = commit --amend
-    amna = commit --amend --all
+    ama = commit --amend --all
 
     d = diff --color=always
     dc = diff --color=always --cached   # preview changes staged for commit
     wd = diff --color=always --word-diff=color   # mnemonic: Word-Diff
     wdc = diff --color=always --word-diff=color --cached
+    dm = diff --color=always master
     du = diff --color=always @{upstream}
 
     f = fetch --prune
@@ -59,10 +62,13 @@
     lpw = log --color=always --decorate --patch --word-diff=color
 
     ff = merge --ff-only
+    noff = merge --no-ff
 
     # unlike plain `pull`, this won't attempt a merge that may result in conflicts
     pl = pull --ff-only
 
+    pu = push
+    puf = push --force-with-lease
     # push to a new branch on the remote with the same name
     psu = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
 
@@ -75,11 +81,13 @@
     rbim = rebase --interactive master
     rbiu = rebase --interactive @{upstream}
     rbm = rebase master
+    rbom = rebase origin/master
 
     rt = remote --verbose
 
     rs = reset
     rs1 = reset HEAD~1   # "soft undo" - remove last commit, but keep its changes
+    rsu = reset @{upstream}
 
     sh = stash
     shp = stash pop
@@ -180,6 +188,14 @@
 
     # "merge-base diff"
     mbd = !git diff `git merge-base HEAD $1`
+
+    # search and replace
+    sed = !git ls-files -z | xargs -0 sed -i -e
+
+    # delete current branch
+    bdc = !sh -c 'BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+        && git checkout master \
+        && git branch --delete $BRANCH'
 
 
 
