@@ -1,14 +1,17 @@
 # Note that old versions of git may not load configuration from ~/.config/git/config,
-# loading only ~/.gitconfig.  I _strongly_ recommend installing latest git (>= 2.0)!
+# loading only ~/.gitconfig.  Using git >= 2.0 is _strongly_ recommended!
 
 [alias]
-
     # SIMPLE "SHORTCUT" ALIASES
+
+    # It can be convenient to view git output using `less`, but by default git
+    # turns coloring off when the output is not a tty.  To override that we add
+    # --color=always to some aliases (and use `less -R` for viewing).
 
     a = add
     aa = add --all
     ap = add --patch   # interactively select hunks to add, very useful
-    au = add --update   # stage only tracked files - usually you want this rather than --all
+    au = add --update   # stage all changes in already tracked files
 
     b = branch
     bv = branch --verbose --verbose   # lists branches with SHAs and upstreams
@@ -18,7 +21,6 @@
     BD = branch -D
 
     c = checkout
-    co = checkout   # I prefer 'c', but many people are used to 'co'
     c0 = checkout HEAD~0   # detach HEAD e.g. for throw-away experiments
     c1 = checkout HEAD~1
     c2 = checkout HEAD~2
@@ -27,10 +29,9 @@
     com = checkout origin/master
     cu = checkout @{upstream}
 
-    # --verbose flag shows a preview of changes that will be committed when editing the
-    # commit message - I no longer have to double-check with 'git diff' before committing!
+    # commit --verbose shows a preview of staged changes when editing the commit
+    # message - you no longer have to run 'git diff' before every commit :)
     k = commit --verbose   # no git command starts with 'k', and 'k' matches pronunciation!
-    ci = commit --verbose   # I prefer 'k', but many people are used to 'ci'
     ka = commit --verbose --all
     km = commit -m
     kma = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
@@ -38,7 +39,7 @@
     amn = commit --amend
     amna = commit --amend --all
 
-    d = diff --color=always   # force coloring for use with less -R
+    d = diff --color=always
     dc = diff --color=always --cached   # preview changes staged for commit
     wd = diff --color=always --word-diff=color   # mnemonic: Word-Diff
     wdc = diff --color=always --word-diff=color --cached
@@ -52,12 +53,15 @@
     g5 = grep --color=always --line-number --context 5
     gh5 = grep --color=always --heading --context 5
 
-    # run log with --graph so that the topology will be visualized
-    l = log --color=always --decorate --graph   # force coloring for use with less -R
+    # always run log with --graph so that the topology will be visualized!
+    l = log --color=always --decorate --graph
     lp = log --color=always --decorate --patch
     lpw = log --color=always --decorate --patch --word-diff=color
 
     ff = merge --ff-only
+
+    # unlike plain `pull`, this won't attempt a merge that may result in conflicts
+    pl = pull --ff-only
 
     # push to a new branch on the remote with the same name
     psu = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
@@ -75,12 +79,12 @@
     rt = remote --verbose
 
     rs = reset
-    rs1 = reset HEAD~1
+    rs1 = reset HEAD~1   # "soft undo" - remove last commit, but keep its changes
 
     sh = stash
     shp = stash pop
 
-    s = status --short   # I prefer terse output.  See also --branch option.
+    s = status --short   # see also --branch option
     st = status
 
     unpushed = !gitk --branches --not --remotes
@@ -92,9 +96,8 @@
 
     # PRETTY LOGS
 
-    # Very helpful especially when you cannot run gitk.
-    # The names are mnemonics based on common aliases of 'ls' command.
-    # Partially inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
+    # Names are mnemonics based on common aliases of 'ls' command.
+    # Inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
     # basic one-line log, I use it all the time
     ls = !git log --color=always --decorate --graph --date=relative \
@@ -104,13 +107,13 @@
     la = !git ls HEAD --branches --remotes
 
     # "Long" format - full commit message and summary of changes
-    ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --date-order
+    ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
 
     # similar to ls, but always include both HEAD and its upstream (if present)
     lu = !git ls HEAD `git for-each-ref --format='%(upstream:short)' HEAD $(git symbolic-ref --quiet HEAD)`
 
     # two-line version, useful when your terminal window is narrow
-    l2 = !git log --color=always --decorate --graph --date=iso --date-order \
+    l2 = !git log --color=always --decorate --graph --date=iso \
     --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(dim), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
 
     # and a two-line log showing all branches
@@ -121,7 +124,7 @@
 
 
 
-    # MORE SOPHISTICATED ALIASES
+    # MORE SOPHISTICATED COMMANDS
 
     # "smart amend"
     #
@@ -199,7 +202,7 @@
     autocorrect = 15
 
 [merge]
-    # in case of merge conflict also show common ancestor version
+    # in case of merge conflict also show how common ancestor looked like
     conflictstyle = diff3
 
 [push]

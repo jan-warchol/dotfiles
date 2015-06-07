@@ -5,15 +5,23 @@ fi
 # make autocompletion case-insensitive
 bind "set completion-ignore-case on"
 
-# cd to a dir just by typing its name (requires bash > 4.0)
+# cd to a dir just by typing its name (requires bash > 4.0), autocorrect typos
 shopt -s autocd
+shopt -s cdspell
 
 # make "**" match all files in all levels of subdirectories
 shopt -s globstar
 
 export PATH="$PATH:~/bin/"
 
+# shell history is very useful, so let's make sure we can harness its full power
+export HISTFILESIZE=10000000
+export HISTSIZE=10000000
+export HISTCONTROL=ignoredups   # don't store duplicated commands
+shopt -s histappend   # don't overwrite history file after each session
 
+# disable terminal flow control key binding, so that ^S will search history forward
+stty -ixon
 
 # ~= UGH! =~
 # These settings *should* be simply put inside ~/.profile, which is executed
@@ -27,20 +35,3 @@ xset r rate 150 80
 
 #load my own keyboard layout
 xkbcomp -I/home/janek/.config/xkb /home/janek/.config/xkb/janek.xkb -w 0 $DISPLAY
-
-
-
-# HISTORY
-
-# save LOTS of history
-export HISTFILESIZE=10000000
-export HISTSIZE=10000000
-
-# don't store duplicated commands in history
-export HISTCONTROL=ignoredups
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# disable terminal flow control key binding, so that ^S will search history forward
-stty -ixon
