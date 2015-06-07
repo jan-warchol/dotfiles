@@ -39,12 +39,14 @@ alias trea3='tree -C -L 3 -a --dirsfirst --filelimit 50'
 
 # vagrant
 alias vt='vagrant'
+alias vth='vagrant halt'
 alias vts='vagrant status'
-alias vtsh='vagrant ssh'
-alias vtu='vagrant up'
-alias vtus='vagrant up && vagrant ssh'
-alias vtupo='vagrant up --provider=openstack'
+alias vtl='vagrant ssh'
+alias vtu='time vagrant up'
+vtus() { time vagrant up "$@" && vagrant ssh "$@"; }
+alias vtupo='time vagrant up --provider=openstack'
 alias vtd='vagrant destroy -f'
+alias vtp='time vagrant provision'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
