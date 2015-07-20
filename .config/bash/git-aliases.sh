@@ -12,9 +12,12 @@ gdm() { git dm "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 
 gl() { git l "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gls() { git ls "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
+g5() { git ls -5 "$@"; }
+g11() { git ls -11 "$@"; }
 gla() { git la "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gll() { git ll "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glu() { git lu "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
+glm() { git lm "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2() { git l2 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2a() { git l2a "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glp() { git lp "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }

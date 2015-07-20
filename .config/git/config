@@ -40,6 +40,7 @@
                             # and won't get confused with amending
     amn = commit --amend
     ama = commit --amend --all
+    amq = commit --amend --all --no-edit
 
     d = diff --color=always
     dc = diff --color=always --cached   # preview changes staged for commit
@@ -96,6 +97,8 @@
     s = status --short   # see also --branch option
     st = status
     su = status --short --untracked-files=all
+    si = status --short --ignored
+    sa = status --short --untracked-files=all --ignored
 
     unpushed = !gitk --branches --not --remotes
     unmerged = !gitk --remotes --not --branches
@@ -162,6 +165,10 @@
         if [ -n \"$dirtytree\" ]; then \
             git stash pop; \
         fi' -"
+
+    fixa = "!sh -c 'git fix $@ --all' -"
+    fix1 = "!sh -c 'git fix @~1 --all' -"
+    fix2 = "!sh -c 'git fix @~2 --all' -"
 
     # trash - discard changes
     #
