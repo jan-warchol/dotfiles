@@ -67,7 +67,7 @@ alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate le
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
 alias sag='sudo apt-get --assume-yes'
 alias sagi='sudo apt-get --assume-yes install'
-alias conf='ve ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings*'
+alias conf='ve ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*'
 alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias please='sudo $(history -p \!\!)'
 
