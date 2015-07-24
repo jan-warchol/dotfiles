@@ -1,56 +1,86 @@
-// polish qwerty adapted to my hardware setup, with some customizations
-
 default
 xkb_symbols "basic" {
-    include "pc"
-    include "pl(basic)"
-    include "ctrl(nocaps)"
-    include "shift(both_capslock)"
+    include "modifier_keys"
 
-    // map missing keys to something
-    key <TVAN> { [ Insert ] };
-    key <BACK> { [ Home ] };
-    key <FRWD> { [ End ] };
+    key <TLDE> { [ grave, asciitilde ] };
+    key <AE01> { [ 1 ] };
+    key <AE02> { [ 2, at ] };
+    key <AE03> { [ 3, numbersign ] };
+    key <AE04> { [ 4, dollar ] };
+    key <AE05> { [ 5, percent ] };
+    key <AE06> { [ 6, asciicircum ] };
+    key <AE07> { [ 7, ampersand ] };
+    key <AE08> { [ 8, asterisk ] };
+    key <AE09> { [ 9 ] };
+    key <AE10> { [ BackSpace, BackSpace, colon ] };
+    key <AE11> { [ minus, underscore ] };
+    key <AE12> { [ equal, plus ] };
 
-    include "level3(ralt_switch)"
-};
+    key <LatQ> { [ q, Q, exclam ] };
+    key <LatW> { [ w, W ] };
+    key <LatE> { [ v, V ] };
+    key <LatR> { [ f, F ] };
+    key <LatT> { [ comma, less ] };
+    key <LatY> { [  ] };
+    key <LatU> { [  ] };
+    key <LatI> { [ u, U ] };
+    key <LatO> { [ i, I, colon, semicolon ] };
+    key <LatP> { [ o, O, oacute, Oacute ] };
+    key <AD11> { [ j, J, plus ] };
+    key <AD12> { [ bracketleft, braceleft ] };
+    key <BKSL> { [ bracketright, braceright ] };
 
-xkb_symbols "shorthands" {
-    include "janek(basic)"
+    key <LatA> { [ a, A, aogonek, Aogonek ] };
+    key <LatS> { [ s, S, sacute, Sacute ] };
+    key <LatD> { [ e, E, eogonek, Eogonek ] };
+    key <LatF> { [ t, T ] };
+    key <LatG> { [ g, G ] };
+    key <LatH> { [  ] };
+    key <LatJ> { [ y, Y ] };
+    key <LatK> { [ n, N, parenright ] };
+    key <LatL> { [ r, R, parenleft ] };
+    key <AC10> { [ l, L, lstroke, Lstroke ] };
+    key <AC11> { [ h, H, apostrophe, quotedbl ] };
 
-    // make some symbols available under right alt.
-    // Using right alt with these keys is more convenient than using shift.
-    key <AC10> { [ NoSymbol, NoSymbol, colon ] };
-    key <AC11> { [ NoSymbol, NoSymbol, quotedbl ] };
-    key <AB10> { [ NoSymbol, NoSymbol, question ] };
-    // put parentheses on the same keys as brackets
-    key <AD11> { [ NoSymbol, NoSymbol, parenleft ] };
-    key <AD12> { [ NoSymbol, NoSymbol, parenright ] };
-    key <LatP> { [ NoSymbol, NoSymbol, plus ] };
-    key <AE09> { [ NoSymbol, NoSymbol, colon ] }; // additional colon for smileys
+    key <LFSH> { [ backslash, bar ] };
+    key <LatZ> { [ z, Z, zabovedot, Zabovedot ] };
+    key <LatX> { [ x, X, zacute, Zacute ] };
+    key <LatC> { [ c, C, cacute, Cacute ] };
+    key <LatV> { [ d, D ] };
+    key <LatB> { [  ] };
+    key <LatN> { [ b, B ] };
+    key <LatM> { [ p, P ] };
+    key <AB08> { [ m, M, nacute, Nacute ] };
+    key <AB09> { [ k, K ] };
+    key <AB10> { [ period, greater ] };
+    key <RTSH> { [ slash, question ] };
+
+    // replacement keys
+    key <FK11> { [ 10, F11 ] };
 };
 
 xkb_symbols "navigation" {
-    include "janek(shorthands)"
+    include "janek(basic)"
 
-    // put arrows on 0 - F12 =
-    key <AE10> { [ Left, Left, Home, Home ] };
-    key <AE11> { [ Down, Down, Next, Next ] };
-    key <FK12> { [ Up, Up, Prior, Prior ] };
-    key <AE12> { [ Right, Right, End, End ] };
+    // put arrows on right hand home keys, in second group (vim-style)
+    key <LatK> {
+        symbols[Group2] = [ Left, Left, Home ]
+    };
+    key <LatL> {
+        symbols[Group2] = [ Down, Down, Next ]
+    };
+    key <AC10> {
+        symbols[Group2] = [ Up, Up, Prior ]
+    };
+    key <AC11> {
+        symbols[Group2] = [ Right, Right, End ]
+    };
 
-    // it also makes sense to have Home and End close to arrows
-    key <FK11> { [ Home, Home, F11 ] };
-    key <END>  { [ End, End ] };
+    // Switch groups to enable/disable arrows.
+    // I also use xcape to map this to more accessible keys.
+    key <BACK> { [ ISO_Last_Group ] };
+    key <FRWD> { [ ISO_First_Group ] };
 
-    // now backward/forward keys can be PgUp/PgDown, as usual on ThinkPads
-    key <BACK> { [ Prior ] };
-    key <FRWD> { [ Next ] };
-
-    // replacement keys for 0 - = F11 F12
-    key <FK10> { [ 0, F10 ] };
-    key <MENU> { [ minus, underscore ] };
-    key <FK11> { [ NoSymbol, NoSymbol, F11 ] };
-    key <END>  { [ NoSymbol, NoSymbol, F12 ] };
-    key <AB08> { [ NoSymbol, NoSymbol, equal ] }; // comma key
+    // Home key doesn't work on my keyboard, so I need another one
+    key <FK12> { [ Home, Home, F12 ] };
 };

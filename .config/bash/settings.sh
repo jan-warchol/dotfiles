@@ -23,6 +23,9 @@ shopt -s histappend   # don't overwrite history file after each session
 # disable terminal flow control key binding, so that ^S will search history forward
 stty -ixon
 
+killall xcape
+xcape -t 200 -e 'Alt_L=ISO_Last_Group;ISO_Level3_Shift=ISO_First_Group;Shift_L=Escape;Control_L=Return'
+
 # ~= UGH! =~
 # These settings *should* be simply put inside ~/.profile, which is executed
 # at login.  However, it seems that they are later overridden by system
