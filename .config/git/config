@@ -208,6 +208,13 @@
 [color]
     ui = auto
 
+[color "branch"]
+    remote = blue
+
+[color "status"]
+    changed = yellow
+    untracked = cyan
+
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them
     quotepath = false
@@ -227,6 +234,9 @@
     # in case of merge conflict also show how common ancestor looked like
     conflictstyle = diff3
 
+    # Add summaries of merged commits to the merge commit message.
+    log = true
+
 [push]
     default = simple
 
@@ -242,5 +252,5 @@
     enabled = true
 
 [user]
-    name = Janek Warchoł
-    email = lemniskata.bernoullego@gmail.com
+    name = Jan Warchoł
+    email = jan.warchol@gmail.com
