@@ -60,6 +60,8 @@ alias -- -='cd -'
 
 # miscellaneous
 mdc() { mkdir --parents "$@"; cd "$@"; }
+# I keep forgetting whether it's mcd or mdc, so let's have both :P
+alias mcd=mdc
 ve() { gedit "$@" &>/dev/null & }
 alias op='nemo $(pwd)'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
