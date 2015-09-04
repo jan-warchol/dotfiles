@@ -136,8 +136,8 @@
     # and a two-line log showing all branches
     l2a = !"git l2 HEAD --branches --remotes"
 
-    # reflog with dates
-    rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %C(auto)%h%C(reset) %<(25,trunc)%s (%gs) %C(dim)- %ci%C(reset)'
+    # reflog with dates and commit message subject
+    rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %<(21,trunc)%ci%x08%x08 %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
 
 
 
