@@ -15,4 +15,5 @@
 
 # however, do ignore these:
 .config/git/gitk
+.config/git/user-specific-config
 .dmrc

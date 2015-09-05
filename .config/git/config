@@ -260,4 +260,7 @@
 
 [user]
     name = Jan Warchoł
-    email = jan.warchol@gmail.com
+
+[include]
+    # load account-specific settings from a file managed outside dotfiles repo
+    path = user-specific-config
