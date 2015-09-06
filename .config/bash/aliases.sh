@@ -43,11 +43,12 @@ alias vt='vagrant'
 alias vth='vagrant halt'
 alias vts='vagrant status'
 alias vtl='vagrant ssh'
-alias vtu='time vagrant up'
+alias vtu='time vagrant up; vagrant ssh-config >> ~/.ssh/vagrant_hosts_config'
 vtus() { time vagrant up "$@" && vagrant ssh "$@"; }
 alias vtupo='time vagrant up --provider=openstack'
-alias vtd='vagrant destroy -f'
+alias vtd='vagrant destroy -f; rm ~/.ssh/vagrant_hosts_config'
 alias vtp='time vagrant provision'
+alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
