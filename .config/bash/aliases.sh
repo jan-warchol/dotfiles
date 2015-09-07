@@ -39,15 +39,15 @@ alias trea2='tree -C -L 2 -a --dirsfirst --filelimit 80'
 alias trea3='tree -C -L 3 -a --dirsfirst --filelimit 50'
 
 # vagrant
-alias vt='vagrant'
-alias vth='vagrant halt'
-alias vts='vagrant status'
-alias vtl='vagrant ssh'
-alias vtu='time vagrant up; vagrant ssh-config >> ~/.ssh/vagrant_hosts_config'
-vtus() { time vagrant up "$@" && vagrant ssh "$@"; }
-alias vtupo='time vagrant up --provider=openstack'
-alias vtd='vagrant destroy -f; rm ~/.ssh/vagrant_hosts_config'
-alias vtp='time vagrant provision'
+alias vg='vagrant'
+alias vgh='vagrant halt'
+alias vgs='vagrant status'
+alias vgl='vagrant ssh'
+alias vgu='time vagrant up; vagrant ssh-config >> ~/.ssh/vagrant_hosts_config'
+vgus() { time vagrant up "$@" && vagrant ssh "$@"; }
+alias vgupo='time vagrant up --provider=openstack'
+alias vgd='vagrant destroy -f; rm ~/.ssh/vagrant_hosts_config'
+alias vgp='time vagrant provision'
 alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
