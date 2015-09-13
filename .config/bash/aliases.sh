@@ -43,10 +43,10 @@ alias vg='vagrant'
 alias vgh='vagrant halt'
 alias vgs='vagrant status'
 alias vgl='vagrant ssh'
-alias vgu='time vagrant up; vagrant ssh-config >> ~/.ssh/vagrant_hosts_config'
+vgu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; }
 vgus() { time vagrant up "$@" && vagrant ssh "$@"; }
 alias vgupo='time vagrant up --provider=openstack'
-alias vgd='vagrant destroy -f; rm ~/.ssh/vagrant_hosts_config'
+vgd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
 alias vgp='time vagrant provision'
 alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
 
