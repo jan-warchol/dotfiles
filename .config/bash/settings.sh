@@ -23,9 +23,6 @@ shopt -s histappend   # don't overwrite history file after each session
 # disable terminal flow control key binding, so that ^S will search history forward
 stty -ixon
 
-killall xcape
-xcape -t 200 -e 'Shift_L=Escape;Control_L=Return'
-
 # ~= UGH! =~
 # These settings *should* be simply put inside ~/.profile, which is executed
 # at login.  However, it seems that they are later overridden by system
@@ -33,8 +30,15 @@ xcape -t 200 -e 'Shift_L=Escape;Control_L=Return'
 # default settings) - so right now I have to manually open a new terminal
 # to have these settings applied.
 
-# faster key repetition (150 ms delay, 80 reps/sec) - life is too short to wait!
-xset r rate 150 80
+# Execute only when a graphical environment is present
+if [ -n "$DISPLAY" ]; then
+    # there should be always only one xcape process running.
+    killall --quiet --user $USER xcape
+    xcape -t 200 -e 'Shift_L=Escape;Control_L=Return'
 
-#load my own keyboard layout
-xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 0 $DISPLAY
+    # faster key repetition (150 ms delay, 80 reps/sec) - life is too short to wait!
+    xset r rate 150 80
+
+    #load my own keyboard layout
+    xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 0 $DISPLAY
+fi
