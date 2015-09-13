@@ -65,6 +65,7 @@ mdc() { mkdir --parents "$@"; cd "$@"; }
 alias mcd=mdc
 ve() { gedit "$@" &>/dev/null & }
 alias op='nemo $(pwd)'
+alias ap='ansible-playbook'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
 alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate left'
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
