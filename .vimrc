@@ -1,4 +1,3 @@
-execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
@@ -7,3 +6,8 @@ set number
 set list
 
 map q :qa<CR>
+
+" Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+call plug#end()
