@@ -49,6 +49,8 @@ alias vgupo='time vagrant up --provider=openstack'
 vgd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
 alias vgp='time vagrant provision'
 alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
+alias sshfsv='sshfs -F ~/.ssh/vagrant_hosts_config'
+sshumount() { fusermount -u "$@" && rmdir "$@"; }
 
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
