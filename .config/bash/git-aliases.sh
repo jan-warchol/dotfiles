@@ -12,8 +12,10 @@ gdm() { git dm "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 
 gl() { git l "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gls() { git ls "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
-g5() { git ls -5 "$@"; }
-g11() { git ls -11 "$@"; }
+# I want NO line wrapping on these two, so I pipe them to less with
+# line-wrapping disabled and exit less immediately without clearing screen.
+g5() { git ls -5 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }
+g11() { git ls -11 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }
 gla() { git la "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gll() { git ll "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glu() { git lu "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
