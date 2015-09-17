@@ -76,6 +76,8 @@ alias sagi='sudo apt-get --assume-yes install'
 alias conf='ve ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*'
 alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias please='sudo $(history -p \!\!)'
+alias doton='export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
+alias dotoff='unset GIT_DIR; unset GIT_WORK_TREE'
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 alert() {
