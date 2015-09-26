@@ -80,11 +80,11 @@ alias doton='export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
 alias dotoff='unset GIT_DIR; unset GIT_WORK_TREE'
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
-if ! type alert &>/dev/null; then alert() {
+function alert() {
     if [ $? = 0 ]; then icon=terminal; else icon=error; fi
     last_cmd="$(history | tail -n1 | sed 's/^\s*[0-9]*\s*//' | sed 's/;\s*alert\s*$//')"
     notify-send -i $icon "$last_cmd"
-} fi
+}
 
 # let bash expand aliases after certain commands (see http://askubuntu.com/a/22043)
 alias sudo='sudo '
