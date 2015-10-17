@@ -9,6 +9,11 @@
 !/.config/bash
 !/.config/git
 
+# and the user-wide Vagrantfile
+!/.vagrant.d/
+/.vagrant.d/*
+!/.vagrant.d/Vagrantfile
+
 # and a selection of hidden configuration files.
 !/.*rc
 
