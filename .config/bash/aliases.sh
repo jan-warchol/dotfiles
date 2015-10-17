@@ -17,6 +17,7 @@ alias grp2='grp --context=2'
 alias grp3='grp --context=3'
 alias grp4='grp --context=4'
 alias grp5='grp --context=5'
+alias grp11='grp --context=11'
 
 # common ls aliases
 alias l='ls --file-type --ignore-backups'
