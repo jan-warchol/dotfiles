@@ -20,4 +20,5 @@
 # however, do ignore these:
 .config/git/gitk
 .config/git/user-specific-config
+.config/bash/local-overrides.sh
 .dmrc
