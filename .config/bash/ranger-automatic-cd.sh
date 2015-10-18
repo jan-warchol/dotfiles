@@ -7,7 +7,7 @@
 # To undo the effect of this function, you can type "cd -" to return to the
 # original directory.
 
-function ranger-cd {
+function ranger {
     tempfile="$(mktemp)"
     /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
     test -f "$tempfile" &&
@@ -18,4 +18,4 @@ function ranger-cd {
 }
 
 # This binds Ctrl-O to ranger-cd:
-bind '"\C-o":"ranger-cd\C-m"'
+bind '"\C-o":"ranger\C-m"'
