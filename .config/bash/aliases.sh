@@ -10,9 +10,11 @@ alias less='less --RAW-CONTROL-CHARS --ignore-case'  # parses color codes!
 alias wget='wget --continue'
 
 # color-forced grep (will color matches even when piped to less!)
-alias grp='grep --line-number --color=always'
-alias rgp='rgrep --line-number --color=always'
-alias egp='egrep --line-number --color=always'
+function grp() {
+    command rgrep --with-filename --line-number --color=always "$@" |
+    sed 's/:/ /' |
+    sed 's/:/ /'
+}
 alias grp2='grp --context=2'
 alias grp3='grp --context=3'
 alias grp4='grp --context=4'
