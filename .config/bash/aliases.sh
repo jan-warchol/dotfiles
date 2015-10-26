@@ -25,7 +25,7 @@ alias grp11='grp --context=11'
 alias l='ls --file-type --ignore-backups'
 alias la='ls --almost-all --file-type'
 alias ll='ls -l --human-readable --almost-all --file-type'
-alias lk='ls -l --human-readable --file-type'
+alias lt='ls -thor'
 
 # du
 alias du0='du --human-readable --summarize'
