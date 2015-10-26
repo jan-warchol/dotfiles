@@ -1,7 +1,9 @@
 set whichwrap+=h,l,<,>,[,]
 set number
+" Leader commands
+let mapleader = "\<Space>"
+nnoremap <Leader>q :q<CR>
 
-map q :qa<CR>
 
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
