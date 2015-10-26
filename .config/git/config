@@ -59,6 +59,7 @@
     g3 = grep --color=always --line-number --context 3
     g5 = grep --color=always --line-number --context 5
     gh5 = grep --color=always --heading --context 5
+    gw = grep --color=always --line-number --word-regexp
 
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
@@ -73,8 +74,10 @@
 
     pu = push
     puf = push --force-with-lease
-    # push to a new branch on the remote with the same name
-    psu = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+    # push to a new branch with the same name
+    psu = !git push --set-upstream $(git symbolic-ref --short HEAD)
+    psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+    put = !git push && git push --tags
 
     rba = rebase --abort
     rb = rebase
@@ -236,8 +239,8 @@
     renames = copies
 
 [help]
-    # correct and run mistyped commands after 1.5 sec delay
-    autocorrect = 15
+    # correct and run mistyped commands after 1.3 sec delay
+    autocorrect = 13
 
 [merge]
     # in case of merge conflict also show how common ancestor looked like
