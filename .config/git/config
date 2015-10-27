@@ -56,10 +56,20 @@
     fa = fetch --all --prune
 
     g = grep --color=always --line-number
-    g3 = grep --color=always --line-number --context 3
-    g5 = grep --color=always --line-number --context 5
-    gh5 = grep --color=always --heading --context 5
-    gw = grep --color=always --line-number --word-regexp
+    g2 = !git g --context 2
+    g3 = !git g --context 3
+    g5 = !git g --context 5
+    g8 = !git g --context 8
+    # when I want to see more context, I don't want filenames obscuring my
+    # view.  This also makes it possible to copy-and-paste code snippets.
+    gh = grep --color=always --heading
+    gh5 = !git gh --context 5
+    gh8 = !git gh --context 8
+    gh13 = !git gh --context 13
+    gh21 = !git gh --context 21
+    # matches pattern only at word boundaries
+    gw = !git g --word-regexp
+    ghw = !git gh8 --word-regexp
 
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
