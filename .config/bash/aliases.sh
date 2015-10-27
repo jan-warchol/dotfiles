@@ -10,9 +10,11 @@ alias less='less --RAW-CONTROL-CHARS --ignore-case'  # parses color codes!
 alias wget='wget --continue'
 
 # color-forced grep (will color matches even when piped to less!)
-alias grp='grep --line-number --color=always'
-alias rgp='rgrep --line-number --color=always'
-alias egp='egrep --line-number --color=always'
+function grp() {
+    command rgrep --with-filename --line-number --color=always "$@" |
+    sed 's/:/ /' |
+    sed 's/:/ /'
+}
 alias grp2='grp --context=2'
 alias grp3='grp --context=3'
 alias grp4='grp --context=4'
@@ -23,7 +25,7 @@ alias grp11='grp --context=11'
 alias l='ls --file-type --ignore-backups'
 alias la='ls --almost-all --file-type'
 alias ll='ls -l --human-readable --almost-all --file-type'
-alias lk='ls -l --human-readable --file-type'
+alias lt='ls -thor'
 
 # du
 alias du0='du --human-readable --summarize'
@@ -40,15 +42,15 @@ alias trea2='tree -C -L 2 -a --dirsfirst --filelimit 80'
 alias trea3='tree -C -L 3 -a --dirsfirst --filelimit 50'
 
 # vagrant
-alias vg='vagrant'
-alias vgh='vagrant halt'
-alias vgs='vagrant status'
-alias vgl='vagrant ssh'
-vgu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; }
-vgus() { time vagrant up "$@" && vagrant ssh "$@"; }
-alias vgupo='time vagrant up --provider=openstack'
-vgd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
-alias vgp='time vagrant provision'
+alias vt='vagrant'
+alias vth='vagrant halt'
+alias vts='vagrant status'
+alias vtl='vagrant ssh'
+vtu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; }
+vtus() { time vagrant up "$@" && vagrant ssh "$@"; }
+alias vtupo='time vagrant up --provider=openstack'
+vtd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
+alias vtp='time vagrant provision'
 alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
 alias sshfsv='sshfs -F ~/.ssh/vagrant_hosts_config'
 sshumount() { fusermount -u "$@" && rmdir "$@"; }

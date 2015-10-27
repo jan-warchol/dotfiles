@@ -34,7 +34,7 @@ stty -ixon
 if [ -n "$DISPLAY" ]; then
     # there should be always only one xcape process running.
     killall --quiet --user $USER xcape
-    xcape -t 200 -e 'Shift_L=Escape;Control_L=Return'
+    xcape -t 200 -e 'Control_L=Escape'
 
     # faster key repetition (150 ms delay, 80 reps/sec) - life is too short to wait!
     xset r rate 150 80

@@ -42,21 +42,34 @@
     ama = commit --amend --all
     amq = commit --amend --all --no-edit
 
-    d = diff --color=always
-    dc = diff --color=always --cached   # preview changes staged for commit
-    ds = diff --color=always --stat   # force coloring for use with less -R
-    dm = diff --color=always master
-    du = diff --color=always @{upstream}
-    wd = diff --color=always --word-diff=color   # mnemonic: Word-Diff
-    wdc = diff --color=always --word-diff=color --cached
+    d = diff --color=always --find-copies-harder
+    dc = !git d --cached   # preview changes staged for commit
+    ds = !git d --stat   # force coloring for use with less -R
+    dm = !git d master
+    du = !git d @{upstream}
+    dsm = !git ds master
+    dsu = !git ds @{upstream}
+    wd = !git d --word-diff=color   # mnemonic: Word-Diff
+    wdc = !git d --word-diff=color --cached
 
     f = fetch --prune
     fa = fetch --all --prune
 
     g = grep --color=always --line-number
-    g3 = grep --color=always --line-number --context 3
-    g5 = grep --color=always --line-number --context 5
-    gh5 = grep --color=always --heading --context 5
+    g2 = !git g --context 2
+    g3 = !git g --context 3
+    g5 = !git g --context 5
+    g8 = !git g --context 8
+    # when I want to see more context, I don't want filenames obscuring my
+    # view.  This also makes it possible to copy-and-paste code snippets.
+    gh = grep --color=always --heading
+    gh5 = !git gh --context 5
+    gh8 = !git gh --context 8
+    gh13 = !git gh --context 13
+    gh21 = !git gh --context 21
+    # matches pattern only at word boundaries
+    gw = !git g --word-regexp
+    ghw = !git gh8 --word-regexp
 
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
@@ -71,8 +84,11 @@
 
     pu = push
     puf = push --force-with-lease
-    # push to a new branch on the remote with the same name
-    psu = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+    # push to a new branch with the same name
+    psu = !git push --set-upstream $(git symbolic-ref --short HEAD)
+    psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+    # tags have to be pushed explicitly
+    put = !git push && git push --tags
 
     rba = rebase --abort
     rb = rebase
@@ -99,9 +115,6 @@
     su = status --short --untracked-files=all
     si = status --short --ignored
     sa = status --short --untracked-files=all --ignored
-
-    unpushed = !gitk --branches --not --remotes
-    unmerged = !gitk --remotes --not --branches
 
     who = shortlog --summary --numbered
 
@@ -138,6 +151,17 @@
 
     # reflog with dates and commit message subject
     rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %<(21,trunc)%ci%x08%x08 %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
+
+    # log commits that differ between head and its upstream
+    div = !GIT_PAGER='less -REXS' git ls --boundary HEAD...@{upstream}
+    # log unpushed/unmerged commits on all branches
+    unp = !GIT_PAGER='less -REXS' git ls --boundary --branches --not --remotes
+    unm = !GIT_PAGER='less -REXS' git ls --boundary --remotes --not --branches
+
+    # GUI versions of the above (simply runs gitk)
+    divk = !gitk HEAD...@{upstream}
+    unpk = !gitk --branches --not --remotes
+    unmk = !gitk --remotes --not --branches
 
 
 
@@ -222,6 +246,10 @@
     changed = yellow
     untracked = cyan
 
+[color "grep"]
+    filename = cyan
+    separator = magenta
+
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them
     quotepath = false
@@ -234,8 +262,8 @@
     renames = copies
 
 [help]
-    # correct and run mistyped commands after 1.5 sec delay
-    autocorrect = 15
+    # correct and run mistyped commands after 1.3 sec delay
+    autocorrect = 13
 
 [merge]
     # in case of merge conflict also show how common ancestor looked like
@@ -243,6 +271,10 @@
 
     # Add summaries of merged commits to the merge commit message.
     log = true
+
+[pager]
+    # don't wrap lines in output of git blame
+    blame = "less -SR"
 
 [push]
     default = simple

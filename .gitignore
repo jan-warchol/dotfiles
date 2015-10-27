@@ -8,6 +8,7 @@
 /.config/*
 !/.config/bash
 !/.config/git
+!/.config/ranger
 
 # and the user-wide Vagrantfile
 !/.vagrant.d/

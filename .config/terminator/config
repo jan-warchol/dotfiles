@@ -6,6 +6,7 @@
   [[default]]
     palette = "#000000:#f02b2b:#5cba00:#d6ab00:#2d83fa:#e63cc0:#15c9b9:#b4b9bd:#000000:#f02b2b:#5cba00:#d6ab00:#2d83fa:#e63cc0:#15c9b9:#b4b9bd"
     background_image = None
+    word_chars = "-A-Za-z0-9,./?%&#_"
     use_system_font = False
     cursor_color = "#808080"
     foreground_color = "#b4b9bd"
