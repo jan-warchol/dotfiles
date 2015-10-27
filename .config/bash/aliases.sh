@@ -42,15 +42,15 @@ alias trea2='tree -C -L 2 -a --dirsfirst --filelimit 80'
 alias trea3='tree -C -L 3 -a --dirsfirst --filelimit 50'
 
 # vagrant
-alias vg='vagrant'
-alias vgh='vagrant halt'
-alias vgs='vagrant status'
-alias vgl='vagrant ssh'
-vgu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; }
-vgus() { time vagrant up "$@" && vagrant ssh "$@"; }
-alias vgupo='time vagrant up --provider=openstack'
-vgd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
-alias vgp='time vagrant provision'
+alias vt='vagrant'
+alias vth='vagrant halt'
+alias vts='vagrant status'
+alias vtl='vagrant ssh'
+vtu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; }
+vtus() { time vagrant up "$@" && vagrant ssh "$@"; }
+alias vtupo='time vagrant up --provider=openstack'
+vtd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
+alias vtp='time vagrant provision'
 alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
 alias sshfsv='sshfs -F ~/.ssh/vagrant_hosts_config'
 sshumount() { fusermount -u "$@" && rmdir "$@"; }
