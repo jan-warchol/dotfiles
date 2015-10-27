@@ -87,6 +87,7 @@
     # push to a new branch with the same name
     psu = !git push --set-upstream $(git symbolic-ref --short HEAD)
     psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+    # tags have to be pushed explicitly
     put = !git push && git push --tags
 
     rba = rebase --abort
@@ -245,6 +246,10 @@
     changed = yellow
     untracked = cyan
 
+[color "grep"]
+    filename = cyan
+    separator = magenta
+
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them
     quotepath = false
@@ -266,6 +271,10 @@
 
     # Add summaries of merged commits to the merge commit message.
     log = true
+
+[pager]
+    # don't wrap lines in output of git blame
+    blame = "less -SR"
 
 [push]
     default = simple
