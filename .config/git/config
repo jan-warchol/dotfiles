@@ -105,9 +105,6 @@
     si = status --short --ignored
     sa = status --short --untracked-files=all --ignored
 
-    unpushed = !gitk --branches --not --remotes
-    unmerged = !gitk --remotes --not --branches
-
     who = shortlog --summary --numbered
 
 
@@ -143,6 +140,17 @@
 
     # reflog with dates and commit message subject
     rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %<(21,trunc)%ci%x08%x08 %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
+
+    # log commits that differ between head and its upstream
+    div = !GIT_PAGER='less -REXS' git ls --boundary HEAD...@{upstream}
+    # log unpushed/unmerged commits on all branches
+    unp = !GIT_PAGER='less -REXS' git ls --boundary --branches --not --remotes
+    unm = !GIT_PAGER='less -REXS' git ls --boundary --remotes --not --branches
+
+    # GUI versions of the above (simply runs gitk)
+    divk = !gitk HEAD...@{upstream}
+    unpk = !gitk --branches --not --remotes
+    unmk = !gitk --remotes --not --branches
 
 
 
