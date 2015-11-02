@@ -54,11 +54,11 @@ alias vt='vagrant'
 alias vth='vagrant halt'
 alias vts='vagrant status'
 alias vtl='vagrant ssh'
-vtu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; }
-vtus() { time vagrant up "$@" && vagrant ssh "$@"; }
+vtu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; alert; }
+vtus() { time vagrant up "$@" && vagrant ssh "$@"; alert; }
 alias vtupo='time vagrant up --provider=openstack'
 vtd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
-alias vtp='time vagrant provision'
+alias vtp='time vagrant provision; alert'
 alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
 alias sshfsv='sshfs -F ~/.ssh/vagrant_hosts_config'
 sshumount() { fusermount -u "$@" && rmdir "$@"; }
