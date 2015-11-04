@@ -37,9 +37,9 @@ alias lt='ls -thor'
 
 # du
 alias du0='du --human-readable --summarize'
-alias du1='du --human-readable --max-depth=1 | sort --reverse --human-numeric-sort'
-alias du2='du --human-readable --max-depth=2 | sort --reverse --human-numeric-sort'
-alias du3='du --human-readable --max-depth=3 | sort --reverse --human-numeric-sort'
+alias du1='du --human-readable --max-depth=1 | sort --human-numeric-sort'
+alias du2='du --human-readable --max-depth=2 | sort --human-numeric-sort'
+alias du3='du --human-readable --max-depth=3 | sort --human-numeric-sort'
 
 # tree
 alias tre2='tree -C -L 2 --dirsfirst --filelimit 50'
