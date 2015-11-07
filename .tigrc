@@ -1,0 +1,3 @@
+# In diff view, let arrow keys move the diff rather than show next commit
+bind diff Up move-up
+bind diff Down move-down
