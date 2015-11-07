@@ -292,4 +292,4 @@
 
 [include]
     # load account-specific settings from a file managed outside dotfiles repo
-    path = user-specific-config
+    path = config.local
