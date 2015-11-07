@@ -290,9 +290,6 @@
     # Reuse recorded resolution of conflicted merges, see 'git help rerere'
     enabled = true
 
-[user]
-    name = Jan Warchoł
-
 [include]
     # load account-specific settings from a file managed outside dotfiles repo
     path = user-specific-config
