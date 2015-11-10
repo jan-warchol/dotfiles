@@ -155,8 +155,8 @@
     # log commits that differ between head and its upstream
     div = !GIT_PAGER='less -REXS' git ls --boundary HEAD...@{upstream}
     # log unpushed/unmerged commits on all branches
-    unp = !GIT_PAGER='less -REXS' git ls --boundary --branches --not --remotes
-    unm = !GIT_PAGER='less -REXS' git ls --boundary --remotes --not --branches
+    unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
+    unm = !GIT_PAGER='less -REXS' git ls --boundary --date-order --remotes --not --branches
 
     # GUI versions of the above (simply runs gitk)
     divk = !gitk HEAD...@{upstream}
