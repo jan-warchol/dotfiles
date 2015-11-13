@@ -22,6 +22,8 @@ export HISTSIZE=10000000
 export HISTCONTROL=ignoredups   # don't store duplicated commands
 shopt -s histappend   # don't overwrite history file after each session
 
+export EDITOR=vim
+
 # disable terminal flow control key binding, so that ^S will search history forward
 stty -ixon
 
