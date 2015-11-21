@@ -11,6 +11,8 @@ shopt -s cdspell
 
 # make "**" match all files in all levels of subdirectories
 shopt -s globstar
+# let "*" match hidden files as well
+shopt -s dotglob
 
 export PATH="$PATH:~/bin/"
 
