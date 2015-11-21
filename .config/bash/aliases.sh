@@ -3,11 +3,19 @@ alias ls='ls --color=auto --group-directories-first'
 alias df='df --human-readable'
 alias du='du --human-readable'
 alias mkdir='mkdir --parents'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias rgrep='rgrep --color=auto'
-alias less='less --RAW-CONTROL-CHARS --ignore-case'  # parses color codes!
 alias wget='wget --continue'
+
+# default settings for less. You may also want to disable line wrapping with -S
+export LESS='-MSRi#8j.5'
+#             ||||| `- center on search matches
+#             ||||`--- scroll horizontally 8 columns at a time
+#             |||`---- case-insensitive search unless pattern contains uppercase
+#             ||`----- parse color codes
+#             |`------ don't wrap long lines
+#             `------- show more information in prompt
+
+# default settings for grep
+export GREP_OPTIONS='--color --binary-files=without-match --exclude-dir .git'
 
 # color-forced grep (will color matches even when piped to less!)
 function grp() {

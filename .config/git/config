@@ -250,8 +250,7 @@
     untracked = cyan
 
 [color "grep"]
-    filename = cyan
-    separator = magenta
+    filename = magenta
 
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them
