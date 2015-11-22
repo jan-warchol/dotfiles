@@ -25,6 +25,7 @@ glm() { git lm "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2() { git l2 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2a() { git l2a "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glp() { git lp "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
+alias lgp=glp # I keep making this typo; let's just accept it
 glpw() { git lpw "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 
 # HEAD has to be listed explicitly so that it will be displayed even when it's detached.
