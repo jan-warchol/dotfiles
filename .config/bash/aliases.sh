@@ -17,11 +17,7 @@ export LESS='-MSRi#8j.5'
 export GREP_OPTIONS='--color --binary-files=without-match --exclude-dir .git'
 
 # color-forced grep (will color matches even when piped to less!)
-function grp() {
-    command rgrep --with-filename --line-number --color=always "$@" |
-    sed 's/:/ /' |
-    sed 's/:/ /'
-}
+alias grp='rgrep --line-number --color=always'
 alias grp2='grp --context=2'
 alias grp3='grp --context=3'
 alias grp5='grp --context=5'
