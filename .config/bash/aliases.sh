@@ -17,12 +17,18 @@ export LESS='-MSRi#8j.5'
 export GREP_OPTIONS='--color --binary-files=without-match --exclude-dir .git'
 
 # color-forced grep (will color matches even when piped to less!)
-alias grp='rgrep --line-number --color=always'
+alias grp='grep --line-number --color=always'
 alias grp2='grp --context=2'
 alias grp3='grp --context=3'
 alias grp5='grp --context=5'
 alias grp8='grp --context=8'
 alias grp13='grp --context=13'
+alias rgp='rgrep --line-number --color=always'
+alias rgp2='rgp --context=2'
+alias rgp3='rgp --context=3'
+alias rgp5='rgp --context=5'
+alias rgp8='rgp --context=8'
+alias rgp13='rgp --context=13'
 
 # common ls aliases
 alias l='ls --file-type --ignore-backups'
