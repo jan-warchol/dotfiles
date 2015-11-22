@@ -55,21 +55,26 @@
     f = fetch --prune
     fa = fetch --all --prune
 
+    # I tried do define 'g2', 'g3' etc. using 'g' alias to reduce duplication
+    # (like this: g2 = !git g --context 2), but it turns out that when I use
+    # '!git' construct, the command will always be ran from the repository root
+    # (which in case of grep changes the behaviour, as it searches only inside
+    # path from which it's ran).
     g = grep --color=always --line-number
-    g2 = !git g --context 2
-    g3 = !git g --context 3
-    g5 = !git g --context 5
-    g8 = !git g --context 8
+    g2 = grep --color=always --line-number --context 2
+    g3 = grep --color=always --line-number --context 3
+    g5 = grep --color=always --line-number --context 5
+    g8 = grep --color=always --line-number --context 8
     # when I want to see more context, I don't want filenames obscuring my
     # view.  This also makes it possible to copy-and-paste code snippets.
     gh = grep --color=always --heading
-    gh5 = !git gh --context 5
-    gh8 = !git gh --context 8
-    gh13 = !git gh --context 13
-    gh21 = !git gh --context 21
+    gh5 = grep --color=always --heading --context 5
+    gh8 = grep --color=always --heading --context 8
+    gh13 = grep --color=always --heading --context 13
+    gh21 = grep --color=always --heading --context 21
     # matches pattern only at word boundaries
-    gw = !git g --word-regexp
-    ghw = !git gh8 --word-regexp
+    gw = grep --color=always --line-number --word-regexp
+    ghw = grep --color=always --heading --word-regexp --context 8
 
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
@@ -155,8 +160,8 @@
     # log commits that differ between head and its upstream
     div = !GIT_PAGER='less -REXS' git ls --boundary HEAD...@{upstream}
     # log unpushed/unmerged commits on all branches
-    unp = !GIT_PAGER='less -REXS' git ls --boundary --branches --not --remotes
-    unm = !GIT_PAGER='less -REXS' git ls --boundary --remotes --not --branches
+    unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
+    unm = !GIT_PAGER='less -REXS' git ls --boundary --date-order --remotes --not --branches
 
     # GUI versions of the above (simply runs gitk)
     divk = !gitk HEAD...@{upstream}
@@ -226,8 +231,11 @@
     # "merge-base diff"
     mbd = !git diff `git merge-base HEAD $1`
 
-    # search and replace in all files; exclude submodule entries to avoid errors
-    sed = !git ls-files --stage | grep -v "^160000" | cut -f2 | xargs sed -i -e
+    # search and replace in all tracked files except
+    # - submodule entries (to avoid errors)
+    # - symbolic links (to avoid transforming them to ordinary files)
+    # usage: git sed 's/foo/bar/'
+    sed = !git ls-files --stage | grep -v "^160000" | grep -v "^120000" | cut -f2 | xargs sed -i -e
 
     # delete current branch
     bdc = !sh -c 'BRANCH=$(git rev-parse --abbrev-ref HEAD) \
@@ -247,8 +255,7 @@
     untracked = cyan
 
 [color "grep"]
-    filename = cyan
-    separator = magenta
+    filename = magenta
 
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them

@@ -1,0 +1,19 @@
+# by default system-wide settings are ignored when local ~/.inputrc exists
+$include /etc/inputrc
+
+# ensure Ctrl-left/right move cursor one word backward/forward
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+
+# make Ctrl-up/down search history for commands starting with currently
+# typed prefix (unlike Ctrl-R/S, which searches entire command string).
+"\e[1;5A":history-search-backward
+"\e[1;5B":history-search-forward
+"\e[5A": history-search-backward
+"\e[5B": history-search-forward
+"\e\e[A": history-search-backward
+"\e\e[B": history-search-forward

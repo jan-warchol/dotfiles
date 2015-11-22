@@ -11,6 +11,8 @@ shopt -s cdspell
 
 # make "**" match all files in all levels of subdirectories
 shopt -s globstar
+# let "*" match hidden files as well
+shopt -s dotglob
 
 export PATH="$PATH:~/bin/"
 
@@ -19,6 +21,8 @@ export HISTFILESIZE=10000000
 export HISTSIZE=10000000
 export HISTCONTROL=ignoredups   # don't store duplicated commands
 shopt -s histappend   # don't overwrite history file after each session
+
+export EDITOR=vim
 
 # disable terminal flow control key binding, so that ^S will search history forward
 stty -ixon

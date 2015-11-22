@@ -15,7 +15,9 @@ gls() { git ls "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 # I want NO line wrapping on these two, so I pipe them to less with
 # line-wrapping disabled and exit less immediately without clearing screen.
 g5() { git ls -5 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }
-g11() { git ls -11 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }
+g8() { git ls -8 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }
+g13() { git ls -13 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }
+g21() { git ls -21 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }
 gla() { git la "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gll() { git ll "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glu() { git lu "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
@@ -23,6 +25,7 @@ glm() { git lm "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2() { git l2 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 gl2a() { git l2a "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 glp() { git lp "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
+alias lgp=glp # I keep making this typo; let's just accept it
 glpw() { git lpw "$@" | less --RAW-CONTROL-CHARS --chop-long-lines; }
 
 # HEAD has to be listed explicitly so that it will be displayed even when it's detached.
