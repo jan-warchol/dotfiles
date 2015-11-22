@@ -2,7 +2,6 @@
 alias ls='ls --color=auto --group-directories-first'
 alias df='df --human-readable'
 alias du='du --human-readable'
-alias mkdir='mkdir --parents'
 alias wget='wget --continue'
 
 # default settings for less. You may also want to disable line wrapping with -S
@@ -62,6 +61,7 @@ alias vtp='time vagrant provision; alert'
 alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
 alias sshfsv='sshfs -F ~/.ssh/vagrant_hosts_config'
 sshumount() { fusermount -u "$@" && rmdir "$@"; }
+alias mkd='mkdir --parents'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
