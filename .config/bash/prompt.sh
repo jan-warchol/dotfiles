@@ -22,15 +22,15 @@ pathcolor="\[${CYAN}\]"
 resetall="\[${RESETALL}\]"
 
 if [ $EUID = 0 ]; then
-    usercolor="\[${RED}\]"
+    usercolor="${RED}"
 fi
 
 # When I'm logged in via ssh, display the path in scp-like format (-> easy
 # selecting with a double click) and display username in a different color.
 if [ -n "$SSH_CONNECTION" ]; then
-    usercolor="\[${MAGENTA}\]"
+    usercolor="${MAGENTA}"
 else
-    usercolor="\[${BLUE}\]"
+    usercolor="${BLUE}"
 fi
 
 # Show notification when the shell was lauched from ranger
@@ -46,5 +46,5 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
 
-export PS1="${usercolor}\u@\h ${pathcolor}\w${resetall}\$(__git_ps1)${ranger_notice}\n${smartdollar}"
+export PS1="\$(echo -e \${usercolor}\u@\h) ${pathcolor}\w${resetall}\$(__git_ps1)${ranger_notice}\n${smartdollar}"
 export PS4="$(tput bold)>>> $(tput sgr0)"
