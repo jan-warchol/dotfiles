@@ -21,7 +21,7 @@
 # however, do ignore these:
 .config/git/gitk
 .config/git/config.local
-.config/bash/local-overrides.sh
+.config/bash/config.local
 .dmrc
 .config/ranger/bookmarks
 .config/ranger/history
