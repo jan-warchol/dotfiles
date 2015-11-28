@@ -80,6 +80,13 @@
     gw = grep --color=always --line-number --word-regexp
     ghw = grep --color=always --heading --word-regexp --context 8
 
+    # search whole repository, not only current directory.
+    # (in `!...` construct, commands are executed from repository root dir)
+    gg = !git g
+    gg3 = !git g3
+    gg5 = !git g5
+    gg8 = !git g8
+
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
     lp = log --color=always --decorate --patch
