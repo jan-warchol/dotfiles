@@ -20,6 +20,9 @@
 
 # however, do ignore these:
 .config/git/gitk
-.config/git/user-specific-config
+.config/git/config.local
 .config/bash/local-overrides.sh
 .dmrc
+.config/ranger/bookmarks
+.config/ranger/history
+.config/ranger/tagged
