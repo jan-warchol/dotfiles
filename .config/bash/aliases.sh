@@ -3,6 +3,7 @@ alias ls='ls --color=auto --group-directories-first'
 alias df='df --human-readable'
 alias du='du --human-readable'
 alias wget='wget --continue'
+alias tree='tree -C --dirsfirst'
 
 # default settings for less.
 export LESS='-MSRi#8j.5'
@@ -43,12 +44,12 @@ alias du2='du --human-readable --max-depth=2 | sort --human-numeric-sort'
 alias du3='du --human-readable --max-depth=3 | sort --human-numeric-sort'
 
 # tree
-alias tre2='tree -C -L 2 --dirsfirst --filelimit 50'
-alias tre3='tree -C -L 3 --dirsfirst --filelimit 30'
-alias tre4='tree -C -L 4 --dirsfirst --filelimit 20'
-alias tre5='tree -C -L 5 --dirsfirst --filelimit 15'
-alias trea2='tree -C -L 2 -a --dirsfirst --filelimit 80'
-alias trea3='tree -C -L 3 -a --dirsfirst --filelimit 50'
+alias tre2='tree -L 2 --filelimit 50'
+alias tre3='tree -L 3 --filelimit 30'
+alias tre4='tree -L 4 --filelimit 20'
+alias tre5='tree -L 5 --filelimit 15'
+alias trea2='tree -L 2 -a --filelimit 80'
+alias trea3='tree -L 3 -a --filelimit 50'
 
 # vagrant
 alias vt='vagrant'
