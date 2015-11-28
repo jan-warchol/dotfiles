@@ -21,6 +21,8 @@ export HISTFILESIZE=10000000
 export HISTSIZE=10000000
 export HISTCONTROL=ignoredups   # don't store duplicated commands
 shopt -s histappend   # don't overwrite history file after each session
+# I prefer to keep my history in my data folder so that it's backed up
+export HISTFILE="$HOME/janek/bash_history"
 
 export EDITOR=vim
 
