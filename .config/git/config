@@ -42,7 +42,7 @@
     ama = commit --amend --all
     amq = commit --amend --all --no-edit
 
-    d = diff --color=always --find-copies-harder
+    d = diff --color=always --find-copies-harder --inter-hunk-context=13
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     dm = !git d master
@@ -51,6 +51,10 @@
     dsu = !git ds @{upstream}
     wd = !git d --word-diff=color   # mnemonic: Word-Diff
     wdc = !git d --word-diff=color --cached
+
+    d5 = !git d --unified=5
+    d8 = !git d --unified=8
+    d13 = !git d --unified=13
 
     f = fetch --prune
     fa = fetch --all --prune
