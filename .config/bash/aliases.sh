@@ -4,7 +4,7 @@ alias df='df --human-readable'
 alias du='du --human-readable'
 alias wget='wget --continue'
 
-# default settings for less. You may also want to disable line wrapping with -S
+# default settings for less.
 export LESS='-MSRi#8j.5'
 #             ||||| `- center on search matches
 #             ||||`--- scroll horizontally 8 columns at a time
@@ -34,7 +34,7 @@ alias rgp13='rgp --context=13'
 alias l='ls --file-type --ignore-backups'
 alias la='ls --almost-all --file-type'
 alias ll='ls -l --human-readable --almost-all --file-type'
-alias lt='ls -thor'
+alias lt='ls -thor'  # the power of Thor!
 
 # du
 alias du0='du --human-readable --summarize'
@@ -68,7 +68,7 @@ alias mkd='mkdir --parents'
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
 alias v='vim'
-alias u='cd ..'
+alias u='cd ..'  # (u)p one directory level
 alias uu='cd ../..'
 alias uuu='cd ../../..'
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
@@ -89,7 +89,7 @@ alias sag='sudo apt-get --assume-yes'
 alias sagi='sudo apt-get --assume-yes install'
 alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do xdg-open $f; done'
 alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
-alias please='sudo $(history -p \!\!)'
+alias please='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias doton='export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
 alias dotoff='unset GIT_DIR; unset GIT_WORK_TREE'
 
