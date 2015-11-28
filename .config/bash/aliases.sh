@@ -72,6 +72,7 @@ alias v='vim'
 alias u='cd ..'  # (u)p one directory level
 alias uu='cd ../..'
 alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
 alias -- -='cd -'
 
@@ -90,9 +91,9 @@ alias sag='sudo apt-get --assume-yes'
 alias sagi='sudo apt-get --assume-yes install'
 alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do xdg-open $f; done'
 alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
-alias please='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
+alias plz='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias doton='export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
-alias dotoff='unset GIT_DIR; unset GIT_WORK_TREE'
+alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {
