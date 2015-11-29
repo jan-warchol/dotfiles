@@ -46,6 +46,7 @@ Plug 'tpope/vim-repeat'
 Plug 'michaeljsmith/vim-indent-object'
 
 " TODO: plugins to investigate
+"Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 "Valloric/YouCompleteMe
 "vim-airline (!)
 "align
