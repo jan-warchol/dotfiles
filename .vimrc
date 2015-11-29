@@ -32,6 +32,8 @@ set mouse=a
 " new undo item when pressed CR
 inoremap <CR> <C-G>u<CR>
 
+set pastetoggle=<F5>
+
 " Leader commands
 let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
