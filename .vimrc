@@ -32,11 +32,19 @@ set mouse=a
 " new undo item when pressed CR
 inoremap <CR> <C-G>u<CR>
 
-
 " Leader commands
 let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
 
+
+" REMAPS
+
+" make paragraph-jumping go to last line of the next paragraph when jumping
+" downwards, and first line of the previous paragraph when jumping upwards.
+nnoremap { k{<Space>0
+vnoremap { k{<Space>0
+nnoremap } j}<BS>0
+vnoremap } j}<BS>0
 
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
