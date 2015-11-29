@@ -76,7 +76,15 @@ call plug#end()
 "
 "set textwidth=79
 "
-"map ctrl-s in insert mode to save
+"map ctrl-s in insert mode to save, because it's unused anyway (traditionally
+"it was a terminal control flow binding)
+"
+" would allow changing escape behaviour so that it doensn't move cursor,
+" as well as make it possible to e.g. do backward deletions (currently
+" when the cursor is on the last char of a word and you say 'db' it will
+" not delete this character. having this on would allow to move one char
+" further and then be able to delete the word correctly.
+"set virtualedit=onemore
 
 " TODO: how to do these?
 "
