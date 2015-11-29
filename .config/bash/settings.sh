@@ -48,3 +48,6 @@ if [ -n "$DISPLAY" ]; then
     #load my own keyboard layout
     xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 0 $DISPLAY
 fi
+
+# enable fasd for smart navigation (https://github.com/clvv/fasd)
+eval "$(fasd --init auto)"
