@@ -8,6 +8,7 @@ set sidescrolloff=5
 " Search highlighting with modified coloring
 set hlsearch
 highlight Search cterm=reverse ctermfg=NONE ctermbg=NONE
+highlight Visual cterm=reverse ctermfg=NONE  ctermbg=NONE
 " Clear highlighting on escape in normal mode
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
