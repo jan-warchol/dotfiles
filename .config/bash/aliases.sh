@@ -3,8 +3,9 @@ alias ls='ls --color=auto --group-directories-first'
 alias df='df --human-readable'
 alias du='du --human-readable'
 alias wget='wget --continue'
+alias tree='tree -C --dirsfirst'
 
-# default settings for less. You may also want to disable line wrapping with -S
+# default settings for less.
 export LESS='-MSRi#8j.5'
 #             ||||| `- center on search matches
 #             ||||`--- scroll horizontally 8 columns at a time
@@ -34,7 +35,7 @@ alias rgp13='rgp --context=13'
 alias l='ls --file-type --ignore-backups'
 alias la='ls --almost-all --file-type'
 alias ll='ls -l --human-readable --almost-all --file-type'
-alias lt='ls -thor'
+alias lt='ls -thor'  # the power of Thor!
 
 # du
 alias du0='du --human-readable --summarize'
@@ -43,12 +44,12 @@ alias du2='du --human-readable --max-depth=2 | sort --human-numeric-sort'
 alias du3='du --human-readable --max-depth=3 | sort --human-numeric-sort'
 
 # tree
-alias tre2='tree -C -L 2 --dirsfirst --filelimit 50'
-alias tre3='tree -C -L 3 --dirsfirst --filelimit 30'
-alias tre4='tree -C -L 4 --dirsfirst --filelimit 20'
-alias tre5='tree -C -L 5 --dirsfirst --filelimit 15'
-alias trea2='tree -C -L 2 -a --dirsfirst --filelimit 80'
-alias trea3='tree -C -L 3 -a --dirsfirst --filelimit 50'
+alias tre2='tree -L 2 --filelimit 50'
+alias tre3='tree -L 3 --filelimit 30'
+alias tre4='tree -L 4 --filelimit 20'
+alias tre5='tree -L 5 --filelimit 15'
+alias trea2='tree -L 2 -a --filelimit 80'
+alias trea3='tree -L 3 -a --filelimit 50'
 
 # vagrant
 alias vt='vagrant'
@@ -68,9 +69,10 @@ alias mkd='mkdir --parents'
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
 alias v='vim'
-alias u='cd ..'
+alias u='cd ..'  # (u)p one directory level
 alias uu='cd ../..'
 alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
 alias -- -='cd -'
 
@@ -89,9 +91,9 @@ alias sag='sudo apt-get --assume-yes'
 alias sagi='sudo apt-get --assume-yes install'
 alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do xdg-open $f; done'
 alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
-alias please='sudo $(history -p \!\!)'
+alias plz='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias doton='export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
-alias dotoff='unset GIT_DIR; unset GIT_WORK_TREE'
+alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {
