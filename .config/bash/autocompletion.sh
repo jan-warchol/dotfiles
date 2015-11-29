@@ -6,3 +6,5 @@ complete -o default -o nospace -F _git g
 complete -o default -o nospace -F _git dotfiles
 # make sure the autocompletion function (`_git`) is loaded
 . /usr/share/bash-completion/completions/git 2> /dev/null
+
+_fasd_bash_hook_cmd_complete v c
