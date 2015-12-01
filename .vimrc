@@ -95,12 +95,32 @@ call plug#end()
 " not delete this character. having this on would allow to move one char
 " further and then be able to delete the word correctly.
 "set virtualedit=onemore
+"
+"backspace in normal mode doesn't do anything useful (just moves left like h),
+"so what about making it delete words? note that deleting words backwards in
+"vim sometimes behaves strangely (try doing db when cursor is on the last
+"letter).
+"
+"maybe make H (or equivalent in my keyboard layout) move by word, like b (or
+"maybe like ge)?  In my current layout b is in an inconvenient spot.
+"
+"Currently in normal mode shift-arrows and control-arrows do the same.  Maybe
+"I could use them for something different?  E.g. control-arrows move to the
+"beginning of the word, and shift-arrows to the end?  Just like in most
+"editors, where the direction you're going affects whether you land at word's
+"beginning or end.
+"
+"Also, think whether hjkl (or rather the equivalent in my layout) and their
+"control and shift combinations should do exactly the same as arrows and their
+"combinations, or maybe I should rather take advantage of having many keys?
 
 " TODO: how to do these?
 "
 "make control-arrows jump words instead of Words
 "make ctrl-shift-arrow move by Words
 "make ctrl-backspace work
+"make control-arrow don't move to the next line if the cursor is not on line
+"end
 "
 "define a command that deletes selection without putting it into any clipboard
 "(i.e. delete instead of cut).  Maybe map it to x?
