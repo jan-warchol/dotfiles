@@ -76,6 +76,7 @@ alias uuu='cd ../../..'
 alias uuuu='cd ../../../..'
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
 alias -- -='cd -'
+alias _='cd -'  # sometimes I accidentally press shift when typing `-`
 
 # miscellaneous
 mdc() { mkdir --parents "$@"; cd "$@"; }
