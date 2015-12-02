@@ -83,7 +83,7 @@ mdc() { mkdir --parents "$@"; cd "$@"; }
 alias mcd=mdc
 # open file in it's default GUI application (taken from MIME settings).
 # to open current directory in graphical file manager, use `o .`
-alias ap='time ansible-playbook'
+ap() { time ansible-playbook "$@"; alert; }
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
 alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate left'
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
