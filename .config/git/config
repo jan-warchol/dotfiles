@@ -148,7 +148,7 @@
     # as above, but includes all local and remote branches
     la = !git ls HEAD --branches --remotes
 
-    lm = !git ls HEAD master
+    lm = !git ls HEAD master origin/master
 
     # "Long" format - full commit message and summary of changes
     ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
