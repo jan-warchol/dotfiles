@@ -72,6 +72,8 @@ Plug 'michaeljsmith/vim-indent-object'
 "supertab (!)
 "syntastic (!)
 "(!) means that the plugin is super awesome. 
+"garbas/vim-snipmate
+"scrooloose/nerdtree
 call plug#end()
 
 " TODO: settings to try out
@@ -129,3 +131,8 @@ call plug#end()
 "
 "make copying and pasting to system clipboard work with some reasonable
 "shortcut.
+"
+"when moving by word, jump two words if there is a one-letter word next to
+"ordinary one (e.g. in /paths/like/this)
+"
+"find a motion to move by indentation level (or code blocks)
