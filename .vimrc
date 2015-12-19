@@ -55,6 +55,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
 Plug 'michaeljsmith/vim-indent-object'
 
 " TODO: plugins to investigate
@@ -74,6 +75,7 @@ Plug 'michaeljsmith/vim-indent-object'
 "supertab (!)
 "syntastic (!)
 "(!) means that the plugin is super awesome. 
+"reedes/vim-textobj-sentence
 "garbas/vim-snipmate
 "scrooloose/nerdtree
 call plug#end()
@@ -117,8 +119,12 @@ call plug#end()
 "Also, think whether hjkl (or rather the equivalent in my layout) and their
 "control and shift combinations should do exactly the same as arrows and their
 "combinations, or maybe I should rather take advantage of having many keys?
+"
+"Make C-Z work in insert mode (either as undo or as sending vim to background)
 
 " TODO: how to do these?
+"
+" don't break undo into lines when pasting a block of text
 "
 "make control-arrows jump words instead of Words
 "make ctrl-shift-arrow move by Words
