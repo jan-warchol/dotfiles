@@ -18,6 +18,12 @@ $include /etc/inputrc
 "\e\e[A": history-search-backward
 "\e\e[B": history-search-forward
 
+# Also bind this to up and down arrow
+"\e[1;A":history-search-backward
+"\e[1;B":history-search-forward
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
 # Show extra file information when completing, like `ls -F` does
 set visible-stats on
 
