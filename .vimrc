@@ -57,11 +57,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-airline'
 
 " TODO: plugins to investigate
 "Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 "Valloric/YouCompleteMe
-"vim-airline (!)
 "align
 "autoclose (!)
 "asynccommand
