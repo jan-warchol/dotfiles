@@ -37,6 +37,8 @@ set pastetoggle=<F5>
 " Leader commands
 let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>w :w<CR>
 
 
 " REMAPS
