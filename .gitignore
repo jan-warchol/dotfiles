@@ -9,6 +9,7 @@
 !/.config/bash
 !/.config/git
 !/.config/ranger
+!/.config/pulse/presets/*
 
 # and the user-wide Vagrantfile
 !/.vagrant.d/
