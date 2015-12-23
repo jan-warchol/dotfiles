@@ -39,6 +39,8 @@ let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>wq :wq<CR>
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>o :CtrlP<CR>
 
 
 " REMAPS
@@ -58,6 +60,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-airline'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " TODO: plugins to investigate
 "Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
