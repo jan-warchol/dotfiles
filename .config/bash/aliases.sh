@@ -68,7 +68,7 @@ alias mkd='mkdir --parents'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
-alias v='fasd -f -e vim'
+alias v='fasd -f -e $EDITOR'
 alias c='fasd_cd -d'
 alias u='cd ..'  # (u)p one directory level
 alias uu='cd ../..'
@@ -90,12 +90,13 @@ alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate le
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
 alias sag='sudo apt-get --assume-yes'
 alias sagi='sudo apt-get --assume-yes install'
-alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do xdg-open $f; done'
+alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do $EDITOR $f; done'
 alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias plz='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias doton='export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
 alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
 alias pign=ping  # let's face it, I will continue to make this typo
+alias vim="$EDITOR"
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {

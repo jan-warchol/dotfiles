@@ -271,6 +271,8 @@
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them
     quotepath = false
+    # we want to use non-GUI vim (i.e. run it inside terminal) because GUI Vim
+    # would fork and cause Git to exit with "Aborting due to empty commit message"
     editor = vim
 
 [diff]
