@@ -15,8 +15,8 @@ if [[ $root_commit != 2d33ed8b8a804f7* ]]; then
 fi
 
 echo -e "Transforming $REPO_PATH repository..." # into a quasi-bare one
-git ls-files | xargs rm
-git ls-files | xargs --max-args=1 dirname | sort -u | grep -v "^\.$" | \
+git ls-files -z | xargs -0 rm
+git ls-files -z | xargs -0 --max-args=1 dirname | sort -u | grep -v "^\.$" | \
 xargs rmdir --parents --ignore-fail-on-non-empty || true
 mv "$REPO_PATH"/.git/* "$REPO_PATH"; rmdir "$REPO_PATH/.git"
 
