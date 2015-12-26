@@ -93,7 +93,7 @@ alias sagi='sudo apt-get --assume-yes install'
 alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do $EDITOR $f; done'
 alias kb='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias plz='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
-alias doton='export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
+alias doton='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
 alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
 alias pign=ping  # let's face it, I will continue to make this typo
 alias vim="$EDITOR"
