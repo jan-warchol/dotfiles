@@ -41,6 +41,8 @@ nnoremap <Leader>wq :wq<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>o :CtrlP<CR>
+vmap <Leader>y "+y
+nnoremap <Leader>p "+p
 
 
 " REMAPS
