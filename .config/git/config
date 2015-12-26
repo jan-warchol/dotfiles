@@ -274,6 +274,7 @@
     # we want to use non-GUI vim (i.e. run it inside terminal) because GUI Vim
     # would fork and cause Git to exit with "Aborting due to empty commit message"
     editor = vim
+    excludesfile = /home/janek/.global_gitignore
 
 [diff]
     mnemonicprefix = true
