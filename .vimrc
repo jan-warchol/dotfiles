@@ -29,6 +29,9 @@ set smartcase " Do smart case matching
 " instead od moving cursor) and lets user select text with mouse.
 set mouse=a
 
+" Allow having multiple files with unsaved changes opened simultaneously
+set hidden
+
 " new undo item when pressed CR
 inoremap <CR> <C-G>u<CR>
 
