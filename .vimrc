@@ -66,6 +66,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'chase/vim-ansible-yaml'
 
 " TODO: plugins to investigate
 "Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
