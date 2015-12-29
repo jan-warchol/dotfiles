@@ -86,6 +86,16 @@ Plug 'vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chase/vim-ansible-yaml'
 
+" Make register behaviour more resonable
+Plug 'svermeulen/vim-easyclip'
+"" Map x to cut 
+let g:EasyClipUseCutDefaults = 0
+nmap x <Plug>MoveMotionPlug
+xmap x <Plug>MoveMotionXPlug
+nmap xx <Plug>MoveMotionLinePlug
+"" Map s to substitute 
+let g:EasyClipUseSubstituteDefaults = 1
+
 " TODO: plugins to investigate
 "Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 "Valloric/YouCompleteMe
