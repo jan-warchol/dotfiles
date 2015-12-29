@@ -85,6 +85,9 @@ vnoremap } j}<BS>0
 nnoremap <BS> X
 nnoremap <S-BS> x
 
+"Preview unsaved changes
+command Showchanges w !diff % - 
+
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
