@@ -29,6 +29,9 @@ set smartcase " Do smart case matching
 " instead od moving cursor) and lets user select text with mouse.
 set mouse=a
 
+" Automatically use system wide clipboard
+set clipboard=unnamedplus
+
 " Allow having multiple files with unsaved changes opened simultaneously
 set hidden
 
@@ -130,7 +133,6 @@ call plug#end()
 "
 "set textwidth=79
 "
-" :set clipboard=unnamedplus
 
 "map ctrl-s in insert mode to save, because it's unused anyway (traditionally
 "it was a terminal control flow binding)
