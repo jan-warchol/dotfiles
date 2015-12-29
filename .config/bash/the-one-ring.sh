@@ -40,14 +40,10 @@ function the_One_Ring() {
         cd -
     # I have a `cd_with_history` function that can take a special argument
     # in format `-<number>` - call it if it's available
-    elif [ -n "$(declare -f | grep '^cd_with_history ()')" ]; then
-        if [[ "$1" =~ ^-[0-9]+$ ]]; then
-            cd_with_history "$1" && ls
-        else
-            echo "Ran out of things to do with '$1'"
-        fi
+    elif [[  -n "$(declare -f | grep '^cd_with_history ()')" && "$1" =~ ^-[0-9]+$ ]]; then
+        cd_with_history "$1" && ls
     else
-        echo "Ran out of things to do with '$1'"
+        fasd -f -e "$EDITOR" "$@"; 
     fi
 }
 
