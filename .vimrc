@@ -37,6 +37,19 @@ inoremap <CR> <C-G>u<CR>
 
 set pastetoggle=<F5>
 
+" Use green cursor in insert mode, red in normal mode
+" gvim settings:
+autocmd InsertEnter * highlight Cursor guifg=white guibg=green
+autocmd InsertLeave * highlight Cursor guifg=white guibg=red
+" terminal vim settings:
+if &term =~ "xterm\\|rxvt"
+  let &t_SI = "\<Esc>]12;green\x7"
+  let &t_EI = "\<Esc>]12;red\x7"
+  silent !echo -ne "\033]12;red\007"
+  " reset cursor when vim exits
+  autocmd VimLeave * silent !echo -ne "\033]12;white\007"
+endif
+
 " Leader commands
 let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
