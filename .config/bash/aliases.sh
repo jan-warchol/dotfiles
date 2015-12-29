@@ -68,7 +68,7 @@ alias mkd='mkdir --parents'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
 alias g='git'
-alias v='fasd -f -e $EDITOR'
+alias v='fasd -f -e "$EDITOR"'
 alias c='fasd_cd -d'
 alias u='cd ..'  # (u)p one directory level
 alias uu='cd ../..'
