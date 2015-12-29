@@ -71,6 +71,7 @@ vmap <Leader>y "+y
 nnoremap <Leader>p "+p
 
 
+
 " REMAPS
 
 " make paragraph-jumping go to last line of the next paragraph when jumping
@@ -79,6 +80,10 @@ nnoremap { k{<Space>0
 vnoremap { k{<Space>0
 nnoremap } j}<BS>0
 vnoremap } j}<BS>0
+
+" Make backspace work in normal mode
+nnoremap <BS> X
+nnoremap <S-BS> x
 
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
