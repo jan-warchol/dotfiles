@@ -34,6 +34,8 @@ set hidden
 
 " new undo item when pressed CR
 inoremap <CR> <C-G>u<CR>
+"Enable middle mouse button clipboard support
+set guioptions+=a
 
 set pastetoggle=<F5>
 
