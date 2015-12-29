@@ -61,6 +61,7 @@ nnoremap <Leader>wc :w<CR>:bd<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>v :source $MYVIMRC<CR>
 vmap <Leader>y "+y
 nnoremap <Leader>p "+p
 
