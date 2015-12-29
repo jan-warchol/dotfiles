@@ -56,6 +56,8 @@ endif
 let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>c :bd<CR>
+nnoremap <Leader>wc :w<CR>:bd<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>o :CtrlP<CR>
