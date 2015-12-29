@@ -105,6 +105,7 @@ Plug 'chase/vim-ansible-yaml'
 "reedes/vim-textobj-sentence
 "garbas/vim-snipmate
 "scrooloose/nerdtree
+"pearofducks/ansible-vim
 call plug#end()
 
 " TODO: settings to try out
@@ -119,6 +120,8 @@ call plug#end()
 "
 "set textwidth=79
 "
+" :set clipboard=unnamedplus
+
 "map ctrl-s in insert mode to save, because it's unused anyway (traditionally
 "it was a terminal control flow binding)
 "
@@ -171,3 +174,6 @@ call plug#end()
 "ordinary one (e.g. in /paths/like/this)
 "
 "find a motion to move by indentation level (or code blocks)
+"
+" use backspace and enter for something in normal mode (maybe actually make backspace do backspace?)
+" consider adding a mapping for inserting spaces/newlines without leaving normal mode - see https://www.reddit.com/r/vim/comments/3a1y8v/i_just_realized_backspace_doesnt_do_much_in/cs9a1g9
