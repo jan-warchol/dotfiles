@@ -85,6 +85,9 @@ vnoremap } j}<BS>0
 nnoremap <BS> X
 nnoremap <S-BS> x
 
+" break line in normal mode
+nnoremap <CR> i<CR><ESC>
+
 "Preview unsaved changes
 command Showchanges w !diff % - 
 
