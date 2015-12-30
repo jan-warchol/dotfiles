@@ -102,6 +102,10 @@ Plug 'vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chase/vim-ansible-yaml'
 
+Plug 'terryma/vim-expand-region'
+vmap v <Plug>(expand_region_expand)
+vmap <C-V> <Plug>(expand_region_shrink)
+
 " Make register behaviour more resonable
 Plug 'svermeulen/vim-easyclip'
 "" Map x to cut 
