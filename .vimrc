@@ -13,6 +13,8 @@ highlight Visual cterm=reverse ctermfg=NONE  ctermbg=NONE
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
+" don't move cursor when leaving insert mode
+inoremap <silent> <Esc> <C-O>:stopinsert<CR>
 
 " BEHAVIOUR
 
