@@ -89,7 +89,7 @@ nnoremap <S-BS> x
 nnoremap <CR> i<CR><ESC>
 
 "Preview unsaved changes
-command Showchanges w !diff % - 
+command! Showchanges w !diff % -
 
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
