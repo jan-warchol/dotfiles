@@ -21,6 +21,18 @@ inoremap <silent> <Esc> <C-O>:stopinsert<CR>
 " let arrows and h,l move cursor accross newlines
 set whichwrap+=h,l,<,>,[,]
 
+" move on soft lines in insert mode
+inoremap <Down> <C-o>g<Down>
+inoremap <Up> <C-o>g<Up>
+
+noremap <silent> j gj
+noremap <silent> k gk
+noremap <Down> gj
+noremap <Up> gk
+
+" wrap only on word boundaries
+set linebreak
+
 set expandtab
 set tabstop=8
 set shiftwidth=2
