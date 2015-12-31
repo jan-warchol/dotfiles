@@ -275,6 +275,7 @@
     # would fork and cause Git to exit with "Aborting due to empty commit message"
     editor = vim
     excludesfile = /home/janek/.global_gitignore
+    pager = ~/bin/smartless
 
 [diff]
     mnemonicprefix = true
