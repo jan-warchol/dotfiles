@@ -33,6 +33,8 @@ noremap <Up> gk
 " wrap only on word boundaries
 set linebreak
 
+set cursorline cursorcolumn
+
 set expandtab
 set tabstop=8
 set shiftwidth=2
