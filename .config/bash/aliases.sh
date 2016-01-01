@@ -96,7 +96,6 @@ alias plz='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias doton='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
 alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
 alias pign=ping  # let's face it, I will continue to make this typo
-alias vim="$EDITOR"
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {

@@ -28,7 +28,7 @@ shopt -s histappend   # don't overwrite history file after each session
 # I prefer to keep my history in my data folder so that it's backed up
 export HISTFILE="$HOME/janek/bash_history"
 
-export EDITOR="gvim -s --remote"
+export EDITOR="gvim --remote"
 
 # disable terminal flow control key binding, so that ^S will search history forward
 stty -ixon
