@@ -33,10 +33,10 @@
 
     # commit --verbose shows a preview of staged changes when editing the commit
     # message - you no longer have to run 'git diff' before every commit :)
-    k = commit --verbose   # no git command starts with 'k', and 'k' matches pronunciation!
-    ka = commit --verbose --all
-    km = commit -m
-    kma = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
+    ci = commit --verbose   # no git command starts with 'k', and 'k' matches pronunciation!
+    ca = commit --verbose --all
+    cim = commit -m
+    cam = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
                             # and won't get confused with amending
     amn = commit --amend
     ama = commit --amend --all
