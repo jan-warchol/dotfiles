@@ -11,6 +11,11 @@
 !/.config/ranger
 !/.config/pulse/presets/*
 
+# and gpg configuration
+!/.gnupg/
+/.gnupg/*
+!/.gnupg/gpg.conf
+
 # and the user-wide Vagrantfile
 !/.vagrant.d/
 /.vagrant.d/*
