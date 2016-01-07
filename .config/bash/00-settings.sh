@@ -30,7 +30,7 @@ export HISTFILE="$HOME/janek/bash_history"
 
 export EDITOR="gvim --remote"
 
-export _FASD_DATA="~/janek/fasd"
+export _FASD_DATA="$HOME/janek/fasd"
 
 # disable terminal flow control key binding, so that ^S will search history forward
 stty -ixon
