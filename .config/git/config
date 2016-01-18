@@ -64,7 +64,7 @@
     # '!git' construct, the command will always be ran from the repository root
     # (which in case of grep changes the behaviour, as it searches only inside
     # path from which it's ran).
-    g = grep --color=always --line-number
+    g = grep --line-number
     g2 = grep --color=always --line-number --context 2
     g3 = grep --color=always --line-number --context 3
     g5 = grep --color=always --line-number --context 5
