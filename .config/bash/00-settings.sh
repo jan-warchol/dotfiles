@@ -50,9 +50,6 @@ if [ -n "$DISPLAY" ]; then
 
     # faster key repetition (150 ms delay, 80 reps/sec) - life is too short to wait!
     xset r rate 150 80
-
-    #load my own keyboard layout
-    xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 0 $DISPLAY
 fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
