@@ -2,7 +2,7 @@
 # to navigate through the terminal output.
 
 # Define vars with color codes - may be handy for other things, too
-BOLD="\e[1m"
+BOLD="\e[1;37m"
 DIM="\e[2m"
 NORMAL="\e[21m"
 
