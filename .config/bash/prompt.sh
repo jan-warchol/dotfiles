@@ -37,7 +37,7 @@ fi
 PS1_RANGER_COLOR="\[${BLUE}\]"
 [ -n "$RANGER_LEVEL" ] && ranger_notice=" ${PS1_RANGER_COLOR}(in ranger)${PS1_RESET_COLOR}"
 
-smartdollar="\[${BOLD}\]\\$ \[${RESET_COLOR}\]"
+smartdollar="\[${BOLD}\]\\$ "
 
 # $(__git_ps1) displays git repository status in the prompt, which is extremely handy.
 # Read more: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
@@ -50,3 +50,8 @@ GIT_PS1_SHOWUPSTREAM="verbose git"
 # (so that I can dynamically change the color just by changing the variable).
 export PS1="\$(echo -e \${PS1_USER_COLOR})\u@\h ${PS1_PATH_COLOR}\w${PS1_RESET_COLOR}\$(__git_ps1)${ranger_notice}\n${smartdollar}"
 export PS4="$(tput bold)>>> $(tput sgr0)"
+
+
+#reset color
+trap "tput sgr0" DEBUG
+
