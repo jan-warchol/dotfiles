@@ -26,6 +26,7 @@
     c1 = checkout HEAD~1
     c2 = checkout HEAD~2
     cb = checkout -b
+    cd = checkout devel
     cm = checkout master
     com = checkout origin/master
     cu = checkout @{upstream}
@@ -161,6 +162,7 @@
     lb = !git ls HEAD origin/master --branches
 
     lm = !git ls HEAD master origin/master
+    lsd = !git ls HEAD sdwan origin/sdwan
 
     # "Long" format - full commit message and summary of changes
     ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
@@ -307,7 +309,7 @@
     renames = copies
 
 [help]
-    # correct and run mistyped commands after 1.3 sec delay
+    # correct and run mistyped commands after 1.2 sec delay
     autocorrect = 12
 
 [merge]
