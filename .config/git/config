@@ -107,7 +107,7 @@
     psu = !git push --set-upstream $(git symbolic-ref --short HEAD)
     psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
     # tags have to be pushed explicitly
-    put = !git push && git push --tags
+    put = !git push --tags && git push
 
     rba = rebase --abort
     rb = rebase
