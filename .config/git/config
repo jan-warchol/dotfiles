@@ -178,7 +178,7 @@
     l2a = !"git l2 HEAD --branches --remotes"
 
     # reflog with dates and commit message subject
-    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %<(21,trunc)%ci%x08%x08 %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
+    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(dim)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
 
     # log unpushed/unmerged commits on all branches
     unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
