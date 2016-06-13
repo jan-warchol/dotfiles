@@ -154,14 +154,24 @@
     # basic one-line log, I use it all the time
     ls = !git log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
+    # and a variant following just the first parent of each merge, which
+    # results in a very nice condensed overview of the history if the
+    # developers are following Git Flow, GitHub Flow or another organized way of committing stuff
+    lf = !git log --color=always --decorate --graph --date=relative --first-parent \
+    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
 
     l8 = !git ls -8
+    l13 = !git ls -13
+    l21 = !git ls -21
 
     # as above, but includes all local and remote branches
     la = !git ls HEAD --branches --remotes
+    laf = !git lf HEAD --branches --remotes
     lb = !git ls HEAD origin/master --branches
+    lbf = !git lf HEAD origin/master --branches
 
     lm = !git ls HEAD master origin/master
+    lmf = !git lf HEAD master origin/master
     lsd = !git ls HEAD sdwan origin/sdwan
 
     # "Long" format - full commit message and summary of changes
@@ -175,9 +185,6 @@
     # two-line version, useful when your terminal window is narrow
     l2 = !git log --color=always --decorate --graph --date=iso \
     --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(dim), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
-
-    # and a two-line log showing all branches
-    l2a = !"git l2 HEAD --branches --remotes"
 
     # reflog with dates and commit message subject
     rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(dim)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
