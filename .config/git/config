@@ -19,7 +19,7 @@
     ba = branch --all
     br = branch --remotes
     bd = branch --delete
-    BD = branch -D
+    bdf = branch -D
 
     c = checkout
     c0 = checkout HEAD~0   # detach HEAD e.g. for throw-away experiments
