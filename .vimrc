@@ -43,6 +43,8 @@ noremap <Up> gk
 " better.
 nnoremap <silent> n :set scrolloff=8<CR>n:set scrolloff=2<CR>
 nnoremap <silent> N :set scrolloff=8<CR>N:set scrolloff=2<CR>
+nnoremap <silent> * :set scrolloff=8<CR>*:set scrolloff=2<CR>
+nnoremap <silent> # :set scrolloff=8<CR>#:set scrolloff=2<CR>
 
 " wrap only on word boundaries
 set linebreak
@@ -137,6 +139,8 @@ let g:airline#extensions#branch#displayed_head_limit = 25
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chase/vim-ansible-yaml'
 Plug 'tComment'
+
+Plug 'scrooloose/nerdtree'
 
 Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
