@@ -21,17 +21,22 @@
     bd = branch --delete
     bdf = branch -D
 
-    c = checkout
-    c0 = checkout HEAD~0   # detach HEAD e.g. for throw-away experiments
-    c1 = checkout HEAD~1
-    c2 = checkout HEAD~2
-    cb = checkout -b
-    cd = checkout devel
-    cm = checkout master
-    com = checkout origin/master
-    cu = checkout @{upstream}
+    # recursively update submodules. Handles uncommitted changes gracefully
+    # (if they don't conflict, they are transplanted, if they do, the update
+    # is not performed and an error is printed).
+    c = !git checkout $@ && git sup && true
+    c0 = !git c HEAD~0   # detach HEAD e.g. for throw-away experiments
+    c1 = !git c HEAD~1
+    c2 = !git c HEAD~2
+    cb = !git c -b
+    cd = !git c devel
+    cm = !git c master
+    com = !git c origin/master
+    cu = !git c @{upstream}
 
     chp = cherry-pick
+
+    cln = clone --recurse-submodules
 
     # commit --verbose shows a preview of staged changes when editing the commit
     # message - you no longer have to run 'git diff' before every commit :)
@@ -45,7 +50,7 @@
     amq = commit --amend --all --no-edit
     apf = !git amq --quiet && git puf --quiet   
 
-    d = diff --color=always --find-copies-harder --inter-hunk-context=13
+    d = diff --color=always --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     dm = !git d master
@@ -93,14 +98,18 @@
 
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
-    lp = log --color=always --decorate --patch
-    lpw = log --color=always --decorate --patch --word-diff=color
+    lp = log --color=always --decorate --patch --submodule=log
+    lpw = log --color=always --decorate --patch --word-diff=color --submodule=log
 
-    ff = merge --ff-only
-    noff = merge --no-ff
+    # the "&& true" at the end is needed because git appends the arguments
+    # passed to the alias to the last command, and "git sup" would complain
+    # about arguments that are meant for "git merge"
+    mr = !git merge $@ && git sup && true
+    ff = !git merge --ff-only $@ && git sup && true
+    noff = !git merge --no-ff $@ && git sup && true
 
     # unlike plain `pull`, this won't attempt a merge that may result in conflicts
-    pl = pull --ff-only
+    pl = !git pull --ff-only $@ && git sup && true
 
     pu = push
     puf = push --force-with-lease
@@ -111,15 +120,15 @@
     put = !git push --tags && git push
 
     rba = rebase --abort
-    rb = rebase
+    rb = !git rebase $@ && git sup && true
     rbc = rebase --continue
     rbo = rebase --onto   # quite useful, see examples in 'git help rebase'
     rbi = rebase --interactive
     rbi5 = rebase --interactive HEAD~5
     rbim = rebase --interactive master
     rbiu = rebase --interactive @{upstream}
-    rbm = rebase master
-    rbom = rebase origin/master
+    rbm = !git rebase master $@ && git sup && true
+    rbom = !git rebase origin/master $@ && git sup && true
 
     rt = remote --verbose
 
@@ -141,6 +150,12 @@
     su = status --short --untracked-files=all
     si = status --short --ignored
     sa = status --short --untracked-files=all --ignored
+
+    # submodule init and submodule sync are needed because some submodules may
+    # have been added in the other branch or their remotes changed.
+    sup = "!sh -c 'git submodule init && \
+        git submodule sync > /dev/null && \
+        git submodule update $@' -"
 
     who = shortlog --summary --numbered
 
