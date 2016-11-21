@@ -195,6 +195,12 @@ Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline ch
 "pearofducks/ansible-vim
 call plug#end()
 
+" Allow color schemes to do bright colors without forcing bold.
+" This must be done before colorscheme settings, and also must be set here so
+" that sensible-vim will not set it on its own (see
+" https://github.com/tpope/vim-sensible/issues/74)
+set t_Co=16
+
 highlight DiffAdd cterm=none ctermfg=green ctermbg=black
 highlight DiffDelete cterm=none ctermfg=darkred ctermbg=black
 highlight DiffChange cterm=none ctermfg=none ctermbg=black
