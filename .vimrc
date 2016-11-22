@@ -105,7 +105,7 @@ nnoremap <CR> i<CR><ESC>
 "Preview unsaved changes
 command! Showchanges w !diff % -
 
-" I was getting terrible performance on some Ansible playbook files - the
+" I was getting terrible vim performance on some Ansible playbook files - the
 " cursor would lag when moving, sometimes the lag would reach several seconds!
 " (it seeemed to be especially bad when there were a lot of brackets/braces in
 " the file).
