@@ -187,19 +187,11 @@ call plug#end()
 " https://github.com/tpope/vim-sensible/issues/74)
 set t_Co=16
 
-highlight DiffAdd cterm=none ctermfg=green ctermbg=black
-highlight DiffDelete cterm=none ctermfg=darkred ctermbg=black
-highlight DiffChange cterm=none ctermfg=none ctermbg=black
-highlight DiffText cterm=none ctermfg=black ctermbg=darkyellow
-
-highlight Comment ctermfg=gray
-highlight CursorLine ctermbg=black cterm=NONE
+colorscheme selenized
 set cursorline
 
 " Search highlighting with modified coloring
 set hlsearch
-highlight Search cterm=reverse ctermfg=NONE ctermbg=NONE
-highlight Visual cterm=NONE ctermfg=NONE  ctermbg=darkgray
 " Clear highlighting on escape in normal mode
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
