@@ -115,6 +115,7 @@ set regexpengine=1
 
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -203,6 +204,15 @@ highlight Visual cterm=NONE ctermfg=NONE  ctermbg=darkgray
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-M> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+"
 " TODO: settings to try out
 "
 " make return noop in normal mode again, use ctrl-return for breaking lines.
