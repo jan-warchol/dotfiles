@@ -115,6 +115,7 @@ set regexpengine=1
 
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
+Plug 'sjl/gundo.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -130,6 +131,7 @@ Plug 'tComment'
 
 Plug 'scrooloose/nerdtree'
 
+" better than godlygeek/tabular
 Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
