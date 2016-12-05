@@ -199,7 +199,7 @@
     lbsf = !git lf HEAD --branches=sdwan* --remotes=origin/sdwan
 
     # "Long" format - full commit message and summary of changes
-    ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+    ll = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
 
     lmpr = log --color=always --decorate --reverse --patch master..HEAD
 
