@@ -209,6 +209,9 @@ endfunc
 "
 " TODO: settings to try out
 "
+" two different approaches for controlling text width:
+" http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns#3765575
+"
 " make return noop in normal mode again, use ctrl-return for breaking lines.
 " Similarly with backspace.
 "
