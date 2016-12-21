@@ -114,16 +114,23 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+
+" New text objects definitions
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'tComment'
+Plug 'kana/vim-textobj-user' " required by vim-textobj-line
+Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline char)
+
+" navigation/motions
+Plug 'jeetsukumaran/vim-indentwise'
+
+" interface
 Plug 'vim-airline'
 let g:airline#extensions#branch#displayed_head_limit = 25
+Plug 'scrooloose/nerdtree'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chase/vim-ansible-yaml'
-Plug 'tComment'
-
-Plug 'scrooloose/nerdtree'
-Plug 'jeetsukumaran/vim-indentwise'
 
 " better than godlygeek/tabular
 Plug 'junegunn/vim-easy-align'
@@ -133,7 +140,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "Valloric/YouCompleteMe
-"Tcomment
 
 Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
@@ -151,10 +157,6 @@ let g:EasyClipUseSubstituteDefaults = 1
 
 Plug 'berdandy/ansiesc.vim'
 Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
-
-Plug 'kana/vim-textobj-user' " required by vim-textobj-line
-Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline char)
-
 
 " TODO: plugins to investigate
 " https://github.com/majutsushi/tagbar
