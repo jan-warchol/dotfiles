@@ -33,6 +33,8 @@ nnoremap <silent> n :set scrolloff=8<CR>n:set scrolloff=2<CR>
 nnoremap <silent> N :set scrolloff=8<CR>N:set scrolloff=2<CR>
 nnoremap <silent> * :set scrolloff=8<CR>*:set scrolloff=2<CR>
 nnoremap <silent> # :set scrolloff=8<CR>#:set scrolloff=2<CR>
+" Center *first* search match (http://vi.stackexchange.com/q/10775/836)
+cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
 
 " wrap only on word boundaries
 set linebreak
