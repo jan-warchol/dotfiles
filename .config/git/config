@@ -112,6 +112,8 @@
     ff = !git merge --ff-only $@ && git sup && true
     noff = !git merge --no-ff $@ && git sup && true
 
+    mb = merge-base @  # find where current branch diverged from another branch
+
     # unlike plain `pull`, this won't attempt a merge that may result in conflicts
     pl = !git pull --ff-only $@ && git sup && true
 
