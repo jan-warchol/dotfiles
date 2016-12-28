@@ -123,6 +123,7 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'tComment'
 
 Plug 'scrooloose/nerdtree'
+Plug 'jeetsukumaran/vim-indentwise'
 
 " better than godlygeek/tabular
 Plug 'junegunn/vim-easy-align'
