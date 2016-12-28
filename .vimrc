@@ -258,6 +258,9 @@ endfunc
 
 " TODO: how to do these?
 "
+" zaznaczenie obiektu wcięcia z nagłówkiem (definicją funkcji) ale bez
+" whitespace'a
+"
 " sometimes when pressing enter i want vim to automatically add some prefix:
 " - autoindentation
 " - a comment symbol if I'm inside comment
