@@ -85,21 +85,24 @@ if &term =~ "xterm\\|rxvt"
   autocmd VimLeave * silent !echo -ne "\033]12;white\007"
 endif
 
+nnoremap <C-S> :w<CR>
+inoremap <C-S> <Esc>:w<CR>i
+
 " Leader commands
 let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
-nnoremap <Leader>qq :qa<CR>
 nnoremap <Leader>wq :wq<CR>
 nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>wc :w<CR>:bd<CR>
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>s :w<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>v :source $MYVIMRC<CR>
 vmap <Leader>y "+y
 nnoremap <Leader>p "+p
-
+nmap <Leader>yw ysiw{ysa{}ysa{"
+nmap <Leader>yW ysiW{ysa{}ysa{"
 
 
 " REMAPS
