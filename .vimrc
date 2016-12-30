@@ -76,7 +76,9 @@ if &term =~ "xterm\\|rxvt"
 endif
 
 nnoremap <C-S> :w<CR>
-inoremap <C-S> <Esc>:w<CR>i
+inoremap <C-S> <Esc>:w<CR>
+nnoremap <C-Q> :q<CR>
+inoremap <C-Q> <Esc>:q<CR>
 
 " Leader commands
 let mapleader = "\<Space>"
