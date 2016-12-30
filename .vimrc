@@ -94,9 +94,13 @@ nnoremap <Leader>wc :w<CR>:bd<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>o :CtrlP<CR>
-nnoremap <Leader>v :source $MYVIMRC<CR>
+nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
 vmap <Leader>y "+y
 nnoremap <Leader>p "+p
+nmap <Leader>{ ysiw{ysa{}w
+nmap <Leader>} ysiw{ysa{}w
+nmap <Leader>"{ ysiw{ysa{}ysa{"
+nmap <Leader>yW ysiW{ysa{}ysa{"
 nmap <Leader>yw ysiw{ysa{}ysa{"
 nmap <Leader>yW ysiW{ysa{}ysa{"
 
