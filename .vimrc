@@ -37,6 +37,10 @@ nnoremap <silent> # :set scrolloff=8<CR>#:set scrolloff=2<CR>
 " wrap only on word boundaries
 set linebreak
 
+" more intuitive placement of new vertical and horizontal splits
+set splitbelow
+set splitright
+
 set expandtab
 set tabstop=8
 set shiftwidth=2
