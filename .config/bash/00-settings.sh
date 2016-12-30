@@ -28,7 +28,7 @@ shopt -s histappend   # don't overwrite history file after each session
 # I prefer to keep my history in my data folder so that it's backed up
 export HISTFILE="$HOME/janek/bash_history"
 
-export EDITOR="gvim --remote"
+export EDITOR="vim"
 
 export _FASD_DATA="$HOME/janek/fasd"
 

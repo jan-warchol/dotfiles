@@ -10,3 +10,4 @@ if [[ -d "${configs}" && $(ls "${configs}"/*.sh 2>/dev/null) ]]; then
     # load site-specific overrides at the end (if they exist)
     [ -e "${configs}/config.local" ] && . "${configs}/config.local"
 fi
+
