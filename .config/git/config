@@ -338,10 +338,14 @@
 
     # detect renamed files and show only actual differences between versions
     renames = copies
+    submodule = log
 
 [help]
     # correct and run mistyped commands after 1.2 sec delay
     autocorrect = 12
+
+[status]
+    submoduleSummary = true
 
 [merge]
     # in case of merge conflict also show how common ancestor looked like
