@@ -124,6 +124,14 @@ nnoremap <CR> i<CR><ESC>
 "Preview unsaved changes
 command! Showchanges w !diff % -
 
+" I was getting terrible performance on some Ansible playbook files - the
+" cursor would lag when moving, sometimes the lag would reach several seconds!
+" (it seeemed to be especially bad when there were a lot of brackets/braces in
+" the file).
+" I found someone who was having similar problem, and he solved it by using
+" old regex engine - see https://github.com/xolox/vim-easytags/issues/88
+set regexpengine=1
+
 " Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
