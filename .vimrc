@@ -38,10 +38,14 @@ noremap <silent> k gk
 noremap <Down> gj
 noremap <Up> gk
 
+" Ensure more context is visible when jumping between search matches.
+" Some people map n to nzz (centering screen on every match), but I like this
+" better.
+nnoremap <silent> n :set scrolloff=8<CR>n:set scrolloff=2<CR>
+nnoremap <silent> N :set scrolloff=8<CR>N:set scrolloff=2<CR>
+
 " wrap only on word boundaries
 set linebreak
-
-set cursorline cursorcolumn
 
 set expandtab
 set tabstop=8
