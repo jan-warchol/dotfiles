@@ -10,6 +10,7 @@
 
     a = add
     aa = add --all
+    an = add --all --intent-to-add   # start tracking all files but don't stage their content yet
     ap = add --patch   # interactively select hunks to add, very useful
     au = add --update   # stage all changes in already tracked files
 
@@ -41,6 +42,7 @@
     amn = commit --amend
     ama = commit --amend --all
     amq = commit --amend --all --no-edit
+    apf = !git amq --quiet && git puf --quiet   
 
     d = diff --color=always --find-copies-harder --inter-hunk-context=13
     dc = !git d --cached   # preview changes staged for commit
@@ -51,6 +53,7 @@
     dsu = !git ds @{upstream}
     wd = !git d --word-diff=color   # mnemonic: Word-Diff
     wdc = !git d --word-diff=color --cached
+    coldif = !git d --word-diff=color --word-diff-regex="[0-9a-zA-Z]+"
 
     d5 = !git d --unified=5
     d8 = !git d --unified=8
@@ -122,6 +125,12 @@
     rs = reset
     rs1 = reset HEAD~1   # "soft undo" - remove last commit, but keep its changes
     rsu = reset @{upstream}
+    rsm = reset master
+
+    rss = reset --soft
+    rss1 = reset --soft HEAD~1
+    rssu = reset --soft @{upstream}
+    rssm = reset --soft master
 
     sh = stash
     shp = stash pop
@@ -145,8 +154,11 @@
     ls = !git log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
 
+    l8 = !git ls -8
+
     # as above, but includes all local and remote branches
     la = !git ls HEAD --branches --remotes
+    lb = !git ls HEAD origin/master --branches
 
     lm = !git ls HEAD master origin/master
 
@@ -155,8 +167,8 @@
 
     lmpr = log --color=always --decorate --reverse --patch master..HEAD
 
-    # similar to ls, but always include both HEAD and its upstream (if present)
-    lu = !git ls HEAD `git for-each-ref --format='%(upstream:short)' HEAD $(git symbolic-ref --quiet HEAD)`
+    # log commits that differ between current branch and its upstream
+    lu = !GIT_PAGER='less -REXS' git ls --boundary HEAD...@{upstream}
 
     # two-line version, useful when your terminal window is narrow
     l2 = !git log --color=always --decorate --graph --date=iso \
@@ -166,10 +178,8 @@
     l2a = !"git l2 HEAD --branches --remotes"
 
     # reflog with dates and commit message subject
-    rf = log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %<(21,trunc)%ci%x08%x08 %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
+    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(bold cyan)%gd%C(reset) %<(21,trunc)%ci%x08%x08 %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
 
-    # log commits that differ between head and its upstream
-    div = !GIT_PAGER='less -REXS' git ls --boundary HEAD...@{upstream}
     # log unpushed/unmerged commits on all branches
     unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
     unm = !GIT_PAGER='less -REXS' git ls --boundary --date-order --remotes --not --branches
