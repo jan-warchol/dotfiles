@@ -180,14 +180,13 @@
     l21 = !git ls -21
 
     # as above, but includes all local and remote branches
-    la = !git ls HEAD --branches --remotes
-    laf = !git lf HEAD --branches --remotes
-    lb = !git ls HEAD origin/master --branches
-    lbf = !git lf HEAD origin/master --branches
-
-    lm = !git ls HEAD master origin/master
-    lmf = !git lf HEAD master origin/master
+    lm  = !git ls HEAD master origin/master
+    la  = !git ls HEAD --branches --remotes
+    lb  = !git ls HEAD origin/master --branches
     lsd = !git ls HEAD sdwan origin/sdwan
+    lmf  = !git lf HEAD master origin/master
+    laf  = !git lf HEAD --branches --remotes
+    lbf  = !git lf HEAD origin/master --branches
 
     # "Long" format - full commit message and summary of changes
     ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
