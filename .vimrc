@@ -186,6 +186,9 @@ call plug#end()
 
 " TODO: settings to try out
 "
+" make return noop in normal mode again, use ctrl-return for breaking lines.
+" Similarly with backspace.
+"
 " don't move cursor when exiting insert mode
 "inoremap <Esc> <Esc>`^
 "https://zenbro.github.io/2015/07/24/auto-change-keyboard-layout-in-vim.html
@@ -226,8 +229,22 @@ call plug#end()
 "combinations, or maybe I should rather take advantage of having many keys?
 "
 "Make C-Z work in insert mode (either as undo or as sending vim to background)
+"
+"Stuff that should be available in all modes (thus they should utilize
+"shortcuts with control, rather than leader mappings):
+"- saving file
+"- opening new file/changing buffer
+"- quitting? or closing buffer?
 
 " TODO: how to do these?
+"
+" sometimes when pressing enter i want vim to automatically add some prefix:
+" - autoindentation
+" - a comment symbol if I'm inside comment
+" - a list element marker (i.e. `-` or `*`)
+" - something else?
+" But sometimes I don't want this.  So, probably I need to map shift-enter
+" (or control-enter) to do the opposite.
 "
 " don't break undo into lines when pasting a block of text
 "
@@ -236,6 +253,9 @@ call plug#end()
 "make ctrl-backspace work
 "make control-arrow don't move to the next line if the cursor is not on line
 "end
+"
+"What about using control-arrows for pane navigation? (but that could be done
+"only in normal mode - in insert mode I need ctrl-arrows too much).
 "
 "define a command that deletes selection without putting it into any clipboard
 "(i.e. delete instead of cut).  Maybe map it to x?
