@@ -30,8 +30,8 @@ autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) 
 set whichwrap+=h,l,<,>,[,]
 
 " move on soft lines in insert mode
-inoremap <Down> <C-o>g<Down>
-inoremap <Up> <C-o>g<Up>
+"inoremap <Down> <C-o>g<Down>
+"inoremap <Up> <C-o>g<Up>
 
 noremap <silent> j gj
 noremap <silent> k gk
