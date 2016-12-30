@@ -280,12 +280,16 @@
 [color "branch"]
     remote = blue
 
+[color "decorate"]
+    remoteBranch = blue
+
 [color "status"]
     changed = yellow
     untracked = cyan
 
 [color "grep"]
-    filename = magenta
+    filename = dim
+    match = white bold
 
 [core]
     # display non-ASCII characters (e.g. Polish) instead of quoting them
@@ -304,7 +308,7 @@
 
 [help]
     # correct and run mistyped commands after 1.3 sec delay
-    autocorrect = 13
+    autocorrect = 12
 
 [merge]
     # in case of merge conflict also show how common ancestor looked like
