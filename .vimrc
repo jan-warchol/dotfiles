@@ -8,10 +8,15 @@ set sidescrolloff=5
 " Search highlighting with modified coloring
 set hlsearch
 highlight Search cterm=reverse ctermfg=NONE ctermbg=NONE
-highlight Visual cterm=reverse ctermfg=NONE  ctermbg=NONE
+highlight Visual cterm=NONE ctermfg=NONE  ctermbg=black
 " Clear highlighting on escape in normal mode
 nnoremap <silent> <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+
+highlight DiffAdd cterm=none ctermfg=green ctermbg=black
+highlight DiffDelete cterm=none ctermfg=darkred ctermbg=black
+highlight DiffChange cterm=none ctermfg=none ctermbg=black
+highlight DiffText cterm=none ctermfg=black ctermbg=darkyellow
 
 " don't move cursor when leaving insert mode
 let CursorColumnI = 0 "the cursor column position in INSERT
