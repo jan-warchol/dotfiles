@@ -31,6 +31,7 @@
     cb = !git c -b
     cd = !git c devel
     cm = !git c master
+    cs = !git c sdwan
     com = !git c origin/master
     cu = !git c @{upstream}
 
@@ -128,7 +129,9 @@
     rbim = rebase --interactive master
     rbiu = rebase --interactive @{upstream}
     rbm = !git rebase master $@ && git sup && true
+    rbs = !git rebase sdwan $@ && git sup && true
     rbom = !git rebase origin/master $@ && git sup && true
+    rbos = !git rebase origin/sdwan $@ && git sup && true
 
     rt = remote --verbose
 
@@ -184,9 +187,14 @@
     la  = !git ls HEAD --branches --remotes
     lb  = !git ls HEAD origin/master --branches
     lsd = !git ls HEAD sdwan origin/sdwan
+    las = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan* --tags=sdwan*
+    lbs = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan --tags=sdwan*
     lmf  = !git lf HEAD master origin/master
     laf  = !git lf HEAD --branches --remotes
     lbf  = !git lf HEAD origin/master --branches
+    lsdf = !git lf HEAD sdwan origin/sdwan
+    lasf = !git lf HEAD --branches=sdwan* --remotes=origin/sdwan*
+    lbsf = !git lf HEAD --branches=sdwan* --remotes=origin/sdwan
 
     # "Long" format - full commit message and summary of changes
     ll = !git log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
