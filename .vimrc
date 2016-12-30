@@ -132,8 +132,20 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-airline'
+let g:airline#extensions#branch#displayed_head_limit = 25
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chase/vim-ansible-yaml'
+Plug 'tComment'
+
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"Valloric/YouCompleteMe
+"Tcomment
 
 Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
@@ -149,9 +161,10 @@ nmap xx <Plug>MoveMotionLinePlug
 "" Map s to substitute 
 let g:EasyClipUseSubstituteDefaults = 1
 
+Plug 'berdandy/ansiesc.vim'
+Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
+
 " TODO: plugins to investigate
-"Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
-"Valloric/YouCompleteMe
 "align
 "autoclose (!)
 "asynccommand
