@@ -154,11 +154,13 @@
     si = status --short --ignored
     sa = status --short --untracked-files=all --ignored
 
+    sm = submodule
+
     # submodule init and submodule sync are needed because some submodules may
     # have been added in the other branch or their remotes changed.
     sup = "!sh -c 'git submodule init && \
-        git submodule sync > /dev/null && \
-        git submodule update $@' -"
+        git submodule sync --recursive > /dev/null && \
+        git submodule update --recursive $@' -"
 
     who = shortlog --summary --numbered
 
