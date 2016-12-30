@@ -1,18 +1,54 @@
-" APPEARANCE
+" APPEARANCE ===========================================================
 
 set title
 set number
 set scrolloff=2
 set sidescrolloff=5
+set cursorline
 
+" soft-wrap lines only on word boundaries
+set linebreak
+
+" Allow color schemes to do bright colors without forcing bold.
+" This must be done before colorscheme settings, and also must be set here so
+" that sensible-vim will not set it on its own (see
+" https://github.com/tpope/vim-sensible/issues/74)
+set t_Co=16
+
+
+
+" SEARCHING ============================================================
+
+" Ensure more context is visible when jumping between search matches.
+" Some people map n to nzz (centering screen on every match), but I like this
+" better.
+nnoremap <silent> n :set scrolloff=8<CR>n:set scrolloff=2<CR>
+nnoremap <silent> N :set scrolloff=8<CR>N:set scrolloff=2<CR>
+nnoremap <silent> * :set scrolloff=8<CR>*:set scrolloff=2<CR>
+nnoremap <silent> # :set scrolloff=8<CR>#:set scrolloff=2<CR>
+" Center *first* search match (http://vi.stackexchange.com/q/10775/836)
+cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
+
+" Search highlighting
+set hlsearch
+" Clear highlighting on escape in normal mode
+nnoremap <silent> <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
+set ignorecase " Do case insensitive matching
+set smartcase " Do smart case matching
+
+
+
+" CURSOR MOVEMENT ======================================================
 
 " don't move cursor when leaving insert mode
+" http://vim.wikia.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
+" http://stackoverflow.com/a/17054564/2058424
 let CursorColumnI = 0 "the cursor column position in INSERT
 autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
-
-" BEHAVIOUR
 
 " let arrows and h,l move cursor accross newlines
 set whichwrap+=h,l,<,>,[,]
@@ -26,18 +62,9 @@ noremap <silent> k gk
 noremap <Down> gj
 noremap <Up> gk
 
-" Ensure more context is visible when jumping between search matches.
-" Some people map n to nzz (centering screen on every match), but I like this
-" better.
-nnoremap <silent> n :set scrolloff=8<CR>n:set scrolloff=2<CR>
-nnoremap <silent> N :set scrolloff=8<CR>N:set scrolloff=2<CR>
-nnoremap <silent> * :set scrolloff=8<CR>*:set scrolloff=2<CR>
-nnoremap <silent> # :set scrolloff=8<CR>#:set scrolloff=2<CR>
-" Center *first* search match (http://vi.stackexchange.com/q/10775/836)
-cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
-
-" wrap only on word boundaries
-set linebreak
+ 
+ 
+" BEHAVIOUR ============================================================
 
 " more intuitive placement of new vertical and horizontal splits
 set splitbelow
@@ -46,12 +73,13 @@ set splitright
 set expandtab
 set tabstop=8
 set shiftwidth=2
-set ignorecase " Do case insensitive matching
-set smartcase " Do smart case matching
 
 " enable mouse support. This makes scrolling behave normally (moves content
 " instead od moving cursor) and lets user select text with mouse.
 set mouse=a
+
+"Enable middle mouse button clipboard support
+set guioptions+=a
 
 " Automatically use system wide clipboard
 set clipboard=unnamedplus
@@ -61,15 +89,23 @@ set hidden
 
 " new undo item when pressed CR
 inoremap <CR> <C-G>u<CR>
-"Enable middle mouse button clipboard support
-set guioptions+=a
+
+" I was getting terrible vim performance on some Ansible playbook files - the
+" cursor would lag when moving, sometimes the lag would reach several seconds!
+" (it seeemed to be especially bad when there were a lot of brackets/braces in
+" the file).
+" I found someone who was having similar problem, and he solved it by using
+" old regex engine - see https://github.com/xolox/vim-easytags/issues/88
+set regexpengine=1
+
+"Preview unsaved changes
+command! Showchanges w !diff % -
+
+
+
+" NEW MAPPINGS =========================================================
 
 set pastetoggle=<F5>
-
-nnoremap <C-S> :w<CR>
-inoremap <C-S> <Esc>:w<CR>
-nnoremap <C-Q> :q<CR>
-inoremap <C-Q> <Esc>:q<CR>
 
 " Leader commands
 let mapleader = "\<Space>"
@@ -91,30 +127,48 @@ nmap <Leader>yW ysiW{ysa{}ysa{"
 nmap <Leader>yw ysiw{ysa{}ysa{"
 nmap <Leader>yW ysiW{ysa{}ysa{"
 
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-M> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
-" REMAPS
+
+
+" REMAPS OF EXISTING KEYS ==============================================
+
+nnoremap <C-S> :w<CR>
+inoremap <C-S> <Esc>:w<CR>
+nnoremap <C-Q> :q<CR>
+inoremap <C-Q> <Esc>:q<CR>
 
 " break line in normal mode
 nnoremap <CR> i<CR><ESC>
 
-"Preview unsaved changes
-command! Showchanges w !diff % -
 
-" I was getting terrible vim performance on some Ansible playbook files - the
-" cursor would lag when moving, sometimes the lag would reach several seconds!
-" (it seeemed to be especially bad when there were a lot of brackets/braces in
-" the file).
-" I found someone who was having similar problem, and he solved it by using
-" old regex engine - see https://github.com/xolox/vim-easytags/issues/88
-set regexpengine=1
 
-" Plugins managed by Vim-Plug (github.com/junegunn/vim-plug)
+" PLUGINS ==============================================================
+
+" Manage plugins with Vim-Plug (github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/plugged')
-Plug 'sjl/gundo.vim'
-Plug 'altercation/vim-colors-solarized'
+" Let's get the obvious out of the way
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
+
+" Appearance
+Plug 'altercation/vim-colors-solarized'  " not used, just for comparison
+Plug 'berdandy/ansiesc.vim'
+Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
+Plug 'chase/vim-ansible-yaml'
+Plug 'vim-airline'
+let g:airline#extensions#branch#displayed_head_limit = 25
+
+" Additional interface elements
+Plug 'scrooloose/nerdtree'
+Plug 'sjl/gundo.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 
 " New text objects definitions
@@ -123,16 +177,11 @@ Plug 'tComment'
 Plug 'kana/vim-textobj-user' " required by vim-textobj-line
 Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline char)
 
-" navigation/motions
+" Navigation/motions
 Plug 'jeetsukumaran/vim-indentwise'
-
-" interface
-Plug 'vim-airline'
-let g:airline#extensions#branch#displayed_head_limit = 25
-Plug 'scrooloose/nerdtree'
-
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'chase/vim-ansible-yaml'
+Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " better than godlygeek/tabular
 Plug 'junegunn/vim-easy-align'
@@ -140,8 +189,6 @@ Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-"Valloric/YouCompleteMe
 
 Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
@@ -157,57 +204,37 @@ nmap xx <Plug>MoveMotionLinePlug
 "" Map s to substitute 
 let g:EasyClipUseSubstituteDefaults = 1
 
-Plug 'berdandy/ansiesc.vim'
-Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
-Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
-
-" TODO: plugins to investigate
-" https://github.com/majutsushi/tagbar
-"align
-"autoclose (!)
-"asynccommand
-"colorpack (!)
-"ctrlp (!)
-"easymotion
-"gist
-"nerdcomment
-"omnicppcomplete
-"snipMate (!)
-"supertab (!)
-"syntastic (!)
-"(!) means that the plugin is super awesome. 
-"reedes/vim-textobj-sentence
-"garbas/vim-snipmate
-"scrooloose/nerdtree
-"pearofducks/ansible-vim
 call plug#end()
 
-" Allow color schemes to do bright colors without forcing bold.
-" This must be done before colorscheme settings, and also must be set here so
-" that sensible-vim will not set it on its own (see
-" https://github.com/tpope/vim-sensible/issues/74)
-set t_Co=16
-
+" colorscheme must be set after Vim-plug finishes its work
 colorscheme selenized
-set cursorline
 
-" Search highlighting with modified coloring
-set hlsearch
-" Clear highlighting on escape in normal mode
-nnoremap <silent> <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
 
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-M> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+
+" TODOs ================================================================
+
+" Plugins to investigate:
 "
-" TODO: settings to try out
-"
+" Valloric/YouCompleteMe
+" https://github.com/majutsushi/tagbar
+" align
+" autoclose (!)
+" asynccommand
+" colorpack (!)
+" ctrlp (!)
+" easymotion
+" gist
+" nerdcomment
+" omnicppcomplete
+" snipMate (!)
+" supertab (!)
+" syntastic (!)
+" (!) means that the plugin is super awesome. 
+" reedes/vim-textobj-sentence
+" garbas/vim-snipmate
+" scrooloose/nerdtree
+" pearofducks/ansible-vim
+
 " two different approaches for controlling text width:
 " http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns#3765575
 "
