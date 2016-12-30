@@ -54,3 +54,18 @@ fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
 eval "$(fasd --init auto)"
+
+# Configure escape sequences for less so that it will know how to display
+# colors for man etc. See also:
+# http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
+# https://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
+# http://stackoverflow.com/questions/34265221/how-to-colorize-man-page-in-fish-shell
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;37m") \
+		LESS_TERMCAP_md=$(printf "\e[1;37m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+			man "$@"
+}
