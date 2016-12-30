@@ -158,6 +158,7 @@ nmap xx <Plug>MoveMotionLinePlug
 let g:EasyClipUseSubstituteDefaults = 1
 
 Plug 'berdandy/ansiesc.vim'
+Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
 Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 
 " TODO: plugins to investigate
