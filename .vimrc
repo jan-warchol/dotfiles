@@ -114,10 +114,6 @@ vnoremap { k{<Space>0
 nnoremap } j}<BS>0
 vnoremap } j}<BS>0
 
-" Make backspace work in normal mode
-nnoremap <BS> X
-nnoremap <S-BS> x
-
 " break line in normal mode
 nnoremap <CR> i<CR><ESC>
 
