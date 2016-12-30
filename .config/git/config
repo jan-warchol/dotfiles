@@ -368,10 +368,6 @@
     # stash unstaged changes if rebasing a dirty tree
     autostash = true
 
-[rerere]
-    # Reuse recorded resolution of conflicted merges, see 'git help rerere'
-    enabled = true
-
 [include]
     # load account-specific settings from a file managed outside dotfiles repo
     path = config.local
