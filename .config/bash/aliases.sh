@@ -38,10 +38,10 @@ alias ll='ls -l --human-readable --almost-all --file-type'
 alias lt='ls -thor'  # the power of Thor!
 
 # du
-alias du0='du --human-readable --summarize'
-alias du1='du --human-readable --max-depth=1 | sort --human-numeric-sort'
-alias du2='du --human-readable --max-depth=2 | sort --human-numeric-sort'
-alias du3='du --human-readable --max-depth=3 | sort --human-numeric-sort'
+alias du0='du --human-readable --summarize   2>/dev/null'
+alias du1='du --human-readable --max-depth=1 2>/dev/null | sort --human-numeric-sort'
+alias du2='du --human-readable --max-depth=2 2>/dev/null | sort --human-numeric-sort'
+alias du3='du --human-readable --max-depth=3 2>/dev/null | sort --human-numeric-sort'
 
 # tree
 alias tre2='tree -L 2 --filelimit 50'
