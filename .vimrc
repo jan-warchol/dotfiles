@@ -170,7 +170,12 @@ let g:EasyClipUseSubstituteDefaults = 1
 Plug 'berdandy/ansiesc.vim'
 Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 
+Plug 'kana/vim-textobj-user' " required by vim-textobj-line
+Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline char)
+
+
 " TODO: plugins to investigate
+" https://github.com/majutsushi/tagbar
 "align
 "autoclose (!)
 "asynccommand
