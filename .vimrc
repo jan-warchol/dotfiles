@@ -161,9 +161,9 @@ Plug 'tpope/vim-sensible'
 
 " Appearance
 Plug 'altercation/vim-colors-solarized'  " not used, just for comparison
-Plug 'berdandy/ansiesc.vim'
+Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi color codes
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
-Plug 'chase/vim-ansible-yaml'
+Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
 let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
 Plug 'vim-airline'
@@ -227,65 +227,52 @@ colorscheme selenized
 "
 " Valloric/YouCompleteMe
 " https://github.com/majutsushi/tagbar
-" align
-" autoclose (!)
 " asynccommand
-" colorpack (!)
-" ctrlp (!)
-" easymotion
 " gist
 " nerdcomment
 " omnicppcomplete
-" snipMate (!)
 " supertab (!)
 " syntastic (!)
 " (!) means that the plugin is super awesome. 
 " reedes/vim-textobj-sentence
 " garbas/vim-snipmate
-" scrooloose/nerdtree
 " pearofducks/ansible-vim
+" kbarrette/mediummode
+" machakann/vim-sandwich
 
 " two different approaches for controlling text width:
 " http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns#3765575
-"
+
 " make return noop in normal mode again, use ctrl-return for breaking lines.
 " Similarly with backspace.
-"
+
 " don't move cursor when exiting insert mode
 "inoremap <Esc> <Esc>`^
 "https://zenbro.github.io/2015/07/24/auto-change-keyboard-layout-in-vim.html
 "keymap
-"
+
 "reflow text during formatting
 "set formatoptions=ant
-"
 "set textwidth=79
-"
 
-"map ctrl-s in insert mode to save, because it's unused anyway (traditionally
-"it was a terminal control flow binding)
-"
 " would allow changing escape behaviour so that it doensn't move cursor,
 " as well as make it possible to e.g. do backward deletions (currently
 " when the cursor is on the last char of a word and you say 'db' it will
 " not delete this character. having this on would allow to move one char
 " further and then be able to delete the word correctly.
 "set virtualedit=onemore
-"
+
 "backspace in normal mode doesn't do anything useful (just moves left like h),
 "so what about making it delete words? note that deleting words backwards in
 "vim sometimes behaves strangely (try doing db when cursor is on the last
 "letter).
-"
-"maybe make H (or equivalent in my keyboard layout) move by word, like b (or
-"maybe like ge)?  In my current layout b is in an inconvenient spot.
-"
+
 "Currently in normal mode shift-arrows and control-arrows do the same.  Maybe
 "I could use them for something different?  E.g. control-arrows move to the
 "beginning of the word, and shift-arrows to the end?  Just like in most
 "editors, where the direction you're going affects whether you land at word's
 "beginning or end.
-"
+
 "Also, think whether hjkl (or rather the equivalent in my layout) and their
 "control and shift combinations should do exactly the same as arrows and their
 "combinations, or maybe I should rather take advantage of having many keys?
