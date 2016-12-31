@@ -31,9 +31,9 @@ cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
 
 " Search highlighting
 set hlsearch
-" Clear highlighting on escape in normal mode
-nnoremap <silent> <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
+" " Clear highlighting on escape in normal mode
+" nnoremap <silent> <esc> :noh<return><esc>
+" nnoremap <esc>^[ <esc>^[
 
 set ignorecase " Do case insensitive matching
 set smartcase " Do smart case matching
@@ -42,25 +42,25 @@ set smartcase " Do smart case matching
 
 " CURSOR MOVEMENT ======================================================
 
-" don't move cursor when leaving insert mode
-" http://vim.wikia.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
-" http://stackoverflow.com/a/17054564/2058424
-let CursorColumnI = 0 "the cursor column position in INSERT
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+" " don't move cursor when leaving insert mode
+" " http://vim.wikia.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
+" " http://stackoverflow.com/a/17054564/2058424
+" let CursorColumnI = 0 "the cursor column position in INSERT
+" autocmd InsertEnter * let CursorColumnI = col('.')
+" autocmd CursorMovedI * let CursorColumnI = col('.')
+" autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
-" let arrows and h,l move cursor accross newlines
-set whichwrap+=h,l,<,>,[,]
+" " let arrows and h,l move cursor accross newlines
+" set whichwrap+=h,l,<,>,[,]
 
-" move on soft lines in insert mode
-"inoremap <Down> <C-o>g<Down>
-"inoremap <Up> <C-o>g<Up>
+" " move on soft lines in insert mode
+" inoremap <Down> <C-o>g<Down>
+" inoremap <Up> <C-o>g<Up>
 
-noremap <silent> j gj
-noremap <silent> k gk
-noremap <Down> gj
-noremap <Up> gk
+" noremap <silent> j gj
+" noremap <silent> k gk
+" noremap <Down> gj
+" noremap <Up> gk
 
  
  
@@ -98,14 +98,14 @@ inoremap <CR> <C-G>u<CR>
 " old regex engine - see https://github.com/xolox/vim-easytags/issues/88
 set regexpengine=1
 
-"Preview unsaved changes
-command! Showchanges w !diff % -
+" "Preview unsaved changes
+" command! Showchanges w !diff % -
 
 
 
 " NEW MAPPINGS =========================================================
 
-set pastetoggle=<F5>
+" set pastetoggle=<F5>
 
 " Leader commands
 let mapleader = "\<Space>"
@@ -145,8 +145,8 @@ inoremap <C-S> <Esc>:w<CR>
 nnoremap <C-Q> :q<CR>
 inoremap <C-Q> <Esc>:q<CR>
 
-" break line in normal mode
-nnoremap <CR> i<CR><ESC>
+" " break line in normal mode
+" nnoremap <CR> i<CR><ESC>
 
 
 
@@ -190,9 +190,9 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-Plug 'terryma/vim-expand-region'
-vmap v <Plug>(expand_region_expand)
-vmap <C-V> <Plug>(expand_region_shrink)
+" Plug 'terryma/vim-expand-region'
+" vmap v <Plug>(expand_region_expand)
+" vmap <C-V> <Plug>(expand_region_shrink)
 
 " Make register behaviour more resonable
 Plug 'svermeulen/vim-easyclip'
