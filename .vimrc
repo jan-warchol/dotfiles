@@ -163,7 +163,7 @@ call plug#begin('~/.vim/plugged')
 " Let's get the obvious out of the way
 Plug 'tpope/vim-sensible'
 
-" Appearance
+" Appearance -----------------------------------------------------------
 Plug 'altercation/vim-colors-solarized'  " not used, just for comparison
 Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi color codes
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
@@ -173,23 +173,23 @@ let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
 Plug 'vim-airline'
 let g:airline#extensions#branch#displayed_head_limit = 25
 
-" Additional interface elements
+" Additional interface elements ----------------------------------------
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 
-" General behavior
+" General behavior -----------------------------------------------------
 Plug 'Carpetsmoker/auto_autoread.vim' " autodetect changes in file (bugged, needs enabling)
 Plug 'Townk/vim-autoclose'  " automatically insert closing parens etc.
 
-" New text objects definitions
+" New text objects definitions -----------------------------------------
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tComment'
 Plug 'kana/vim-textobj-user' " required by vim-textobj-line
 Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline char)
 
-" Navigation/motions
+" Navigation/motions ---------------------------------------------------
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 Plug 'tpope/vim-surround'
