@@ -164,6 +164,8 @@ Plug 'altercation/vim-colors-solarized'  " not used, just for comparison
 Plug 'berdandy/ansiesc.vim'
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
 Plug 'chase/vim-ansible-yaml'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
+let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
 Plug 'vim-airline'
 let g:airline#extensions#branch#displayed_head_limit = 25
 
@@ -175,6 +177,7 @@ Plug 'tpope/vim-fugitive'
 
 " General behavior
 Plug 'Carpetsmoker/auto_autoread.vim' " autodetect changes in file (bugged, needs enabling)
+Plug 'Townk/vim-autoclose'  " automatically insert closing parens etc.
 
 " New text objects definitions
 Plug 'michaeljsmith/vim-indent-object'
@@ -187,6 +190,8 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_keys = 'hlnrasetoiygcmvp'
 
 " better than godlygeek/tabular
 Plug 'junegunn/vim-easy-align'
