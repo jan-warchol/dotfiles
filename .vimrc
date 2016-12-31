@@ -104,6 +104,10 @@ set regexpengine=1
 " check for outside changes of the file more often
 autocmd CursorHold * checktime
 
+" enable persistent undo (remember changes after closing file)
+set undofile
+
+
 
 " NEW MAPPINGS =========================================================
 
