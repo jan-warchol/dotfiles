@@ -101,6 +101,8 @@ set regexpengine=1
 " "Preview unsaved changes
 " command! Showchanges w !diff % -
 
+" check for outside changes of the file more often
+autocmd CursorHold * checktime
 
 
 " NEW MAPPINGS =========================================================
@@ -170,6 +172,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
+
+" General behavior
+Plug 'Carpetsmoker/auto_autoread.vim' " autodetect changes in file (bugged, needs enabling)
 
 " New text objects definitions
 Plug 'michaeljsmith/vim-indent-object'
