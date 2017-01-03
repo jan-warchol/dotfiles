@@ -205,6 +205,8 @@
 
     # "Long" format - full commit message and summary of changes
     ll = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+    # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
+    llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
 
     lmpr = log --color=always --decorate --reverse --patch master..HEAD
 
