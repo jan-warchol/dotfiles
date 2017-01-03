@@ -243,6 +243,7 @@ colorscheme selenized
 " pearofducks/ansible-vim
 " kbarrette/mediummode
 " machakann/vim-sandwich
+" bkad/CamelCaseMotion
 
 " two different approaches for controlling text width:
 " http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns#3765575
@@ -328,3 +329,7 @@ colorscheme selenized
 "
 " use backspace and enter for something in normal mode (maybe actually make backspace do backspace?)
 " consider adding a mapping for inserting spaces/newlines without leaving normal mode - see https://www.reddit.com/r/vim/comments/3a1y8v/i_just_realized_backspace_doesnt_do_much_in/cs9a1g9
+
+" configure some key combination in insert mode (perhaps control-enter or
+" shift-enter) to do what "O" does in normal mode
+
