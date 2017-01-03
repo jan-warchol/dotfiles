@@ -93,6 +93,9 @@
     gw = grep --extended-regexp --color=always --line-number --word-regexp
     ghw = grep --extended-regexp --color=always --heading --word-regexp --context 8
 
+    # search, pipe the results to less and set less' search pattern (for navigating results with n/N)
+    gl = !GIT_PAGER=\"less -p $@\" git grep --context 13
+
     # search whole repository, not only current directory.
     # (in `!...` construct, commands are executed from repository root dir)
     gg = !git g
