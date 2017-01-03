@@ -100,6 +100,8 @@
     gg5 = !git g5
     gg8 = !git g8
 
+    ma = merge --abort
+
     # the "&& true" at the end is needed because git appends the arguments
     # passed to the alias to the last command, and "git sup" would complain
     # about arguments that are meant for "git merge"
