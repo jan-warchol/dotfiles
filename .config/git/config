@@ -100,11 +100,6 @@
     gg5 = !git g5
     gg8 = !git g8
 
-    # always run log with --graph so that the topology will be visualized!
-    l = log --color=always --decorate --graph
-    lp = log --color=always --decorate --patch --submodule=log
-    lpw = log --color=always --decorate --patch --word-diff=color --submodule=log
-
     # the "&& true" at the end is needed because git appends the arguments
     # passed to the alias to the last command, and "git sup" would complain
     # about arguments that are meant for "git merge"
@@ -176,6 +171,9 @@
     # Names are mnemonics based on common aliases of 'ls' command.
     # Inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
+    # always run log with --graph so that the topology will be visualized!
+    l = log --color=always --decorate --graph
+
     # basic one-line log, I use it all the time
     ls = !git log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
@@ -208,6 +206,8 @@
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
     llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
 
+    lp = log --color=always --decorate --patch --submodule=log
+    lpw = log --color=always --decorate --patch --word-diff=color --submodule=log
     lmpr = log --color=always --decorate --reverse --patch master..HEAD
 
     # log commits that differ between current branch and its upstream
