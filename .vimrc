@@ -121,7 +121,7 @@ nnoremap <Leader>wq :wq<CR>
 nnoremap <Leader>c :bd<CR>
 nnoremap <Leader>wc :w<CR>:bd<CR>
 nnoremap <Leader>s :w<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader><Tab> :CtrlPBuffer<CR>
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
 vmap <Leader>y "+y
