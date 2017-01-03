@@ -1,0 +1,9 @@
+# let shift "reverse" scrolling direction, allowing to sroll back and forth with one hand
+d         forw-scroll
+D         back-scroll
+u         back-scroll
+U         forw-scroll
+
+# I prefer scrolling half a screenful each time, even with space
+\40       forw-scroll
+
