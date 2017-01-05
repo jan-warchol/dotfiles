@@ -18,7 +18,7 @@ shopt -s globstar
 # let "*" match hidden files as well
 shopt -s dotglob
 
-export PATH="$PATH:~/bin/"
+export PATH="$PATH:$HOME/bin/"
 
 # shell history is very useful, so let's make sure we can harness its full power
 export HISTFILESIZE=10000000
