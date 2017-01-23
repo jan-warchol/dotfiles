@@ -180,6 +180,7 @@ let g:airline#extensions#branch#displayed_head_limit = 18
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 Plug 'tpope/vim-fugitive'
 
 " General behavior -----------------------------------------------------
