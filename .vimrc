@@ -107,6 +107,9 @@ autocmd CursorHold * checktime
 " enable persistent undo (remember changes after closing file)
 set undofile
 
+" save clipboard register on exit - http://stackoverflow.com/a/9381778/2058424
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
 
 
 " NEW MAPPINGS =========================================================
