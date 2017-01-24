@@ -180,12 +180,12 @@
     l = log --color=always --decorate --graph
 
     # basic one-line log, I use it all the time
-    ls = !git log --abbrev=10 --color=always --decorate --graph --date=relative \
+    ls = log --abbrev=10 --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way of committing stuff
-    lf = !git log --abbrev=10 --color=always --decorate --graph --date=relative --first-parent \
+    lf = log --abbrev=10 --color=always --decorate --graph --date=relative --first-parent \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
 
     l8 = !git ls -8
