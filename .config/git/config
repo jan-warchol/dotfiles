@@ -328,6 +328,9 @@
 [color "decorate"]
     remoteBranch = blue
 
+[color "diff"]
+    meta = white bold
+
 [color "status"]
     changed = yellow
     untracked = cyan
