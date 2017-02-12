@@ -201,7 +201,7 @@ Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 map  <Leader>e <Plug>(easymotion-e)
 map  <Leader>w <Plug>(easymotion-w)
-let g:EasyMotion_keys = 'hlnrasetoiygcmvp'
+let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
 " TODO: make easymotion don't try so many words so that i don't loose
 " single-letter shortcuts
 " also, I think I want to replace default F and T bindings with easymotion!
