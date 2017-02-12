@@ -27,6 +27,7 @@ export HISTCONTROL=ignoredups   # don't store duplicated commands
 shopt -s histappend   # don't overwrite history file after each session
 # I prefer to keep my history in my data folder so that it's backed up
 export HISTFILE="$HOME/janek/bash_history"
+export HISTTIMEFORMAT="%d/%m/%y %T "
 
 export EDITOR="vim"
 
