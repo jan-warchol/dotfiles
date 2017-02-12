@@ -85,6 +85,7 @@ alias mcd=mdc
 # open file in it's default GUI application (taken from MIME settings).
 # to open current directory in graphical file manager, use `o .`
 ap() { time ansible-playbook "$@"; alert; }
+alias av='ansible-vault'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
 alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate left'
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
@@ -101,6 +102,8 @@ alias cim=vim  # ...and this too
 alias vd=vimdiff
 alias co='git branch --all | cut -c 3- | rev | cut -d "/" -f 1 | rev | sort -u | fzf | xargs git checkout'
 alias ips="ifconfig | grep 'inet ' | awk '{ print \$2 }' | awk -F: '{ print \$2 }'"
+
+alias python=ipython
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {
