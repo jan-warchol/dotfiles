@@ -54,7 +54,7 @@
     amq = commit --amend --all --no-edit
     apf = !git amq --quiet && git puf --quiet   
 
-    d = diff --color=always --find-copies-harder --inter-hunk-context=13 --submodule=log --irreversible-delete
+    d = diff --color=always --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     dm = !git d master
