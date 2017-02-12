@@ -11,3 +11,5 @@ if [[ -d "${configs}" && $(ls "${configs}"/*.sh 2>/dev/null) ]]; then
     [ -e "${configs}/config.local" ] && . "${configs}/config.local"
 fi
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
