@@ -233,6 +233,14 @@ let g:EasyClipUseSubstituteDefaults = 1
 
 call plug#end()
 
+" define my own text object
+call textobj#user#plugin('yaml', {
+\   'dictvalue': {
+\     'pattern': '\(: \)\@<=.*$',
+\     'select': ['ay', 'iy'],
+\   },
+\ })
+
 " colorscheme must be set after Vim-plug finishes its work
 colorscheme selenized
 
