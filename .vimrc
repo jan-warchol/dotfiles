@@ -120,9 +120,9 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 let mapleader = "\<Space>"
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
-nnoremap <Leader>wq :wq<CR>
+" nnoremap <Leader>wq :wq<CR>
 nnoremap <Leader>c :bd<CR>
-nnoremap <Leader>wc :w<CR>:bd<CR>
+" nnoremap <Leader>wc :w<CR>:bd<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader><Tab> :CtrlPBuffer<CR>
 nnoremap <Leader>o :CtrlP<CR>
@@ -199,7 +199,12 @@ Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
+map  <Leader>e <Plug>(easymotion-e)
+map  <Leader>w <Plug>(easymotion-w)
 let g:EasyMotion_keys = 'hlnrasetoiygcmvp'
+" TODO: make easymotion don't try so many words so that i don't loose
+" single-letter shortcuts
+" also, I think I want to replace default F and T bindings with easymotion!
 
 " better than godlygeek/tabular
 Plug 'junegunn/vim-easy-align'
