@@ -173,6 +173,7 @@ Plug 'tpope/vim-sensible'
 Plug 'altercation/vim-colors-solarized'  " not used, just for comparison
 Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi color codes
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
+Plug 'docker/docker', { 'rtp': '/contrib/syntax/vim/' }
 Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
 let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
@@ -250,6 +251,7 @@ colorscheme selenized
 
 " Plugins to investigate:
 "
+" glts/vim-textobj-indblock
 " Valloric/YouCompleteMe
 " https://github.com/majutsushi/tagbar
 " asynccommand
