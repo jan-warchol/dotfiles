@@ -157,6 +157,9 @@ inoremap <C-Q> <Esc>:q<CR>
 " " break line in normal mode
 " nnoremap <CR> i<CR><ESC>
 
+" search for visually selected text. Note the no-magic setting!
+vnoremap // "vy/\V<C-R>v<CR>
+
 
 
 " PLUGINS ==============================================================
