@@ -223,6 +223,10 @@
     l2 = !git log --abbrev=10 --color=always --decorate --graph --date=iso \
     --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(dim), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
 
+    # two-line version similar to one-line version
+    ls2 = log --abbrev=10 --color=always --decorate --graph --date=relative \
+    --format=tformat:'%s%C(auto)%d%C(reset)%n%C(dim)%C(yellow)%h %C(reset)%C(dim)- %an, %ad%C(reset)'
+
     # reflog with dates and commit message subject
     rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(dim)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
 
