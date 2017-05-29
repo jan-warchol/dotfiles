@@ -184,7 +184,7 @@ Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
 let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
-Plug 'vim-airline'
+Plug 'vim-scripts/vim-airline'
 let g:airline#extensions#branch#displayed_head_limit = 18
 
 " Additional interface elements ----------------------------------------
@@ -202,7 +202,7 @@ Plug 'Townk/vim-autoclose'  " automatically insert closing parens etc.
 
 " New text objects definitions -----------------------------------------
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'tComment'
+Plug 'vim-scripts/tComment'
 Plug 'kana/vim-textobj-user' " required by vim-textobj-line
 Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline char)
 
