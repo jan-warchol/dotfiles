@@ -62,6 +62,8 @@ set smartcase " Do smart case matching
 " noremap <Down> gj
 " noremap <Up> gk
 
+" more fine-grained control over scrolling
+" CAREFUL, this may had been the cause of some crashes I experienced.
  
  
 " BEHAVIOUR ============================================================
@@ -290,6 +292,8 @@ colorscheme selenized
 "set formatoptions=ant
 "set textwidth=79
 
+" CAREFUL, this may had been the cause of some crashes I experienced.
+"
 " would allow changing escape behaviour so that it doensn't move cursor,
 " as well as make it possible to e.g. do backward deletions (currently
 " when the cursor is on the last char of a word and you say 'db' it will
