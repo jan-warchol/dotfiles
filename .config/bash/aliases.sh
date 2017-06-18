@@ -6,13 +6,13 @@ alias wget='wget --continue'
 alias tree='tree -C --dirsfirst'
 
 # default settings for less.
-export LESS='-MSRi#8j.5'
-#             ||||| `- center on search matches
-#             ||||`--- scroll horizontally 8 columns at a time
-#             |||`---- case-insensitive search unless pattern contains uppercase
-#             ||`----- parse color codes
-#             |`------ don't wrap long lines
-#             `------- show more information in prompt
+export LESS='-MSRi#16j.5'
+#             |||||  `-- center on search matches
+#             ||||`----- scroll horizontally 16 columns at a time
+#             |||`------ case-insensitive search unless pattern contains uppercase
+#             ||`------- parse color codes
+#             |`-------- don't wrap long lines
+#             `--------- show more information in prompt
 
 # default settings for grep
 export GREP_OPTIONS='--color --binary-files=without-match --exclude-dir .git'
