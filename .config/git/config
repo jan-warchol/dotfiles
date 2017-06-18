@@ -212,6 +212,7 @@
     llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
 
     lp = log --color=always --decorate --patch --cc --submodule=log --topo-order
+    lpf = log --color=always --decorate --patch --cc --submodule=log --topo-order --first-parent
     lpw = log --color=always --decorate --patch --cc --word-diff=color --submodule=log --topo-order
     lmpr = log --color=always --decorate --reverse --patch master..HEAD
 
