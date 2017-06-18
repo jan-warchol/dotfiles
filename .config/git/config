@@ -337,7 +337,7 @@
     remoteBranch = blue
 
 [color "diff"]
-    meta = white bold
+    meta = white
 
 [color "status"]
     changed = yellow
