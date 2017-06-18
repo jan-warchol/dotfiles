@@ -212,8 +212,7 @@ Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
-map  <Leader>e <Plug>(easymotion-e)
-map  <Leader>w <Plug>(easymotion-w)
+map <Leader> <Plug>(easymotion-prefix)
 let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
 " TODO: make easymotion don't try so many words so that i don't loose
 " single-letter shortcuts
