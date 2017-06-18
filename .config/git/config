@@ -226,7 +226,7 @@
 
     # two-line version similar to one-line version
     ls2 = log --abbrev=10 --color=always --decorate --graph --date=relative \
-    --format=tformat:'%s%C(auto)%d%C(reset)%n%C(white)%C(yellow)%h %C(reset)%C(white)- %an, %ad%C(reset)'
+    --format=tformat:'%C(auto)%h%C(reset) %s%n %C(auto)%d%C(reset) %C(white)%an, %ad%C(reset)'
     lb2  = !git ls2 HEAD --branches
 
     # reflog with dates and commit message subject
