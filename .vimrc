@@ -254,8 +254,6 @@ call textobj#user#plugin('yaml', {
 " colorscheme must be set after Vim-plug finishes its work
 colorscheme selenized
 
-
-
 " TODOs ================================================================
 
 " Plugins to investigate:
@@ -367,3 +365,9 @@ colorscheme selenized
 " configure some key combination in insert mode (perhaps control-enter or
 " shift-enter) to do what "O" does in normal mode
 
+" YAML indentation problems - if they return, this may help dealing with them
+" http://stackoverflow.com/a/32420855/2058424
+" :setlocal noautoindent
+" :setlocal nocindent
+" :setlocal nosmartindent
+" :setlocal indentexpr=
