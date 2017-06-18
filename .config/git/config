@@ -181,12 +181,12 @@
 
     # basic one-line log, I use it all the time
     ls = log --abbrev=10 --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
+    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way of committing stuff
     lf = log --abbrev=10 --color=always --decorate --graph --date=relative --first-parent \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(dim)- %an, %ad%C(reset)'
+    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
 
     l8 = !git ls -8
     l13 = !git ls -13
@@ -221,14 +221,15 @@
 
     # two-line version, useful when your terminal window is narrow
     l2 = !git log --abbrev=10 --color=always --decorate --graph --date=iso \
-    --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(dim), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
+    --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(white), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
 
     # two-line version similar to one-line version
     ls2 = log --abbrev=10 --color=always --decorate --graph --date=relative \
-    --format=tformat:'%s%C(auto)%d%C(reset)%n%C(dim)%C(yellow)%h %C(reset)%C(dim)- %an, %ad%C(reset)'
+    --format=tformat:'%s%C(auto)%d%C(reset)%n%C(white)%C(yellow)%h %C(reset)%C(white)- %an, %ad%C(reset)'
+    lb2  = !git ls2 HEAD --branches
 
     # reflog with dates and commit message subject
-    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(dim)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(dim)- %<(33,trunc)%s%C(reset)'
+    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
     # log unpushed/unmerged commits on all branches
     unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
