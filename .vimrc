@@ -181,6 +181,7 @@ Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi col
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
 Plug 'docker/docker', { 'rtp': '/contrib/syntax/vim/' }
 Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
+Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
 let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
 Plug 'vim-airline'
@@ -188,6 +189,7 @@ let g:airline#extensions#branch#displayed_head_limit = 18
 
 " Additional interface elements ----------------------------------------
 Plug 'scrooloose/nerdtree'
+nmap <Tab><Tab> :NERDTreeToggle<CR>
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'ctrlpvim/ctrlp.vim'
