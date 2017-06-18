@@ -271,9 +271,11 @@
             git stash pop; \
         fi' -"
 
+    fix1 = "!sh -c 'git fix @~1' -"
+    fix2 = "!sh -c 'git fix @~2' -"
     fixa = "!sh -c 'git fix $@ --all' -"
-    fix1 = "!sh -c 'git fix @~1 --all' -"
-    fix2 = "!sh -c 'git fix @~2 --all' -"
+    fixa1 = "!sh -c 'git fix @~1 --all' -"
+    fixa2 = "!sh -c 'git fix @~2 --all' -"
 
     # trash - discard changes
     #
