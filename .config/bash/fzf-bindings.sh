@@ -1,5 +1,24 @@
-# GIT heart FZF
-# -------------
+export FZF_HOME=$HOME/.fzf
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == *$FZF_HOME/bin* ]]; then
+  export PATH="$PATH:$FZF_HOME/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "$FZF_HOME/shell/completion.bash" 2> /dev/null
+
+# Key bindings
+# ------------
+source "$FZF_HOME/shell/key-bindings.bash"
+
+
+# bindings for git
+# ----------------
+
+# See https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
@@ -49,3 +68,10 @@ gr() {
     --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
   cut -d$'\t' -f1
 }
+
+bind '"\er": redraw-current-line'
+bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
+bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
+bind '"\C-g\C-t": "$(gt)\e\C-e\er"'
+bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
+bind '"\C-g\C-r": "$(gr)\e\C-e\er"'
