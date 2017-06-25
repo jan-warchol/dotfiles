@@ -36,6 +36,10 @@ gf() {
   cut -c4- | sed 's/.* -> //'
 }
 
+co() {
+  git branch --all | cut -c 3- | sed 's|^remotes/[^/]*/||' | sort -u | fzf | xargs git checkout
+}
+
 gb() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |

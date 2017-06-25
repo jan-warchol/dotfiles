@@ -101,7 +101,6 @@ alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
 alias pign=ping  # let's face it, I will continue to make this typo
 alias cim=vim  # ...and this too
 alias vd=vimdiff
-alias co='git branch --all | cut -c 3- | rev | cut -d "/" -f 1 | rev | sort -u | fzf | xargs git checkout'
 alias ips="ifconfig | grep 'inet ' | awk '{ print \$2 }' | awk -F: '{ print \$2 }'"
 
 alias python=ipython
