@@ -14,6 +14,10 @@ fi
 # ------------
 source "$FZF_HOME/shell/key-bindings.bash"
 
+# fuzzy-search in all files (including hidden)
+bind -x '"\C-u\C-a": "FZF_CTRL_T_COMMAND=find fzf-file-widget"'
+
+
 
 # bindings for git
 # ----------------
