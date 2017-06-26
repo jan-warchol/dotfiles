@@ -31,7 +31,7 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 
 export EDITOR="vim"
 
-export _FASD_DATA="$HOME/janek/fasd"
+export _FASD_DATA="$HOME/data/cli-stuffy/fasd"
 
 # fix dircolors for selenized
 export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
