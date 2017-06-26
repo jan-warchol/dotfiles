@@ -41,6 +41,7 @@ gf() {
 __fzf_git_checkout__() {
   git branch --all |
   cut -c 3- |
+  grep -v "remotes/.*/HEAD" |
   sed 's|^remotes/[^/]*/||' |
   sort -u |
   fzf-down |
