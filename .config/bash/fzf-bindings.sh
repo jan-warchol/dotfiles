@@ -39,12 +39,18 @@ gf() {
 # choose from both local and remote branches (if you have a remote branch
 # "origin/X" and do `git checkout X`, git will set up local "X" automatically)
 __fzf_git_checkout__() {
-  git branch --all |
+  git branch --all --color=always |
   cut -c 3- |
   grep -v "remotes/.*/HEAD" |
-  sed 's|^remotes/[^/]*/||' |
-  sort -u |
-  fzf-down |
+  sed 's|remotes/[^/]*/||' |
+  # remove remote branches that duplicate local ones
+    # prepend dummy string to have even columns (some branches are colored)
+    sed 's|^|____|' | sed 's|____||' |
+    sort --uniq --key=1.5 |  # ignore color code (usually 4 chars)
+    sed 's|____||' |
+  # list local branches before remote ones
+  sort --reverse |
+  fzf-down --ansi |
   xargs git checkout
 }
 
