@@ -14,6 +14,8 @@ fi
 # ------------
 source "$FZF_HOME/shell/key-bindings.bash"
 
+export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
+
 # fuzzy-search in all files (including hidden)
 bind -x '"\C-u\C-a": "FZF_CTRL_T_COMMAND=find fzf-file-widget"'
 
