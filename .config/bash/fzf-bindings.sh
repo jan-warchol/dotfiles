@@ -36,12 +36,14 @@ gf() {
   cut -c4- | sed 's/.* -> //'
 }
 
-co() {
+# choose from both local and remote branches (if you have a remote branch
+# "origin/X" and do `git checkout X`, git will set up local "X" automatically)
+__fzf_git_checkout__() {
   git branch --all |
   cut -c 3- |
   sed 's|^remotes/[^/]*/||' |
   sort -u |
-  fzf |
+  fzf-down |
   xargs git checkout
 }
 
@@ -67,3 +69,4 @@ bind '"\er": redraw-current-line'
 bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
 bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
 bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
+bind '"\C-g\C-g": "__fzf_git_checkout__\n"'
