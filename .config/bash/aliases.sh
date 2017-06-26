@@ -67,7 +67,7 @@ sshumount() { fusermount -u "$@" && rmdir "$@"; }
 alias mkd='mkdir --parents'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
-alias g='git'
+g() { git "$@"; }
 alias v='fasd -f -e "$EDITOR"'
 alias c='fasd_cd -d'
 alias u='cd ..'  # (u)p one directory level
@@ -101,7 +101,6 @@ alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
 alias pign=ping  # let's face it, I will continue to make this typo
 alias cim=vim  # ...and this too
 alias vd=vimdiff
-alias co='git branch --all | cut -c 3- | rev | cut -d "/" -f 1 | rev | sort -u | fzf | xargs git checkout'
 alias ips="ifconfig | grep 'inet ' | awk '{ print \$2 }' | awk -F: '{ print \$2 }'"
 
 alias python=ipython
@@ -116,12 +115,3 @@ function alert() {
 # let bash expand aliases after certain commands (see http://askubuntu.com/a/22043)
 alias sudo='sudo '
 alias man='man '
-
-# fzf-git mappings, see fzf-git-functions.sh file
-# https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
-bind '"\er": redraw-current-line'
-bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
-bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
-bind '"\C-g\C-t": "$(gt)\e\C-e\er"'
-bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
-bind '"\C-g\C-r": "$(gr)\e\C-e\er"'
