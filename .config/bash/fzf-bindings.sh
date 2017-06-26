@@ -37,7 +37,12 @@ gf() {
 }
 
 co() {
-  git branch --all | cut -c 3- | sed 's|^remotes/[^/]*/||' | sort -u | fzf | xargs git checkout
+  git branch --all |
+  cut -c 3- |
+  sed 's|^remotes/[^/]*/||' |
+  sort -u |
+  fzf |
+  xargs git checkout
 }
 
 gb() {
