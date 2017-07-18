@@ -107,7 +107,7 @@ autocmd CursorHold * checktime
 set undofile
 
 " save all temporary vim files to ~/.vim, rather than pollute projects with
-" them. Note the // at the end.
+" them. Note the // at the end (for storing full paths of edited files).
 set directory=$HOME/.vim/swap//
 set backupdir=$HOME/.vim/backup//
 set undodir=$HOME/.vim/undo//
