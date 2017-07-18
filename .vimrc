@@ -127,15 +127,18 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 let mapleader = "\<Space>"
 
 " buffer/window/tab navigation and operations
-nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
-" nnoremap <Leader>wq :wq<CR>
-nnoremap <Leader>c :bd<CR>
-" nnoremap <Leader>wc :w<CR>:bd<CR>
-nnoremap <Leader>s :w<CR>
 nnoremap <Leader><Tab> :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>o :NERDTreeFocus<CR>
+" open new file in horizontal/vertical split. By default there is only mapping
+" for horizontal split (<C-W>n).
+nnoremap <C-W>nx :new<CR>
+nnoremap <C-W>nv :vnew<CR>
+" swap horizontal split with exchanging windows. This is mainly for
+" consistency (many plugins etc. use C-X for opening horizontal splits)
+nnoremap <C-W>x <C-W>s
+nnoremap <C-W>s <C-W>x
 
 " other
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
@@ -204,6 +207,7 @@ Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
 Plug 'junegunn/fzf.vim'
 " Enable history of patterns used in each FZF command
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-fugitive'
 
 " General behavior -----------------------------------------------------
