@@ -132,7 +132,8 @@ nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader>c :bd<CR>
 " nnoremap <Leader>wc :w<CR>:bd<CR>
 nnoremap <Leader>s :w<CR>
-nnoremap <Leader><Tab> :CtrlPBuffer<CR>
+nnoremap <Leader><Tab> :Buffers<CR>
+nnoremap <C-p> :Files<CR>
 nnoremap <Leader>o :NERDTreeFocus<CR>
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
 vmap <Leader>y "+y
@@ -194,8 +195,10 @@ Plug 'scrooloose/nerdtree'
 nmap <Tab><Tab> :NERDTreeToggle<CR>
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
+Plug 'junegunn/fzf.vim'
+" Enable history of patterns used in each FZF command
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 Plug 'tpope/vim-fugitive'
 
 " General behavior -----------------------------------------------------
