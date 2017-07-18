@@ -139,8 +139,6 @@ nnoremap <C-W>s <C-W>x
 
 " other
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
-vmap <Leader>y "+y
-nnoremap <Leader>p "+p
 
 " yaml variable quotations
 nmap <Leader>{ ysiw{ysa{}w
