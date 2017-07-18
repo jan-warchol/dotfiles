@@ -133,7 +133,7 @@ nnoremap <Leader>c :bd<CR>
 " nnoremap <Leader>wc :w<CR>:bd<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader><Tab> :CtrlPBuffer<CR>
-nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>o :NERDTreeFocus<CR>
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
 vmap <Leader>y "+y
 nnoremap <Leader>p "+p

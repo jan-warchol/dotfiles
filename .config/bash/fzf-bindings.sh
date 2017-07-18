@@ -14,6 +14,8 @@ fi
 # ------------
 source "$FZF_HOME/shell/key-bindings.bash"
 
+export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
+
 # fuzzy-search in all files (including hidden)
 bind -x '"\C-u\C-a": "FZF_CTRL_T_COMMAND=find fzf-file-widget"'
 
@@ -49,9 +51,9 @@ __fzf_git_checkout__() {
   sed 's|remotes/[^/]*/||' |
   # remove remote branches that duplicate local ones
     # prepend dummy string to have even columns (some branches are colored)
-    sed 's|^|____|' | sed 's|____||' |
-    sort --uniq --key=1.5 |  # ignore color code (usually 4 chars)
-    sed 's|____||' |
+    sed 's|^|_____|' | sed 's|_____||' |
+    sort --uniq --key=1.6 |  # ignore color code (usually 5 chars)
+    sed 's|_____||' |
   # list local branches before remote ones
   sort --reverse |
   fzf-down --ansi |
