@@ -31,9 +31,6 @@ cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
 
 " Search highlighting
 set hlsearch
-" " Clear highlighting on escape in normal mode
-" nnoremap <silent> <esc> :noh<return><esc>
-" nnoremap <esc>^[ <esc>^[
 
 set ignorecase " Do case insensitive matching
 set smartcase " Do smart case matching
