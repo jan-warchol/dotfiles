@@ -233,10 +233,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Plug 'terryma/vim-expand-region'
-" vmap v <Plug>(expand_region_expand)
-" vmap <C-V> <Plug>(expand_region_shrink)
-
 " Make register behaviour more resonable
 Plug 'svermeulen/vim-easyclip'
 "" Map x to cut 
