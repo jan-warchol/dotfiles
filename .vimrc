@@ -110,14 +110,6 @@ nnoremap <C-W>s <C-W>x
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
 inoremap <C-Z> <C-O><C-Z>
 
-" yaml variable quotations
-nmap <Leader>{ ysiw{ysa{}w
-nmap <Leader>} ysiw{ysa{}w
-nmap <Leader>"{ ysiw{ysa{}ysa{"
-nmap <Leader>yW ysiW{ysa{}ysa{"
-nmap <Leader>yw ysiw{ysa{}ysa{"
-nmap <Leader>yW ysiW{ysa{}ysa{"
-
 
 
 " REMAPS OF EXISTING KEYS ==============================================
