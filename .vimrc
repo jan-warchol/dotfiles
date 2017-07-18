@@ -86,45 +86,6 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 
 
-" NEW MAPPINGS =========================================================
-
-set pastetoggle=<F5>
-
-let mapleader = "\<Space>"
-
-" buffer/window/tab navigation and operations
-nnoremap <Leader>Q :q!<CR>
-nnoremap <Leader><Tab> :Buffers<CR>
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>o :NERDTreeFocus<CR>
-" open new file in horizontal/vertical split. By default there is only mapping
-" for horizontal split (<C-W>n).
-nnoremap <C-W>nx :new<CR>
-nnoremap <C-W>nv :vnew<CR>
-" swap horizontal split with exchanging windows. This is mainly for
-" consistency (many plugins etc. use C-X for opening horizontal splits)
-nnoremap <C-W>x <C-W>s
-nnoremap <C-W>s <C-W>x
-
-" other
-nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
-inoremap <C-Z> <C-O><C-Z>
-
-
-
-" REMAPS OF EXISTING KEYS ==============================================
-
-nnoremap <C-S> :w<CR>
-inoremap <C-S> <Esc>:w<CR>
-nnoremap <C-Q> :qall<CR>
-inoremap <C-Q> <Esc>:q<CR>
-map U u
-
-" search for visually selected text. Note the no-magic setting!
-vnoremap // "vy/\V<C-R>v<CR>
-
-
-
 " PLUGINS ==============================================================
 
 " Manage plugins with Vim-Plug (github.com/junegunn/vim-plug)
@@ -146,7 +107,6 @@ let g:airline#extensions#branch#displayed_head_limit = 18
 
 " Additional interface elements ----------------------------------------
 Plug 'scrooloose/nerdtree'
-nmap <Tab><Tab> :NERDTreeToggle<CR>
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
@@ -172,17 +132,12 @@ Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
-map <Leader> <Plug>(easymotion-prefix)
 let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
 " TODO: make easymotion don't try so many words so that i don't loose
 " single-letter shortcuts
 " also, I think I want to replace default F and T bindings with easymotion!
 
 Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 " Make register behaviour more resonable
 Plug 'svermeulen/vim-easyclip'
@@ -194,7 +149,58 @@ nmap xx <Plug>MoveMotionLinePlug
 "" Map s to substitute 
 let g:EasyClipUseSubstituteDefaults = 1
 
+Plug 'ktonga/vim-follow-my-lead'
+let g:fml_all_sources = 1
 call plug#end()
+
+
+
+" MAPPINGS =============================================================
+
+let mapleader = "\<Space>"
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+map <Leader> <Plug>(easymotion-prefix)
+nmap <Tab><Tab> :NERDTreeToggle<CR>
+
+" buffer/window/tab navigation and operations
+nnoremap <Leader>Q :q!<CR>
+nnoremap <Leader><Tab> :Buffers<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <Leader>o :NERDTreeFocus<CR>
+
+nnoremap <C-S> :w<CR>
+inoremap <C-S> <Esc>:w<CR>
+nnoremap <C-Q> :qall<CR>
+inoremap <C-Q> <Esc>:q<CR>
+
+" other ----------------------------------------------------------------
+nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
+
+set pastetoggle=<F5>
+
+" search for visually selected text. Note the no-magic setting!
+vnoremap // "vy/\V<C-R>v<CR>
+
+" consistency ----------------------------------------------------------
+
+" open new file in horizontal/vertical split. By default there is only mapping
+" for horizontal split (<C-W>n).
+nnoremap <C-W>nx :new<CR>
+nnoremap <C-W>nv :vnew<CR>
+
+" swap horizontal split with exchanging windows. This is mainly for
+" consistency (many plugins etc. use C-X for opening horizontal splits)
+nnoremap <C-W>x <C-W>s
+nnoremap <C-W>s <C-W>x
+
+" default behaviour of these two simply annoys me 
+inoremap <C-Z> <C-O><C-Z>
+map U u
 
 
 
