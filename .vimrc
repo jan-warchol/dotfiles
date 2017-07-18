@@ -136,6 +136,7 @@ nnoremap <C-W>s <C-W>x
 
 " other
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
+inoremap <C-Z> <C-O><C-Z>
 
 " yaml variable quotations
 nmap <Leader>{ ysiw{ysa{}w
@@ -317,9 +318,7 @@ colorscheme selenized
 "Also, think whether hjkl (or rather the equivalent in my layout) and their
 "control and shift combinations should do exactly the same as arrows and their
 "combinations, or maybe I should rather take advantage of having many keys?
-"
-"Make C-Z work in insert mode (either as undo or as sending vim to background)
-"
+
 "Stuff that should be available in all modes (thus they should utilize
 "shortcuts with control, rather than leader mappings):
 "- saving file
