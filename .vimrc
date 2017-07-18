@@ -97,9 +97,6 @@ inoremap <CR> <C-G>u<CR>
 " old regex engine - see https://github.com/xolox/vim-easytags/issues/88
 set regexpengine=1
 
-" "Preview unsaved changes
-" command! Showchanges w !diff % -
-
 " check for outside changes of the file more often
 autocmd CursorHold * checktime
 
