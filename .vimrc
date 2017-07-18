@@ -200,7 +200,7 @@ nnoremap <C-W>s <C-W>x
 
 " default behaviour of these two simply annoys me 
 inoremap <C-Z> <C-O><C-Z>
-map U u
+nmap U u
 
 
 
