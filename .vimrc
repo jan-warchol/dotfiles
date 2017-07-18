@@ -88,7 +88,7 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 " NEW MAPPINGS =========================================================
 
-" set pastetoggle=<F5>
+set pastetoggle=<F5>
 
 let mapleader = "\<Space>"
 
