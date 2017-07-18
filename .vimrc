@@ -124,8 +124,9 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 " set pastetoggle=<F5>
 
-" Leader commands
 let mapleader = "\<Space>"
+
+" buffer/window/tab navigation and operations
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
 " nnoremap <Leader>wq :wq<CR>
@@ -135,9 +136,13 @@ nnoremap <Leader>s :w<CR>
 nnoremap <Leader><Tab> :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>o :NERDTreeFocus<CR>
+
+" other
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
 vmap <Leader>y "+y
 nnoremap <Leader>p "+p
+
+" yaml variable quotations
 nmap <Leader>{ ysiw{ysa{}w
 nmap <Leader>} ysiw{ysa{}w
 nmap <Leader>"{ ysiw{ysa{}ysa{"
