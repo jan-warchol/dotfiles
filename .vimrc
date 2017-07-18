@@ -163,6 +163,7 @@ nnoremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
 nnoremap <C-Q> :qall<CR>
 inoremap <C-Q> <Esc>:q<CR>
+map U u
 
 " " break line in normal mode
 " nnoremap <CR> i<CR><ESC>
