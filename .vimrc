@@ -19,9 +19,11 @@ set t_Co=16
 
 " SEARCHING ============================================================
 
-" Ensure more context is visible when jumping between search matches.
-" Some people map n to nzz (centering screen on every match), but I like this
-" better.
+set ignorecase " Do case insensitive matching
+set smartcase " Do smart case matching
+
+" Ensure 8 lines of context is visible when jumping between search matches.
+" I think it's better than mapping n to nzz (centering screen on every match).
 nnoremap <silent> n :set scrolloff=8<CR>n:set scrolloff=2<CR>
 nnoremap <silent> N :set scrolloff=8<CR>N:set scrolloff=2<CR>
 nnoremap <silent> * :set scrolloff=8<CR>*:set scrolloff=2<CR>
@@ -32,36 +34,7 @@ cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
 " Search highlighting
 set hlsearch
 
-set ignorecase " Do case insensitive matching
-set smartcase " Do smart case matching
 
-
-
-" CURSOR MOVEMENT ======================================================
-
-" " don't move cursor when leaving insert mode
-" " http://vim.wikia.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
-" " http://stackoverflow.com/a/17054564/2058424
-" let CursorColumnI = 0 "the cursor column position in INSERT
-" autocmd InsertEnter * let CursorColumnI = col('.')
-" autocmd CursorMovedI * let CursorColumnI = col('.')
-" autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
-
-" " let arrows and h,l move cursor accross newlines
-" set whichwrap+=h,l,<,>,[,]
-
-" " move on soft lines in insert mode
-" inoremap <Down> <C-o>g<Down>
-" inoremap <Up> <C-o>g<Up>
-
-" noremap <silent> j gj
-" noremap <silent> k gk
-" noremap <Down> gj
-" noremap <Up> gk
-
-" more fine-grained control over scrolling
-" CAREFUL, this may had been the cause of some crashes I experienced.
- 
  
 " BEHAVIOUR ============================================================
 
@@ -90,9 +63,8 @@ set hidden
 inoremap <CR> <C-G>u<CR>
 
 " I was getting terrible vim performance on some Ansible playbook files - the
-" cursor would lag when moving, sometimes the lag would reach several seconds!
-" (it seeemed to be especially bad when there were a lot of brackets/braces in
-" the file).
+" cursor would sometimes lag for several seconds when moving (especially when
+" there were a lot of brackets/braces in the file).
 " I found someone who was having similar problem, and he solved it by using
 " old regex engine - see https://github.com/xolox/vim-easytags/issues/88
 set regexpengine=1
@@ -165,9 +137,6 @@ nnoremap <C-Q> :qall<CR>
 inoremap <C-Q> <Esc>:q<CR>
 map U u
 
-" " break line in normal mode
-" nnoremap <CR> i<CR><ESC>
-
 " search for visually selected text. Note the no-magic setting!
 vnoremap // "vy/\V<C-R>v<CR>
 
@@ -226,8 +195,7 @@ let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
 " single-letter shortcuts
 " also, I think I want to replace default F and T bindings with easymotion!
 
-" better than godlygeek/tabular
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -245,7 +213,10 @@ let g:EasyClipUseSubstituteDefaults = 1
 
 call plug#end()
 
-" define my own text object
+
+
+" OTHER SETTINGS =======================================================
+
 call textobj#user#plugin('yaml', {
 \   'dictvalue': {
 \     'pattern': '\(: \)\@<=.*$',
@@ -256,41 +227,69 @@ call textobj#user#plugin('yaml', {
 " colorscheme must be set after Vim-plug finishes its work
 colorscheme selenized
 
+
+
 " TODOs ================================================================
 
 " Plugins to investigate:
 "
 " glts/vim-textobj-indblock
-" Valloric/YouCompleteMe
-" https://github.com/majutsushi/tagbar
-" asynccommand
-" gist
 " nerdcomment
-" omnicppcomplete
-" supertab (!)
-" syntastic (!)
-" (!) means that the plugin is super awesome. 
 " reedes/vim-textobj-sentence
 " garbas/vim-snipmate
-" pearofducks/ansible-vim
 " kbarrette/mediummode
 " machakann/vim-sandwich
-" bkad/CamelCaseMotion
 
-" two different approaches for controlling text width:
-" http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns#3765575
 
-" make return noop in normal mode again, use ctrl-return for breaking lines.
-" Similarly with backspace.
+
+" FILETYPE SPECIFIC (INDENTATION, COLORING, AUTOCOMPLETION) ============
+
+" Plugins:
+" omnicomplete
+" pearofducks/ansible-vim
+" Valloric/YouCompleteMe
+" syntastic
+" supertab
+" https://github.com/majutsushi/tagbar
+
+" YAML indentation problems - if they return, this may help dealing with them
+" http://stackoverflow.com/a/32420855/2058424
+" :setlocal noautoindent
+" :setlocal nocindent
+" :setlocal nosmartindent
+" :setlocal indentexpr=
+
+
+
+" NATURAL MOVEMENT =====================================================
+
+" " don't move cursor when leaving insert mode
+" " http://vim.wikia.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
+" " http://stackoverflow.com/a/17054564/2058424
+" let CursorColumnI = 0 "the cursor column position in INSERT
+" autocmd InsertEnter * let CursorColumnI = col('.')
+" autocmd CursorMovedI * let CursorColumnI = col('.')
+" autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
 " don't move cursor when exiting insert mode
 "inoremap <Esc> <Esc>`^
 "https://zenbro.github.io/2015/07/24/auto-change-keyboard-layout-in-vim.html
 "keymap
 
-"reflow text during formatting
-"set formatoptions=ant
-"set textwidth=79
+" " let arrows and h,l move cursor accross newlines
+" set whichwrap+=h,l,<,>,[,]
+
+" " move on soft lines in insert mode
+" inoremap <Down> <C-o>g<Down>
+" inoremap <Up> <C-o>g<Up>
+
+" noremap <silent> j gj
+" noremap <silent> k gk
+" noremap <Down> gj
+" noremap <Up> gk
+
+" more fine-grained control over scrolling
+" CAREFUL, this may had been the cause of some crashes I experienced.
 
 " CAREFUL, this may had been the cause of some crashes I experienced.
 "
@@ -301,32 +300,65 @@ colorscheme selenized
 " further and then be able to delete the word correctly.
 "set virtualedit=onemore
 
-"backspace in normal mode doesn't do anything useful (just moves left like h),
-"so what about making it delete words? note that deleting words backwards in
-"vim sometimes behaves strangely (try doing db when cursor is on the last
-"letter).
 
+
+" MOVEMENT MODIFIERS ===================================================
+"
 "Currently in normal mode shift-arrows and control-arrows do the same.  Maybe
 "I could use them for something different?  E.g. control-arrows move to the
 "beginning of the word, and shift-arrows to the end?  Just like in most
 "editors, where the direction you're going affects whether you land at word's
 "beginning or end.
 
+" check this plugin
+" bkad/CamelCaseMotion
+
 "Also, think whether hjkl (or rather the equivalent in my layout) and their
 "control and shift combinations should do exactly the same as arrows and their
 "combinations, or maybe I should rather take advantage of having many keys?
 
-"Stuff that should be available in all modes (thus they should utilize
-"shortcuts with control, rather than leader mappings):
-"- saving file
-"- opening new file/changing buffer
-"- quitting? or closing buffer?
+"when moving by word, jump two words if there is a one-letter word next to
+"ordinary one (e.g. in /paths/like/this)
 
-" TODO: how to do these?
-"
-" zaznaczenie obiektu wcięcia z nagłówkiem (definicją funkcji) ale bez
-" whitespace'a
-"
+"make control-arrows jump words instead of Words
+"make ctrl-shift-arrow move by Words
+"make ctrl-backspace work
+"make control-arrow don't move to the next line if the cursor is not on line
+"end
+
+"What about using control-arrows for pane navigation? (but that could be done
+"only in normal mode - in insert mode I need ctrl-arrows too much).
+
+" potrzebuję sposobu na poruszanie się po słowach oddzielonych _ i - i / (a
+" czasami traktowanie ich jako jedno słowo
+
+"backspace in normal mode doesn't do anything useful (just moves left like h),
+"so what about making it delete words? note that deleting words backwards in
+"vim sometimes behaves strangely (try doing db when cursor is on the last
+"letter).
+
+" use backspace and enter for something in normal mode (maybe actually make backspace do backspace?)
+" consider adding a mapping for inserting spaces/newlines without leaving normal mode - see https://www.reddit.com/r/vim/comments/3a1y8v/i_just_realized_backspace_doesnt_do_much_in/cs9a1g9
+
+" make return noop in normal mode again, use ctrl-return for breaking lines.
+" Similarly with backspace.
+
+" " break line in normal mode
+" nnoremap <CR> i<CR><ESC>
+
+
+
+
+" INTERFACE ============================================================
+
+" autohighlight word under cursor, but with some non-intrusive colors
+
+" highlighting window/flashing cursor when switching panes
+
+
+
+" MISCELLANEOUS ========================================================
+
 " sometimes when pressing enter i want vim to automatically add some prefix:
 " - autoindentation
 " - a comment symbol if I'm inside comment
@@ -334,40 +366,13 @@ colorscheme selenized
 " - something else?
 " But sometimes I don't want this.  So, probably I need to map shift-enter
 " (or control-enter) to do the opposite.
-"
-" don't break undo into lines when pasting a block of text
-"
-"make control-arrows jump words instead of Words
-"make ctrl-shift-arrow move by Words
-"make ctrl-backspace work
-"make control-arrow don't move to the next line if the cursor is not on line
-"end
-"
-"What about using control-arrows for pane navigation? (but that could be done
-"only in normal mode - in insert mode I need ctrl-arrows too much).
-"
-"define a command that deletes selection without putting it into any clipboard
-"(i.e. delete instead of cut).  Maybe map it to x?
-"
-"autohighlight word under cursor, but with some non-intrusive colors
-"
-"make copying and pasting to system clipboard work with some reasonable
-"shortcut.
-"
-"when moving by word, jump two words if there is a one-letter word next to
-"ordinary one (e.g. in /paths/like/this)
-"
-"find a motion to move by indentation level (or code blocks)
-"
-" use backspace and enter for something in normal mode (maybe actually make backspace do backspace?)
-" consider adding a mapping for inserting spaces/newlines without leaving normal mode - see https://www.reddit.com/r/vim/comments/3a1y8v/i_just_realized_backspace_doesnt_do_much_in/cs9a1g9
 
-" configure some key combination in insert mode (perhaps control-enter or
-" shift-enter) to do what "O" does in normal mode
+" two different approaches for controlling text width:
+" http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns#3765575
+"reflow text during formatting
+"set formatoptions=ant
+"set textwidth=79
 
-" YAML indentation problems - if they return, this may help dealing with them
-" http://stackoverflow.com/a/32420855/2058424
-" :setlocal noautoindent
-" :setlocal nocindent
-" :setlocal nosmartindent
-" :setlocal indentexpr=
+" zaznaczenie obiektu wcięcia z nagłówkiem (definicją funkcji) ale bez
+" whitespace'a
+
