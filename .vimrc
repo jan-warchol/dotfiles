@@ -128,7 +128,6 @@ Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline ch
 
 " Navigation/motions ---------------------------------------------------
 Plug 'jeetsukumaran/vim-indentwise'
-Plug 'terryma/vim-multiple-cursors' "overrides default C-n and C-p mappings
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
