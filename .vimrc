@@ -164,7 +164,6 @@ nmap <Tab><Tab> :NERDTreeToggle<CR>
 nnoremap <C-N> <C-I>
 
 " buffer/window/tab navigation and operations
-nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader><Tab> :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>o :NERDTreeFocus<CR>
