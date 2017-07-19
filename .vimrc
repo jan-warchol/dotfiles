@@ -168,10 +168,11 @@ nnoremap <Leader><Tab> :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>o :NERDTreeFocus<CR>
 
+" Ctrl-S and Ctrl-Q are unused by default
 nnoremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
 nnoremap <C-Q> :qall<CR>
-inoremap <C-Q> <Esc>:q<CR>
+inoremap <C-Q> <Esc>:qall<CR>
 
 
 " consistency ----------------------------------------------------------
