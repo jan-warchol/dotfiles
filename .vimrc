@@ -108,7 +108,7 @@ let g:airline#extensions#branch#displayed_head_limit = 18
 let g:airline#extensions#tabline#enabled = 1
 
 " Additional interface elements ----------------------------------------
-Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-vinegar'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
@@ -180,9 +180,9 @@ let mapleader = "\<Space>"
 
 map <Leader> <Plug>(easymotion-prefix)
 
-" NERDTree
-nmap <Leader>it :NERDTreeToggle<CR>
-nmap <Leader>if :NERDTreeFocus<CR>
+" vinegar
+nmap <Leader>l <Plug>VinegarUp
+nmap <buffer> <Leader>l <Plug>VinegarUp
 
 " FZF
 nmap <Leader>oi :Buffers<CR>
