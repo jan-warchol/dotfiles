@@ -158,11 +158,6 @@ call plug#end()
 
 let mapleader = "\<Space>"
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 map <Leader> <Plug>(easymotion-prefix)
 nmap <Tab><Tab> :NERDTreeToggle<CR>
 " Remap jumping to free Ctrl-I (and Tab, which is hardwired to Ctrl-I)
@@ -179,13 +174,6 @@ inoremap <C-S> <Esc>:w<CR>
 nnoremap <C-Q> :qall<CR>
 inoremap <C-Q> <Esc>:q<CR>
 
-" other ----------------------------------------------------------------
-nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
-
-set pastetoggle=<F5>
-
-" search for visually selected text. Note the no-magic setting!
-vnoremap // "vy/\V<C-R>v<CR>
 
 " consistency ----------------------------------------------------------
 
@@ -204,6 +192,28 @@ inoremap <C-Z> <C-O><C-Z>
 nmap U u
 
 
+" other ----------------------------------------------------------------
+nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
+
+set pastetoggle=<F5>
+
+" search for visually selected text. Note the no-magic setting!
+vnoremap // "vy/\V<C-R>v<CR>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+" unused keys ----------------------------------------------------------
+" I keep a list to remember what I still have available.
+map , <Nop>
+map - <Nop>
+map _ <Nop>
+map <tab> <Nop>
+map <C-P> <Nop>
+map \ <Nop>
 
 " OTHER SETTINGS =======================================================
 
