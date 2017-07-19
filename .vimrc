@@ -104,6 +104,8 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, abs
 let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
 Plug 'vim-scripts/vim-airline'
 let g:airline#extensions#branch#displayed_head_limit = 18
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
 
 " Additional interface elements ----------------------------------------
 Plug 'scrooloose/nerdtree'
