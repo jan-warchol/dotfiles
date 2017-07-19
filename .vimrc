@@ -167,7 +167,7 @@ call textobj#user#plugin('yaml', {
 " .git/config, .git/HEAD etc.)
 command! -bang -nargs=? -complete=dir AllFiles call
   \ fzf#vim#files(<q-args>,
-  \     {'source': "find . -type d -a -path '*/.git/*' -prune -o -print"},
+  \     {'source': "find . -mindepth 1 -type d -a -path '*/.git/*' -prune -o -print | cut -c 3- "},
   \     <bang>0)
 
 
