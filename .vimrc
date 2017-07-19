@@ -165,6 +165,8 @@ nmap ga <Plug>(EasyAlign)
 
 map <Leader> <Plug>(easymotion-prefix)
 nmap <Tab><Tab> :NERDTreeToggle<CR>
+" Remap jumping to free Ctrl-I (and Tab, which is hardwired to Ctrl-I)
+nnoremap <C-N> <C-I>
 
 " buffer/window/tab navigation and operations
 nnoremap <Leader>Q :q!<CR>
