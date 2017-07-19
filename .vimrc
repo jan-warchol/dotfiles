@@ -179,20 +179,26 @@ let mapleader = "\<Space>"
 map <Leader> <Plug>(easymotion-prefix)
 
 " NERDTree
-nmap <Leader>ot :NERDTreeToggle<CR>
-nmap <Leader>of :NERDTreeFocus<CR>
+nmap <Leader>it :NERDTreeToggle<CR>
+nmap <Leader>if :NERDTreeFocus<CR>
 
 " FZF
-nmap <Leader>ib :Buffers<CR>
-nmap <Leader>if :Files<CR>
-nmap <Leader>i~ :Files ~<CR>
-nmap <Leader>i. :AllFiles<CR>
-nmap <Leader>i~. :AllFiles ~<CR>
-nmap <Leader>iw :Windows<CR>
-nmap <Leader>il :Lines<CR>
-nmap <Leader>ih :History<CR>
-nmap <Leader>i: :History:<CR>
-nmap <Leader>i/ :History/<CR>
+nmap <Leader>oi :Buffers<CR>
+nmap <Leader>on :Files<CR>
+nmap <Leader>oh :AllFiles<CR>
+nmap <Leader>ow :Windows<CR>
+nmap <Leader>ol :Lines<CR>
+nmap <Leader>om :History<CR>
+nmap <Leader>rc :History:<CR>
+nmap <Leader>rs :History/<CR>
+" additional fuzyy-search directory targets
+nmap <Leader>o~ :Files ~<CR>
+nmap <Leader>ot :Files ~<CR>
+nmap <Leader>o/ :Files /<CR>
+nmap <Leader>oe :Files /etc<CR>
+nmap <Leader>os :Files ~/src<CR>
+nmap <Leader>oa :AllFiles ~<CR>
+nmap <Leader>oc :AllFiles ~/.config<CR>
 
 " Ctrl-S and Ctrl-Q are unused by default
 nnoremap <C-S> :w<CR>
@@ -243,7 +249,7 @@ map _ <Nop>
 map <tab> <Nop>
 map <C-P> <Nop>
 map \ <Nop>
-" Leader: a c d h j l m p q r u x y z
+" Leader: a c d h j l m p q u x y z
 
 
 
