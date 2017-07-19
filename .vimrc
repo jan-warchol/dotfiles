@@ -154,19 +154,45 @@ call plug#end()
 
 
 
+" COMMANDS AND TEXT OBJECTS ============================================
+
+call textobj#user#plugin('yaml', {
+\   'dictvalue': {
+\     'pattern': '\(: \)\@<=.*$',
+\     'select': ['ay', 'iy'],
+\   },
+\ })
+
+" Fuzzy-find in all files, excluding .git data subdirectories (but including
+" .git/config, .git/HEAD etc.)
+command! -bang -nargs=? -complete=dir AllFiles call
+  \ fzf#vim#files(<q-args>,
+  \     {'source': "find . -type d -a -path '*/.git/*' -prune -o -print"},
+  \     <bang>0)
+
+
+
 " MAPPINGS =============================================================
 
 let mapleader = "\<Space>"
 
 map <Leader> <Plug>(easymotion-prefix)
-nmap <Tab><Tab> :NERDTreeToggle<CR>
-" Remap jumping to free Ctrl-I (and Tab, which is hardwired to Ctrl-I)
-nnoremap <C-N> <C-I>
 
-" buffer/window/tab navigation and operations
-nnoremap <Leader><Tab> :Buffers<CR>
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>o :NERDTreeFocus<CR>
+" NERDTree
+nmap <Leader>ot :NERDTreeToggle<CR>
+nmap <Leader>of :NERDTreeFocus<CR>
+
+" FZF
+nmap <Leader>ib :Buffers<CR>
+nmap <Leader>if :Files<CR>
+nmap <Leader>i~ :Files ~<CR>
+nmap <Leader>i. :AllFiles<CR>
+nmap <Leader>i~. :AllFiles ~<CR>
+nmap <Leader>iw :Windows<CR>
+nmap <Leader>il :Lines<CR>
+nmap <Leader>ih :History<CR>
+nmap <Leader>i: :History:<CR>
+nmap <Leader>i/ :History/<CR>
 
 " Ctrl-S and Ctrl-Q are unused by default
 nnoremap <C-S> :w<CR>
@@ -191,6 +217,9 @@ nnoremap <C-W>s <C-W>x
 inoremap <C-Z> <C-O><C-Z>
 nmap U u
 
+" Remap jumping to free Ctrl-I (and Tab, which is hardwired to Ctrl-I)
+nnoremap <C-N> <C-I>
+
 
 " other ----------------------------------------------------------------
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
@@ -214,15 +243,11 @@ map _ <Nop>
 map <tab> <Nop>
 map <C-P> <Nop>
 map \ <Nop>
+" Leader: a c d h j l m p q r u x y z
+
+
 
 " OTHER SETTINGS =======================================================
-
-call textobj#user#plugin('yaml', {
-\   'dictvalue': {
-\     'pattern': '\(: \)\@<=.*$',
-\     'select': ['ay', 'iy'],
-\   },
-\ })
 
 " colorscheme must be set after Vim-plug finishes its work
 colorscheme selenized
