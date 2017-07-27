@@ -6,3 +6,4 @@ application/x-shellscript=xed.desktop
 
 [Added Associations]
 application/x-shellscript=xed.desktop;
+x-content/blank-dvd=brasero.desktop;
