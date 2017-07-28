@@ -386,7 +386,31 @@ colorscheme selenized
 
 " autohighlight word under cursor, but with some non-intrusive colors
 
+" change cursor color - it should always be a reverse.
+
 " highlighting window/flashing cursor when switching panes
+
+" Navigating filesystem (NERDTree etc.)
+" Problems with vinegar and netrw:
+" - they break C-^ (directory view is remembered as last opened file)
+
+" I think I need navigation shortcuts for :bn :bp (and perhaps moving buffers
+" in the list). I also need a shortcut for repeating last operation.
+" Apparently this is @: - need to check whether it's good in daily usage.
+" submodes (https://github.com/kana/vim-submode) may be a good idea for
+" related stuff.
+" https://vi.stackexchange.com/questions/3632/how-to-repeat-a-mapping-when-keeping-key-pressed
+
+" Do przemyślenia: kiedy mam otwartych kilka okien z różnymi plikami i z
+" jednym już skończyłem, co właściwie chcę zrobić? zamknąć plik? wyświetlić
+" poprzedni w oknie czy zostawić puste okno?
+
+" Show in airline which buffer is the previous one (#)
+" see also
+" https://github.com/vim-airline/vim-airline/issues/1108
+" https://github.com/vim-airline/vim-airline/issues/1149
+
+" Dlaczego w :Buffers nie można zaznaczyć kilku plików?
 
 
 
