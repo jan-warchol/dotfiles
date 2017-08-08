@@ -238,8 +238,8 @@
 
     # GUI versions of the above (simply runs gitk)
     divk = !gitk HEAD...@{upstream}
-    unpk = !gitk --branches --not --remotes
-    unmk = !gitk --remotes --not --branches
+    unpk = !gitk --branches --not --remotes &
+    unmk = !gitk --remotes --not --branches &
 
 
 
