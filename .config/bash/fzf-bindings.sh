@@ -56,7 +56,7 @@ __fzf_git_checkout__() {
     sed 's|_____||' |
   # list local branches before remote ones
   sort --reverse |
-  fzf-down --ansi |
+  fzf-down --ansi --no-sort --bind 'ctrl-s:toggle-sort' |
   xargs git checkout
 }
 
