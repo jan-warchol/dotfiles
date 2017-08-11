@@ -64,7 +64,7 @@ gb() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
   fzf-down --ansi --multi --tac --preview-window right:50% \
-    --preview 'git log --oneline --graph --color=always --date=short --pretty="format:%C(auto)%cd %h %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+    --preview 'git log --oneline --graph --color=always --date=short --abbrev=5 --pretty="%C(auto)%h %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
   sed 's/^..//' | cut -d' ' -f1 |
   sed 's#^remotes/##'
 }
