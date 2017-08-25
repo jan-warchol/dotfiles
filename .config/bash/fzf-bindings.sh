@@ -78,8 +78,18 @@ gh() {
   grep -o "[a-f0-9]\{7,\}"
 }
 
+g_stash() {
+  is_in_git_repo || return
+  git stash list |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "stash@{[0-9]*}" <<< {} | xargs -I{} git diff --color=always {}~1..{} | head -'$LINES |
+  grep -o "stash@{[0-9]*}"
+}
+
 bind '"\er": redraw-current-line'
 bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
 bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
 bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
+bind '"\C-g\C-s": "$(g_stash)\e\C-e\er"'
 bind '"\C-g\C-g": "__fzf_git_checkout__\n"'
