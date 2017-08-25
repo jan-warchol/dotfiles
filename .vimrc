@@ -81,8 +81,9 @@ set directory=$HOME/.vim/swap//
 set backupdir=$HOME/.vim/backup//
 set undodir=$HOME/.vim/undo//
 
-" save clipboard register on exit - http://stackoverflow.com/a/9381778/2058424
+" save clipboard register on exit and suspend - http://stackoverflow.com/a/9381778/2058424
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
+noremap <silent> <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
 
 
 
