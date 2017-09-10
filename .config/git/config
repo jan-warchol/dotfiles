@@ -341,6 +341,13 @@
         && git branch --delete $BRANCH'
 
 
+[diff "ansible-vault"]
+    textconv = ansible-vault view
+    # enable caching decrypted content (less secure, but much faster)
+    cachetextconv = true
+[merge "ansible-vault"]
+    name = ansible-vault merge driver
+    driver = ansible-vault-merge %O %A %B %P
 
 [color]
     ui = auto
