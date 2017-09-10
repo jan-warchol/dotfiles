@@ -103,8 +103,6 @@ alias cim=vim  # ...and this too
 alias vd=vimdiff
 alias ips="ifconfig | grep 'inet ' | awk '{ print \$2 }' | awk -F: '{ print \$2 }'"
 
-alias python=ipython
-
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {
     if [ $? = 0 ]; then icon=terminal; else icon=error; fi
