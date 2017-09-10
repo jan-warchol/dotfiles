@@ -401,6 +401,7 @@ colorscheme selenized
 " submodes (https://github.com/kana/vim-submode) may be a good idea for
 " related stuff.
 " https://vi.stackexchange.com/questions/3632/how-to-repeat-a-mapping-when-keeping-key-pressed
+" https://vi.stackexchange.com/questions/3978/can-i-repeat-the-last-ui-command?rq=1
 
 " Do przemyślenia: kiedy mam otwartych kilka okien z różnymi plikami i z
 " jednym już skończyłem, co właściwie chcę zrobić? zamknąć plik? wyświetlić
@@ -413,6 +414,17 @@ colorscheme selenized
 
 " Dlaczego w :Buffers nie można zaznaczyć kilku plików?
 
+" define new command for opening only selected files in window splits, and add
+" it to fzf
+
+" To głupie że Ctrl-6 przełącza do ostatniego pliku nawet jeśli został
+" zamknięty. Chciałbym żeby przełączał do poprzedniego otwartego pliku.
+
+" żeby poruszać się między oknami, trzeba wyjść z insert mode. Jest to dość
+" wkurzające. Może mapowania które działają w insert?
+
+" obecne mapowania na fuzzy-otwieranie często powodują przypadkowe przejście
+" do insert mode i jest to niebywale wkurzające.
 
 
 " MISCELLANEOUS ========================================================
