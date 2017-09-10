@@ -22,7 +22,7 @@
     bdf = branch -D
     bm = !git branch --merged | grep -v '*'
     bma = !git branch --all --merged | grep -v '*'
-    bmr = !git branch --remote --merged | grep -v '*'
+    bmr = !git branch --remote --merged | grep -v '*' | grep -v origin/`git rev-parse --abbrev-ref HEAD`$
 
     # recursively update submodules. Handles uncommitted changes gracefully
     # (if they don't conflict, they are transplanted, if they do, the update
