@@ -113,3 +113,7 @@ function alert() {
 # let bash expand aliases after certain commands (see http://askubuntu.com/a/22043)
 alias sudo='sudo '
 alias man='man '
+
+# trick application into thinking it's writing to a tty (e.g. to force color)
+# requires lib from https://stackoverflow.com/a/14694983/2058424
+alias force-tty='LD_PRELOAD=$HOME/bin/libisatty.so'
