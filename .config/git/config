@@ -188,7 +188,7 @@
 
     # basic one-line log, I use it all the time
     ls = log --abbrev=10 --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
+    --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way of committing stuff
@@ -203,6 +203,7 @@
     lm  = !git ls HEAD master origin/master
     la  = !git ls HEAD --branches --remotes
     lb  = !git ls HEAD --branches
+    lr  = !git ls HEAD --branches=origin/release* --remotes=origin/release* sdwan origin/sdwan
     lsd = !git ls HEAD sdwan origin/sdwan
     las = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan* --tags=sdwan*
     lbs = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan --tags=sdwan*
@@ -215,6 +216,7 @@
 
     # "Long" format - full commit message and summary of changes
     ll = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+    lll = log --color=always --decorate --graph --stat-graph-width=30
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
     llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
 
@@ -231,10 +233,15 @@
     l2 = !git log --abbrev=10 --color=always --decorate --graph --date=iso \
     --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(white), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
 
+    ls1 = log --abbrev=10 --color=always --decorate --graph --date=relative \
+    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
+
     # two-line version similar to one-line version
     ls2 = log --abbrev=10 --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) %s%n %C(auto)%d%C(reset) %C(white)%an, %ad%C(reset)'
-    lb2  = !git ls2 HEAD --branches
+
+    ls3 = log --abbrev=10 --color=always --decorate --graph --date=relative \
+    --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
 
     # reflog with dates and commit message subject
     rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
