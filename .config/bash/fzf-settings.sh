@@ -1,4 +1,5 @@
 export FZF_HOME=$HOME/.fzf
+export FZF_DEFAULT_OPTS="--history=$HOME/data/cli-stuffy/fzf-history"
 
 # Setup fzf
 # ---------
