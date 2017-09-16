@@ -66,13 +66,16 @@ sshumount() { fusermount -u "$@" && rmdir "$@"; }
 alias mkd='mkdir --parents'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
-g() { git "$@"; }
+
 alias v='fasd -f -e "$EDITOR"'
 alias c='fasd_cd -d'
+_fasd_bash_hook_cmd_complete v c
+
 alias u='cd ..'  # (u)p one directory level
 alias uu='cd ../..'
 alias uuu='cd ../../..'
 alias uuuu='cd ../../../..'
+
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
 alias -- -='cd -'
 alias _='cd -'  # sometimes I accidentally press shift when typing `-`
