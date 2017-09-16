@@ -96,8 +96,8 @@ alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bas
 alias kt='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias ks='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-shifted.xkb -w 4 $DISPLAY'
 alias pls='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
-alias doton='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
-alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
+alias don='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
+alias dof='unset GIT_DIR; unset GIT_WORK_TREE'
 alias pign=ping  # let's face it, I will continue to make this typo
 alias cim=vim  # ...and this too
 alias vd=vimdiff
