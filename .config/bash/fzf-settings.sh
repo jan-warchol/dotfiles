@@ -17,8 +17,14 @@ source "$FZF_HOME/shell/key-bindings.bash"
 
 export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
 
-# fuzzy-search in all files (including hidden)
-bind -x '"\C-u\C-a": "FZF_CTRL_T_COMMAND=find fzf-file-widget"'
+# fuzzy-search starting in various directories
+bind -x '"\C-o\C-n": fzf-file-widget'
+bind -x '"\C-o\C-a": FZF_CTRL_T_COMMAND="find" fzf-file-widget'
+bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="find ~" fzf-file-widget'
+bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc" fzf-file-widget'
+bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
+bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="GIT_DIR=~/.dotfiles.git git ls-files" fzf-file-widget'
+
 
 # bindings for git - see functions defined in fzf-git-functions.sh
 bind '"\er": redraw-current-line'
