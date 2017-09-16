@@ -23,7 +23,7 @@ bind -x '"\C-o\C-a": FZF_CTRL_T_COMMAND="find" fzf-file-widget'
 bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="find ~" fzf-file-widget'
 bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
-bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="GIT_DIR=~/.dotfiles.git git ls-files" fzf-file-widget'
+bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="GIT_DIR=~/.dotfiles.git git ls-files; find -L ~/.ssh; find ~/.fzf/shell" fzf-file-widget'
 
 
 # bindings for git - see functions defined in fzf-git-functions.sh
