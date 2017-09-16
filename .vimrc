@@ -226,9 +226,6 @@ nnoremap <C-W>s <C-W>x
 inoremap <C-Z> <C-O><C-Z>
 nmap U u
 
-" Remap jumping to free Ctrl-I (and Tab, which is hardwired to Ctrl-I)
-nnoremap <C-N> <C-I>
-
 
 " other ----------------------------------------------------------------
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
@@ -249,11 +246,18 @@ nmap ga <Plug>(EasyAlign)
 map , <Nop>
 map - <Nop>
 map _ <Nop>
+" remember that <tab> == <C-I>
 map <tab> <Nop>
+map <C-O> <Nop>
 map <C-P> <Nop>
 map \ <Nop>
 " Leader: a c d h j l m p q u x y z
 
+" Remap jumping in movement history, for 2 purposes:
+" - to free Ctrl-O and Ctrl-I (and Tab, which is hardwired to Ctrl-I)
+" - to make the movement more intuitive (key to the right moves forward)
+nnoremap <C-N><C-O> <C-I>
+nnoremap <C-N><C-I> <C-O>
 
 
 " OTHER SETTINGS =======================================================
