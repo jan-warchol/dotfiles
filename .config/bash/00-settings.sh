@@ -62,8 +62,8 @@ if [ -n "$DISPLAY" ]; then
     xset r rate 160 80
 fi
 
-# enable fasd for smart navigation (https://github.com/clvv/fasd)
-eval "$(fasd --init auto)"
+# # enable fasd for smart navigation (https://github.com/clvv/fasd)
+# eval "$(fasd --init auto)"
 
 # Configure escape sequences for less so that it will know how to display
 # colors for man etc. See also:

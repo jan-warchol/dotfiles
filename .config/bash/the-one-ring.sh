@@ -47,4 +47,4 @@ function the_One_Ring() {
     fi
 }
 
-alias o=the_One_Ring  # mnemonic: 'o' like 'open'.
+# alias o=the_One_Ring  # mnemonic: 'o' like 'open'.
