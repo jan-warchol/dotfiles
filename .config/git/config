@@ -203,7 +203,7 @@
     lm  = !git ls HEAD master origin/master
     la  = !git ls HEAD --branches --remotes
     lb  = !git ls HEAD --branches
-    lr  = !git ls HEAD --branches=origin/release* --remotes=origin/release* sdwan origin/sdwan
+    lr  = !git ls HEAD --branches=release* --remotes=*/release* sdwan origin/sdwan
     lsd = !git ls HEAD sdwan origin/sdwan
     las = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan* --tags=sdwan*
     lbs = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan --tags=sdwan*
