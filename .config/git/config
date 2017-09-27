@@ -220,10 +220,10 @@
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
     llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
 
-    lp   = log --color=always --decorate --patch --cc --submodule=log --topo-order
-    lpfd = log --color=always --decorate --patch --cc --submodule=log --topo-order --full-diff
-    lpf  = log --color=always --decorate --patch --cc --submodule=log --topo-order --first-parent
-    lpw  = log --color=always --decorate --patch --cc --submodule=log --topo-order --word-diff=color
+    lp   = log --color=always --decorate --patch --submodule=log --topo-order
+    lpfd = log --color=always --decorate --patch --submodule=log --topo-order --full-diff
+    lpf  = log --color=always --decorate --patch --submodule=log --topo-order --first-parent
+    lpw  = log --color=always --decorate --patch --submodule=log --topo-order --word-diff=color
     lmpr = log --color=always --decorate --patch --reverse master..HEAD
 
     # log commits that differ between current branch and its upstream
