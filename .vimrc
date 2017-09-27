@@ -81,8 +81,9 @@ set directory=$HOME/.vim/swap//
 set backupdir=$HOME/.vim/backup//
 set undodir=$HOME/.vim/undo//
 
-" save clipboard register on exit - http://stackoverflow.com/a/9381778/2058424
+" save clipboard register on exit and suspend - http://stackoverflow.com/a/9381778/2058424
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
+noremap <silent> <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
 
 
 
@@ -108,7 +109,6 @@ let g:airline#extensions#branch#displayed_head_limit = 18
 let g:airline#extensions#tabline#enabled = 1
 
 " Additional interface elements ----------------------------------------
-Plug 'tpope/vim-vinegar'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
@@ -225,9 +225,6 @@ nnoremap <C-W>s <C-W>x
 inoremap <C-Z> <C-O><C-Z>
 nmap U u
 
-" Remap jumping to free Ctrl-I (and Tab, which is hardwired to Ctrl-I)
-nnoremap <C-N> <C-I>
-
 
 " other ----------------------------------------------------------------
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
@@ -248,11 +245,18 @@ nmap ga <Plug>(EasyAlign)
 map , <Nop>
 map - <Nop>
 map _ <Nop>
+" remember that <tab> == <C-I>
 map <tab> <Nop>
+map <C-O> <Nop>
 map <C-P> <Nop>
 map \ <Nop>
 " Leader: a c d h j l m p q u x y z
 
+" Remap jumping in movement history, for 2 purposes:
+" - to free Ctrl-O and Ctrl-I (and Tab, which is hardwired to Ctrl-I)
+" - to make the movement more intuitive (key to the right moves forward)
+nnoremap <C-N><C-O> <C-I>
+nnoremap <C-N><C-I> <C-O>
 
 
 " OTHER SETTINGS =======================================================
@@ -386,8 +390,44 @@ colorscheme selenized
 
 " autohighlight word under cursor, but with some non-intrusive colors
 
+" change cursor color - it should always be a reverse.
+
 " highlighting window/flashing cursor when switching panes
 
+" Navigating filesystem (NERDTree etc.)
+" Problems with vinegar and netrw:
+" - they break C-^ (directory view is remembered as last opened file)
+
+" I think I need navigation shortcuts for :bn :bp (and perhaps moving buffers
+" in the list). I also need a shortcut for repeating last operation.
+" Apparently this is @: - need to check whether it's good in daily usage.
+" submodes (https://github.com/kana/vim-submode) may be a good idea for
+" related stuff.
+" https://vi.stackexchange.com/questions/3632/how-to-repeat-a-mapping-when-keeping-key-pressed
+" https://vi.stackexchange.com/questions/3978/can-i-repeat-the-last-ui-command?rq=1
+
+" Do przemyślenia: kiedy mam otwartych kilka okien z różnymi plikami i z
+" jednym już skończyłem, co właściwie chcę zrobić? zamknąć plik? wyświetlić
+" poprzedni w oknie czy zostawić puste okno?
+
+" Show in airline which buffer is the previous one (#)
+" see also
+" https://github.com/vim-airline/vim-airline/issues/1108
+" https://github.com/vim-airline/vim-airline/issues/1149
+
+" Dlaczego w :Buffers nie można zaznaczyć kilku plików?
+
+" define new command for opening only selected files in window splits, and add
+" it to fzf
+
+" To głupie że Ctrl-6 przełącza do ostatniego pliku nawet jeśli został
+" zamknięty. Chciałbym żeby przełączał do poprzedniego otwartego pliku.
+
+" żeby poruszać się między oknami, trzeba wyjść z insert mode. Jest to dość
+" wkurzające. Może mapowania które działają w insert?
+
+" obecne mapowania na fuzzy-otwieranie często powodują przypadkowe przejście
+" do insert mode i jest to niebywale wkurzające.
 
 
 " MISCELLANEOUS ========================================================

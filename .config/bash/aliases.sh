@@ -84,7 +84,7 @@ mdc() { mkdir --parents "$@"; cd "$@"; }
 alias mcd=mdc
 # open file in it's default GUI application (taken from MIME settings).
 # to open current directory in graphical file manager, use `o .`
-ap() { time ansible-playbook --diff "$@"; alert; }
+ap() { ANSIBLE_LOG_PATH=./ansible-$(date +%F.%H:%M:%S).log time ansible-playbook --diff "$@"; alert; }
 alias av='ansible-vault'
 alias ave='ansible-vault edit'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
@@ -96,14 +96,12 @@ alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bas
 alias kt='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias ks='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-shifted.xkb -w 4 $DISPLAY'
 alias pls='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
-alias doton='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
-alias dotof='unset GIT_DIR; unset GIT_WORK_TREE'
+alias don='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
+alias dof='unset GIT_DIR; unset GIT_WORK_TREE'
 alias pign=ping  # let's face it, I will continue to make this typo
 alias cim=vim  # ...and this too
 alias vd=vimdiff
 alias ips="ifconfig | grep 'inet ' | awk '{ print \$2 }' | awk -F: '{ print \$2 }'"
-
-alias python=ipython
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {
@@ -115,3 +113,7 @@ function alert() {
 # let bash expand aliases after certain commands (see http://askubuntu.com/a/22043)
 alias sudo='sudo '
 alias man='man '
+
+# trick application into thinking it's writing to a tty (e.g. to force color)
+# requires lib from https://stackoverflow.com/a/14694983/2058424
+alias force-tty='LD_PRELOAD=$HOME/bin/libisatty.so'

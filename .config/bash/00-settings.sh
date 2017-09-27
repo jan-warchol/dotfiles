@@ -20,6 +20,12 @@ shopt -s dotglob
 
 export PATH="$PATH:$HOME/bin/"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/jan/bin/google-cloud-sdk/path.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/jan/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/completion.bash.inc'; fi
+
 # shell history is very useful, so let's make sure we can harness its full power
 export HISTFILESIZE=10000000
 export HISTSIZE=10000000

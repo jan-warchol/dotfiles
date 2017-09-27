@@ -56,7 +56,7 @@ __fzf_git_checkout__() {
     sed 's|_____||' |
   # list local branches before remote ones
   sort --reverse |
-  fzf-down --ansi |
+  fzf-down --ansi --no-sort --bind 'ctrl-s:toggle-sort' |
   xargs git checkout
 }
 
@@ -64,7 +64,7 @@ gb() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
   fzf-down --ansi --multi --tac --preview-window right:50% \
-    --preview 'git log --oneline --graph --color=always --date=short --pretty="format:%C(auto)%cd %h %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+    --preview 'git log --oneline --graph --color=always --date=short --abbrev=5 --pretty="%C(auto)%h %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
   sed 's/^..//' | cut -d' ' -f1 |
   sed 's#^remotes/##'
 }
@@ -78,8 +78,18 @@ gh() {
   grep -o "[a-f0-9]\{7,\}"
 }
 
+g_stash() {
+  is_in_git_repo || return
+  git stash list |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "stash@{[0-9]*}" <<< {} | xargs -I{} git diff --color=always {}~1..{} | head -'$LINES |
+  grep -o "stash@{[0-9]*}"
+}
+
 bind '"\er": redraw-current-line'
 bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
 bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
 bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
+bind '"\C-g\C-s": "$(g_stash)\e\C-e\er"'
 bind '"\C-g\C-g": "__fzf_git_checkout__\n"'
