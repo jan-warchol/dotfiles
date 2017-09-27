@@ -22,7 +22,7 @@ gf() {
 # choose from both local and remote branches (if you have a remote branch
 # "origin/X" and do `git checkout X`, git will set up local "X" automatically)
 __fzf_git_checkout__() {
-  git branch --all --color=always |
+  (git branch --all --color=always |
   cut -c 3- |
   grep -v "remotes/.*/HEAD" |
   sed 's|remotes/[^/]*/||' |
@@ -32,7 +32,10 @@ __fzf_git_checkout__() {
     sort --uniq --key=1.6 |  # ignore color code (usually 5 chars)
     sed 's|_____||' |
   # list local branches before remote ones
-  sort --reverse |
+  sort --reverse;
+  # also include tags and color them yellow
+  git tag | xargs -I{} echo -e "\033[0;33m{}"
+  ) |
   fzf-down --ansi --no-sort --bind 'ctrl-s:toggle-sort' |
   xargs git checkout
 }
