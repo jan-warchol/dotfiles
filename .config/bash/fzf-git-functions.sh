@@ -22,6 +22,7 @@ gf() {
 # choose from both local and remote branches (if you have a remote branch
 # "origin/X" and do `git checkout X`, git will set up local "X" automatically)
 __fzf_git_checkout__() {
+  is_in_git_repo || return
   (git branch --all --color=always |
   cut -c 3- |
   grep -v "remotes/.*/HEAD" |
