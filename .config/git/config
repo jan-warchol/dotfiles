@@ -27,7 +27,7 @@
     # recursively update submodules. Handles uncommitted changes gracefully
     # (if they don't conflict, they are transplanted, if they do, the update
     # is not performed and an error is printed).
-    c = !git checkout $@ && git sup && true
+    c = !git checkout
     c0 = !git c HEAD~0   # detach HEAD e.g. for throw-away experiments
     c1 = !git c HEAD~1
     c2 = !git c HEAD~2
@@ -112,17 +112,14 @@
 
     ma = merge --abort
 
-    # the "&& true" at the end is needed because git appends the arguments
-    # passed to the alias to the last command, and "git sup" would complain
-    # about arguments that are meant for "git merge"
-    mr = !git merge $@ && git sup && true
-    ff = !git merge --ff-only $@ && git sup && true
-    noff = !git merge --no-ff $@ && git sup && true
+    mr = merge
+    ff = merge --ff-only
+    noff = merge --no-ff
 
     mb = merge-base @  # find where current branch diverged from another branch
 
     # unlike plain `pull`, this won't attempt a merge that may result in conflicts
-    pl = !git pull --ff-only $@ && git sup && true
+    pl = pull --ff-only
 
     pu = push
     puf = push --force-with-lease
@@ -132,18 +129,18 @@
     # tags have to be pushed explicitly
     put = !git push --tags && git push
 
+    rb = rebase
     rba = rebase --abort
-    rb = !git rebase $@ && git sup && true
     rbc = rebase --continue
     rbo = rebase --onto   # quite useful, see examples in 'git help rebase'
     rbi = rebase --interactive
     rbi5 = rebase --interactive HEAD~5
     rbim = rebase --interactive master
     rbiu = rebase --interactive @{upstream}
-    rbm = !git rebase master $@ && git sup && true
-    rbs = !git rebase sdwan $@ && git sup && true
-    rbom = !git rebase origin/master $@ && git sup && true
-    rbos = !git rebase origin/sdwan $@ && git sup && true
+    rbm = rebase master
+    rbs = rebase sdwan
+    rbom = rebase origin/master
+    rbos = rebase origin/sdwan
 
     rt = remote --verbose
 
@@ -170,7 +167,7 @@
 
     # submodule init and submodule sync are needed because some submodules may
     # have been added in the other branch or their remotes changed.
-    sup = "!sh -c 'git submodule init && \
+    su = "!sh -c 'git submodule init && \
         git submodule sync --recursive > /dev/null && \
         git submodule update --recursive $@' -"
 
@@ -203,7 +200,7 @@
     lm  = !git ls HEAD master origin/master
     la  = !git ls HEAD --branches --remotes
     lb  = !git ls HEAD --branches
-    lr  = !git ls HEAD --branches=origin/release* --remotes=origin/release* sdwan origin/sdwan
+    lr  = !git ls HEAD --branches=release* --remotes=*/release* sdwan origin/sdwan
     lsd = !git ls HEAD sdwan origin/sdwan
     las = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan* --tags=sdwan*
     lbs = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan --tags=sdwan*
@@ -220,10 +217,10 @@
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
     llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
 
-    lp   = log --color=always --decorate --patch --cc --submodule=log --topo-order
-    lpfd = log --color=always --decorate --patch --cc --submodule=log --topo-order --full-diff
-    lpf  = log --color=always --decorate --patch --cc --submodule=log --topo-order --first-parent
-    lpw  = log --color=always --decorate --patch --cc --submodule=log --topo-order --word-diff=color
+    lp   = log --color=always --decorate --patch --submodule=log --topo-order
+    lpfd = log --color=always --decorate --patch --submodule=log --topo-order --full-diff
+    lpf  = log --color=always --decorate --patch --submodule=log --topo-order --first-parent
+    lpw  = log --color=always --decorate --patch --submodule=log --topo-order --word-diff=color
     lmpr = log --color=always --decorate --patch --reverse master..HEAD
 
     # log commits that differ between current branch and its upstream

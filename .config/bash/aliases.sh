@@ -86,7 +86,7 @@ mdc() { mkdir --parents "$@"; cd "$@"; }
 alias mcd=mdc
 # open file in it's default GUI application (taken from MIME settings).
 # to open current directory in graphical file manager, use `o .`
-ap() { time ansible-playbook --diff "$@"; alert; }
+ap() { ANSIBLE_LOG_PATH=./ansible-$(date +%F.%H:%M:%S).log time ansible-playbook --diff "$@"; alert; }
 alias av='ansible-vault'
 alias ave='ansible-vault edit'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
