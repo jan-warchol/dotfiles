@@ -50,6 +50,13 @@ gb() {
   sed 's#^remotes/##'
 }
 
+fzf_git_tag() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
 gh() {
   is_in_git_repo || return
   git log --branches --remotes --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
