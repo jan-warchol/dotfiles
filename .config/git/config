@@ -167,8 +167,8 @@
 
     # submodule init and submodule sync are needed because some submodules may
     # have been added in the other branch or their remotes changed.
-    su = "!sh -c 'git submodule init && \
-        git submodule sync --recursive > /dev/null && \
+    su = "!sh -c 'git submodule init $@ && \
+        git submodule sync --recursive $@ > /dev/null && \
         git submodule update --recursive $@' -"
 
     who = shortlog --summary --numbered
