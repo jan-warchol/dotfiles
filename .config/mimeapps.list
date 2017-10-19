@@ -3,7 +3,9 @@ text/plain=gedit.desktop
 text/x-python=gedit.desktop
 text/x-lilypond=frescobaldi.desktop
 application/x-shellscript=xed.desktop
+image/jpeg=xviewer.desktop
 
 [Added Associations]
 application/x-shellscript=xed.desktop;
 x-content/blank-dvd=brasero.desktop;
+image/jpeg=xviewer.desktop;
