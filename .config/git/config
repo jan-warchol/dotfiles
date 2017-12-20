@@ -53,11 +53,13 @@
 
     wip = commit -m 'Work in progress'
     wap = commit -a -m 'Work in progress'
+    wish = !git commit -m 'Work in progress' && git push --quiet
+    wash = !git commit -a -m 'Work in progress' && git push --quiet
 
     amn = commit --amend
     ama = commit --amend --all
     amq = commit --amend --all --no-edit
-    apf = !git amq --quiet && git puf --quiet   
+    paf = !git amq --quiet && git puf --quiet
 
     d = diff --color=always --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
