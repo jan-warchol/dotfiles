@@ -227,6 +227,7 @@
 
     # log commits that differ between current branch and its upstream
     lu = !git ls HEAD...@{upstream}
+    lub = !git ls --boundary HEAD...@{upstream}
 
     # two-line version, useful when your terminal window is narrow
     l2 = !git log --abbrev=10 --color=always --decorate --graph --date=iso \
