@@ -244,7 +244,9 @@
     --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
 
     # reflog with dates and commit message subject
-    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
+    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs \
+    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset) - %gs %n                 %C(dim yellow)%h %C(white)- %<(50,trunc)%s%C(reset)'
+    rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
     # log unpushed/unmerged commits on all branches
     unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
