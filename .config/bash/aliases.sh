@@ -95,6 +95,7 @@ alias sagi='sudo apt-get --assume-yes install'
 alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do $EDITOR $f; done'
 alias kt='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias ks='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-shifted.xkb -w 4 $DISPLAY'
+alias kd='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-dell.xkb -w 4 $DISPLAY'
 alias pls='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias don='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
 alias dof='unset GIT_DIR; unset GIT_WORK_TREE'
