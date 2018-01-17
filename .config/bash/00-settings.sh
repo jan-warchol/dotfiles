@@ -65,6 +65,9 @@ fi
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
 eval "$(fasd --init auto)"
 
+# block touchpad when typing
+syndaemon -i 1 -d -t -K
+
 # Configure escape sequences for less so that it will know how to display
 # colors for man etc. See also:
 # http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
