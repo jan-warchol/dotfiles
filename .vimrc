@@ -120,7 +120,6 @@ Plug 'tpope/vim-fugitive'
 
 " General behavior -----------------------------------------------------
 Plug 'Carpetsmoker/auto_autoread.vim' " autodetect changes in file (bugged, needs enabling)
-Plug 'Townk/vim-autoclose'  " automatically insert closing parens etc.
 
 " New text objects definitions -----------------------------------------
 Plug 'michaeljsmith/vim-indent-object'
