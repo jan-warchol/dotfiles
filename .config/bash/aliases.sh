@@ -82,7 +82,7 @@ alias _='cd -'  # sometimes I accidentally press shift when typing `-`
 mdc() { mkdir --parents "$@"; cd "$@"; }
 # I keep forgetting whether it's mcd or mdc, so let's have both :P
 alias mcd=mdc
-ap() { ANSIBLE_LOG_PATH=./ansible-$(date +%F.%H:%M:%S).log time ansible-playbook --diff "$@"; alert; }
+ap() { time ANSIBLE_LOG_PATH=./.ansible-$(date +%F.%H:%M:%S).log ansible-playbook --diff "$@"; alert; }
 alias av='ansible-vault'
 alias ave='ansible-vault edit'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
