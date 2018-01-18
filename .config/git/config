@@ -251,6 +251,14 @@
 
 
 
+    # MULTIPLE IDENTITY MANAGEMENT
+
+    # Configure current repo with email to use
+    janw = config user.email jan.warchol@gmail.com
+    clty = config user.email jan.warchol@codility.com
+
+
+
     # MORE SOPHISTICATED COMMANDS
 
     # "smart amend"
@@ -409,6 +417,11 @@
 
     # stash unstaged changes if rebasing a dirty tree
     autostash = true
+
+[user]
+    # require explicit name and email in config, don't guess silly values
+    useConfigOnly = true
+    name = Jan Warchoł
 
 [include]
     # load account-specific settings from a file managed outside dotfiles repo
