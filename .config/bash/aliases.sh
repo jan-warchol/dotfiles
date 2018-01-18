@@ -82,8 +82,6 @@ alias _='cd -'  # sometimes I accidentally press shift when typing `-`
 mdc() { mkdir --parents "$@"; cd "$@"; }
 # I keep forgetting whether it's mcd or mdc, so let's have both :P
 alias mcd=mdc
-# open file in it's default GUI application (taken from MIME settings).
-# to open current directory in graphical file manager, use `o .`
 ap() { ANSIBLE_LOG_PATH=./ansible-$(date +%F.%H:%M:%S).log time ansible-playbook --diff "$@"; alert; }
 alias av='ansible-vault'
 alias ave='ansible-vault edit'
