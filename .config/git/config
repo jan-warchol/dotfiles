@@ -253,6 +253,12 @@
 
     # MULTIPLE IDENTITY MANAGEMENT
 
+    # Clone using specific SSH key and configure the repo to remember it
+    cln-janw = -c core.sshCommand='ssh -i ~/.ssh/personal_key' \
+         clone -c core.sshCommand='ssh -i ~/.ssh/personal_key'
+    cln-clty = -c core.sshCommand='ssh -i ~/.ssh/codility_key' \
+         clone -c core.sshCommand='ssh -i ~/.ssh/codility_key'
+
     # Configure current repo with email to use
     janw = config user.email jan.warchol@gmail.com
     clty = config user.email jan.warchol@codility.com
