@@ -34,7 +34,6 @@
     cb = !git c -b
     cd = !git c devel
     cm = !git c master
-    cs = !git c sdwan
     com = !git c origin/master
     cu = !git c @{upstream}
 
@@ -140,9 +139,7 @@
     rbim = rebase --interactive master
     rbiu = rebase --interactive @{upstream}
     rbm = rebase master
-    rbs = rebase sdwan
     rbom = rebase origin/master
-    rbos = rebase origin/sdwan
 
     rt = remote --verbose
 
@@ -199,19 +196,14 @@
     l21 = !git ls -21
 
     # as above, but includes all local and remote branches
-    lm  = !git ls HEAD master origin/master
-    la  = !git ls HEAD --branches --remotes
+    lm  = !git ls HEAD master origin/master trunk origin/trunk
     lb  = !git ls HEAD --branches
-    lr  = !git ls HEAD --branches=release* --remotes=*/release* sdwan origin/sdwan
-    lsd = !git ls HEAD sdwan origin/sdwan
-    las = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan* --tags=sdwan*
-    lbs = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan --tags=sdwan*
-    lmf  = !git lf HEAD master origin/master
-    laf  = !git lf HEAD --branches --remotes
+    la  = !git ls HEAD --branches --remotes
+    lr  = !git ls HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
+    lmf  = !git lf HEAD master origin/master trunk origin/trunk
     lbf  = !git lf HEAD --branches
-    lsdf = !git lf HEAD sdwan origin/sdwan
-    lasf = !git lf HEAD --branches=sdwan* --remotes=origin/sdwan*
-    lbsf = !git lf HEAD --branches=sdwan* --remotes=origin/sdwan
+    laf  = !git lf HEAD --branches --remotes
+    lrf  = !git lf HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
 
     # "Long" format - full commit message and summary of changes
     ll = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
