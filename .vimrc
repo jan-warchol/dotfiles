@@ -80,6 +80,7 @@ set undofile
 set directory=$HOME/.vim/swap//
 set backupdir=$HOME/.vim/backup//
 set undodir=$HOME/.vim/undo//
+set viminfo+=n$HOME/data/viminfo-$DISAMBIG_SUFFIX
 
 " save clipboard register on exit and suspend - http://stackoverflow.com/a/9381778/2058424
 autocmd VimLeave * call system("xsel -ib", getreg('+'))

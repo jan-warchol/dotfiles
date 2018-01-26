@@ -26,18 +26,22 @@ if [ -f '/home/jan/bin/google-cloud-sdk/path.bash.inc' ]; then source '/home/jan
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/jan/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/completion.bash.inc'; fi
 
+export XDG_CONFIG_DIR="$HOME/.config"
+export XDG_DATA_DIR="$HOME/data"
+export DISAMBIG_SUFFIX=$(hostname)
+
 # shell history is very useful, so let's make sure we can harness its full power
 export HISTFILESIZE=10000000
 export HISTSIZE=10000000
 export HISTCONTROL=ignoredups   # don't store duplicated commands
 shopt -s histappend   # don't overwrite history file after each session
 # I prefer to keep my history in my data folder so that it's backed up
-export HISTFILE="$HOME/data/bash_history"
+export HISTFILE="$HOME/data/bash-history-$DISAMBIG_SUFFIX"
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
 export EDITOR="vim"
 
-export _FASD_DATA="$HOME/data/cli-stuffy/fasd"
+export _FASD_DATA="$HOME/data/fasd-data-$DISAMBIG_SUFFIX"
 
 # fix dircolors for selenized
 export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
