@@ -82,9 +82,7 @@ alias _='cd -'  # sometimes I accidentally press shift when typing `-`
 mdc() { mkdir --parents "$@"; cd "$@"; }
 # I keep forgetting whether it's mcd or mdc, so let's have both :P
 alias mcd=mdc
-# open file in it's default GUI application (taken from MIME settings).
-# to open current directory in graphical file manager, use `o .`
-ap() { ANSIBLE_LOG_PATH=./ansible-$(date +%F.%H:%M:%S).log time ansible-playbook --diff "$@"; alert; }
+ap() { time ANSIBLE_LOG_PATH=./.ansible-$(date +%F.%H:%M:%S).log ansible-playbook --diff "$@"; alert; }
 alias av='ansible-vault'
 alias ave='ansible-vault edit'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
@@ -95,6 +93,7 @@ alias sagi='sudo apt-get --assume-yes install'
 alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do $EDITOR $f; done'
 alias kt='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
 alias ks='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-shifted.xkb -w 4 $DISPLAY'
+alias kd='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-dell.xkb -w 4 $DISPLAY'
 alias pls='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias don='cd ~; export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME'
 alias dof='unset GIT_DIR; unset GIT_WORK_TREE'

@@ -34,7 +34,6 @@
     cb = !git c -b
     cd = !git c devel
     cm = !git c master
-    cs = !git c sdwan
     com = !git c origin/master
     cu = !git c @{upstream}
 
@@ -53,11 +52,13 @@
 
     wip = commit -m 'Work in progress'
     wap = commit -a -m 'Work in progress'
+    wish = !git commit -m 'Work in progress' && git push --quiet
+    wash = !git commit -a -m 'Work in progress' && git push --quiet
 
     amn = commit --amend
     ama = commit --amend --all
     amq = commit --amend --all --no-edit
-    apf = !git amq --quiet && git puf --quiet   
+    paf = !git amq --quiet && git puf --quiet
 
     d = diff --color=always --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
@@ -138,9 +139,7 @@
     rbim = rebase --interactive master
     rbiu = rebase --interactive @{upstream}
     rbm = rebase master
-    rbs = rebase sdwan
     rbom = rebase origin/master
-    rbos = rebase origin/sdwan
 
     rt = remote --verbose
 
@@ -197,19 +196,14 @@
     l21 = !git ls -21
 
     # as above, but includes all local and remote branches
-    lm  = !git ls HEAD master origin/master
-    la  = !git ls HEAD --branches --remotes
+    lm  = !git ls HEAD master origin/master trunk origin/trunk
     lb  = !git ls HEAD --branches
-    lr  = !git ls HEAD --branches=release* --remotes=*/release* sdwan origin/sdwan
-    lsd = !git ls HEAD sdwan origin/sdwan
-    las = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan* --tags=sdwan*
-    lbs = !git ls HEAD --branches=sdwan* --remotes=origin/sdwan --tags=sdwan*
-    lmf  = !git lf HEAD master origin/master
-    laf  = !git lf HEAD --branches --remotes
+    la  = !git ls HEAD --branches --remotes
+    lr  = !git ls HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
+    lmf  = !git lf HEAD master origin/master trunk origin/trunk
     lbf  = !git lf HEAD --branches
-    lsdf = !git lf HEAD sdwan origin/sdwan
-    lasf = !git lf HEAD --branches=sdwan* --remotes=origin/sdwan*
-    lbsf = !git lf HEAD --branches=sdwan* --remotes=origin/sdwan
+    laf  = !git lf HEAD --branches --remotes
+    lrf  = !git lf HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
 
     # "Long" format - full commit message and summary of changes
     ll = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
@@ -224,7 +218,8 @@
     lmpr = log --color=always --decorate --patch --reverse master..HEAD
 
     # log commits that differ between current branch and its upstream
-    lu = !GIT_PAGER='less -REXS' git ls HEAD...@{upstream}
+    lu = !git ls HEAD...@{upstream}
+    lub = !git ls --boundary HEAD...@{upstream}
 
     # two-line version, useful when your terminal window is narrow
     l2 = !git log --abbrev=10 --color=always --decorate --graph --date=iso \
@@ -241,7 +236,9 @@
     --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
 
     # reflog with dates and commit message subject
-    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
+    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs \
+    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset) - %gs %n                 %C(dim yellow)%h %C(white)- %<(50,trunc)%s%C(reset)'
+    rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
     # log unpushed/unmerged commits on all branches
     unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
@@ -251,6 +248,20 @@
     divk = !gitk HEAD...@{upstream}
     unpk = !gitk --branches --not --remotes &
     unmk = !gitk --remotes --not --branches &
+
+
+
+    # MULTIPLE IDENTITY MANAGEMENT
+
+    # Clone using specific SSH key and configure the repo to remember it
+    cln-janw = -c core.sshCommand='ssh -i ~/.ssh/personal_key' \
+         clone -c core.sshCommand='ssh -i ~/.ssh/personal_key'
+    cln-clty = -c core.sshCommand='ssh -i ~/.ssh/codility_key' \
+         clone -c core.sshCommand='ssh -i ~/.ssh/codility_key'
+
+    # Configure current repo with email to use
+    janw = config user.email jan.warchol@gmail.com
+    clty = config user.email jan.warchol@codility.com
 
 
 
@@ -373,7 +384,7 @@
     # we want to use non-GUI vim (i.e. run it inside terminal) because GUI Vim
     # would fork and cause Git to exit with "Aborting due to empty commit message"
     editor = vim
-    excludesfile = /home/codilime/.global_gitignore
+    excludesfile = ~/.global_gitignore
     pager = ~/bin/smartless
 
 [diff]
@@ -412,6 +423,11 @@
 
     # stash unstaged changes if rebasing a dirty tree
     autostash = true
+
+[user]
+    # require explicit name and email in config, don't guess silly values
+    useConfigOnly = true
+    name = Jan Warchoł
 
 [include]
     # load account-specific settings from a file managed outside dotfiles repo
