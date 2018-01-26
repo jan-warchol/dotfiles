@@ -56,24 +56,26 @@ alias vt='vagrant'
 alias vth='vagrant halt'
 alias vts='vagrant status'
 alias vtl='vagrant ssh'
-vtu() { time vagrant up "$@" && vagrant ssh-config >> ~/.ssh/vagrant_hosts_config; alert; }
+vtu() { time vagrant up "$@"; alert; }
 vtus() { time vagrant up "$@" && vagrant ssh "$@"; alert; }
 alias vtupo='time vagrant up --provider=openstack'
-vtd() { vagrant destroy -f "$@" && trash-put ~/.ssh/vagrant_hosts_config; }
-alias vtp='time vagrant provision; alert'
-alias sshv='ssh -F ~/.ssh/vagrant_hosts_config'
-alias sshfsv='sshfs -F ~/.ssh/vagrant_hosts_config'
+vtd() { vagrant destroy -f "$@"; }
+vtp() { time vagrant provision "$@"; alert; }
+
 sshumount() { fusermount -u "$@" && rmdir "$@"; }
 alias mkd='mkdir --parents'
 
 # Some commands are so common that they deserve one-letter shortcuts :)
-g() { git "$@"; }
-alias v='fasd -f -e "$EDITOR"'
-alias c='fasd_cd -d'
-alias u='cd ..'  # (u)p one directory level
-alias uu='cd ../..'
-alias uuu='cd ../../..'
-alias uuuu='cd ../../../..'
+
+# alias v='fasd -f -e "$EDITOR"'
+# alias c='fasd_cd -d'
+# _fasd_bash_hook_cmd_complete v c
+
+# alias u='cd ..'  # (u)p one directory level
+# alias uu='cd ../..'
+# alias uuu='cd ../../..'
+# alias uuuu='cd ../../../..'
+
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
 alias -- -='cd -'
 alias _='cd -'  # sometimes I accidentally press shift when typing `-`

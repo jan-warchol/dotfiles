@@ -63,7 +63,7 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
-eval "$(fasd --init auto)"
+eval "$(fasd --init bash-hook)"
 
 # block touchpad when typing
 syndaemon -i 1 -d -t -K

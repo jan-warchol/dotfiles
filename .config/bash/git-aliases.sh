@@ -1,3 +1,13 @@
+# I use git so much that it makes sense to have a one-letter alias.
+# This is done as a function so that redraw-current-line will not expand it,
+# see commit fa30e5fbbc433db4fd22e.
+g() { git "$@"; }
+
+# make sure the autocompletion function (`_git`) is loaded
+type -t _git >/dev/null || . /usr/share/bash-completion/completions/git
+
+complete -o default -o nospace -F _git g
+
 # I want NO line wrapping on these two, so I pipe them to less with
 # line-wrapping disabled and exit less immediately without clearing screen.
 g5() { git ls -5 "$@" | less --RAW-CONTROL-CHARS --chop-long-lines --QUIT-AT-EOF --no-init; }

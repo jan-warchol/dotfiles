@@ -164,15 +164,6 @@ call textobj#user#plugin('yaml', {
 \   },
 \ })
 
-" Fuzzy-find in all files, excluding .git data subdirectories (but including
-" .git/config, .git/HEAD etc.)
-command! -bang -nargs=? -complete=dir AllFiles call
-  \ fzf#vim#files(<q-args>,
-  \     {'source': "find . -mindepth 1 -type d -a -path '*/.git/*' -prune -o -print | cut -c 3- "},
-  \     <bang>0)
-
-
-
 " MAPPINGS =============================================================
 
 let mapleader = "\<Space>"
@@ -183,23 +174,29 @@ map <Leader> <Plug>(easymotion-prefix)
 nmap <Leader>l <Plug>VinegarUp
 nmap <buffer> <Leader>l <Plug>VinegarUp
 
+" Fuzzy-find in all files (including hidden)
+command! -bang -nargs=? -complete=dir AllFiles call
+  \ fzf#vim#files(<q-args>,
+  \     {'source': "find"},
+  \     <bang>0)
+
+" Fuzzy-find in dotfiles
+command! -bang -nargs=? -complete=dir DotFiles call
+  \ fzf#vim#files(<q-args>,
+  \     {'source': "GIT_DIR=~/.dotfiles.git git ls-files; find -L ~/.ssh; find ~/.fzf/shell"},
+  \     <bang>0)
+
 " FZF
 nmap <Leader>oi :Buffers<CR>
+
 nmap <Leader>on :Files<CR>
-nmap <Leader>oh :AllFiles<CR>
-nmap <Leader>ow :Windows<CR>
-nmap <Leader>ol :Lines<CR>
-nmap <Leader>om :History<CR>
-nmap <Leader>rc :History:<CR>
-nmap <Leader>rs :History/<CR>
-" additional fuzyy-search directory targets
-nmap <Leader>o~ :Files ~<CR>
-nmap <Leader>ot :Files ~<CR>
-nmap <Leader>o/ :Files /<CR>
+nmap <Leader>oa :AllFiles<CR>
+nmap <Leader>oh :AllFiles ~<CR>
 nmap <Leader>oe :Files /etc<CR>
-nmap <Leader>os :Files ~/src<CR>
-nmap <Leader>oa :AllFiles ~<CR>
-nmap <Leader>oc :AllFiles ~/.config<CR>
+nmap <Leader>og :GFiles<CR>
+nmap <Leader>od :cd ~<CR>:DotFiles<CR>
+
+nmap <Leader>ow :Windows<CR>
 
 " Ctrl-S and Ctrl-Q are unused by default
 nnoremap <C-S> :w<CR>

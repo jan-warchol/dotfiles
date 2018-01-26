@@ -47,7 +47,7 @@ function ld {
     done
 }
 
-# replace standard `cd` with enhanced version, ensure tab-completion works
-alias cd=cd_with_history
-complete -d cd
+# # replace standard `cd` with enhanced version, ensure tab-completion works
+# alias cd=cd_with_history
+# complete -d cd
 
