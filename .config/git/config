@@ -83,24 +83,24 @@
     # '!git' construct, the command will always be ran from the repository root
     # (which in case of grep changes the behaviour, as it searches only inside
     # path from which it's ran).
-    g = grep --extended-regexp --ignore-case
-    g2 = grep --extended-regexp --ignore-case --color=always --line-number --context 2
-    g3 = grep --extended-regexp --ignore-case --color=always --line-number --context 3
-    g5 = grep --extended-regexp --ignore-case --color=always --line-number --context 5
-    gl8 = grep --extended-regexp --ignore-case --color=always --line-number --context 8
+    g   = grep --extended-regexp --textconv --ignore-case
+    g2  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 2
+    g3  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 3
+    g5  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 5
+    gl8 = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 8
     # when I want to see more context, I don't want filenames obscuring my
     # view.  This also makes it possible to copy-and-paste code snippets.
-    gh  = -c color.grep.filename='magenta bold' grep --extended-regexp --ignore-case --color=always --heading
-    gh5 = -c color.grep.filename='magenta bold' grep --extended-regexp --ignore-case --color=always --heading --context 5
-    g8  = -c color.grep.filename='magenta bold' grep --extended-regexp --ignore-case --color=always --heading --context 8
-    g13 = -c color.grep.filename='magenta bold' grep --extended-regexp --ignore-case --color=always --heading --context 13
-    g21 = -c color.grep.filename='magenta bold' grep --extended-regexp --ignore-case --color=always --heading --context 21
+    gh  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading
+    gh5 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 5
+    g8  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 8
+    g13 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 13
+    g21 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 21
     # matches pattern only at word boundaries
-    gw = grep --extended-regexp --ignore-case --color=always --line-number --word-regexp
-    ghw = grep --extended-regexp --ignore-case --color=always --heading --word-regexp --context 8
+    gw  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --word-regexp
+    ghw = grep --extended-regexp --textconv --ignore-case --color=always --heading --word-regexp --context 8
 
     # search, pipe the results to less and set less' search pattern (for navigating results with n/N)
-    gl = !GIT_PAGER=\"less -p $@\" git grep --extended-regexp --ignore-case --context 13
+    gl = !GIT_PAGER=\"less -p $@\" git grep --extended-regexp --textconv --ignore-case --context 13
 
     # search whole repository, not only current directory.
     # (in `!...` construct, commands are executed from repository root dir)
@@ -349,6 +349,8 @@
         && git branch --delete $BRANCH'
 
 
+# configuration for managing files encrypted with ansible vault
+# See https://github.com/building5/ansible-vault-tools
 [diff "ansible-vault"]
     textconv = ansible-vault view
     # enable caching decrypted content (less secure, but much faster)
