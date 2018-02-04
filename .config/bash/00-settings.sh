@@ -33,7 +33,7 @@ export DISAMBIG_SUFFIX=$(hostname)
 # shell history is very useful, so let's make sure we can harness its full power
 export HISTFILESIZE=10000000
 export HISTSIZE=10000000
-export HISTCONTROL=ignoredups   # don't store duplicated commands
+export HISTCONTROL=ignoreboth
 shopt -s histappend   # don't overwrite history file after each session
 # I prefer to keep my history in my data folder so that it's backed up
 export HISTFILE="$HOME/data/bash-history-$DISAMBIG_SUFFIX"
