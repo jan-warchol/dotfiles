@@ -30,9 +30,9 @@ export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/data"
 export DISAMBIG_SUFFIX=$(hostname)
 
-# shell history is very useful, so let's make sure we can harness its full power
-export HISTFILESIZE=10000000
-export HISTSIZE=10000000
+# shell history is very useful; keep many months of history
+export HISTFILESIZE=100000
+export HISTSIZE=100000
 export HISTCONTROL=ignoreboth
 shopt -s histappend   # don't overwrite history file after each session
 # I prefer to keep my history in my data folder so that it's backed up
