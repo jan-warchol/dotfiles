@@ -188,7 +188,7 @@ command! -bang -nargs=? -complete=dir DotFiles call
   \     <bang>0)
 
 " FZF
-nmap <Leader>oi :Buffers<CR>
+nmap <Leader><Tab> :Buffers<CR>
 
 nmap <Leader>on :Files<CR>
 nmap <Leader>oa :AllFiles<CR>
