@@ -8,6 +8,7 @@ set cursorline
 
 " soft-wrap lines only on word boundaries
 set linebreak
+set nowrap
 
 " Allow color schemes to do bright colors without forcing bold.
 " This must be done before colorscheme settings, and also must be set here so
