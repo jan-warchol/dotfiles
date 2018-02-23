@@ -54,7 +54,8 @@ set mouse=a
 "Enable middle mouse button clipboard support
 set guioptions+=a
 
-" Automatically use system wide clipboard
+" Automatically use system-wide clipboard (the one tied to Ctrl-C/X/V; use
+" 'unnamed' for middle-mouse-button clipboard)
 set clipboard=unnamedplus
 
 " Allow having multiple files with unsaved changes opened simultaneously
@@ -133,7 +134,7 @@ Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline ch
 " Navigation/motions ---------------------------------------------------
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'  " required by vim-easyclip (and useful on its own)
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
 " TODO: make easymotion don't try so many words so that i don't loose
@@ -143,7 +144,7 @@ let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
 Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
 
 " Make register behaviour more resonable
-Plug 'svermeulen/vim-easyclip'
+Plug 'svermeulen/vim-easyclip'  " requires repeat.vim
 "" Map x to cut 
 let g:EasyClipUseCutDefaults = 0
 nmap x <Plug>MoveMotionPlug
