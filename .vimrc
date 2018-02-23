@@ -145,11 +145,11 @@ Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
 
 " Make register behaviour more resonable
 Plug 'svermeulen/vim-easyclip'  " requires repeat.vim
-"" Map x to cut 
+"" Let d remain cutting operator
 let g:EasyClipUseCutDefaults = 0
-nmap x <Plug>MoveMotionPlug
-xmap x <Plug>MoveMotionXPlug
-nmap xx <Plug>MoveMotionLinePlug
+nmap d <Plug>MoveMotionPlug
+xmap d <Plug>MoveMotionXPlug
+nmap dd <Plug>MoveMotionLinePlug
 "" Map s to substitute 
 let g:EasyClipUseSubstituteDefaults = 1
 
