@@ -247,7 +247,6 @@ map _ <Nop>
 " remember that <tab> == <C-I>
 map <tab> <Nop>
 map <C-O> <Nop>
-map <C-P> <Nop>
 map \ <Nop>
 " Leader: a c d h j l m p q u x y z
 
