@@ -54,10 +54,6 @@ set mouse=a
 "Enable middle mouse button clipboard support
 set guioptions+=a
 
-" Automatically use system-wide clipboard (the one tied to Ctrl-C/X/V; use
-" 'unnamed' for middle-mouse-button clipboard)
-set clipboard=unnamedplus
-
 " Allow having multiple files with unsaved changes opened simultaneously
 set hidden
 
@@ -83,10 +79,6 @@ set directory=$HOME/.vim/swap//
 set backupdir=$HOME/.vim/backup//
 set undodir=$HOME/.vim/undo//
 set viminfo+=n$HOME/data/viminfo-$DISAMBIG_SUFFIX
-
-" save clipboard register on exit and suspend - http://stackoverflow.com/a/9381778/2058424
-autocmd VimLeave * call system("xsel -ib", getreg('+'))
-noremap <silent> <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
 
 
 
@@ -145,17 +137,37 @@ Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
 
 " Make register behaviour more resonable
 Plug 'svermeulen/vim-easyclip'  " requires repeat.vim
-"" Let d remain cutting operator
-let g:EasyClipUseCutDefaults = 0
-nmap d <Plug>MoveMotionPlug
-xmap d <Plug>MoveMotionXPlug
-nmap dd <Plug>MoveMotionLinePlug
-"" Map s to substitute 
-let g:EasyClipUseSubstituteDefaults = 1
 
 Plug 'ktonga/vim-follow-my-lead'
 let g:fml_all_sources = 1
 call plug#end()
+
+
+
+" SANE CLIPBOARD =======================================================
+
+" Requires svermeulen/vim-easyclip plugin. See also
+" http://vimcasts.org/blog/2013/11/registers-the-good-the-bad-and-the-ugly-parts/
+
+" Automatically use system-wide clipboard (the one tied to Ctrl-C/X/V; use
+" 'unnamed' for middle-mouse-button clipboard)
+set clipboard=unnamedplus
+
+" save clipboard register on exit and suspend - http://stackoverflow.com/a/9381778/2058424
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+noremap <silent> <C-z> :call system("xsel -ib", getreg('+'))<CR><C-z>
+
+" Map s to substitute (replacement motion, no need for extra register)
+let g:EasyClipUseSubstituteDefaults = 1
+
+" Restore d as cutting operator. This is not ideal (I still don't have a
+" convenient way to delete without putting in clipboard), but the alternative
+" (replacing one of Vim's default mappings, like x or m, or using a longer
+" mapping, like <Leader>d) sounds worse.
+let g:EasyClipUseCutDefaults = 0
+nmap d <Plug>MoveMotionPlug
+xmap d <Plug>MoveMotionXPlug
+nmap dd <Plug>MoveMotionLinePlug
 
 
 
