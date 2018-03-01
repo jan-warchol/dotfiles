@@ -89,7 +89,7 @@ if [ -n "$DISPLAY" ]; then
     xcape -t 200 -e 'Control_L=Escape'
 
     # faster key repetition (160 ms delay, 80 reps/sec) - life is too short to wait!
-    xset r rate 160 80
+    xset r rate 170 70
 fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
