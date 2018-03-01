@@ -26,6 +26,8 @@ if [ -f '/home/jan/bin/google-cloud-sdk/path.bash.inc' ]; then source '/home/jan
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/jan/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/completion.bash.inc'; fi
 
+export ARDUINO_PATH=/usr/local/arduino
+
 export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/data"
 export DISAMBIG_SUFFIX=$(hostname)
