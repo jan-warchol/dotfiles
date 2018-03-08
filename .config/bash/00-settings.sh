@@ -98,6 +98,7 @@ fi
 eval "$(fasd --init bash-hook)"
 
 # block touchpad when typing
+killall --quiet --user $USER syndaemon
 syndaemon -i 1 -d -t -K
 
 # Configure escape sequences for less so that it will know how to display
