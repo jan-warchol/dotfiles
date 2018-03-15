@@ -218,6 +218,8 @@ nnoremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
 nnoremap <C-Q> :qall<CR>
 inoremap <C-Q> <Esc>:qall<CR>
+map <F3> :set wrap!<CR>
+imap <F3> <C-O>:set wrap!<CR>
 
 
 " consistency ----------------------------------------------------------
