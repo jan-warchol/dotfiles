@@ -39,6 +39,8 @@ mkdir -p `dirname $HISTFILE`
 export HISTTIMEFORMAT="%F %T "
 export HISTCONTROL=ignoreboth   # ignore duplicates and commands starting with space
 export HISTIGNORE="?:cd:-:..:ls:ll:bg:fg:vim:cim:g:g s:g d:g-"
+# disable terminal flow control key binding, so that ^S will search history forward
+stty -ixon
 
 export EDITOR="vim"
 
@@ -46,9 +48,6 @@ export _FASD_DATA="$HOME/data/fasd-data-$DISAMBIG_SUFFIX"
 
 # fix dircolors for selenized
 export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
-
-# disable terminal flow control key binding, so that ^S will search history forward
-stty -ixon
 
 # ~= UGH! =~
 # These settings *should* be simply put inside ~/.profile, which is executed
