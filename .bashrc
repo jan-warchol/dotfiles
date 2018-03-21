@@ -9,4 +9,6 @@ if [[ -d "${configs}" && $(ls "${configs}"/*.sh 2>/dev/null) ]]; then
     done
     # load site-specific overrides at the end (if they exist)
     [ -e "${configs}/config.local" ] && . "${configs}/config.local"
+    # load "vendored" bash history sync
+    . $HOME/.config/bash-history/sync-history.sh
 fi
