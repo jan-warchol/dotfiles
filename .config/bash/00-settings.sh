@@ -38,7 +38,7 @@ mkdir -p `dirname $HISTFILE`
 # enable keeping history timestamp and set format to ISO-8601
 export HISTTIMEFORMAT="%F %T "
 export HISTCONTROL=ignoreboth   # ignore duplicates and commands starting with space
-
+export HISTIGNORE="?:cd:-:..:ls:ll:bg:fg:vim:cim:g:g s:g d:g-"
 
 export EDITOR="vim"
 
