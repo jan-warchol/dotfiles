@@ -86,10 +86,6 @@ stty -ixon
 
 # Execute only when a graphical environment is present
 if [ -n "$DISPLAY" ]; then
-    # there should be always only one xcape process running.
-    killall --quiet --user $USER xcape
-    xcape -t 200 -e 'Control_L=Escape'
-
     # faster key repetition (160 ms delay, 80 reps/sec) - life is too short to wait!
     xset r rate 170 70
 fi
