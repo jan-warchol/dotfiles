@@ -5,7 +5,8 @@ IFS=$(echo -en "\n\b")
 normal="\e[00m"; bold="\e[1;37m"; green="\e[00;32m"
 
 REPO_PATH=$(dirname $(readlink --canonicalize "$0"))
-echo -e "\nInstalling dotfiles from $REPO_PATH."
+TARGET="$HOME"
+echo -e "\nInstalling dotfiles \nfrom $REPO_PATH \nto $TARGET."
 
 # make sure we're in correct repository
 cd "$REPO_PATH";
@@ -22,8 +23,8 @@ mv "$REPO_PATH"/.git/* "$REPO_PATH"; rmdir "$REPO_PATH/.git"
 
 
 echo -e "\nThis will install the following files:"
-dotfiles() { git --work-tree="$HOME" --git-dir="$REPO_PATH" "$@"; }
-cd; dotfiles ls-files
+dotfiles() { git --work-tree="$TARGET" --git-dir="$REPO_PATH" "$@"; }
+cd "$TARGET"; dotfiles ls-files
 echo ""
 
 # list conflicting files
@@ -41,5 +42,5 @@ done; sleep 3
 
 # actual installation
 dotfiles reset --hard --quiet
-echo "$REPO_PATH" > "$HOME/.config/dotfiles-git-dir"
+echo "$REPO_PATH" > "$TARGET/.config/dotfiles-git-dir"
 echo -e "\n${green}Done. Open a new terminal to see the effects.${normal}"
