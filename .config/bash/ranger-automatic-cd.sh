@@ -17,5 +17,5 @@ function ranger {
     rm -f -- "$tempfile"
 }
 
-# This binds Ctrl-O to ranger-cd:
-bind '"\C-o":"ranger\C-m"'
+# # This binds Ctrl-O to opening ranger:
+# bind -x '"\C-o":"ranger"'

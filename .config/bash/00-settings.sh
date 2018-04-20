@@ -18,7 +18,9 @@ shopt -s globstar
 # let "*" match hidden files as well
 shopt -s dotglob
 
-export PATH="$PATH:$HOME/bin/"
+export ARDUINO_PATH=/usr/local/arduino
+
+export PATH="$PATH:$HOME/bin/:$ARDUINO_PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/jan/bin/google-cloud-sdk/path.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/path.bash.inc'; fi
@@ -26,18 +28,48 @@ if [ -f '/home/jan/bin/google-cloud-sdk/path.bash.inc' ]; then source '/home/jan
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/jan/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/completion.bash.inc'; fi
 
-# shell history is very useful, so let's make sure we can harness its full power
-export HISTFILESIZE=10000000
-export HISTSIZE=10000000
-export HISTCONTROL=ignoredups   # don't store duplicated commands
+export XDG_CONFIG_DIR="$HOME/.config"
+export XDG_DATA_DIR="$HOME/data"
+export DISAMBIG_SUFFIX=$(hostname)
+
+# shell history is very useful; keep many months of history
+export HISTFILESIZE=100000
+export HISTSIZE=100000
+export HISTCONTROL=ignoreboth
 shopt -s histappend   # don't overwrite history file after each session
 # I prefer to keep my history in my data folder so that it's backed up
-export HISTFILE="$HOME/data/bash_history"
+export HISTFILE="$HOME/data/bash-history-$DISAMBIG_SUFFIX"
 export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# write session history to dedicated file and sync with other sessions, always
+# keeping history from current session on top.
+# Note that HISTFILESIZE shouldn't be too big, or there will be a noticeable
+# delay. A value of 100000 seems to work reasonable.
+update_history () {
+  history -a ${HISTFILE}.$$
+
+  history -c
+  history -r
+  for f in ${HISTFILE}.*; do
+    if [ $f != ${HISTFILE}.$$ ]; then
+      history -r $f
+    fi
+  done
+  history -r ${HISTFILE}.$$
+}
+
+# merge into main history file on bash exit (see trap below)
+merge_history () {
+  cat ${HISTFILE}.$$ >> $HISTFILE
+  rm ${HISTFILE}.$$
+}
+
+export PROMPT_COMMAND='update_history'
+trap merge_history EXIT
 
 export EDITOR="vim"
 
-export _FASD_DATA="$HOME/data/cli-stuffy/fasd"
+export _FASD_DATA="$HOME/data/fasd-data-$DISAMBIG_SUFFIX"
 
 # fix dircolors for selenized
 export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
@@ -59,13 +91,14 @@ if [ -n "$DISPLAY" ]; then
     xcape -t 200 -e 'Control_L=Escape'
 
     # faster key repetition (160 ms delay, 80 reps/sec) - life is too short to wait!
-    xset r rate 160 80
+    xset r rate 170 70
 fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
-eval "$(fasd --init auto)"
+eval "$(fasd --init bash-hook)"
 
 # block touchpad when typing
+killall --quiet --user $USER syndaemon
 syndaemon -i 1 -d -t -K
 
 # Configure escape sequences for less so that it will know how to display

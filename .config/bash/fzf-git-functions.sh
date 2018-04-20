@@ -1,30 +1,7 @@
-export FZF_HOME=$HOME/.fzf
-
-# Setup fzf
-# ---------
-if [[ ! "$PATH" == *$FZF_HOME/bin* ]]; then
-  export PATH="$PATH:$FZF_HOME/bin"
-fi
-
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "$FZF_HOME/shell/completion.bash" 2> /dev/null
-
-# Key bindings
-# ------------
-source "$FZF_HOME/shell/key-bindings.bash"
-
-export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
-
-# fuzzy-search in all files (including hidden)
-bind -x '"\C-u\C-a": "FZF_CTRL_T_COMMAND=find fzf-file-widget"'
-
-
-
-# bindings for git
-# ----------------
-
-# See https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
+# functions for git
+# -----------------
+#
+# based on https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
@@ -45,7 +22,8 @@ gf() {
 # choose from both local and remote branches (if you have a remote branch
 # "origin/X" and do `git checkout X`, git will set up local "X" automatically)
 __fzf_git_checkout__() {
-  git branch --all --color=always |
+  is_in_git_repo || return
+  (git branch --all --color=always |
   cut -c 3- |
   grep -v "remotes/.*/HEAD" |
   sed 's|remotes/[^/]*/||' |
@@ -55,7 +33,10 @@ __fzf_git_checkout__() {
     sort --uniq --key=1.6 |  # ignore color code (usually 5 chars)
     sed 's|_____||' |
   # list local branches before remote ones
-  sort --reverse |
+  sort --reverse;
+  # also include tags and color them yellow
+  git tag | xargs -I{} echo -e "\033[0;33m{}"
+  ) |
   fzf-down --ansi --no-sort --bind 'ctrl-s:toggle-sort' |
   xargs git checkout
 }
@@ -67,6 +48,13 @@ gb() {
     --preview 'git log --oneline --graph --color=always --date=short --abbrev=5 --pretty="%C(auto)%h %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
   sed 's/^..//' | cut -d' ' -f1 |
   sed 's#^remotes/##'
+}
+
+fzf_git_tag() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
 }
 
 gh() {
@@ -87,9 +75,3 @@ g_stash() {
   grep -o "stash@{[0-9]*}"
 }
 
-bind '"\er": redraw-current-line'
-bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
-bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
-bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
-bind '"\C-g\C-s": "$(g_stash)\e\C-e\er"'
-bind '"\C-g\C-g": "__fzf_git_checkout__\n"'

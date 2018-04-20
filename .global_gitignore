@@ -1,4 +1,4 @@
 *.swp
 *.un~
 *.pyc
-ansible-*.log
+.ansible-*.log
