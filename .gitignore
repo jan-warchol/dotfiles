@@ -1,6 +1,6 @@
 # This is dotfiles repository's gitignore (not a global gitignore).
 
-# By default ignore all files and directories
+# Since the worktree is HOME, by default ignore everything...
 /*
 
 # except some specific subdirectories of .config/

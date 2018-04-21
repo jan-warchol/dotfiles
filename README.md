@@ -1,7 +1,8 @@
-My configuration files. You may want to start by looking at [this
-repo](https://github.com/janek-warchol/sensible-dotfiles), which contains a
-curated set of basic configs. _Note: git config is in `.config/git/config`
-rather than usual `.gitconfig`._
+My configuration files. You may want to look at [this
+repo](https://github.com/janek-warchol/sensible-dotfiles) first - it contains
+a curated, basic set of universally useful settings.
+
+_Note: git config is in `.config/git/config`, bash config is in `.config/bash`._
 
 
 Highlights
