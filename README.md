@@ -74,22 +74,23 @@ my working directory, but the actual repository data is _not_ kept in `$HOME/.gi
 it can be in any directory you want (by default it's in the directory where
 the repo was initially cloned).
 
-Git will recognize that `$HOME` is a repository only if you call it like this:
+Git will recognize that `$HOME` is a repository only if you call it like this
+(see [`here`](.config/bash/dotfiles.sh) for helper commands):
 
     git --work-tree="$HOME" --git-dir="$HOME/.dotfiles.git"
-
-(that's what the [`dotfiles`](.bashrc#L4) command does).
 
 This design has the following advantages:
 - there are no symlinks that could get broken by some other programs,
 - dotfiles' `.gitignore` doesn't interfere with other repositories,
 - if you accidentally run a git command in a wrong dir you won't mess everything up.
 
+Note that git is configured to ignore everything except hidden files in this
+repository - see [`.gitignore`](.gitignore) for details. **WARNING:** never run
+`git clean` on the dotfiles repo or you may loose your data! See
+[`here`](.config/bash/dotfiles.sh) for safeguards against this.
+
 Credit for this idea goes to [Kyle Fuller]
 (http://kylefuller.co.uk/posts/organising-dotfiles-in-a-git-repository/).
-
-Note that git is configured to ignore everything except hidden files in this
-repository - see [`.gitignore`](.gitignore) for details.
 
 
 
