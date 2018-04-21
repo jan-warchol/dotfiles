@@ -25,7 +25,8 @@ fi
 # Alternative #2: environment modification
 don() {
     GIT_BIN=`which git`
-    safegit() {
+    # add safeguard against git clean
+    git() {
         if [[ "$@" == *clean* ]]; then
             echo "NEVER USE 'git clean' on the dotfiles repository!"
             echo "It would delete data from your HOME directory."
@@ -33,7 +34,6 @@ don() {
             $GIT_BIN "$@"
         fi
     }
-    alias git='safegit'
     . $HOME/.bashrc  # refresh aliases such as g=git to include the safeguard
 
     pushd ~ 1>/dev/null  # remember location
