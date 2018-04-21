@@ -36,7 +36,7 @@ don() {
     alias git='safegit'
     . $HOME/.bashrc  # refresh aliases such as g=git to include the safeguard
 
-    pushd ~  # remember location
+    pushd ~ 1>/dev/null  # remember location
     export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME
 }
 
@@ -44,5 +44,5 @@ dof() {
     unalias git
     . $HOME/.bashrc  # refresh aliases such as g=git to remove the safeguard
     unset GIT_DIR; unset GIT_WORK_TREE
-    popd  # restore previous location
+    popd 1>/dev/null  # restore previous location
 }
