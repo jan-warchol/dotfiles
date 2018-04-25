@@ -42,7 +42,7 @@ don() {
 }
 
 dof() {
-    unalias git
+    unset -f git
     . $HOME/.bashrc  # refresh aliases such as g=git to remove the safeguard
     unset GIT_DIR; unset GIT_WORK_TREE
     unset GIT_PS_FMT
