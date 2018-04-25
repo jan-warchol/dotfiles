@@ -48,7 +48,7 @@ GIT_PS1_SHOWUPSTREAM="verbose git"
 
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
-export PS1="\$(echo -e \${PS1_USER_COLOR})\u ${PS1_PATH_COLOR}\w${PS1_RESET_COLOR}\$(__git_ps1)${ranger_notice}\n${smartdollar}"
+export PS1="\$(echo -e \${PS1_USER_COLOR})\u ${PS1_PATH_COLOR}\w${PS1_RESET_COLOR}\$(__git_ps1 \"\$GIT_PS_FMT\")${ranger_notice}\n${smartdollar}"
 export PS4="$(tput bold)>>> $(tput sgr0)"
 
 
