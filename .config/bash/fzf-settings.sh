@@ -1,5 +1,7 @@
 export FZF_HOME=$HOME/.fzf
-export FZF_DEFAULT_OPTS="--history=$HOME/fzf-history-$DISAMBIG_SUFFIX"
+export FZF_DEFAULT_OPTS="\
+  --history=$HOME/fzf-history-$DISAMBIG_SUFFIX\
+  --bind \"tab:abort+execute(cd \`echo {} | sed 's|~|/home/jan/|'\`; echo -n {}/; find . | fzf --prompt {}/)\""
 
 # Setup fzf
 # ---------
