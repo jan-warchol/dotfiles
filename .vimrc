@@ -43,6 +43,9 @@ set hlsearch
 set splitbelow
 set splitright
 
+" autoresize splits on window resize (so that they are equal size)
+autocmd VimResized * wincmd =
+
 set expandtab
 set tabstop=8
 set shiftwidth=2
