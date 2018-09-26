@@ -1,3 +1,6 @@
+# This is my default gitignore for all repos. It’s configured in
+# .config/git/config -> core.excludesfile
+
 *.swp
 *.un~
 *.pyc

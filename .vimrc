@@ -43,6 +43,9 @@ set hlsearch
 set splitbelow
 set splitright
 
+" autoresize splits on window resize (so that they are equal size)
+autocmd VimResized * wincmd =
+
 set expandtab
 set tabstop=8
 set shiftwidth=2
@@ -93,6 +96,7 @@ Plug 'tpope/vim-sensible'
 Plug 'altercation/vim-colors-solarized'  " not used, just for comparison
 Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi color codes
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
+Plug 'posva/vim-vue'  " syntax highlighting for JavaScript framework Vue
 Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
@@ -146,6 +150,7 @@ call plug#end()
 " SANE CLIPBOARD =======================================================
 
 " Requires svermeulen/vim-easyclip plugin. See also
+" and +clipboard
 " http://vimcasts.org/blog/2013/11/registers-the-good-the-bad-and-the-ugly-parts/
 
 " Automatically use system-wide clipboard (the one tied to Ctrl-C/X/V; use
@@ -237,6 +242,18 @@ nnoremap <C-W>s <C-W>x
 " default behaviour of these two simply annoys me 
 inoremap <C-Z> <C-O><C-Z>
 nmap U u
+
+
+" navigation -----------------------------------------------------------
+
+" don't move cursor when leaving insert mode
+" http://vim.wikia.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
+" http://stackoverflow.com/a/17054564/2058424
+let CursorColumnI = 0 "the cursor column position in INSERT
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+set virtualedit=onemore
 
 
 " other ----------------------------------------------------------------

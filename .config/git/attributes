@@ -1,1 +1,2 @@
 *.vault diff=ansible-vault merge=ansible-vault
+package-lock.json -diff
