@@ -177,12 +177,14 @@ nmap dd <Plug>MoveMotionLinePlug
 
 " COMMANDS AND TEXT OBJECTS ============================================
 
-call textobj#user#plugin('yaml', {
-\   'dictvalue': {
-\     'pattern': '\(: \)\@<=.*$',
-\     'select': ['ay', 'iy'],
-\   },
-\ })
+if exists('textobj#user#plugin')
+  call textobj#user#plugin('yaml', {
+  \   'dictvalue': {
+  \     'pattern': '\(: \)\@<=.*$',
+  \     'select': ['ay', 'iy'],
+  \   },
+  \ })
+endif
 
 " MAPPINGS =============================================================
 
