@@ -29,8 +29,10 @@ fi
 # selecting with a double click) and display username in a different color.
 if [ -n "$SSH_CONNECTION" ]; then
     PS1_USER_COLOR="${MAGENTA}"
+    PS1_USERNAME='\u@\h'
 else
     PS1_USER_COLOR="${BLUE}"
+    PS1_USERNAME='\u'
 fi
 
 # Show notification when the shell was lauched from ranger
@@ -48,7 +50,7 @@ GIT_PS1_SHOWUPSTREAM="verbose git"
 
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
-export PS1="\$(echo -e \${PS1_USER_COLOR})\u \
+export PS1="\$(echo -e \${PS1_USER_COLOR})$PS1_USERNAME \
 \$(echo -e \${PS1_PATH_COLOR})\w\
 ${PS1_RESET_COLOR}\
 \$(__git_ps1 \"\$GIT_PS_FMT\")\
