@@ -57,14 +57,14 @@ export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
 if [ -n "$DISPLAY" ]; then
     # faster key repetition (160 ms delay, 80 reps/sec) - life is too short to wait!
     xset r rate 170 70
+
+    # block touchpad when typing
+    killall --quiet --user $USER syndaemon
+    syndaemon -i 1 -d -t -K
 fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
 eval "$(fasd --init bash-hook)"
-
-# block touchpad when typing
-killall --quiet --user $USER syndaemon
-syndaemon -i 1 -d -t -K
 
 # Configure escape sequences for less so that it will know how to display
 # colors for man etc. See also:
