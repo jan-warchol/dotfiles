@@ -39,6 +39,7 @@ don() {
     pushd ~ 1>/dev/null  # remember location
     export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME
     export GIT_PS_FMT=" (${BOLD}${YELLOW}dotfiles:${RESET_COLOR} %s)"
+    ssh_set_identity priv
 }
 
 dof() {
@@ -47,4 +48,5 @@ dof() {
     unset GIT_DIR; unset GIT_WORK_TREE
     unset GIT_PS_FMT
     popd 1>/dev/null  # restore previous location
+    ssh_set_identity default
 }
