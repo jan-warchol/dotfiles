@@ -1,31 +1,24 @@
 [AC]
 icon=battery-charging
 
-[AC][DPMSControl]
-idleTime=600
-
-[AC][DimDisplay]
-idleTime=300000
-
 [AC][HandleButtonEvents]
-lidAction=1
-powerButtonAction=16
+lidAction=32
+powerButtonAction=1
+triggerLidActionWhenExternalMonitorPresent=false
 
 [Battery]
 icon=battery-060
 
 [Battery][DPMSControl]
-idleTime=300
-
-[Battery][DimDisplay]
-idleTime=120000
+idleTime=900
 
 [Battery][HandleButtonEvents]
-lidAction=1
-powerButtonAction=16
+lidAction=32
+powerButtonAction=1
+triggerLidActionWhenExternalMonitorPresent=false
 
 [Battery][SuspendSession]
-idleTime=600000
+idleTime=3600000
 suspendType=1
 
 [LowBattery]
@@ -35,15 +28,16 @@ icon=battery-low
 value=30
 
 [LowBattery][DPMSControl]
-idleTime=120
+idleTime=300
 
 [LowBattery][DimDisplay]
-idleTime=60000
+idleTime=120000
 
 [LowBattery][HandleButtonEvents]
 lidAction=1
-powerButtonAction=16
+powerButtonAction=1
+triggerLidActionWhenExternalMonitorPresent=false
 
 [LowBattery][SuspendSession]
-idleTime=300000
+idleTime=900000
 suspendType=1
