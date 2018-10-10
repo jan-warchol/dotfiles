@@ -58,9 +58,11 @@ if [ -n "$DISPLAY" ]; then
     # faster key repetition (160 ms delay, 80 reps/sec) - life is too short to wait!
     xset r rate 170 70
 
-    # block touchpad when typing
-    killall --quiet --user $USER syndaemon
-    syndaemon -i 1 -d -t -K
+    if [ `which syndaemon` ]; then
+        # block touchpad when typing
+        killall --quiet --user $USER syndaemon
+        syndaemon -i 1 -d -t -K
+    fi
 fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
