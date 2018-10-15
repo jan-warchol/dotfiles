@@ -131,16 +131,17 @@
     # tags have to be pushed explicitly
     put = !git push --tags && git push
 
-    rb = rebase
-    rba = rebase --abort
-    rbc = rebase --continue
-    rbo = rebase --onto   # quite useful, see examples in 'git help rebase'
-    rbi = rebase --interactive
-    rbi5 = rebase --interactive HEAD~5
-    rbim = rebase --interactive master
-    rbiu = rebase --interactive @{upstream}
-    rbm = rebase master
+    rb   = rebase
+    rba  = rebase --abort
+    rbc  = rebase --continue
+    rbo  = rebase --onto        # quite useful, see examples in 'git help rebase'
+    rbu  = rebase @{upstream}
+    rbm  = rebase master
     rbom = rebase origin/master
+    rbi  = rebase --interactive
+    rbi5 = rebase --interactive HEAD~5
+    rbiu = rebase --interactive @{upstream}
+    rbim = rebase --interactive master
 
     rt = remote --verbose
 
