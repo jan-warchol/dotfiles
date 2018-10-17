@@ -41,3 +41,6 @@ triggerLidActionWhenExternalMonitorPresent=false
 [LowBattery][SuspendSession]
 idleTime=900000
 suspendType=1
+
+[migration]
+kdedShortcutMigration=true
