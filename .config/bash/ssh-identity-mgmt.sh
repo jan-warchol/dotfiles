@@ -1,19 +1,30 @@
 #!/bin/bash
 
 # Override ssh key from .ssh/config for accessing another account on services
-# such as github or bitbucket.
+# such as github or bitbucket. Has precedence over settings in .ssh/config
 
-ssh_set_identity() {
-  case "$1" in
-    priv)
-      export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_rsa_personal_2c6819cb"
-      export PS1_SSH_IDENTITY="🔑 :priv "
-      alias ssh="ssh -i $HOME/.ssh/id_rsa_personal_2c6819cb"
-      ;;
-    default)
+ssh_identity() {
+  if [ -f "$1" ]; then
+    KEY_PATH=$(readlink --canonicalize "$1")
+    KEY_NAME=$(basename "$KEY_PATH")
+
+    alias ssh="ssh -i $KEY_PATH"
+    alias scp="scp -i $KEY_PATH"
+    export GIT_SSH_COMMAND="ssh -i $KEY_PATH"
+    export PS1_SSH_IDENTITY="ssh:$KEY_NAME "
+  else
+    if [ "$1" == "reset" ]; then
+      unalias ssh
+      unalias scp
       unset GIT_SSH_COMMAND
       unset PS1_SSH_IDENTITY
-      unalias ssh
-      ;;
-  esac
+    else
+      echo "Unrecognized argument: $1"
+      echo "Valid choices are:"
+      echo "  - path to an SSH key file"
+      echo "  - 'reset'"
+    fi
+  fi
 }
+
+alias shid=ssh_identity
