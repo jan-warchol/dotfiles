@@ -204,7 +204,7 @@ command! -bang -nargs=? -complete=dir AllFiles call
 " Fuzzy-find in dotfiles
 command! -bang -nargs=? -complete=dir DotFiles call
   \ fzf#vim#files(<q-args>,
-  \     {'source': "GIT_DIR=~/.dotfiles.git git ls-files; find -L ~/.ssh; find ~/.fzf/shell"},
+  \     {'source': "GIT_DIR=~/.dotfiles.git git ls-files; echo ~/.config/terminator/config; find -L ~/.ssh; find ~/.fzf/shell"},
   \     <bang>0)
 
 " FZF
