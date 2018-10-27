@@ -10,7 +10,7 @@ echo -e "\nInstalling dotfiles \nfrom $REPO_PATH \nto $TARGET."
 
 # make sure we're in correct repository
 cd "$REPO_PATH";
-root_commit=$(git rev-list --max-parents=0 HEAD)
+root_commit=$(git rev-list --max-parents=0 HEAD | tail -1)
 if [[ $root_commit != 2d33ed8b8a804f7* ]]; then
     echo "This is not a clone of janek-warchol/dotfiles!"; exit
 fi
