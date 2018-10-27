@@ -149,8 +149,7 @@ call plug#end()
 
 " SANE CLIPBOARD =======================================================
 
-" Requires svermeulen/vim-easyclip plugin. See also
-" and +clipboard
+" Requires svermeulen/vim-easyclip plugin and +clipboard. See also
 " http://vimcasts.org/blog/2013/11/registers-the-good-the-bad-and-the-ugly-parts/
 
 " Automatically use system-wide clipboard (the one tied to Ctrl-C/X/V; use
