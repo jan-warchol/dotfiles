@@ -433,6 +433,13 @@
     useConfigOnly = true
     name = Jan Warchoł
 
+# When connecting to my private repos, use `personal.*` alias so that SSH will
+# use correct key to authenticate. See SSH config for more details.
+[url "git@personal.bitbucket.org:jan-warchol"]
+    insteadOf = git@bitbucket.org:jan-warchol
+[url "git@personal.github.com:jan-warchol"]
+    insteadOf = git@github.com:jan-warchol
+
 [include]
     # load account-specific settings from a file managed outside dotfiles repo
     path = config.local
