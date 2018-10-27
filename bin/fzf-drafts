@@ -1,0 +1,118 @@
+#!/bin/bash
+
+fzf_find_all() {
+    # exclude some useless hidden directories, but not all.
+    # in particular, include *files* directly inside .git, .git/hooks and .git/info
+    command find -L $@ \
+        \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
+           -o -path '*.git/*' ! -path '*/.git/info' ! -path '*/.git/hooks' -a -type d \
+           -o -name 'node_modules' \
+           -o -path '*/.local/share/Trash' \
+           -o -path '*/.vim/plugged' \
+           -o -name '.npm' \
+           -o -name '.cache' \
+        \) -prune \
+        -o -print \
+        -mindepth 1 \
+        2> /dev/null
+}
+
+# this is a separate function for performance reasons (more conditions result
+# in longer execution).
+fzf_find() {
+    # exclude hidden files and node_modules
+    command find -L $@ \
+        \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
+           -o -name 'node_modules' \
+           -o -name 'host-venv' \
+           -o -path '*/organizator/lib' \
+           -o -path '*/esi-release/*/*/*' \
+           -o -path '*/.*' \
+        \) -prune \
+        -o -print \
+        -mindepth 1 \
+        2> /dev/null
+}
+
+if [ "$1" == "--files" ]; then typesel="-type f"; shift; else typesel=""; fi
+# exclude hidden files and node_modules
+command find -L $@ \
+    \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
+       -o -name 'node_modules' \
+       -o -name 'host-venv' \
+       -o -path '*/organizator/lib' \
+       -o -path '*/esi-release/*/*/*' \
+       -o -path '*/.*' \
+    \) -prune \
+    -o $typesel -print \
+    -mindepth 1 \
+    2> /dev/null
+
+# Key bindings
+# ------------
+source "$FZF_HOME/shell/key-bindings.bash"
+
+# export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
+
+ls_dotfiles() {
+    # list all dotfiles tracked in my dotfiles git repo
+    GIT_DIR=~/.dotfiles.git git ls-files
+    fzf_find_all ~/.fzf
+}
+
+# fuzzy-search starting in various directories
+bind -x '"\C-u\C-t": FZF_CTRL_T_COMMAND="fzf_find | cut -c3-"      fzf-file-widget'
+bind -x '"\C-u\C-a": FZF_CTRL_T_COMMAND="fzf_find_all | cut -c3-"  fzf-file-widget'
+bind -x '"\C-u\C-g": FZF_CTRL_T_COMMAND="git ls-files"             fzf-file-widget'
+bind -x '"\C-u\C-h": FZF_CTRL_T_COMMAND="fzf_find ~"               fzf-file-widget'
+bind -x '"\C-u\C-e": FZF_CTRL_T_COMMAND="fzf_find /etc"            fzf-file-widget'
+bind -x '"\C-u\C-r": FZF_CTRL_T_COMMAND="fzf_find /"               fzf-file-widget'
+bind -x '"\C-u\C-j": FZF_CTRL_T_COMMAND="fzf_find ~/data ~/zasoby" fzf-file-widget'
+bind -x '"\C-u\C-d": FZF_CTRL_T_COMMAND="ls_dotfiles"              fzf-file-widget'
+
+
+
+
+# opening files
+#   - CTRL-O to use xdg-open command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fzf-open() {
+  local out file key
+  out=$(find $1 | fzf --expect=ctrl-o,ctrl-e)
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && cd "$file" || ${EDITOR:-vim} "$file"
+  fi
+}
+
+# opening files
+#   - CTRL-O to use xdg-open command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+fzf-open() {
+  local out file key
+  out=$(find $1 | fzf --expect=ctrl-o,ctrl-e)
+  echo $out
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    echo "$key"
+    case "$key" in
+      ctrl-o)
+        cd "$file"
+        pwd
+        ;;
+      ctrl-e)
+        ${EDITOR:-vim} "$file"
+        ;;
+      *)
+        echo lol
+        READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$file${READLINE_LINE:$READLINE_POINT}"
+        READLINE_POINT=$(( READLINE_POINT + ${#file} ))
+        ;;
+    esac
+  fi
+  # cd ~/tmp
+}
+
+bind -x '"\C-o\C-o": fzf-open'
