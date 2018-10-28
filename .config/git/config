@@ -120,6 +120,8 @@
 
     mb = merge-base @  # find where current branch diverged from another branch
 
+    mw = mv  # I'm used to using `mw` (customized mv) in shell
+
     # unlike plain `pull`, this won't attempt a merge that may result in conflicts
     pl = pull --ff-only
 
@@ -171,6 +173,8 @@
     su = "!sh -c 'git submodule init $@ && \
         git submodule sync --recursive $@ > /dev/null && \
         git submodule update --recursive $@' -"
+
+    tp = rm  # I'm used to using `tp` (trash-put) in shell
 
     who = shortlog --summary --numbered
 
