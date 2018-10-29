@@ -38,3 +38,7 @@ bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
 bind '"\C-g\C-s": "$(g_stash)\e\C-e\er"'
 bind '"\C-g\C-t": "$(fzf_git_tag)\e\C-e\er"'
 bind '"\C-g\C-g": "__fzf_git_checkout__\n"'
+
+# bindings for codility (chef, terraform) - see fzf-chef-functions.sh
+bind '"\C-o\C-s": "$(fzf_codility_ssh)\e\C-e\er"'
+
