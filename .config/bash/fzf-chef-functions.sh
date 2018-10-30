@@ -1,8 +1,6 @@
 INFRA_REPO_PATH="$HOME/src/infrastructure"
 
-# TODO: add aliases like "database.staging.codility.net"
-
-refresh_cache() {
+refresh_fzf_ssh_cache() {
   echo -n "Querying Chef server... "
   cd $INFRA_REPO_PATH
   (
@@ -10,13 +8,16 @@ refresh_cache() {
     chef exec rake chef:list[prod-main] | tail +3 | head -n -3 ;
     chef exec rake chef:list[staging] | tail +3 | head -n -3 ;
     chef exec rake chef:list[_default] | tail +3 | head -n -3 ;
-  ) | cut -d'|' -f2 > $INFRA_REPO_PATH/.chef/server-fqdn-cache
+  ) | cut -d'|' -f2 |
+  awk '{$1=$1;print}' |
+  awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- \
+  > $INFRA_REPO_PATH/.chef/server-fqdn-cache
   echo done.
 }
 
 fzf_codility_ssh() {
   cat $INFRA_REPO_PATH/.chef/server-fqdn-cache |
   fzf --height 50% --prompt 'ssh ' |
-  sed 's/^/ssh/'
+  sed 's/^/ssh /'
 }
 
