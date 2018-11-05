@@ -259,6 +259,8 @@ set virtualedit=onemore
 
 " other ----------------------------------------------------------------
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
+" Automatically reload .vimrc after writing it
+autocmd BufWritePost .vimrc source %
 
 set pastetoggle=<F5>
 
