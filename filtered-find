@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# exclude some useless hidden directories, but not all.
+# in particular, include *files* directly inside .git, .git/hooks and .git/info
+command find -L $@ \
+    \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
+       -o -path '*.git/*' ! -path '*/.git/info' ! -path '*/.git/hooks' -a -type d \
+       -o -name 'node_modules' \
+       -o -path '*/.local/share/Trash' \
+       -o -path '*/.vim/plugged' \
+       -o -name '.npm' \
+       -o -name '.cache' \
+    \) -prune \
+    -o -print \
+    -mindepth 1 \
+    2> /dev/null
