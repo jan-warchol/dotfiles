@@ -16,6 +16,11 @@
 /.gnupg/*
 !/.gnupg/gpg.conf
 
+# and ssh configuration
+!/.ssh/
+/.ssh/*
+!/.ssh/config
+
 # and the user-wide Vagrantfile
 !/.vagrant.d/
 /.vagrant.d/*
