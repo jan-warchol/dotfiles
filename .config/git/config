@@ -191,6 +191,10 @@
     # basic compact log, I use it all the time. Two lines per commit work
     # better for me than one line, as it fits narrower windows.
     ls = log --color=always --decorate --graph --date=relative \
+    --format=tformat:'%C(auto)%h%w(80,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+
+    # old version of compact log, without line wrapping
+    ls2 = log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
 
     # one-line version, useful when you want to squeeze a lot of commits
