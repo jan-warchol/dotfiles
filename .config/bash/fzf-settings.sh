@@ -27,6 +27,7 @@ bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="filtered-find ~" fzf-file-widget'
 bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="GIT_DIR=~/.dotfiles.git git ls-files | sed s:^:$HOME/:; echo ~/.config/terminator/config; find -L ~/.ssh; find ~/.fzf/shell; find ~/.config/xkb -name .git -prune -o -print" fzf-file-widget'
+bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="GIT_DIR=~/.password-store/.git git ls-files | grep \.gpg$ | sed s/\.gpg$//" fzf-file-widget'
 bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl" FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-sort --bind ctrl-s:toggle-sort" fzf-file-widget'
 
 
