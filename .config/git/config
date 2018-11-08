@@ -188,9 +188,15 @@
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
 
-    # basic one-line log, I use it all the time
+    # basic compact log, I use it all the time. Two lines per commit work
+    # better for me than one line, as it fits narrower windows.
     ls = log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
+
+    # one-line version, useful when you want to squeeze a lot of commits
+    ls1 = log --color=always --decorate --graph --date=relative \
+    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
+
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way of committing stuff
@@ -204,6 +210,7 @@
     # as above, but includes all local and remote branches
     lm  = !git ls HEAD master origin/master trunk origin/trunk
     lb  = !git ls HEAD --branches
+    # better than --all because I don't want stashes
     la  = !git ls HEAD --branches --remotes
     lr  = !git ls HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
     lmf  = !git lf HEAD master origin/master trunk origin/trunk
@@ -226,20 +233,6 @@
     # log commits that differ between current branch and its upstream
     lu = !git ls HEAD...@{upstream}
     lub = !git ls --boundary HEAD...@{upstream}
-
-    # two-line version, useful when your terminal window is narrow
-    l2 = !git log --color=always --decorate --graph --date=iso \
-    --format=tformat:'%C(auto)%h%C(reset) %C(blue)%an%C(reset)%C(white), %<(21,trunc)%ad%x08%x08%C(reset)%C(auto)%d%C(reset)%n        %s'
-
-    ls1 = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
-
-    # two-line version similar to one-line version
-    ls2 = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%C(reset) %s%n %C(auto)%d%C(reset) %C(white)%an, %ad%C(reset)'
-
-    ls3 = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
 
     # reflog with dates and commit message subject
     rf = !GIT_PAGER='less -REXS' git log --walk-reflogs \
