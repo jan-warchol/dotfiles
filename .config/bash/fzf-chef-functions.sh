@@ -4,10 +4,10 @@ refresh_fzf_ssh_cache() {
   echo -n "Querying Chef server... "
   cd $INFRA_REPO_PATH
   (
-    chef exec rake chef:list[prod-ecorp] | tail +3 | head -n -3 ;
-    chef exec rake chef:list[prod-main] | tail +3 | head -n -3 ;
-    chef exec rake chef:list[staging] | tail +3 | head -n -3 ;
-    chef exec rake chef:list[_default] | tail +3 | head -n -3 ;
+    chef exec rake chef:list[prod-ecorp] | tail -n +3 | head -n -3 ;
+    chef exec rake chef:list[prod-main] | tail -n +3 | head -n -3 ;
+    chef exec rake chef:list[staging] | tail -n +3 | head -n -3 ;
+    chef exec rake chef:list[_default] | tail -n +3 | head -n -3 ;
   ) | cut -d'|' -f2 |
   awk '{$1=$1;print}' |
   awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- \
