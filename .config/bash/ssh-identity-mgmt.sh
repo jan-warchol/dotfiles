@@ -33,11 +33,11 @@ ensure_main_ssh_key_loaded() {
   if ! ssh-add -l | grep -q /home/jan/.ssh/id_rsa; then
     passphrase=$(pass codility-ssh-key-3-password)
 
-    expect << '    EOF'
-      spawn ssh-add -t 2h
-      expect "Enter passphrase"
-      send "$passphrase\r"
-      expect eof
-    EOF
+expect << EOF
+  spawn ssh-add -t 2h
+  expect "Enter passphrase"
+  send "$passphrase\r"
+  expect eof
+EOF
   fi
 }
