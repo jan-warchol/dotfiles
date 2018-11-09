@@ -30,11 +30,11 @@ ssh_identity() {
 alias shid=ssh_identity
 
 ensure_main_ssh_key_loaded() {
-  if ! ssh-add -l | grep -q /home/jan/.ssh/id_rsa; then
+  if ! ssh-add -l | grep -q /home/jan/.ssh/keys/id_rsa_codility_3; then
     passphrase=$(pass codility-ssh-key-3-password)
 
 expect << EOF
-  spawn ssh-add -t 2h
+  spawn ssh-add -t 2h /home/jan/.ssh/keys/id_rsa_codility_3
   expect "Enter passphrase"
   send "$passphrase\r"
   expect eof
