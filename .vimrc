@@ -240,6 +240,13 @@ nnoremap <C-W>nv :vnew<CR>
 nnoremap <C-W>x <C-W>s
 nnoremap <C-W>s <C-W>x
 
+" Nawigate splits. This is such an important task that there really should be
+" a first-level mapping for it.
+nnoremap <silent> <C-Right> <c-w>l
+nnoremap <silent> <C-Left> <c-w>h
+nnoremap <silent> <C-Up> <c-w>k
+nnoremap <silent> <C-Down> <c-w>j
+
 " default behaviour of these two simply annoys me 
 inoremap <C-Z> <C-O><C-Z>
 nmap U u

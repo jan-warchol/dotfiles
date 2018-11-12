@@ -15,6 +15,15 @@ CYAN="\e[36m"
 WHITE="\e[37m"
 DEFAULT="\e[39m"
 
+BR_RED="\e[91m"
+BR_GREEN="\e[92m"
+BR_YELLOW="\e[93m"
+BR_BLUE="\e[94m"
+BR_MAGENTA="\e[95m"
+BR_CYAN="\e[96m"
+BR_WHITE="\e[97m"
+BR_DEFAULT="\e[99m"
+
 RESET_COLOR="\e[0m"
 
 # Using \[ and \] around color codes in prompt is necessary to prevent strange issues!
