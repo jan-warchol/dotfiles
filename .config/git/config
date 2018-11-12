@@ -238,11 +238,6 @@
     lu = !git ls HEAD...@{upstream}
     lub = !git ls --boundary HEAD...@{upstream}
 
-    # reflog with dates and commit message subject
-    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs \
-    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset) - %gs %n                 %C(dim yellow)%h %C(white)- %<(50,trunc)%s%C(reset)'
-    rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
-
     # log unpushed/unmerged commits on all branches
     unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
     unm = !GIT_PAGER='less -REXS' git ls --boundary --date-order --remotes --not --branches
@@ -251,6 +246,20 @@
     divk = !gitk HEAD...@{upstream}
     unpk = !gitk --branches --not --remotes &
     unmk = !gitk --remotes --not --branches &
+
+
+
+    # INFORMATIVE REFLOG
+
+    # reflog with dates and commit message subject
+    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --abbrev=10\
+    --format='%>(10)%gd %C(yellow)%h %C(reset)%gs\
+%n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
+
+    # one-line version of the above
+    rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs \
+    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%<(9)%gd%C(reset) \
+%C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
 
 
