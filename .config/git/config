@@ -188,10 +188,10 @@
     # always run log with --graph so that the topology will be visualized!
     l = log --color=always --decorate --graph
 
-    # basic compact log, I use it all the time. Two lines per commit work
+    # compact log with line wrapping. Two lines per commit work
     # better for me than one line, as it fits narrower windows.
     ls = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%w(80,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    --format=tformat:'%C(auto)%h%w(90,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
     # old version of compact log, without line wrapping
     ls2 = log --color=always --decorate --graph --date=relative \
