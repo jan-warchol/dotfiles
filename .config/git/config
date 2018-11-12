@@ -193,10 +193,6 @@
     ls  = log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%w(90,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
-    # old version of compact log, without line wrapping
-    ls2 = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
-
     # one-line version, useful when you want to squeeze a lot of commits on the screen
     ls1 = log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
@@ -228,12 +224,10 @@
     lb   = !git ls HEAD --branches
     la   = !git ls HEAD --branches --remotes
     lm   = !git ls HEAD master origin/master trunk origin/trunk
-    lr   = !git ls HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
 
     lbf  = !git lf HEAD --branches
     laf  = !git lf HEAD --branches --remotes
     lmf  = !git lf HEAD master origin/master trunk origin/trunk
-    lrf  = !git lf HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
 
     # log commits that differ between current branch and its upstream
     lu   = !git ls HEAD...@{upstream}
