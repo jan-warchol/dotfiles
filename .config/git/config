@@ -260,7 +260,7 @@
 
     # reflog with dates and commit message subject
     rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --abbrev=10\
-    --format='%>(10)%gd %C(yellow)%h %C(reset)%gs\
+    --format='%>(10)%gd %C(yellow)%h %C(reset)%gs%C(auto)%d\
 %n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
 
     # one-line version of the above
