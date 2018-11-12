@@ -186,62 +186,64 @@
     # Inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
     # always run log with --graph so that the topology will be visualized!
-    l = log --color=always --decorate --graph
+    l   = log --color=always --decorate --graph
 
-    # basic compact log, I use it all the time. Two lines per commit work
+    # compact log with line wrapping. Two lines per commit work
     # better for me than one line, as it fits narrower windows.
-    ls = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%w(80,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    ls  = log --color=always --decorate --graph --date=relative \
+    --format=tformat:'%C(auto)%h%w(90,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
-    # old version of compact log, without line wrapping
-    ls2 = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%d%C(reset) %C(white)%an, %ad%C(reset)%n  %s'
-
-    # one-line version, useful when you want to squeeze a lot of commits
+    # one-line version, useful when you want to squeeze a lot of commits on the screen
     ls1 = log --color=always --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
 
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
-    # developers are following Git Flow, GitHub Flow or another organized way of committing stuff
-    lf = log --color=always --decorate --graph --date=relative --first-parent \
+    # developers are following Git Flow, GitHub Flow or another organized way
+    # of committing stuff
+    lf  = log --color=always --decorate --graph --date=relative --first-parent \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
 
-    l8 = !git ls -8
-    l13 = !git ls -13
-    l21 = !git ls -21
-
-    # as above, but includes all local and remote branches
-    lm  = !git ls HEAD master origin/master trunk origin/trunk
-    lb  = !git ls HEAD --branches
-    # better than --all because I don't want stashes
-    la  = !git ls HEAD --branches --remotes
-    lr  = !git ls HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
-    lmf  = !git lf HEAD master origin/master trunk origin/trunk
-    lbf  = !git lf HEAD --branches
-    laf  = !git lf HEAD --branches --remotes
-    lrf  = !git lf HEAD --branches=release* --remotes=*/release* master origin/master trunk origin/trunk
-
     # "Long" format - full commit message and summary of changes
-    ll = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+    ll  = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+    # variant with unlimited stat summary length
     lll = log --color=always --decorate --graph --stat-graph-width=30
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
     llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
 
-    lp   = log --color=always --decorate --patch --submodule=log --topo-order
-    lpfd = log --color=always --decorate --patch --submodule=log --topo-order --full-diff
-    lpf  = log --color=always --decorate --patch --submodule=log --topo-order --first-parent
-    lpw  = log --color=always --decorate --patch --submodule=log --topo-order --word-diff=color
-    lmpr = log --color=always --decorate --patch --reverse master..HEAD
+
+    # simple shortcuts listing progressively more commits (Fibonacci sequence)
+    l8   = !git ls -8
+    l13  = !git ls -13
+    l21  = !git ls -21
+    l34  = !git ls -34
+
+
+    # Log commits from local and/or remote branches (using git ls/lf format)
+    # This is better than using --all option because I don't want stashes to be shown.
+    lb   = !git ls HEAD --branches
+    la   = !git ls HEAD --branches --remotes
+    lm   = !git ls HEAD master origin/master trunk origin/trunk
+
+    lbf  = !git lf HEAD --branches
+    laf  = !git lf HEAD --branches --remotes
+    lmf  = !git lf HEAD master origin/master trunk origin/trunk
 
     # log commits that differ between current branch and its upstream
-    lu = !git ls HEAD...@{upstream}
-    lub = !git ls --boundary HEAD...@{upstream}
+    lu   = !git ls HEAD...@{upstream}
+    # also show parents of displayed commits (makes graph more informative)
+    lub  = !git ls --boundary HEAD...@{upstream}
 
-    # reflog with dates and commit message subject
-    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs \
-    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset) - %gs %n                 %C(dim yellow)%h %C(white)- %<(50,trunc)%s%C(reset)'
-    rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%gd%C(reset): %C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
+    # Log showing commit diff. Doesn't use --graph because sometimes I want to
+    # copy some code from the diff, and each commit is so long that the graph
+    # is not readable anyway.
+    lp   = log --color=always --decorate --patch --submodule=log --topo-order
+    lpw  = log --color=always --decorate --patch --submodule=log --topo-order --word-diff=color
+    lpf  = log --color=always --decorate --patch --submodule=log --topo-order --first-parent
+    # when using a pathspec to limit commits, still show changes in all files
+    lpfd = log --color=always --decorate --patch --submodule=log --topo-order --full-diff
+    lmpr = log --color=always --decorate --patch --reverse master..HEAD
+
 
     # log unpushed/unmerged commits on all branches
     unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
@@ -251,6 +253,20 @@
     divk = !gitk HEAD...@{upstream}
     unpk = !gitk --branches --not --remotes &
     unmk = !gitk --remotes --not --branches &
+
+
+
+    # INFORMATIVE REFLOG
+
+    # reflog with dates and commit message subject
+    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --abbrev=10\
+    --format='%>(10)%gd %C(yellow)%h %C(reset)%gs\
+%n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
+
+    # one-line version of the above
+    rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs \
+    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%<(9)%gd%C(reset) \
+%C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
 
 
