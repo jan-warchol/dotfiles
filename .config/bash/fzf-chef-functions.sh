@@ -8,6 +8,8 @@ refresh_fzf_ssh_cache() {
     chef exec rake chef:list[prod-main] | tail -n +3 | head -n -3 ;
     chef exec rake chef:list[staging] | tail -n +3 | head -n -3 ;
     chef exec rake chef:list[_default] | tail -n +3 | head -n -3 ;
+    chef exec rake chef:list[testing] | tail -n +3 | head -n -3 ;
+    chef exec rake chef:list[qa] | tail -n +3 | head -n -3 ;
   ) | cut -d'|' -f2 |
   awk '{$1=$1;print}' |
   awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- \
