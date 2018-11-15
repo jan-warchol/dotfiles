@@ -23,3 +23,17 @@ fzf_codility_ssh() {
   sed 's/^/ssh /'
 }
 
+refresh_fzf_rake_cache() {
+  echo -n "Calculating rake tasks... "
+  cd $INFRA_REPO_PATH
+  chef exec rake -AT | cut -d'#' -f1 | sed 's/\s\+$//' \
+  > $INFRA_REPO_PATH/.chef/rake-task-cache
+  echo done.
+}
+
+fzf_codility_rake() {
+  cat $INFRA_REPO_PATH/.chef/rake-task-cache |
+  fzf --height 50% --prompt 'chef exec ' |
+  sed 's/^/chef exec /'
+}
+
