@@ -38,7 +38,7 @@ don() {
 
     pushd ~ 1>/dev/null  # remember location
     export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME
-    export GIT_PS_FMT=" (${BRIGTH}${YELLOW}dotfiles:${RESET_COLOR} %s)"
+    export GIT_PS_FMT=" (${BR_YELLOW}dotfiles:${RESET_COLOR} %s)"
 }
 
 dof() {
