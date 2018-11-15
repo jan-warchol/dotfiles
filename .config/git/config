@@ -40,8 +40,6 @@
 
     chp = cherry-pick
 
-    cln = clone --recurse-submodules
-
     # commit --verbose shows a preview of staged changes when editing the commit
     # message - you no longer have to run 'git diff' before every commit :)
     ci = commit --verbose   # no git command starts with 'k', and 'k' matches pronunciation!
@@ -272,15 +270,9 @@
 
     # MULTIPLE IDENTITY MANAGEMENT
 
-    # Clone using specific SSH key and configure the repo to remember it
-    cln-janw = -c core.sshCommand='ssh -i ~/.ssh/personal_key' \
-         clone -c core.sshCommand='ssh -i ~/.ssh/personal_key'
-    cln-clty = -c core.sshCommand='ssh -i ~/.ssh/codility_key' \
-         clone -c core.sshCommand='ssh -i ~/.ssh/codility_key'
-
-    # Configure current repo with email to use
-    janw = config user.email jan.warchol@gmail.com
-    clty = config user.email jan.warchol@codility.com
+    # Configure which email to use in current repo
+    gmail    = config user.email jan.warchol@gmail.com
+    codility = config user.email jan.warchol@codility.com
 
 
 

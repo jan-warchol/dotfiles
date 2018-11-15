@@ -1,0 +1,21 @@
+#!/bin/bash
+
+case "$*" in
+  *jan-warchol/*)
+    GIT_EMAIL=jan.warchol@gmail.com
+    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    ;;
+  git@gitlab.codility.net:codility/*)
+    GIT_EMAIL=jan.warchol@codility.com
+    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    ;;
+  *)
+esac
+
+git clone $CLONE_OPTS "$@" &&
+
+if [ -n "$GIT_EMAIL" ]; then
+  echo -e "user.email set to \e[1;37m$GIT_EMAIL\e[0m"
+else
+  echo Not possible to guess which email address to use. Set it manually.
+fi
