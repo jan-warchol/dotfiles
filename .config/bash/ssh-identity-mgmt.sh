@@ -13,7 +13,7 @@ ssh_identity() {
     export GIT_SSH_COMMAND="ssh -i $KEY_PATH"
     export PS1_SSH_IDENTITY="ssh:$KEY_NAME "
   else
-    if [ "$1" == "reset" ]; then
+    if [ "$1" == "--reset" ]; then
       unalias ssh
       unalias scp
       unset GIT_SSH_COMMAND
@@ -29,15 +29,23 @@ ssh_identity() {
 
 alias shid=ssh_identity
 
-ensure_main_ssh_key_loaded() {
+ensure_codility_ssh_key_loaded() {
   if ! ssh-add -l | grep -q /home/jan/.ssh/keys/id_rsa_codility_3; then
-    passphrase=$(pass codility-ssh-key-3-password)
-
 expect << EOF
-  spawn ssh-add -t 2h /home/jan/.ssh/keys/id_rsa_codility_3
+  spawn ssh-add -t 10h /home/jan/.ssh/keys/id_rsa_codility_3
   expect "Enter passphrase"
-  send "$passphrase\r"
+  send "$(pass codility-ssh-key-3-password)\r"
   expect eof
 EOF
   fi
 }
+
+load_key_if_working_on_codility() {
+  if [[ $PWD == *src/infrastructure* || $PWD == *src/codility* ]]; then
+    ensure_codility_ssh_key_loaded
+  fi
+}
+
+if [[  "$PROMPT_COMMAND" != *load_key_if_working_on_codility* ]]; then
+  export PROMPT_COMMAND="load_key_if_working_on_codility; $PROMPT_COMMAND"
+fi

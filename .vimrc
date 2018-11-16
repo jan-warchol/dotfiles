@@ -98,6 +98,7 @@ Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi col
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
 Plug 'posva/vim-vue'  " syntax highlighting for JavaScript framework Vue
 Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
+Plug 'derekwyatt/vim-scala'  " syntax highlighting for scala
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
 let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
