@@ -31,6 +31,7 @@ command find -L $FIND_SYMLINK_OPTS $FIND_PATHS \
     \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
        -o -path '*.git/*' ! -path '*/.git/info' ! -path '*/.git/hooks' -a -type d \
        -o -name 'node_modules' \
+       -o -name 'python_modules' \
        -o -path '*/codility/frontend_v2' \
        -o -path '*/codility/tasks' \
        -o -path '*/deployment/env3' \
