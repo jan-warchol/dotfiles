@@ -3,6 +3,7 @@
 # exclude some useless hidden directories, but not all.
 # in particular, include *files* directly inside .git, .git/hooks and .git/info
 command find -L $@ \
+    -mindepth 1 \
     \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
        -o -path '*.git/*' ! -path '*/.git/info' ! -path '*/.git/hooks' -a -type d \
        -o -name 'node_modules' \
@@ -22,5 +23,4 @@ command find -L $@ \
        -o -name 'site-packages' \
     \) -prune \
     -o -print \
-    -mindepth 1 \
     2> /dev/null
