@@ -1,5 +1,8 @@
 export FZF_HOME=$HOME/.fzf
-export FZF_DEFAULT_OPTS="--history=$HOME/fzf-history-$DISAMBIG_SUFFIX"
+export FZF_DEFAULT_OPTS="\
+  --history=$HOME/fzf-history-$DISAMBIG_SUFFIX\
+  --bind \"ctrl-u:abort+execute(cd ..; echo -n ../; find . | fzf --prompt \`pwd\`/)\"\
+  --bind \"ctrl-o:abort+execute(cd \`echo {} | sed 's|~|/home/jan/|'\`; echo -n {}/; find . | fzf --prompt {}/)\""
 
 # Setup fzf
 # ---------
@@ -18,12 +21,13 @@ source "$FZF_HOME/shell/key-bindings.bash"
 export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
 
 # fuzzy-search starting in various directories
-bind -x '"\C-o\C-n": fzf-file-widget'
+bind -x '"\C-o\C-n": FZF_CTRL_T_COMMAND="filtered-find" fzf-file-widget'
 bind -x '"\C-o\C-a": FZF_CTRL_T_COMMAND="find" fzf-file-widget'
-bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="find ~" fzf-file-widget'
+bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="filtered-find ~" fzf-file-widget'
 bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="GIT_DIR=~/.dotfiles.git git ls-files | sed s:^:$HOME/:; echo ~/.config/terminator/config; find -L ~/.ssh; find ~/.fzf/shell; find ~/.config/xkb -name .git -prune -o -print" fzf-file-widget'
+bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="GIT_DIR=~/.password-store/.git git ls-files | grep \.gpg$ | sed s/\.gpg$//" fzf-file-widget'
 bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl" FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-sort --bind ctrl-s:toggle-sort" fzf-file-widget'
 
 
@@ -35,3 +39,8 @@ bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
 bind '"\C-g\C-s": "$(g_stash)\e\C-e\er"'
 bind '"\C-g\C-t": "$(fzf_git_tag)\e\C-e\er"'
 bind '"\C-g\C-g": "__fzf_git_checkout__\n"'
+
+# bindings for codility (chef, terraform) - see fzf-chef-functions.sh
+bind '"\C-o\C-s": "$(fzf_codility_ssh)\e\C-e\er"'
+bind '"\C-o\C-r": "$(fzf_codility_rake)\e\C-e\er"'
+
