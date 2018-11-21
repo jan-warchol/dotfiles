@@ -10,7 +10,7 @@ maxdepth=${3:-3}
 findcommand=${4:-find}
 
 count () {
-  find "$1" -mindepth 1 -maxdepth 1 -type d -print0 |
+  $findcommand "$1" -mindepth 1 -maxdepth 1 -type d -print0 |
   while IFS= read -d '' dir; do
     count=$($findcommand "$dir" -print0 | grep -zc .)
     echo "$count" "$dir"
@@ -27,5 +27,6 @@ count () {
   done
 }
 
-echo Total files: $($findcommand "$toplevel" -print0 | grep -zc .)
+echo -n "Total files: "
+echo $($findcommand "$toplevel" -print0 | grep -zc .)
 count $toplevel
