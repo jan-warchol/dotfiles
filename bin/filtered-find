@@ -2,7 +2,31 @@
 
 # exclude some useless hidden directories, but not all.
 # in particular, include *files* directly inside .git, .git/hooks and .git/info
-command find -L $@ \
+
+if [ "$1" = "-H" -o "$1" = "-L" -o "$1" = "-P" ]; then
+  FIND_SYMLINK_OPTS="$1"
+  shift
+fi
+
+for arg in $@; do
+  if [ -e $arg ]; then
+    FIND_PATHS="$FIND_PATHS $arg"
+    shift
+  else
+    break
+  fi
+done
+
+# hacky support for -print0 option (doesn't work with complex expressions)
+if [[ "$@" == *-print0* ]]; then
+  PRINT_MTD="-print0"
+  FIND_OPTS="${@//-print0}"
+else
+  PRINT_MTD="-print"
+  FIND_OPTS="$@"
+fi
+
+command find -L $FIND_SYMLINK_OPTS $FIND_PATHS \
     -mindepth 1 \
     \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
        -o -path '*.git/*' ! -path '*/.git/info' ! -path '*/.git/hooks' -a -type d \
@@ -22,5 +46,5 @@ command find -L $@ \
        -o -name '.chefdk' \
        -o -name 'site-packages' \
     \) -prune \
-    -o -print \
+    -o $FIND_OPTS $PRINT_MTD \
     2> >(grep -v "Permission denied")
