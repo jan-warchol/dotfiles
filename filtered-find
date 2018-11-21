@@ -23,4 +23,4 @@ command find -L $@ \
        -o -name 'site-packages' \
     \) -prune \
     -o -print \
-    2> /dev/null
+    2> >(grep -v "Permission denied")
