@@ -26,7 +26,7 @@ else
   FIND_OPTS="$@"
 fi
 
-command find -L $FIND_SYMLINK_OPTS $FIND_PATHS \
+command find $FIND_SYMLINK_OPTS $FIND_PATHS \
     -mindepth 1 \
     \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
        -o -path '*.git/*' ! -path '*/.git/info' ! -path '*/.git/hooks' -a -type d \
