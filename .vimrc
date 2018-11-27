@@ -197,9 +197,9 @@ nmap <Leader>it :NERDTreeToggle<CR>
 nmap <Leader>if :NERDTreeFocus<CR>
 
 " Fuzzy-find in all files (including hidden)
-command! -bang -nargs=? -complete=dir AllFiles call
+command! -bang -nargs=? -complete=dir FilteredFiles call
   \ fzf#vim#files(<q-args>,
-  \     {'source': "find"},
+  \     {'source': "filtered-find"},
   \     <bang>0)
 
 " Fuzzy-find in dotfiles
@@ -211,9 +211,9 @@ command! -bang -nargs=? -complete=dir DotFiles call
 " FZF
 nmap <Leader><Tab> :Buffers<CR>
 
-nmap <Leader>on :Files<CR>
-nmap <Leader>oa :AllFiles<CR>
-nmap <Leader>oh :AllFiles ~<CR>
+nmap <Leader>on :FilteredFiles<CR>
+nmap <Leader>oa :Files<CR>
+nmap <Leader>oh :FilteredFiles ~<CR>
 nmap <Leader>oe :Files /etc<CR>
 nmap <Leader>og :GFiles<CR>
 nmap <Leader>od :DotFiles<CR>
