@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# List all files related to my configuration
+
+GIT_DIR=~/.dotfiles.git git ls-files | sed s:^:$HOME/:
+echo ~/.config/terminator/config
+find -L ~/.ssh
+find ~/.fzf/shell
+find ~/.config/xkb -name .git -prune -o -print
