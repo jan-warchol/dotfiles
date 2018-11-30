@@ -43,6 +43,10 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -path '*/.local/share/Trash' \
        -o -path '*/.vim/plugged' \
        -o -path '*/.config/google-chrome' \
+       -o -path '/usr/share/icons' \
+       -o -path '/usr/share/locale' \
+       -o -path '/usr/src/linux-headers-*' \
+       -o -path '/opt/chefdk/embedded/lib/ruby/gems' \
        -o -name '.npm' \
        -o -name '.cache' \
        -o -name '.chefdk' \
