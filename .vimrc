@@ -199,7 +199,7 @@ nmap <Leader>if :NERDTreeFocus<CR>
 " Fuzzy-find in all files (including hidden)
 command! -bang -nargs=? -complete=dir FilteredFiles call
   \ fzf#vim#files(<q-args>,
-  \     {'source': "filtered-find"},
+  \     {'source': "smart-find"},
   \     <bang>0)
 
 " Fuzzy-find in dotfiles

@@ -21,9 +21,9 @@ source "$FZF_HOME/shell/key-bindings.bash"
 export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
 
 # fuzzy-search starting in various directories
-bind -x '"\C-o\C-n": FZF_CTRL_T_COMMAND="filtered-find" fzf-file-widget'
+bind -x '"\C-o\C-n": FZF_CTRL_T_COMMAND="smart-find" fzf-file-widget'
 bind -x '"\C-o\C-a": FZF_CTRL_T_COMMAND="find" fzf-file-widget'
-bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="filtered-find ~" fzf-file-widget'
+bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="smart-find ~" fzf-file-widget'
 bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'
