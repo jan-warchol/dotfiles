@@ -341,11 +341,6 @@
     unignore = update-index --no-assume-unchanged
     ignored = !git ls-files -v | grep "^[a-z]"
 
-    # gethub X Y Z - fetch branch Z from repo Y of github user X
-    gethub = !sh -c 'git fetch https://github.com/$1/$2 $3 && \
-        git checkout FETCH_HEAD && \
-        git checkout -b "$1/$2/$3"' -
-
     # "merge-base diff"
     mbd = !git diff `git merge-base HEAD $1`
 
