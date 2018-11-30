@@ -37,3 +37,11 @@ fzf_codility_rake() {
   sed 's/^/chef exec /'
 }
 
+fzf_cookbooks_and_recipes() {
+  (
+    ls $INFRA_REPO_PATH/cookbooks;
+    ls $INFRA_REPO_PATH/vendor/cookbooks;
+    find . -name recipes | xargs -n 1 ls | sort -u
+  ) | fzf --height 50% --prompt 'cookbooks and recipes: '
+}
+
