@@ -48,8 +48,6 @@ alias tre2='tree -L 2 --filelimit 50'
 alias tre3='tree -L 3 --filelimit 30'
 alias tre4='tree -L 4 --filelimit 20'
 alias tre5='tree -L 5 --filelimit 15'
-alias trea2='tree -L 2 -a --filelimit 80'
-alias trea3='tree -L 3 -a --filelimit 50'
 
 # vagrant
 alias vt='vagrant'
