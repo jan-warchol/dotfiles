@@ -49,6 +49,8 @@
     cam = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
                             # and won't get confused with amending
     cem = commit --allow-empty -m
+    cip = "!sh -c 'git commit -m \"$@\" && git push --quiet' -"
+    cap = "!sh -c 'git commit -a -m \"$@\" && git push --quiet' -"
 
     wip = commit -m 'Work in progress'
     wap = commit -a -m 'Work in progress'
