@@ -33,8 +33,6 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -name 'node_modules' \
        -o -name 'python_modules' \
        -o -path '*venv*/lib' \
-       -o -path '*/codility/frontend_v2' \
-       -o -path '*/codility/tasks' \
        -o -path '*/deployment/env3' \
        -o -path '*/vendor/cookbooks' \
        -o -path '*/build/mkdocs.venv' \
@@ -43,6 +41,10 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -path '*/.local/share/Trash' \
        -o -path '*/.vim/plugged' \
        -o -path '*/.config/google-chrome' \
+       -o -path '/usr/share/icons' \
+       -o -path '/usr/share/locale' \
+       -o -path '/usr/src/linux-headers-*' \
+       -o -path '/opt/chefdk/embedded/lib/ruby/gems' \
        -o -name '.npm' \
        -o -name '.cache' \
        -o -name '.chefdk' \
