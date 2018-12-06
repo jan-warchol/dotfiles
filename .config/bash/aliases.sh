@@ -116,3 +116,7 @@ alias man='man '
 # trick application into thinking it's writing to a tty (e.g. to force color)
 # requires lib from https://stackoverflow.com/a/14694983/2058424
 alias force-tty='LD_PRELOAD=$HOME/bin/libisatty.so'
+
+alias rs1='redshift -x; redshift -O 3000 -b 0.6'
+alias rs2='redshift -x; redshift -O 3500 -b 0.8'
+alias rs3='redshift -x; redshift -O 4000'
