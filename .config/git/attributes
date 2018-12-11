@@ -1,2 +1,7 @@
 *.vault diff=ansible-vault merge=ansible-vault
+
 package-lock.json -diff
+
+# Use this to search for files with lines longer than 1000 characters:
+# git grep --name-only '.\{1000\}' | xargs printf "%$(tput cols)s\n"
+vendor/cookbooks/*/metadata.json -diff
