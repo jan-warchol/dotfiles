@@ -206,11 +206,11 @@
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
 
     # "Long" format - full commit message and summary of changes
-    ll  = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+    ll  = log --color=always --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30
     # variant with unlimited stat summary length
-    lll = log --color=always --decorate --graph --stat-graph-width=30
+    lll = log --color=always --decorate --graph --stat-graph-width=30 --date=iso
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
-    llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
+    llf = log --color=always --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30 --first-parent -m
 
 
     # simple shortcuts listing progressively more commits (Fibonacci sequence)
