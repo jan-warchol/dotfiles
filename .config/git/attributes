@@ -3,5 +3,5 @@
 package-lock.json -diff
 
 # Use this to search for files with lines longer than 1000 characters:
-# git grep --name-only '.\{1000\}' | xargs printf "%$(tput cols)s\n"
+# git grep -lIz '' | xargs -0 wc -L | sort -n | grep -v "[0-9]\+ \+total$" | tail -100
 vendor/cookbooks/*/metadata.json -diff
