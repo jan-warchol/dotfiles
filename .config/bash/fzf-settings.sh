@@ -42,6 +42,7 @@ bind '"\C-g\C-g": "__fzf_git_checkout__\n"'
 
 # bindings for codility (chef, terraform) - see fzf-chef-functions.sh
 bind '"\C-o\C-s": "$(fzf_codility_ssh)\e\C-e\er"'
+bind '"\C-o\C-w": "$(fzf_codility_chef_node_name)\e\C-e\er"'
 bind '"\C-o\C-r": "$(fzf_codility_rake)\e\C-e\er"'
 bind '"\C-o\C-b": "$(fzf_cookbooks_and_recipes)\e\C-e\er"'
 
