@@ -213,8 +213,7 @@
 
 
     # what I'm usually most interested in - commits from current branch unmerged to master
-    # TODO: change to origin/master?
-    l   = !git ls master..HEAD
+    l   = !git ls --boundary origin/master..HEAD
 
     # simple shortcuts listing progressively more commits (Fibonacci sequence)
     l8   = !git ls -8
