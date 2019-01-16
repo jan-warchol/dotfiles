@@ -226,11 +226,11 @@
     # This is better than using --all option because I don't want stashes to be shown.
     lb   = !git ls HEAD --branches
     la   = !git ls HEAD --branches --remotes
-    lm   = !git ls HEAD master origin/master trunk origin/trunk
+    lm   = !git ls HEAD master origin/master
 
     lbf  = !git lf HEAD --branches
     laf  = !git lf HEAD --branches --remotes
-    lmf  = !git lf HEAD master origin/master trunk origin/trunk
+    lmf  = !git lf HEAD master origin/master
 
     # log commits that differ between current branch and its upstream
     lu   = !git ls HEAD...@{upstream}
