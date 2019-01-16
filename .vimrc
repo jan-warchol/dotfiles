@@ -43,6 +43,8 @@ set hlsearch
 set splitbelow
 set splitright
 
+set tw=79
+
 " autoresize splits on window resize (so that they are equal size)
 autocmd VimResized * wincmd =
 
@@ -100,6 +102,7 @@ Plug 'posva/vim-vue'  " syntax highlighting for JavaScript framework Vue
 Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
 Plug 'derekwyatt/vim-scala'  " syntax highlighting for scala
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
+Plug 'vim-scripts/SyntaxAttr.vim'  " for debugging syntax highlighting
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
 let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
 Plug 'vim-scripts/vim-airline'
@@ -190,6 +193,7 @@ endif
 
 let mapleader = "\<Space>"
 
+nmap <Leader>sa :call SyntaxAttr()<CR>
 map <Leader> <Plug>(easymotion-prefix)
 
 " NERDTree

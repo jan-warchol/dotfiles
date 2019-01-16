@@ -23,6 +23,7 @@
     bdf = branch -D
     bm = !git branch --merged | grep -v '*'
     bma = !git branch --all --merged | grep -v '*'
+    # filter out current upstream (safeguard for case of bulk removal of merged branches)
     bmr = !git branch --remote --merged | grep -v '*' | grep -v origin/`git rev-parse --abbrev-ref HEAD`$
 
     # recursively update submodules. Handles uncommitted changes gracefully
@@ -49,6 +50,8 @@
     cam = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
                             # and won't get confused with amending
     cem = commit --allow-empty -m
+    cip = "!sh -c 'git commit -m \"$@\" && git push --quiet' -"
+    cap = "!sh -c 'git commit -a -m \"$@\" && git push --quiet' -"
 
     wip = commit -m 'Work in progress'
     wap = commit -a -m 'Work in progress'
@@ -182,15 +185,13 @@
     # PRETTY LOGS
 
     # Names are mnemonics based on common aliases of 'ls' command.
+    # Always use --graph so that the topology will be visualized!
     # Inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
-    # always run log with --graph so that the topology will be visualized!
-    l   = log --color=always --decorate --graph
-
-    # compact log with line wrapping. Two lines per commit work
-    # better for me than one line, as it fits narrower windows.
+    # compact log with line wrapping. Two lines per commit work better for me
+    # than one line, as it fits narrower windows.
     ls  = log --color=always --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%w(90,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    --format=tformat:'%C(auto)%h%w(110,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
     # one-line version, useful when you want to squeeze a lot of commits on the screen
     ls1 = log --color=always --decorate --graph --date=relative \
@@ -200,16 +201,19 @@
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way
     # of committing stuff
-    lf  = log --color=always --decorate --graph --date=relative --first-parent \
+    lf  = log --color=always --decorate --date=relative --first-parent \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
 
     # "Long" format - full commit message and summary of changes
-    ll  = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30
+    ll  = log --color=always --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30
     # variant with unlimited stat summary length
-    lll = log --color=always --decorate --graph --stat-graph-width=30
+    lll = log --color=always --decorate --graph --stat-graph-width=30 --date=iso
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
-    llf = log --color=always --decorate --graph --stat-graph-width=30 --stat-count=30 --first-parent -m
+    llf = log --color=always --decorate --stat-graph-width=30 --date=iso --stat-count=30 --first-parent -m
 
+
+    # what I'm usually most interested in - commits from current branch unmerged to master
+    l   = !git ls --boundary origin/master..HEAD
 
     # simple shortcuts listing progressively more commits (Fibonacci sequence)
     l8   = !git ls -8
@@ -340,11 +344,6 @@
     ignore = update-index --assume-unchanged
     unignore = update-index --no-assume-unchanged
     ignored = !git ls-files -v | grep "^[a-z]"
-
-    # gethub X Y Z - fetch branch Z from repo Y of github user X
-    gethub = !sh -c 'git fetch https://github.com/$1/$2 $3 && \
-        git checkout FETCH_HEAD && \
-        git checkout -b "$1/$2/$3"' -
 
     # "merge-base diff"
     mbd = !git diff `git merge-base HEAD $1`

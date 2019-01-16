@@ -48,8 +48,6 @@ alias tre2='tree -L 2 --filelimit 50'
 alias tre3='tree -L 3 --filelimit 30'
 alias tre4='tree -L 4 --filelimit 20'
 alias tre5='tree -L 5 --filelimit 15'
-alias trea2='tree -L 2 -a --filelimit 80'
-alias trea3='tree -L 3 -a --filelimit 50'
 
 # vagrant
 alias vt='vagrant'
@@ -71,10 +69,10 @@ alias mkd='mkdir --parents'
 # alias c='fasd_cd -d'
 # _fasd_bash_hook_cmd_complete v c
 
-# alias u='cd ..'  # (u)p one directory level
-# alias uu='cd ../..'
-# alias uuu='cd ../../..'
-# alias uuuu='cd ../../../..'
+alias u='cd ..'  # (u)p one directory level
+alias uu='cd ../..'
+alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
 
 alias L='less --chop-long-lines'  # typing |L is very convenient, especially using left shift
 alias -- -='cd -'
@@ -84,7 +82,13 @@ alias _='cd -'  # sometimes I accidentally press shift when typing `-`
 mdc() { mkdir --parents "$@"; cd "$@"; }
 # I keep forgetting whether it's mcd or mdc, so let's have both :P
 alias mcd=mdc
-ap() { time ANSIBLE_LOG_PATH=./.ansible-$(date +%F.%H:%M:%S).log ansible-playbook --diff "$@"; alert; }
+ap() {
+  log_dir="$HOME/.log/ansible/$(echo $PWD | sed "s|$HOME/||")"
+  mkdir -p "$log_dir"
+  time ANSIBLE_LOG_PATH="$log_dir/ansible-playbook_$(date +%F_%T).log" \
+    ansible-playbook --diff "$@"
+  alert
+}
 alias av='ansible-vault'
 alias ave='ansible-vault edit'
 alias ifs='alias reset_ifs="IFS=$IFS"; IFS=$(echo -en "\n\b")'
@@ -92,10 +96,6 @@ alias monl='xrandr --output HDMI1 --rotate left; xrandr --output DP1 --rotate le
 alias monn='xrandr --output HDMI1 --rotate normal; xrandr --output DP1 --rotate normal'
 alias sag='sudo apt-get --assume-yes'
 alias sagi='sudo apt-get --assume-yes install'
-alias conf='for f in ~/.config/git/config ~/.config/bash/*aliases* ~/.config/bash/*settings* ~/.config/xkb/symbols/*; do $EDITOR $f; done'
-alias kt='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek.xkb -w 4 $DISPLAY'
-alias ks='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-shifted.xkb -w 4 $DISPLAY'
-alias kd='xkbcomp -I$HOME/.config/xkb $HOME/.config/xkb/janek-dell.xkb -w 4 $DISPLAY'
 alias pls='sudo $(history -p \!\!)'  # rerun last command with sudo ;)
 alias pign=ping  # let's face it, I will continue to make this typo
 alias cim=vim  # ...and this too
@@ -116,3 +116,7 @@ alias man='man '
 # trick application into thinking it's writing to a tty (e.g. to force color)
 # requires lib from https://stackoverflow.com/a/14694983/2058424
 alias force-tty='LD_PRELOAD=$HOME/bin/libisatty.so'
+
+alias rs1='redshift -x; redshift -O 3000 -b 0.6'
+alias rs2='redshift -x; redshift -O 3500 -b 0.8'
+alias rs3='redshift -x; redshift -O 4000'

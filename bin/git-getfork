@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Fetch and checkout a branch from a github fork of current repo
+
+if [ -z "$1" ]; then
+  echo "Missing argument. Specify whose fork should be fetched."
+  exit 1
+fi
+
+FORKED_BY="$1"
+REFSPEC="${2:-master}"
+REPO_NAME=$(git remote get-url origin | sed 's|.*/||')
+
+git remote add "$FORKED_BY" "https://github.com/$FORKED_BY/$REPO_NAME"
+git fetch "$FORKED_BY"
+git checkout "$FORKED_BY/$REFSPEC"
+
