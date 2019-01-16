@@ -221,6 +221,9 @@
     l21  = !git ls -21
     l34  = !git ls -34
 
+    nowrap = !git ls --oneline --author=tern
+    wrap  = log --color=always --decorate --graph --date=relative --author=tern \
+    --format=tformat:'%C(auto)%h%w(110,0,0)%d%C(reset) %C(white)someone anonymous, %ad%C(reset)%n%w(80,2,2)%s'
 
     # Log commits from local and/or remote branches (using git ls/lf format)
     # This is better than using --all option because I don't want stashes to be shown.
