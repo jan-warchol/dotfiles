@@ -121,6 +121,7 @@
     noff = merge --no-ff
 
     mb = merge-base @  # find where current branch diverged from another branch
+    mbm = merge-base HEAD MERGE_HEAD  # merge base of current ongoing merge
 
     mw = mv  # I'm used to using `mw` (customized mv) in shell
 
