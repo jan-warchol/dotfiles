@@ -1,4 +1,5 @@
 *.vault diff=ansible-vault merge=ansible-vault
+*.docx diff=pandoc
 
 package-lock.json -diff
 
