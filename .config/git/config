@@ -381,18 +381,8 @@
 [color]
     ui = auto
 
-[color "branch"]
-    remote = blue
-
-[color "decorate"]
-    remoteBranch = blue
-
 [color "diff"]
     meta = white
-
-[color "status"]
-    changed = yellow
-    untracked = cyan
 
 [color "grep"]
     filename = white black
