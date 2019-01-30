@@ -21,6 +21,8 @@ shopt -s dotglob
 export ARDUINO_PATH=/usr/local/arduino
 
 export PATH="$PATH:$HOME/bin/:$ARDUINO_PATH"
+# apparently user-wide pip install puts stuff there
+export PATH="$PATH:$HOME/.local/bin"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/jan/bin/google-cloud-sdk/path.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/path.bash.inc'; fi

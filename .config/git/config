@@ -121,6 +121,7 @@
     noff = merge --no-ff
 
     mb = merge-base @  # find where current branch diverged from another branch
+    mbm = merge-base HEAD MERGE_HEAD  # merge base of current ongoing merge
 
     mw = mv  # I'm used to using `mw` (customized mv) in shell
 
@@ -369,6 +370,10 @@
 [merge "ansible-vault"]
     name = ansible-vault merge driver
     driver = ansible-vault-merge %O %A %B %P
+
+[diff "pandoc"]
+    textconv=pandoc --to=markdown
+    prompt = false
 
 [color]
     ui = auto
