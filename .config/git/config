@@ -5,10 +5,6 @@
 [alias]
     # SIMPLE "SHORTCUT" ALIASES
 
-    # It can be convenient to view git output using `less`, but by default git
-    # turns coloring off when the output is not a tty.  To override that we add
-    # --color=always to some aliases (and use `less -R` for viewing).
-
     a = add
     aa = add --all
     an = add --all --intent-to-add   # start tracking all files but don't stage their content yet
@@ -63,7 +59,7 @@
     amq = commit --amend --all --no-edit
     paf = !git amq --quiet && git puf --quiet
 
-    d = diff --color=always --find-copies-harder --inter-hunk-context=13 --submodule=log
+    d = diff --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     dm = !git d master
@@ -87,20 +83,20 @@
     # (which in case of grep changes the behaviour, as it searches only inside
     # path from which it's ran).
     g   = grep --extended-regexp --textconv --ignore-case
-    g2  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 2
-    g3  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 3
-    g5  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 5
-    gl8 = grep --extended-regexp --textconv --ignore-case --color=always --line-number --context 8
+    g2  = grep --extended-regexp --textconv --ignore-case --line-number --context 2
+    g3  = grep --extended-regexp --textconv --ignore-case --line-number --context 3
+    g5  = grep --extended-regexp --textconv --ignore-case --line-number --context 5
+    gl8 = grep --extended-regexp --textconv --ignore-case --line-number --context 8
     # when I want to see more context, I don't want filenames obscuring my
     # view.  This also makes it possible to copy-and-paste code snippets.
-    gh  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading
-    gh5 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 5
-    g8  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 8
-    g13 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 13
-    g21 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --color=always --heading --context 21
+    gh  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading
+    gh5 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 5
+    g8  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 8
+    g13 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 13
+    g21 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 21
     # matches pattern only at word boundaries
-    gw  = grep --extended-regexp --textconv --ignore-case --color=always --line-number --word-regexp
-    ghw = grep --extended-regexp --textconv --ignore-case --color=always --heading --word-regexp --context 8
+    gw  = grep --extended-regexp --textconv --ignore-case --line-number --word-regexp
+    ghw = grep --extended-regexp --textconv --ignore-case --heading --word-regexp --context 8
 
     # search, pipe the results to less and set less' search pattern (for navigating results with n/N)
     gl = !GIT_PAGER=\"less -p $@\" git grep --extended-regexp --textconv --ignore-case --context 13
@@ -191,26 +187,26 @@
 
     # compact log with line wrapping. Two lines per commit work better for me
     # than one line, as it fits narrower windows.
-    ls  = log --color=always --decorate --graph --date=relative \
+    ls  = log --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%w(110,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
     # one-line version, useful when you want to squeeze a lot of commits on the screen
-    ls1 = log --color=always --decorate --graph --date=relative \
+    ls1 = log --decorate --graph --date=relative \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
 
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way
     # of committing stuff
-    lf  = log --color=always --decorate --date=relative --first-parent \
+    lf  = log --decorate --date=relative --first-parent \
     --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
 
     # "Long" format - full commit message and summary of changes
-    ll  = log --color=always --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30
+    ll  = log --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30
     # variant with unlimited stat summary length
-    lll = log --color=always --decorate --graph --stat-graph-width=30 --date=iso
+    lll = log --decorate --graph --stat-graph-width=30 --date=iso
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
-    llf = log --color=always --decorate --stat-graph-width=30 --date=iso --stat-count=30 --first-parent -m
+    llf = log --decorate --stat-graph-width=30 --date=iso --stat-count=30 --first-parent -m
 
 
     # what I'm usually most interested in - commits from current branch unmerged to master
@@ -241,12 +237,12 @@
     # Log showing commit diff. Doesn't use --graph because sometimes I want to
     # copy some code from the diff, and each commit is so long that the graph
     # is not readable anyway.
-    lp   = log --color=always --decorate --patch --submodule=log --topo-order
-    lpw  = log --color=always --decorate --patch --submodule=log --topo-order --word-diff=color
-    lpf  = log --color=always --decorate --patch --submodule=log --topo-order --first-parent
+    lp   = log --decorate --patch --submodule=log --topo-order
+    lpw  = log --decorate --patch --submodule=log --topo-order --word-diff=color
+    lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
-    lpfd = log --color=always --decorate --patch --submodule=log --topo-order --full-diff
-    lmpr = log --color=always --decorate --patch --reverse master..HEAD
+    lpfd = log --decorate --patch --submodule=log --topo-order --full-diff
+    lmpr = log --decorate --patch --reverse master..HEAD
 
 
     # log unpushed/unmerged commits on all branches
