@@ -21,8 +21,8 @@ ssh_identity() {
     else
       echo "Unrecognized argument: $1"
       echo "Valid choices are:"
-      echo "  - path to an SSH key file"
-      echo "  - 'reset'"
+      echo "  path to an SSH key file"
+      echo "  --reset"
     fi
   fi
 }
