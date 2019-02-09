@@ -453,6 +453,7 @@
     # require explicit name and email in config, don't guess silly values
     useConfigOnly = true
     name = Jan Warchoł
+    email = jan.warchol@gmail.com
 
 # When connecting to my private repos, use `personal.*` alias so that SSH will
 # use correct key to authenticate. See SSH config for more details.
