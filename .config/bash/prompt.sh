@@ -89,6 +89,11 @@ ${ranger_notice}\n${smartdollar}"
 
 export PS4="$(tput bold)>>> $(tput sgr0)"
 
+# simpler prompt for git beginner workshops
+simple_prompt() {
+  export PS1="\$(echo -e \${PS1_PATH_COLOR})\w${PS1_RESET_COLOR}\n${smartdollar}"
+}
+
 
 #reset color
 trap "tput sgr0" DEBUG
