@@ -29,7 +29,7 @@ fi
 command find $FIND_SYMLINK_OPTS $FIND_PATHS \
     -mindepth 1 \
     \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
-       -o -path '*.git/*' ! -path '*/.git/info' ! -path '*/.git/hooks' -a -type d \
+       -o -name '.git' \
        -o -name 'node_modules' \
        -o -name 'python_modules' \
        -o -path '*venv*/lib' \
