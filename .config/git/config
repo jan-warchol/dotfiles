@@ -405,10 +405,6 @@
     pager = ~/bin/smartless
 
 [diff]
-    # the filename prefixes have never been useful for me and they make copying
-    # and pasting path more difficult
-    noprefix = true
-
     # detect renamed files and show only actual differences between versions
     renames = copies
     submodule = log
