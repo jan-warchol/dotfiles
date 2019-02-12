@@ -19,10 +19,7 @@
     # filter out current upstream (safeguard for case of bulk removal of merged branches)
     bmr = !git branch --remote --merged | grep -v '*' | grep -v origin/`git rev-parse --abbrev-ref HEAD`$
 
-    c  = checkout
     co = checkout
-    c1 = checkout HEAD~1
-    cb = checkout -b
     cd = checkout devel
     cm = !git checkout $(git mainline)
     com = !git checkout origin/$(git mainline)
@@ -110,10 +107,6 @@
     rmc2 = show REBASE_HEAD
 
     mw = mv  # I'm used to using `mw` (customized mv) in shell
-
-    # unlike plain `pull`, this won't attempt a merge that may result in conflicts
-    pl = pull --ff-only
-    plr = pull --rebase
 
     pu = push
     puf = push --force-with-lease
@@ -219,10 +212,7 @@
     ln = ls --no-merges
     # Log commits from local and/or remote branches (using git ls/lf format)
     # This is better than using --all option because I don't want stashes to be shown.
-    lb   = !git ls HEAD --branches
     la   = !git ls HEAD --branches --remotes
-    lm   = !git ls HEAD $(git mainline) origin/$(git mainline)
-    lw   = !git ls HEAD --branches --not origin/$(git mainline) --boundary
 
     lbf  = !git lf HEAD --branches
     laf  = !git lf HEAD --branches --remotes
@@ -236,7 +226,6 @@
     # Log showing commit diff. Doesn't use --graph because sometimes I want to
     # copy some code from the diff, and each commit is so long that the graph
     # is not readable anyway.
-    lp   = log --decorate --patch --submodule=log --topo-order
     lpw  = log --decorate --patch --submodule=log --topo-order --word-diff=color
     lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
