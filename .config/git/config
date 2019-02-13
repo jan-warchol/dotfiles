@@ -22,19 +22,17 @@
     # filter out current upstream (safeguard for case of bulk removal of merged branches)
     bmr = !git branch --remote --merged | grep -v '*' | grep -v origin/`git rev-parse --abbrev-ref HEAD`$
 
-    # recursively update submodules. Handles uncommitted changes gracefully
-    # (if they don't conflict, they are transplanted, if they do, the update
-    # is not performed and an error is printed).
-    c = !git checkout
-    c0 = !git c HEAD~0   # detach HEAD e.g. for throw-away experiments
-    c1 = !git c HEAD~1
-    c2 = !git c HEAD~2
-    cb = !git c -b
-    cd = !git c devel
-    cm = !git c master
-    ct = !git c trunk
-    com = !git c origin/master
-    cu = !git c @{upstream}
+    c  = checkout
+    co = checkout
+    c0 = checkout HEAD~0   # detach HEAD e.g. for throw-away experiments
+    c1 = checkout HEAD~1
+    c2 = checkout HEAD~2
+    cb = checkout -b
+    cd = checkout devel
+    cm = checkout master
+    ct = checkout trunk
+    com = checkout origin/master
+    cu = checkout @{upstream}
 
     chp = cherry-pick
 
@@ -167,11 +165,18 @@
 
     sm = submodule
 
+    # "Submodule Update"
     # submodule init and submodule sync are needed because some submodules may
     # have been added in the other branch or their remotes changed.
     su = "!sh -c 'git submodule init $@ && \
         git submodule sync --recursive $@ > /dev/null && \
         git submodule update --recursive $@' -"
+
+    # "Checkout with Submodules"
+    # Handles uncommitted changes gracefully (if they don't conflict, they are
+    # transplanted, if they do, the update is not performed and an error is
+    # printed).
+    cs = !git checkout $@ && git su && true
 
     tp = rm  # I'm used to using `tp` (trash-put) in shell
 
