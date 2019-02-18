@@ -50,3 +50,13 @@ bind '"\C-o\C-w": "$(fzf_codility_chef_node_name)\e\C-e\er"'
 bind '"\C-o\C-r": "$(fzf_codility_rake)\e\C-e\er"'
 bind '"\C-o\C-b": "$(fzf_cookbooks_and_recipes)\e\C-e\er"'
 
+# replace history binding with artificial history prepared for workshop
+git_workshop_commands() {
+  cat $HOME/src/git-workshops-scripts/subtrees/git-subtree-exercise-*.sh |
+  grep -v "^#" | grep -v "^$" | grep -v "^set -" |
+  fzf --height 15%
+}
+bind '"\C-r": "$(git_workshop_commands)\e\C-e\er"'
+
+# bind actual history to rarely used key
+bind '"\C-h": " \C-e\C-u`__fzf_history__ \C-y`\e\C-e\e^\er"'
