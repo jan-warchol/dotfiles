@@ -350,6 +350,9 @@
     # "merge-base diff"
     mbd = !git diff `git merge-base HEAD $1`
 
+    # find $2-th commit on current branch since $1
+    nth-since = !git rev-list $1..HEAD | tac | sed -n \"$2p\" && true
+
     # search and replace in all tracked files (relative to current dir) except
     # - submodule entries (to avoid errors)
     # - symbolic links (to avoid transforming them to ordinary files)
