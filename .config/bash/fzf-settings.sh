@@ -16,7 +16,9 @@ fi
 
 # Key bindings
 # ------------
-source "$FZF_HOME/shell/key-bindings.bash"
+if [ -e "$FZF_HOME" ]; then
+  source "$FZF_HOME/shell/key-bindings.bash"
+fi
 
 export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
 
