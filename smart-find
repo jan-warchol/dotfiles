@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# exclude some useless hidden directories, but not all.
-# in particular, include *files* directly inside .git, .git/hooks and .git/info
+# exclude directories with lots of uninteresting stuff (some hidden, some not).
+# Also filters out "permission denied" errors, as they are usually not helpful.
 
+# find requires option for symlink handling to be at the beginning
 if [ "$1" = "-H" -o "$1" = "-L" -o "$1" = "-P" ]; then
   FIND_SYMLINK_OPTS="$1"
   shift
 fi
 
+# separate paths from options
 for arg in $@; do
   if [ -e $arg ]; then
     FIND_PATHS="$FIND_PATHS $arg"
