@@ -184,7 +184,7 @@
     # compact log with line wrapping. Two lines per commit work better for me
     # than one line, as it fits narrower windows.
     ls  = log --decorate --graph --date=relative \
-    --format='%C(auto)%h%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    --format='%C(auto)%h%d %C(white)%an%C(reset)%n%w(70,2,2)%s'
 
     # one-line version, useful when you want to squeeze a lot of commits on the screen
     ls1 = log --decorate --graph --date=relative \
