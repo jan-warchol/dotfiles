@@ -36,26 +36,17 @@
 
     chp = cherry-pick
 
-    # commit --verbose shows a preview of staged changes when editing the commit
-    # message - you no longer have to run 'git diff' before every commit :)
-    ci = commit --verbose   # no git command starts with 'k', and 'k' matches pronunciation!
-    ca = commit --verbose --all
-    cim = commit -m
-    cam = commit --all -m   # 'kma' instead of 'kam' because it's easier to type
-                            # and won't get confused with amending
-    cem = commit --allow-empty -m
-    cip = "!sh -c 'git commit -m \"$@\" && git push --quiet' -"
-    cap = "!sh -c 'git commit -a -m \"$@\" && git push --quiet' -"
+    # One Alias to Commit Them All. Automatically adds --all and --message
+    # when appropriate. See bin/git-smart-commit
+    ci  = smart-commit
+    amn = smart-commit --amend
+    amq = smart-commit --amend --no-edit
+    wip = smart-commit WIP
 
-    wip = commit -m 'Work in progress'
-    wap = commit -a -m 'Work in progress'
-    wish = !git commit -m 'Work in progress' && git push --quiet
-    wash = !git commit -a -m 'Work in progress' && git push --quiet
+    wish = !git smart-commit WIP "$@" && git push --quiet && true
+    paf  = !git amq --quiet && git puf --quiet
 
-    amn = commit --amend
-    ama = commit --amend --all
-    amq = commit --amend --all --no-edit
-    paf = !git amq --quiet && git puf --quiet
+    empty = commit --allow-empty --message  # handy for test commits
 
     d = diff --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
