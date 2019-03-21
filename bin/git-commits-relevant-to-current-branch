@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Return commit range relevant to current branch:
+# - new local commits (unpushed to upstream branch)
+# - new remote commits (unmerged from upstream branch)
+# - any other commits from current branch not merged into mainline
+#
+# requires "git mainline" alias (see main git config file)
+
+mainline=$(git mainline)  # usually master
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+# if we're on detached HEAD, there will be no upstream - filter it out
+upstream=$(echo $current_branch@{upstream} | sed 's/HEAD@{upstream}//')
+
+# exclude commits from origin/$mainline, except when that's the branch we're on
+if [ $current_branch = $mainline ]; then
+  echo $current_branch...$upstream
+else
+  echo $current_branch $upstream ^origin/$mainline
+fi

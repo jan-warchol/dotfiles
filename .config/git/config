@@ -209,8 +209,9 @@
     llf = log --decorate --stat-graph-width=30 --date=iso --stat-count=30 --first-parent -m
 
 
-    # what I'm usually most interested in - commits from current branch unmerged to master
-    l   = !git ls --boundary origin/$(git mainline)..HEAD
+    # I'm usually most interested in commits from current branch unmerged to
+    # mainline, and commits from upstream branch unmerged to local branch
+    l   = !git ls --boundary $(git commits-relevant-to-current-branch)
 
 
     # Log commits from local and/or remote branches (using git ls/lf format)
