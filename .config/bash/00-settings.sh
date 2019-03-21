@@ -24,11 +24,11 @@ export PATH="$PATH:$HOME/bin/:$ARDUINO_PATH"
 # apparently user-wide pip install puts stuff there
 export PATH="$PATH:$HOME/.local/bin"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/jan/bin/google-cloud-sdk/path.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/jan/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/home/jan/bin/google-cloud-sdk/completion.bash.inc'; fi
+# Update PATH and enable completion for Google Cloud SDK, if present
+if [ -f '/home/jan/bin/google-cloud-sdk/' ]; then
+  source '/home/jan/bin/google-cloud-sdk/path.bash.inc';
+  source '/home/jan/bin/google-cloud-sdk/completion.bash.inc';
+fi
 
 # autocompletion for kubernetes
 if which kubectl >/dev/null; then source <(kubectl completion bash); fi
