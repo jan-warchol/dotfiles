@@ -12,9 +12,6 @@
     au = add --update   # stage all changes in already tracked files
 
     b = branch
-    bv = branch --verbose --verbose   # lists branches with SHAs and upstreams
-    ba = branch --all
-    br = branch --remotes
     bd = branch --delete
     bdf = branch -D
     bm = !git branch --merged | grep -v '*'
@@ -98,10 +95,8 @@
 
     fl = ls-files
 
-    ma = merge --abort
-
-    mr = merge
-    ff = merge --ff-only
+    mra  = merge --abort
+    ff   = merge --ff-only
     noff = merge --no-ff
 
     mb = merge-base @  # find where current branch diverged from another branch
@@ -115,7 +110,6 @@
     pu = push
     puf = push --force-with-lease
     # push to a new branch with the same name
-    psu = !git push --set-upstream $(git symbolic-ref --short HEAD)
     psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
     # tags have to be pushed explicitly
     put = !git push --tags && git push
@@ -126,9 +120,7 @@
     rbo  = rebase --onto        # quite useful, see examples in 'git help rebase'
     rbu  = rebase @{upstream}
     rbm  = !git rebase $(git mainline)
-    rbom = !git rebase origin/$(git mainline)
     rbi  = rebase --interactive
-    rbi5 = rebase --interactive HEAD~5
     rbiu = rebase --interactive @{upstream}
     rbim = !git rebase --interactive $(git mainline)
 
@@ -137,12 +129,10 @@
     rs = reset
     rs1 = reset HEAD~1   # "soft undo" - remove last commit, but keep its changes
     rsu = reset @{upstream}
-    rsm = reset master
 
     rss = reset --soft
     rss1 = reset --soft HEAD~1
     rssu = reset --soft @{upstream}
-    rssm = reset --soft master
 
     sh = stash
     shp = stash pop
@@ -211,12 +201,6 @@
 
     # what I'm usually most interested in - commits from current branch unmerged to master
     l   = !git ls --boundary origin/$(git mainline)..HEAD
-
-    # simple shortcuts listing progressively more commits (Fibonacci sequence)
-    l8   = !git ls -8
-    l13  = !git ls -13
-    l21  = !git ls -21
-    l34  = !git ls -34
 
 
     # Log commits from local and/or remote branches (using git ls/lf format)
