@@ -29,9 +29,8 @@
     c2 = checkout HEAD~2
     cb = checkout -b
     cd = checkout devel
-    cm = checkout master
-    ct = checkout trunk
-    com = checkout origin/master
+    cm = !git checkout $(git mainline)
+    com = !git checkout origin/$(git mainline)
     cu = checkout @{upstream}
 
     chp = cherry-pick
@@ -51,9 +50,9 @@
     d = diff --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
-    dm = !git d master
+    dm = !git d $(git mainline)
     du = !git d @{upstream}
-    dsm = !git ds master
+    dsm = !git ds $(git mainline)
     dsu = !git ds @{upstream}
     wd = !git d --word-diff=color   # mnemonic: Word-Diff
     wdc = !git d --word-diff=color --cached
@@ -126,12 +125,12 @@
     rbc  = rebase --continue
     rbo  = rebase --onto        # quite useful, see examples in 'git help rebase'
     rbu  = rebase @{upstream}
-    rbm  = rebase master
-    rbom = rebase origin/master
+    rbm  = !git rebase $(git mainline)
+    rbom = !git rebase origin/$(git mainline)
     rbi  = rebase --interactive
     rbi5 = rebase --interactive HEAD~5
     rbiu = rebase --interactive @{upstream}
-    rbim = rebase --interactive master
+    rbim = !git rebase --interactive $(git mainline)
 
     rt = remote --verbose
 
@@ -173,6 +172,11 @@
 
     who = shortlog --summary --numbered
 
+    # translate HEAD to branch/tag name
+    ref-name = !git rev-parse --abbrev-ref 2>/dev/null
+    # get name of the default branch (from origin/HEAD), with fallback to "master"
+    mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|master|'
+
 
 
     # PRETTY LOGS
@@ -206,7 +210,7 @@
 
 
     # what I'm usually most interested in - commits from current branch unmerged to master
-    l   = !git ls --boundary origin/master..HEAD
+    l   = !git ls --boundary origin/$(git mainline)..HEAD
 
     # simple shortcuts listing progressively more commits (Fibonacci sequence)
     l8   = !git ls -8
@@ -219,12 +223,12 @@
     # This is better than using --all option because I don't want stashes to be shown.
     lb   = !git ls HEAD --branches
     la   = !git ls HEAD --branches --remotes
-    lm   = !git ls HEAD master origin/master
-    lw   = !git ls HEAD --branches --not origin/master --boundary
+    lm   = !git ls HEAD $(git mainline) origin/$(git mainline)
+    lw   = !git ls HEAD --branches --not origin/$(git mainline) --boundary
 
     lbf  = !git lf HEAD --branches
     laf  = !git lf HEAD --branches --remotes
-    lmf  = !git lf HEAD master origin/master
+    lmf  = !git lf HEAD $(git mainline) origin/$(git mainline)
 
     # log commits that differ between current branch and its upstream
     lu   = !git ls HEAD...@{upstream}
@@ -239,7 +243,7 @@
     lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
     lpfd = log --decorate --patch --submodule=log --topo-order --full-diff
-    lmpr = log --decorate --patch --reverse master..HEAD
+    lmpr = !git log --decorate --patch --reverse $(git mainline)..HEAD
 
 
     # log unpushed/unmerged commits on all branches
@@ -353,7 +357,7 @@
 
     # delete current branch
     bdc = !sh -c 'BRANCH=$(git rev-parse --abbrev-ref HEAD) \
-        && git checkout master \
+        && git checkout $(git mainline) \
         && git branch --delete $BRANCH'
 
 
