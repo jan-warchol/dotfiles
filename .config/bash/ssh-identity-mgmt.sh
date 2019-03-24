@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# disable system-wide ssh agent
+eval `ssh-agent -k` | grep -v "Agent pid .* killed"
+export SSH_AUTH_SOCK="$HOME/.ssh/agent="
+
 # Override ssh key from .ssh/config for accessing another account on services
 # such as github or bitbucket. Has precedence over settings in .ssh/config
 
@@ -29,6 +33,19 @@ ssh_identity() {
 
 alias shid=ssh_identity
 
+ssh_start_agent() {
+  if [ ! -S $SSH_AUTH_SOCK ]; then
+    ssh-agent -t 24h -a $SSH_AUTH_SOCK
+  else
+    echo Socket $SSH_AUTH_SOCK is already in use.
+  fi
+}
+
+ssh_add_key_to_agent() {
+  key_name="$1"
+  key_path="$HOME/.ssh/keys/$key_name"
+}
+
 ensure_codility_ssh_key_loaded() {
   if ! ssh-add -l | grep -q /home/jan/.ssh/keys/id_rsa_codility_3; then
 expect << EOF
@@ -45,7 +62,3 @@ load_key_if_working_on_codility() {
     ensure_codility_ssh_key_loaded
   fi
 }
-
-if [[  "$PROMPT_COMMAND" != *load_key_if_working_on_codility* ]]; then
-  export PROMPT_COMMAND="load_key_if_working_on_codility; $PROMPT_COMMAND"
-fi
