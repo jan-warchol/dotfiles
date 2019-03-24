@@ -178,18 +178,18 @@
     # compact log with line wrapping. Two lines per commit work better for me
     # than one line, as it fits narrower windows.
     ls  = log --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%w(110,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    --format='%C(auto)%h%w(110,0,0)%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
     # one-line version, useful when you want to squeeze a lot of commits on the screen
     ls1 = log --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
+    --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
 
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way
     # of committing stuff
     lf  = log --decorate --date=relative --first-parent \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
+    --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
 
     # "Long" format - full commit message and summary of changes
     ll  = log --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30
@@ -245,13 +245,13 @@
 
     # reflog with dates and commit message subject
     rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --abbrev=10\
-    --format='%>(10)%gd %C(yellow)%h %C(reset)%gs%C(auto)%d\
+    --format='%>(10)%gd %C(auto)%h %gs%d\
 %n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
 
     # one-line version of the above
     rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs \
-    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%<(9)%gd%C(reset) \
-%C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
+    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(auto)%<(9)%gd \
+%h %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
 
 
