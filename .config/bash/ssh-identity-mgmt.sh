@@ -40,25 +40,20 @@ ssh_start_agent() {
     echo Socket $SSH_AUTH_SOCK is already in use.
   fi
 }
+# export PS1_SSH_IDENTITY="\\$(ssh-add -l | wc -l)"
 
 ssh_add_key_to_agent() {
   key_name="$1"
   key_path="$HOME/.ssh/keys/$key_name"
-}
-
-ensure_codility_ssh_key_loaded() {
-  if ! ssh-add -l | grep -q /home/jan/.ssh/keys/id_rsa_codility_3; then
 expect << EOF
-  spawn ssh-add -t 10h /home/jan/.ssh/keys/id_rsa_codility_3
+  spawn ssh-add -t 10h "$key_path"
   expect "Enter passphrase"
-  send "$(pass codility-ssh-key-3-password)\r"
+  send "$(pass ssh-keys/${key_name}-password)\r"
   expect eof
 EOF
-  fi
 }
 
-load_key_if_working_on_codility() {
-  if [[ $PWD == *src/infrastructure* || $PWD == *src/codility* ]]; then
-    ensure_codility_ssh_key_loaded
-  fi
+load_keys() {
+  ssh_add_key_to_agent id_rsa_codility_3
+  ssh_add_key_to_agent id_ed25519_codility_4
 }
