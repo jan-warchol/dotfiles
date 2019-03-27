@@ -48,7 +48,7 @@ fi
 PS1_RANGER_COLOR="\[${BLUE}\]"
 [ -n "$RANGER_LEVEL" ] && ranger_notice=" ${PS1_RANGER_COLOR}(in ranger)${PS1_RESET_COLOR}"
 
-smartdollar="\[${BOLD}\]\\$ "
+smartdollar="\\$ \[${BOLD}\]"
 
 # $(__git_ps1) displays git repository status in the prompt, which is extremely handy.
 # Read more: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
