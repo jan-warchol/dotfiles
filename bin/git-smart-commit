@@ -39,7 +39,7 @@ done
 
 # are there staged changes or options mutually exclusive with --all?
 if git diff --cached --quiet && ! $CHANGE_SELECTOR; then
-  echo Assuming you want to commit all changes...
+  echo Assuming you want to commit all changes.
   COMMIT_OPTS="$COMMIT_OPTS --all"
 fi
 

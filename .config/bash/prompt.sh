@@ -34,8 +34,7 @@ if [ $EUID = 0 ]; then
     PS1_USER_COLOR="${RED}"
 fi
 
-# When I'm logged in via ssh, display the path in scp-like format (-> easy
-# selecting with a double click) and display username in a different color.
+# Display host name and use different color when I'm logged in via ssh
 if [ -n "$SSH_CONNECTION" ]; then
     PS1_USER_COLOR="${MAGENTA}"
     PS1_USERNAME='\u@\h'

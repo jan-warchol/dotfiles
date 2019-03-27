@@ -60,8 +60,8 @@ export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
 
 # Execute only when a graphical environment is present
 if [ -n "$DISPLAY" ]; then
-    # faster key repetition (160 ms delay, 80 reps/sec) - life is too short to wait!
-    xset r rate 170 70
+    # faster key repetition - life is too short to wait!
+    xset r rate 170 70   # delay [ms], frequency [Hz]
 
     if [ `which syndaemon` ]; then
         # block touchpad when typing
