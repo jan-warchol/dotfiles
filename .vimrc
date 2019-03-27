@@ -103,8 +103,6 @@ Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
 Plug 'derekwyatt/vim-scala'  " syntax highlighting for scala
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'vim-scripts/SyntaxAttr.vim'  " for debugging syntax highlighting
-Plug 'jeffkreeftmeijer/vim-numbertoggle'  " relative line numbers in normal, absolute in insert
-let g:UseNumberToggleTrigger=0  " don't overwrite C-n mapping
 Plug 'vim-scripts/vim-airline'
 let g:airline#extensions#branch#displayed_head_limit = 18
 " Enable the list of buffers
