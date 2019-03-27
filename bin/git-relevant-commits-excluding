@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Return commit range relevant to current branch:
+# - new local commits (unpushed to upstream branch)
+# - new remote commits (unmerged from upstream branch)
+# - any other commits from current branch not merged into mainline
+
+# fails with
+# fatal: ambiguous argument 'jw/svc-entry-exports@{upstream}': unknown revision or path not in the working tree.
+# when the upstream branch was deleted.
+get_upstream() {
+  git rev-parse --abbrev-ref $1@{upstream} 2>/dev/null ||
+  # fallback when there is no upstream (e.g. in detached head)
+  echo ""
+}
+
+# get name of current branch if we are on one (HEAD otherwise)
+checked_out=$(git rev-parse --abbrev-ref HEAD)
+
+# filter out commits present in specified branches
+for branch in "$@"; do
+  # local $branch may be outdated, better use remote one
+  unwanted=$(get_upstream $branch)
+  # we could have just said $upstream, but in case $checked_out == $branch we
+  # actually want to show unmerged commits from there.
+  cutoff="$(git merge-base $checked_out $unwanted)"
+  exclude_pattern="$exclude_pattern ^$cutoff"
+done
+
+upstream_branch=$(get_upstream $checked_out)
+
+echo $checked_out $upstream_branch $exclude_pattern

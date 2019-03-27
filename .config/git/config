@@ -211,7 +211,7 @@
 
     # I'm usually most interested in commits from current branch unmerged to
     # mainline, and commits from upstream branch unmerged to local branch
-    l   = !git ls --boundary $(git commits-relevant-to-current-branch)
+    l   = !git ls --boundary $(git relevant-commits-since $(git mainline))
 
 
     # Log commits from local and/or remote branches (using git ls/lf format)
