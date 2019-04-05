@@ -39,8 +39,8 @@
     amq = smart-commit --amend --no-edit
     wip = smart-commit WIP --no-verify
 
-    wish = !git smart-commit WIP "$@" && git push --quiet && true
-    paf  = !git amq --quiet && git puf --quiet
+    cip = !git smart-commit "$@" && git push --quiet && true
+    paf = !git amd --no-edit --quiet && git puf --quiet
 
     empty = commit --allow-empty --message  # handy for test commits
 
