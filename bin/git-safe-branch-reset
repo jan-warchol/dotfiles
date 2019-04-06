@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Unlike reset --hard, this won't destroy uncommitted changes. They will be
+# kept if they don't conflict, or the reset will be aborted otherwise.
+
+set -e
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+target_revision=$1
+target_descr=$(git log --format='%h %s' -1 $target_revision)
+
+# modify error message in case of uncommitted conflicting changes
+git checkout --quiet $target_revision 2> \
+  >( sed 's/by checkout/by reset/;s/switch branches/reset branches/')
+
+git branch --force $current_branch
+echo "Resetting branch '$current_branch' to $target_descr"
+git checkout $current_branch 2>/dev/null

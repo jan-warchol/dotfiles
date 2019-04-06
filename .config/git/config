@@ -137,8 +137,9 @@
 
     rs = reset
     rs1 = reset HEAD~1   # "soft undo" - remove last commit, but keep its changes
-    rsu = reset @{upstream}
-    rsm = reset master
+
+    sru = safe-branch-reset @{upstream}
+    srm = safe-branch-reset master
 
     rss = reset --soft
     rss1 = reset --soft HEAD~1
