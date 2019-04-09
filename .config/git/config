@@ -41,7 +41,7 @@
     ci  = smart-commit
     amn = smart-commit --amend
     amq = smart-commit --amend --no-edit
-    wip = smart-commit WIP
+    wip = smart-commit WIP --no-verify
 
     wish = !git smart-commit WIP "$@" && git push --quiet && true
     paf  = !git amq --quiet && git puf --quiet
