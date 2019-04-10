@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# For quick git testing - create a text file (or append to it) and commit
+
+NAME=$1; shift; CONTENT="$@"
+FILENAME=$NAME.txt
+
+if [ -e $FILENAME ]; then
+  if [ -z $CONTENT ]; then CONTENT="some stuff"; fi
+  echo "$CONTENT" >> $FILENAME
+  git commit $FILENAME --message "Update $FILENAME: $CONTENT"
+else
+  if [ -z $CONTENT ]; then CONTENT="$NAME"; fi
+  echo "$CONTENT" >> $FILENAME
+  git add $FILENAME
+  git commit $FILENAME --message "Add $FILENAME"
+fi
