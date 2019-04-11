@@ -1,0 +1,14 @@
+#!/bin/bash
+
+USAGE="Parse terraform output (attribute: blahblahverylong => blahotherlongout)
+and vimdiff it. Accepts one line of input on stdin."
+
+input=$(cat /dev/stdin)
+
+fname=$(echo "$input" | sed 's/\s\+//;s/:\s.*//')
+
+echo -e $(echo "$input" | sed 's/.*:\s\+"//;s/" => .*//') > $fname.old
+echo -e $(echo "$input" | sed 's/.* => "//;s/"[^"]*$//') > $fname.new
+
+echo Comparing old and new version of $fname...
+vimdiff $fname.old $fname.new
