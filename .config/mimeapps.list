@@ -12,9 +12,11 @@ x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 text/x-arduino=arduino-arduinoide.desktop
 x-scheme-handler/slack=slack.desktop
+application/pdf=okularApplication_pdf.desktop
 
 [Added Associations]
 application/x-shellscript=xed.desktop;
 x-content/blank-dvd=brasero.desktop;
 image/jpeg=xviewer.desktop;
 audio/midi=mscore.desktop;
+application/pdf=okularApplication_pdf.desktop;
