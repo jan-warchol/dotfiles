@@ -1,4 +1,5 @@
-export FZF_HOME=$HOME/.fzf
+: "${FZF_HOME:=$HOME/.fzf}"  # default value
+
 export FZF_DEFAULT_OPTS="\
   --history=$HOME/fzf-history-$DISAMBIG_SUFFIX\
   --bind \"ctrl-u:abort+execute(cd ..; echo -n ../; find . | fzf --prompt \`pwd\`/)\"\
