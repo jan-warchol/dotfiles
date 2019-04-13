@@ -6,9 +6,7 @@ export FZF_DEFAULT_OPTS="\
 
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == *$FZF_HOME/bin* ]]; then
-  export PATH="$PATH:$FZF_HOME/bin"
-fi
+_PATH_append "$PATH:$FZF_HOME/bin"
 
 # Key bindings
 # ------------

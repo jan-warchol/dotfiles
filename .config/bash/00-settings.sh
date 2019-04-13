@@ -18,11 +18,19 @@ shopt -s globstar
 # let "*" match hidden files as well
 shopt -s dotglob
 
+_PATH_append() {
+  if [[ ! "$PATH" == *$1* ]]; then export PATH="$PATH:$1"; fi
+}
+_PATH_prepend() {
+  if [[ ! "$PATH" == *$1* ]]; then export PATH="$1:$PATH"; fi
+}
+
 export ARDUINO_PATH=/usr/local/arduino
 
-export PATH="$PATH:$HOME/bin/:$ARDUINO_PATH"
+_PATH_append $ARDUINO_PATH
+_PATH_append $HOME/bin
 # apparently user-wide pip install puts stuff there
-export PATH="$PATH:$HOME/.local/bin"
+_PATH_append $HOME/.local/bin
 
 # Update PATH and enable completion for Google Cloud SDK, if present
 if [ -f '/home/jan/bin/google-cloud-sdk/' ]; then
@@ -45,10 +53,11 @@ export EDITOR="vim"
 
 export _FASD_DATA="$HOME/data/fasd-data-$DISAMBIG_SUFFIX"
 
-# chef paths and completion, let chef override default ruby
-if [[ ! "$PATH" == */opt/chefdk/bin* ]]; then
-  export PATH="/opt/chefdk/bin:$HOME/.chefdk/gem/ruby/2.5.0/bin:/opt/chefdk/embedded/bin:$PATH:/opt/chefdk/gitbin"
-fi
+# chef paths and completion. Let chef override default ruby
+_PATH_prepend /opt/chefdk/embedded/bin
+_PATH_prepend $HOME/.chefdk/gem/ruby/2.5.0/bin
+_PATH_prepend /opt/chefdk/bin
+_PATH_append /opt/chefdk/gitbin
 export GEM_ROOT="/opt/chefdk/embedded/lib/ruby/gems/2.5.0"
 export GEM_HOME="/home/jan/.chefdk/gem/ruby/2.5.0"
 export GEM_PATH="/home/jan/.chefdk/gem/ruby/2.5.0:/opt/chefdk/embedded/lib/ruby/gems/2.5.0"
