@@ -12,9 +12,6 @@
     au = add --update   # stage all changes in already tracked files
 
     b = branch
-    bv = branch --verbose --verbose   # lists branches with SHAs and upstreams
-    ba = branch --all
-    br = branch --remotes
     bd = branch --delete
     bdf = branch -D
     bm = !git branch --merged | grep -v '*'
@@ -29,9 +26,8 @@
     c2 = checkout HEAD~2
     cb = checkout -b
     cd = checkout devel
-    cm = checkout master
-    ct = checkout trunk
-    com = checkout origin/master
+    cm = !git checkout $(git mainline)
+    com = !git checkout origin/$(git mainline)
     cu = checkout @{upstream}
 
     chp = cherry-pick
@@ -39,7 +35,7 @@
     # One Alias to Commit Them All. Automatically adds --all and --message
     # when appropriate. See bin/git-smart-commit
     ci  = smart-commit
-    amn = smart-commit --amend
+    amd = smart-commit --amend
     amq = smart-commit --amend --no-edit
     wip = smart-commit WIP
 
@@ -51,9 +47,9 @@
     d = diff --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
-    dm = !git d master
+    dm = !git d $(git mainline)
     du = !git d @{upstream}
-    dsm = !git ds master
+    dsm = !git ds $(git mainline)
     dsu = !git ds @{upstream}
     wd = !git d --word-diff=color   # mnemonic: Word-Diff
     wdc = !git d --word-diff=color --cached
@@ -99,10 +95,8 @@
 
     fl = ls-files
 
-    ma = merge --abort
-
-    mr = merge
-    ff = merge --ff-only
+    mra  = merge --abort
+    ff   = merge --ff-only
     noff = merge --no-ff
 
     mb = merge-base @  # find where current branch diverged from another branch
@@ -116,7 +110,6 @@
     pu = push
     puf = push --force-with-lease
     # push to a new branch with the same name
-    psu = !git push --set-upstream $(git symbolic-ref --short HEAD)
     psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
     # tags have to be pushed explicitly
     put = !git push --tags && git push
@@ -126,25 +119,21 @@
     rbc  = rebase --continue
     rbo  = rebase --onto        # quite useful, see examples in 'git help rebase'
     rbu  = rebase @{upstream}
-    rbm  = rebase master
-    rbom = rebase origin/master
+    rbm  = !git rebase $(git mainline)
     rbi  = rebase --interactive
-    rbi5 = rebase --interactive HEAD~5
     rbiu = rebase --interactive @{upstream}
-    rbim = rebase --interactive master
+    rbim = !git rebase --interactive $(git mainline)
 
     rt = remote --verbose
 
     rs = reset
     rs1 = reset HEAD~1   # "soft undo" - remove last commit, but keep its changes
 
-    sru = safe-branch-reset @{upstream}
-    srm = safe-branch-reset master
-
     rss = reset --soft
     rss1 = reset --soft HEAD~1
-    rssu = reset --soft @{upstream}
-    rssm = reset --soft master
+
+    sr  = safe-branch-reset
+    sru = safe-branch-reset @{upstream}
 
     sh = stash
     shp = stash pop
@@ -174,6 +163,11 @@
 
     who = shortlog --summary --numbered
 
+    # translate HEAD to branch/tag name
+    ref-name = !git rev-parse --abbrev-ref 2>/dev/null
+    # get name of the default branch (from origin/HEAD), with fallback to "master"
+    mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|master|'
+
 
 
     # PRETTY LOGS
@@ -185,18 +179,18 @@
     # compact log with line wrapping. Two lines per commit work better for me
     # than one line, as it fits narrower windows.
     ls  = log --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%w(110,0,0)%d%C(reset) %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    --format='%C(auto)%h%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
     # one-line version, useful when you want to squeeze a lot of commits on the screen
     ls1 = log --decorate --graph --date=relative \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
+    --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
 
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way
     # of committing stuff
     lf  = log --decorate --date=relative --first-parent \
-    --format=tformat:'%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(white)- %an, %ad%C(reset)'
+    --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
 
     # "Long" format - full commit message and summary of changes
     ll  = log --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30
@@ -207,25 +201,19 @@
 
 
     # what I'm usually most interested in - commits from current branch unmerged to master
-    l   = !git ls --boundary origin/master..HEAD
-
-    # simple shortcuts listing progressively more commits (Fibonacci sequence)
-    l8   = !git ls -8
-    l13  = !git ls -13
-    l21  = !git ls -21
-    l34  = !git ls -34
+    l   = !git ls --boundary origin/$(git mainline)..HEAD
 
 
     # Log commits from local and/or remote branches (using git ls/lf format)
     # This is better than using --all option because I don't want stashes to be shown.
     lb   = !git ls HEAD --branches
     la   = !git ls HEAD --branches --remotes
-    lm   = !git ls HEAD master origin/master
-    lw   = !git ls HEAD --branches --not origin/master --boundary
+    lm   = !git ls HEAD $(git mainline) origin/$(git mainline)
+    lw   = !git ls HEAD --branches --not origin/$(git mainline) --boundary
 
     lbf  = !git lf HEAD --branches
     laf  = !git lf HEAD --branches --remotes
-    lmf  = !git lf HEAD master origin/master
+    lmf  = !git lf HEAD $(git mainline) origin/$(git mainline)
 
     # log commits that differ between current branch and its upstream
     lu   = !git ls HEAD...@{upstream}
@@ -240,7 +228,7 @@
     lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
     lpfd = log --decorate --patch --submodule=log --topo-order --full-diff
-    lmpr = log --decorate --patch --reverse master..HEAD
+    lmpr = !git log --decorate --patch --reverse $(git mainline)..HEAD
 
 
     # log unpushed/unmerged commits on all branches
@@ -258,13 +246,13 @@
 
     # reflog with dates and commit message subject
     rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --abbrev=10\
-    --format='%>(10)%gd %C(yellow)%h %C(reset)%gs%C(auto)%d\
+    --format='%>(10)%gd %C(auto)%h %gs%d\
 %n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
 
     # one-line version of the above
     rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs \
-    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(reset)%<(9)%gd%C(reset) \
-%C(auto)%h%C(reset) %gs %C(white)- %<(33,trunc)%s%C(reset)'
+    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(auto)%<(9)%gd \
+%h %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
 
 
@@ -354,7 +342,7 @@
 
     # delete current branch
     bdc = !sh -c 'BRANCH=$(git rev-parse --abbrev-ref HEAD) \
-        && git checkout master \
+        && git checkout $(git mainline) \
         && git branch --delete $BRANCH'
 
 
