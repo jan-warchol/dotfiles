@@ -5,7 +5,7 @@ IFS=$(echo -en "\n\b")
 normal="\e[00m"; bold="\e[1;37m"; green="\e[00;32m"
 
 REPO_PATH=$(dirname $(readlink --canonicalize "$0"))
-TARGET="$HOME"
+TARGET="$HOME"; PATH_CONFIG="$TARGET/.config/bash/00-paths-override.sh"
 echo -e "\nInstalling dotfiles \nfrom $REPO_PATH \nto $TARGET."
 
 # make sure we're in correct repository
@@ -42,5 +42,7 @@ done; sleep 3
 
 # actual installation
 dotfiles reset --hard --quiet
-echo "$REPO_PATH" > "$TARGET/.config/dotfiles-git-dir"
+if ! grep --quiet DOTFILES_HOME "$PATH_CONFIG" 2>/dev/null; then
+  echo "export DOTFILES_HOME=$REPO_PATH" >> "$PATH_CONFIG"
+fi
 echo -e "\n${green}Done. Open a new terminal to see the effects.${normal}"
