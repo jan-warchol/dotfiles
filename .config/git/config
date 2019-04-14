@@ -21,14 +21,14 @@
 
     c  = checkout
     co = checkout
-    c0 = checkout HEAD~0   # detach HEAD e.g. for throw-away experiments
     c1 = checkout HEAD~1
-    c2 = checkout HEAD~2
     cb = checkout -b
     cd = checkout devel
     cm = !git checkout $(git mainline)
     com = !git checkout origin/$(git mainline)
     cu = checkout @{upstream}
+
+    dt = checkout --detach   # e.g. for throw-away experiments
 
     chp = cherry-pick
 
