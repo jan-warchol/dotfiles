@@ -18,11 +18,13 @@ dotfiles() {
     else
         git --work-tree="$HOME" --git-dir="$DOTFILES_HOME" "$@"
     fi
+    set +u
 }
 
 
 # Alternative #2: environment modification
 don() {
+    set -u
     GIT_BIN=`which git`
     # add safeguard against git clean
     git() {
@@ -33,17 +35,18 @@ don() {
             $GIT_BIN "$@"
         fi
     }
-    . $HOME/.bashrc  # refresh aliases such as g=git to include the safeguard
-
     pushd ~ 1>/dev/null  # remember location
     export GIT_DIR=$DOTFILES_HOME; export GIT_WORK_TREE=$HOME
-    export GIT_PS_FMT=" (${BR_YELLOW}dotfiles:${RESET_COLOR} %s)"
+    export GIT_PS1_FMT=" (${BR_YELLOW}dotfiles:${RESET_COLOR} %s)"
+
+    set +u
+    . $HOME/.bashrc  # refresh aliases such as g=git to include the safeguard
 }
 
 dof() {
     unset -f git
     . $HOME/.bashrc  # refresh aliases such as g=git to remove the safeguard
     unset GIT_DIR; unset GIT_WORK_TREE
-    unset GIT_PS_FMT
+    unset GIT_PS1_FMT
     popd 1>/dev/null  # restore previous location
 }

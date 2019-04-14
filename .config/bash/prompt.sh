@@ -56,13 +56,17 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
 
+# set defaults so that we don't have uninitialized variables
+: ${PS1_SSH_IDENTITY:=""}
+: ${GIT_PS1_FMT:=""}
+
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
 export PS1="\$(echo -e \${PS1_USER_COLOR})$PS1_USERNAME \
 \$(echo -e \"\${PS1_SSH_IDENTITY}\")\
 \$(echo -e \${PS1_PATH_COLOR})\w\
 ${PS1_RESET_COLOR}\
-\$(__git_ps1 \"\$GIT_PS_FMT\")\
+\$(__git_ps1 \"\$GIT_PS1_FMT\")\
 ${ranger_notice}\n${smartdollar}"
 
 export PS4="$(tput bold)>>> $(tput sgr0)"
