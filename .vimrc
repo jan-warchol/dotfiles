@@ -113,7 +113,7 @@ Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
 Plug 'junegunn/fzf.vim'
 " Enable history of patterns used in each FZF command
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+let g:fzf_history_dir = $FZF_VIM_HISTORY
 Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-fugitive'
 

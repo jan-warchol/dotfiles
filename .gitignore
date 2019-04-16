@@ -34,6 +34,7 @@
 .config/git/gitk
 .config/git/config.local
 .config/bash/config.local
+.config/bash/00-paths-override.sh
 .dmrc
 .config/ranger/bookmarks
 .config/ranger/history

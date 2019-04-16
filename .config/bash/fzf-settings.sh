@@ -1,14 +1,15 @@
-export FZF_HOME=$HOME/.fzf
+: "${FZF_HOME:=$HOME/.fzf}"  # default value
+: "${FZF_HISTORY:=$HOME/fzf-history-$DISAMBIG_SUFFIX}"
+: "${FZF_VIM_HISTORY:=$HOME/.local/share/fzf-history}"
+
 export FZF_DEFAULT_OPTS="\
-  --history=$HOME/fzf-history-$DISAMBIG_SUFFIX\
+  --history=$FZF_HISTORY \
   --bind \"ctrl-u:abort+execute(cd ..; echo -n ../; find . | fzf --prompt \`pwd\`/)\"\
   --bind \"ctrl-o:abort+execute(cd \`echo {} | sed 's|~|/home/jan/|'\`; echo -n {}/; find . | fzf --prompt {}/)\""
 
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == *$FZF_HOME/bin* ]]; then
-  export PATH="$PATH:$FZF_HOME/bin"
-fi
+_PATH_append "$PATH:$FZF_HOME/bin"
 
 # Key bindings
 # ------------
@@ -25,7 +26,7 @@ bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="smart-find ~" fzf-file-widget'
 bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'
-bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="GIT_DIR=~/.password-store/.git git ls-files | grep \.gpg$ | sed s/\.gpg$//" fzf-file-widget'
+bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="GIT_DIR=$PASSWORD_STORE_DIR/.git git ls-files | grep \.gpg$ | sed s/\.gpg$//" fzf-file-widget'
 bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl" FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-sort --bind ctrl-s:toggle-sort" fzf-file-widget'
 
 

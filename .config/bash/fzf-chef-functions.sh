@@ -1,4 +1,4 @@
-INFRA_REPO_PATH="$HOME/src/infrastructure"
+: "${INFRA_REPO_PATH:=$HOME/src/infrastructure}"  # default value
 
 refresh_fzf_ssh_cache() {
   echo -n "Querying Chef server... "

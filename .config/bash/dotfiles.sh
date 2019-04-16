@@ -3,27 +3,28 @@
 # functions that change the environment in the shell (advantage: git
 # integration with the prompt will work).
 
+if [ -z $DOTFILES_HOME ]; then
+    echo "ERROR: dotfiles repository isn't configured correctly -"
+    echo "       DOTFILES_HOME is undefined. This variable should"
+    echo "       contain the path to dotfiles git-dir."
+fi
 
 # Alternative #1: `dotfiles` command
-if [ -f "$HOME/.config/dotfiles-git-dir" ]; then
-    export DOTFILES_GIT_DIR=$(cat "$HOME/.config/dotfiles-git-dir")
-    dotfiles() {
-        if [[ "$@" == *clean* ]]; then
-            echo "NEVER USE 'git clean' on the dotfiles repository!"
-            echo "It would delete data from your HOME directory."
-        else
-            git --work-tree="$HOME" --git-dir="$DOTFILES_GIT_DIR" "$@"
-        fi
-    }
-else
-    echo "ERROR: your dotfiles repository isn't set up correctly -"
-    echo "       ~/.config/dotfiles-git-dir file is missing. This"
-    echo "       file should contain the path to dotfiles git-dir."
-fi
+dotfiles() {
+    set -u
+    if [[ "$@" == *clean* ]]; then
+        echo "NEVER USE 'git clean' on the dotfiles repository!"
+        echo "It would delete data from your HOME directory."
+    else
+        git --work-tree="$HOME" --git-dir="$DOTFILES_HOME" "$@"
+    fi
+    set +u
+}
 
 
 # Alternative #2: environment modification
 don() {
+    set -u
     GIT_BIN=`which git`
     # add safeguard against git clean
     git() {
@@ -34,17 +35,18 @@ don() {
             $GIT_BIN "$@"
         fi
     }
-    . $HOME/.bashrc  # refresh aliases such as g=git to include the safeguard
-
     pushd ~ 1>/dev/null  # remember location
-    export GIT_DIR=$HOME/.dotfiles.git; export GIT_WORK_TREE=$HOME
-    export GIT_PS_FMT=" (${BR_YELLOW}dotfiles:${RESET_COLOR} %s)"
+    export GIT_DIR=$DOTFILES_HOME; export GIT_WORK_TREE=$HOME
+    export GIT_PS1_FMT=" (${BR_YELLOW}dotfiles:${RESET_COLOR} %s)"
+
+    set +u
+    . $HOME/.bashrc  # refresh aliases such as g=git to include the safeguard
 }
 
 dof() {
     unset -f git
     . $HOME/.bashrc  # refresh aliases such as g=git to remove the safeguard
     unset GIT_DIR; unset GIT_WORK_TREE
-    unset GIT_PS_FMT
+    unset GIT_PS1_FMT
     popd 1>/dev/null  # restore previous location
 }
