@@ -20,10 +20,8 @@ fi
 export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
 
 ls-passwords() {
-  git \
-    --git-dir=$PASSWORD_STORE_DIR/.git --work-tree=$PASSWORD_STORE_DIR \
-    ls-files --recurse-submodules |
-  grep \.gpg$ | sed s/\.gpg$//
+  cd $PASSWORD_STORE_DIR
+  find . -name "*.gpg" | cut -c3- | sed s/\.gpg$//
 }
 
 # fuzzy-search starting in various directories
