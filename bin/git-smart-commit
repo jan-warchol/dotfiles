@@ -8,7 +8,7 @@
 # Note that supplied message cannot contain filenames (unless you quote it).
 
 CHANGE_SELECTOR=false   # does some argument specify what to commit?
-COMMIT_OPTS="--verbose --verbose"   # show diff (double-check what you commit)
+COMMIT_OPTS="--verbose"   # show diff (double-check what you commit)
 
 # analyze and group arguments into options, paths and message
 while [ $# -gt 0 ]; do
