@@ -23,16 +23,16 @@ while [ $# -gt 0 ]; do
       COMMIT_OPTS="$COMMIT_OPTS $arg"
       CHANGE_SELECTOR=true
       ;;
-    -*)
+    --)  # treat all remaining args as paths
+      COMMIT_PATHS="-- $@"
+      CHANGE_SELECTOR=true
+      break
+      ;;
+    -*)  # options without arguments
       COMMIT_OPTS="$COMMIT_OPTS $arg"
       ;;
-    **)
-      if [ -e "$arg" ]; then
-        COMMIT_PATHS="$COMMIT_PATHS $arg"
-        CHANGE_SELECTOR=true
-      else
-        COMMIT_MSG="$(echo $COMMIT_MSG $arg)"   # echo -> trim extra whtespace
-      fi
+    **)  # everything else -> commmit message
+      COMMIT_MSG="$(echo $COMMIT_MSG $arg)"   # echo -> trim extra whtespace
       ;;
   esac
 done
@@ -45,7 +45,7 @@ fi
 
 # message content must be quoted, but empty quotes would trigger error
 if [ -z "$COMMIT_MSG" ]; then
-  git commit $COMMIT_OPTS -- $COMMIT_PATHS
+  git commit $COMMIT_OPTS $COMMIT_PATHS
 else
-  git commit $COMMIT_OPTS --message "$COMMIT_MSG" -- $COMMIT_PATHS
+  git commit $COMMIT_OPTS --message "$COMMIT_MSG" $COMMIT_PATHS
 fi
