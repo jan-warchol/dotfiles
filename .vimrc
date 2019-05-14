@@ -107,7 +107,7 @@ let g:airline#extensions#branch#displayed_head_limit = 18
 let g:airline#extensions#tabline#enabled = 1
 
 " Additional interface elements ----------------------------------------
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
