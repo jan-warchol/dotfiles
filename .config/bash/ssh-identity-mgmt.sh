@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# start my own agent because the one used by default on Xenial doesn't support
+# ed25519 keys. To avoid spawning multiple agents I use specific socket path.
+export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+ssh_ensure_agent_running() {
+  if [ ! -S $SSH_AUTH_SOCK ]; then
+    ssh-agent -t 24h -a $SSH_AUTH_SOCK
+  fi
+}
+ssh_ensure_agent_running
+
+
 # Override ssh key from .ssh/config for accessing another account on services
 # such as github or bitbucket. Has precedence over settings in .ssh/config
 
