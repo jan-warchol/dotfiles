@@ -56,14 +56,18 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
 
+check_ssh_keys() {
+  if key_listing=$(set -o pipefail; ssh-add -l | cut -d' ' -f3 | xargs -L 1 basename); then
+    echo $key_listing | sed 's/$/ /'
+  fi
+}
 # set defaults so that we don't have uninitialized variables
-: ${PS1_SSH_IDENTITY:=""}
 : ${GIT_PS1_FMT:=""}
 
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
-export PS1="\$(echo -e \${PS1_USER_COLOR})$PS1_USERNAME \
-\$(echo -e \"\${PS1_SSH_IDENTITY}\")\
+export PS1="\
+\$(echo -e \${PS1_USER_COLOR})\$(check_ssh_keys)\
 \$(echo -e \${PS1_PATH_COLOR})\w\
 ${PS1_RESET_COLOR}\
 \$(__git_ps1 \"\$GIT_PS1_FMT\")\

@@ -27,15 +27,30 @@ ssh_identity() {
   fi
 }
 
-ensure_codility_ssh_key_loaded() {
-  if ! ssh-add -l | grep -q /home/jan/.ssh/keys/id_rsa_codility_3; then
-expect << EOF
-  spawn ssh-add -t 10h /home/jan/.ssh/keys/id_rsa_codility_3
+ssh_get_key_path() {
+  path="$1"
+  if [ -e "$path" ]; then
+    echo "$path"
+  else
+    path="$HOME/.ssh/keys/$1"
+    if [ -e "$path" ]; then
+      echo "$path"
+    else
+      echo 1>&2 "Cannot find key matching \"${1}\""
+      echo 1>&2 "Provide either an absolute path or a filename from ~/.ssh/keys/"
+    fi
+  fi
+}
+
+ssh_add_key_to_agent() {
+  key_path="$(ssh_get_key_path "$1")"
+  key_name="$(basename "$1")"
+expect << EOF | grep -v Enter | grep -v spawn | grep -v Lifetime
+  spawn ssh-add -t 10h "$key_path"
   expect "Enter passphrase"
-  send "$(pass codility-ssh-key-3-password)\r"
+  send "$(pass ssh-keys/${key_name}-password)\r"
   expect eof
 EOF
-  fi
 }
 
 alias shid=ssh_identity
