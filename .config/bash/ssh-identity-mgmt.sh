@@ -27,8 +27,6 @@ ssh_identity() {
   fi
 }
 
-alias shid=ssh_identity
-
 ensure_codility_ssh_key_loaded() {
   if ! ssh-add -l | grep -q /home/jan/.ssh/keys/id_rsa_codility_3; then
 expect << EOF
@@ -40,12 +38,4 @@ EOF
   fi
 }
 
-load_key_if_working_on_codility() {
-  if [[ $PWD == *src/infrastructure* || $PWD == *src/codility* ]]; then
-    ensure_codility_ssh_key_loaded
-  fi
-}
-
-if [[  "$PROMPT_COMMAND" != *load_key_if_working_on_codility* ]]; then
-  export PROMPT_COMMAND="load_key_if_working_on_codility; $PROMPT_COMMAND"
-fi
+alias shid=ssh_identity
