@@ -5,7 +5,11 @@
 export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
 ssh_ensure_agent_running() {
   if [ ! -S $SSH_AUTH_SOCK ]; then
-    ssh-agent -t 24h -a $SSH_AUTH_SOCK
+    # make sure we don't override forwarded agent
+    if [ -z "$SSH_CONNECTION" ]; then
+      echo -n "SSH agent started. "
+      eval `ssh-agent -t 24h -a $SSH_AUTH_SOCK`
+    fi
   fi
 }
 ssh_ensure_agent_running
