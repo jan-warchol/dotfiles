@@ -57,8 +57,12 @@ GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
 
 check_ssh_keys() {
-  if key_listing=$(set -o pipefail; ssh-add -l | cut -d' ' -f3 | xargs -L 1 basename); then
-    echo $key_listing | sed 's/$/ /'
+  if [ -S $SSH_AUTH_SOCK ]; then
+    if key_listing=$(set -o pipefail; ssh-add -l | cut -d' ' -f3 | xargs -L 1 basename); then
+      echo $key_listing | sed 's/$/ /'
+    fi
+  else
+    echo "(no ssh agent) "
   fi
 }
 # set defaults so that we don't have uninitialized variables
