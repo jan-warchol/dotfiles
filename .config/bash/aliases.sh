@@ -101,6 +101,7 @@ alias pign=ping  # let's face it, I will continue to make this typo
 alias cim=vim  # ...and this too
 alias vd=vimdiff
 alias ips="ifconfig | grep 'inet ' | awk '{ print \$2 }' | awk -F: '{ print \$2 }'"
+alias battery='upower -i $(upower -e | grep BAT) | grep -E "state|time|percentage" --color=never'
 
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {

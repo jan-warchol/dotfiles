@@ -12,6 +12,8 @@ x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 text/x-arduino=arduino-arduinoide.desktop
 x-scheme-handler/slack=slack.desktop
+x-scheme-handler/webcal=google-chrome.desktop
+x-scheme-handler/mailto=google-chrome.desktop
 
 [Added Associations]
 application/x-shellscript=xed.desktop;

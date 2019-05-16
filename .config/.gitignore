@@ -1,0 +1,18 @@
+# Sometimes I want to track changes in my full configuration (not just the
+# human-readable dotfiles), for example when I want to find out in which config
+# file a setting belongs. I usually do this using a temporary git repo;
+# in such cases I want to ignore some directories that contain too much noise.
+
+# way too much noise, and I keep config in chrome profile anyway
+google-chrome/
+
+# temporary data, should not be tracked
+ibus
+
+# already tracked in dotfiles repo - avoid mess when I switch branches there
+bash/
+git/
+mimeapps.list
+README.md
+# yes, include this very file itself:
+.gitignore

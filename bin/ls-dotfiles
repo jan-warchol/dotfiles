@@ -5,6 +5,7 @@
 (
   GIT_DIR=$DOTFILES_HOME git ls-files | sed s:^:$HOME/:
   echo ~/.config/terminator/config
+  echo ~/.config/bash/00-paths-override.sh
   find $HOME/.ssh
   if [ -e $FZF_HOME ]; then find $FZF_HOME/shell; fi
   if [ -e $HOME/.aws ]; then find $HOME/.aws; fi
