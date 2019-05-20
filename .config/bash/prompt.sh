@@ -56,9 +56,19 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
 
+ssh_normalize_key_names() {
+  for name in "$@"; do
+    if [ -e "$name" ]; then
+      basename "$name"
+    else
+      echo "$name"
+    fi
+  done
+}
+
 check_ssh_keys() {
   if [ -S $SSH_AUTH_SOCK ]; then
-    if key_listing=$(set -o pipefail; ssh-add -l | cut -d' ' -f3 | xargs -L 1 basename); then
+    if key_listing=$(ssh_normalize_key_names $(set -o pipefail; ssh-add -l | cut -d' ' -f3)); then
       echo $key_listing | sed 's/$/ /'
     fi
   else
