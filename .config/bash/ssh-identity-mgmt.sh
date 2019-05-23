@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# start my own agent because the one used by default on Xenial doesn't support
+# ed25519 keys. To avoid spawning multiple agents I use specific socket path.
+export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+ssh_ensure_agent_running() {
+  if [ ! -S $SSH_AUTH_SOCK ]; then
+    # make sure we don't override forwarded agent
+    if [ -z "$SSH_CONNECTION" ]; then
+      echo -n "SSH agent started. "
+      eval `ssh-agent -t 24h -a $SSH_AUTH_SOCK`
+    fi
+  fi
+}
+ssh_ensure_agent_running
+
+
 # Override ssh key from .ssh/config for accessing another account on services
 # such as github or bitbucket. Has precedence over settings in .ssh/config
 
@@ -27,25 +42,30 @@ ssh_identity() {
   fi
 }
 
-alias shid=ssh_identity
+ssh_get_key_path() {
+  path="$1"
+  if [ -e "$path" ]; then
+    echo "$path"
+  else
+    path="$HOME/.ssh/keys/$1"
+    if [ -e "$path" ]; then
+      echo "$path"
+    else
+      echo 1>&2 "Cannot find key matching \"${1}\""
+      echo 1>&2 "Provide either an absolute path or a filename from ~/.ssh/keys/"
+    fi
+  fi
+}
 
-ensure_codility_ssh_key_loaded() {
-  if ! ssh-add -l | grep -q /home/jan/.ssh/keys/id_rsa_codility_3; then
-expect << EOF
-  spawn ssh-add -t 10h /home/jan/.ssh/keys/id_rsa_codility_3
+ssh_add_key_to_agent() {
+  key_path="$(ssh_get_key_path "$1")"
+  key_name="$(basename "$1")"
+expect << EOF | grep -v Enter | grep -v spawn | grep -v Lifetime
+  spawn ssh-add -t 10h "$key_path"
   expect "Enter passphrase"
-  send "$(pass codility-ssh-key-3-password)\r"
+  send "$(pass ssh-keys/${key_name}-password)\r"
   expect eof
 EOF
-  fi
 }
 
-load_key_if_working_on_codility() {
-  if [[ $PWD == *src/infrastructure* || $PWD == *src/codility* ]]; then
-    ensure_codility_ssh_key_loaded
-  fi
-}
-
-if [[  "$PROMPT_COMMAND" != *load_key_if_working_on_codility* ]]; then
-  export PROMPT_COMMAND="load_key_if_working_on_codility; $PROMPT_COMMAND"
-fi
+alias shid=ssh_identity
