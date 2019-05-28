@@ -237,7 +237,8 @@
     lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
     lpd  = log --decorate --patch --submodule=log --topo-order --full-diff
-    lpr  = !git log --decorate --patch --reverse $(git mainline)..HEAD
+    lpr  = !GIT_PAGER='~/bin/smartless -p^commit' \
+    git log --decorate --patch --reverse $(git mainline)..HEAD
 
 
     # log unpushed/unmerged commits on all branches
