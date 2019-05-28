@@ -236,8 +236,8 @@
     lpw  = log --decorate --patch --submodule=log --topo-order --word-diff=color
     lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
-    lpfd = log --decorate --patch --submodule=log --topo-order --full-diff
-    lmpr = !git log --decorate --patch --reverse $(git mainline)..HEAD
+    lpd  = log --decorate --patch --submodule=log --topo-order --full-diff
+    lpr  = !git log --decorate --patch --reverse $(git mainline)..HEAD
 
 
     # log unpushed/unmerged commits on all branches
