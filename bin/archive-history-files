@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# combine monthly history files and archive them
+for f in `ls ${HISTFILE}_20??-?? | grep -v _$(date +%Y-%m)`; do
+  echo Processing $f
+  year=$(echo $f | grep -o 20[0-9][0-9])
+  cat "$f" >> ${HISTDIR}/archive/${HISTFNAME}_${year}
+  \mv --backup "$f" ${HISTDIR}-backup/
+done
+
+filter-bash-history ${HISTDIR}/archive/${HISTFNAME}_$(date +%Y)
+\mv --backup ${HISTDIR}/archive/${HISTFNAME}_$(date +%Y).filtered ${HISTDIR}
