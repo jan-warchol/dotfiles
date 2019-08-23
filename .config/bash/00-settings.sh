@@ -29,6 +29,7 @@ export ARDUINO_PATH=/usr/local/arduino
 
 _PATH_append $ARDUINO_PATH
 _PATH_append $HOME/bin
+_PATH_prepend $HOME/bin/override
 # apparently user-wide pip install puts stuff there
 _PATH_append $HOME/.local/bin
 
