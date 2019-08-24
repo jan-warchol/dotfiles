@@ -45,10 +45,6 @@ export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/data"
 export DISAMBIG_SUFFIX=$(hostname)
 
-# I prefer to keep my history in my data folder so that it's backed up
-export HISTFILE="$HOME/data/history/bash-history-$DISAMBIG_SUFFIX"
-mkdir -p `dirname $HISTFILE`
-
 export EDITOR="vim"
 
 export _FASD_DATA="$HOME/data/fasd-data-$DISAMBIG_SUFFIX"
