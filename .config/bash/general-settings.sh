@@ -78,7 +78,7 @@ export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
 # Execute only when a graphical environment is present
 if [ -n "$DISPLAY" ]; then
     # faster key repetition - life is too short to wait!
-    xset r rate 170 70   # delay [ms], frequency [Hz]
+    xset r rate 200 40   # delay [ms], frequency [Hz]
 fi
 
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
