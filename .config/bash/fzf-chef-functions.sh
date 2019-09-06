@@ -25,7 +25,9 @@ fzf_codility_ssh() {
 
 fzf_codility_chef_node_name() {
   cat $INFRA_REPO_PATH/.chef/server-fqdn-cache | cut -f1 |
-  fzf --height 50% --prompt 'chef node: ' --multi
+  fzf --height 50% --prompt 'chef node: ' --multi |
+  # use comma as record separator, https://stackoverflow.com/a/6539865
+  paste -sd "," -
 }
 
 refresh_fzf_rake_cache() {
