@@ -102,6 +102,13 @@
     mb = merge-base @  # find where current branch diverged from another branch
     mbm = merge-base HEAD MERGE_HEAD  # merge base of current ongoing merge
 
+    # displaying changes that led to merge conflict
+    mc1 = lp -U5 --reverse MERGE_HEAD..HEAD
+    mc2 = lp -U5 --reverse HEAD..MERGE_HEAD
+    # similarly for rebase conflicts
+    rmc1 = !git lp ORIG_HEAD..$(cat $(git rev-parse --git-dir)/rebase-apply/onto)
+    rmc2 = show REBASE_HEAD
+
     mw = mv  # I'm used to using `mw` (customized mv) in shell
 
     # unlike plain `pull`, this won't attempt a merge that may result in conflicts
