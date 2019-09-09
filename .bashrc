@@ -5,8 +5,8 @@ load_config() {
   source "$HOME/.config/bash/$@"
 }
 
+load_config "general-settings.sh"  # should come first
 load_config "00-paths-override.sh" 2>/dev/null  # optional
-load_config "00-settings.sh"
 load_config "aliases.sh"
 load_config "cd-with-history.sh"
 load_config "dotfiles.sh"
