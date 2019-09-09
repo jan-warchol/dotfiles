@@ -94,6 +94,7 @@ Plug 'tpope/vim-sensible'
 
 " Appearance -----------------------------------------------------------
 Plug 'altercation/vim-colors-solarized'  " not used, just for comparison
+Plug 'lifepillar/vim-colortemplate'  " colorscheme designer toolkit
 Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi color codes
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
 Plug 'posva/vim-vue'  " syntax highlighting for JavaScript framework Vue
