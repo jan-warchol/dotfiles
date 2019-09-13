@@ -353,6 +353,9 @@
         && git branch --delete $BRANCH'
 
 
+[advice]
+    detachedHead = false
+
 # configuration for managing files encrypted with ansible vault
 # See https://github.com/building5/ansible-vault-tools
 [diff "ansible-vault"]
