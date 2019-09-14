@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage: find-multifile-dirs [threshold] [max depth] [cmd to search with]
+# Usage: analyze-file-count [threshold] [max depth] [cmd to search with]
 
 # this is not terribly efficient, as it will count each file $maxdepth times.
 # However, it starts displaying output as soon as it counts the biggest subdir,

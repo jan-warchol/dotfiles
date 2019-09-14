@@ -48,6 +48,6 @@ you can easily customize it. I wrote a helper script for finding directories
 with lots of files - use like this:
 
     cd <directory to analyze>
-    find-multifile-dirs
+    analyze-file-count
 
 then edit `smart-find`, adding options as you like.
