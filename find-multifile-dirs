@@ -1,13 +1,16 @@
 #!/bin/bash
 
+# Usage: find-multifile-dirs [threshold] [max depth] [cmd to search with]
+
 # this is not terribly efficient, as it will count each file $maxdepth times.
 # However, it starts displaying output as soon as it counts the biggest subdir,
 # so the user can start to analyze the results without waiting for full input.
 
-toplevel=${1:-.}
-threshold=${2:-1000}
-maxdepth=${3:-3}
-findcommand=${4:-find}
+threshold=${1:-1000}
+maxdepth=${2:-3}
+findcommand=${3:-find}
+
+toplevel="."
 
 count () {
   $findcommand "$1" -mindepth 1 -maxdepth 1 -type d -print0 |
@@ -17,16 +20,19 @@ count () {
   done |
   sort -nr |
   while read count dir; do
+    dir="${dir//\.\/}"  # remove leading ./
     if (( $count > $threshold )); then
-      indent=`tr -dc '/' <<< "$dir" | tr '/' ' '`
-      printf "%s%-8s%s\n" "$indent$indent" $count "${dir//\.\/}"
-      if (( `echo "$indent" | wc -c` < $maxdepth + 1 )); then
+      indent=$(tr -dc '/' <<< "$dir" | tr '/' ' ')
+      printf "%s%-8s%s\n" "$indent$indent" $count "$dir"
+      if (( `echo "$indent" | wc -c` < $maxdepth )); then
         count "$dir"
       fi
     fi
   done
 }
 
-echo -n "Total files: "
-echo $($findcommand "$toplevel" -print0 | grep -zc .)
+echo -e "Analyzing $(readlink -f $toplevel)...\n"
 count $toplevel
+
+echo -ne "\nTotal files in $(readlink -f $toplevel): "
+echo $($findcommand "$toplevel" -print0 | grep -zc .)
