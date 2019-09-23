@@ -50,6 +50,7 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -name '.npm' \
        -o -name '.cache' \
        -o -name '.chefdk' \
+       -o -name '.berkshelf' \
        -o -name 'site-packages' \
     \) -prune \
     -o $FIND_OPTS $PRINT_MTD \
