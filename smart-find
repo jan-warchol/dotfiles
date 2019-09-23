@@ -42,6 +42,9 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -path '*/.local/share/Zeal' \
        -o -path '*/.local/share/Trash' \
        -o -path '*/.vim/plugged' \
+       -o -path '*/.terraform/modules' \
+       -o -path '*/.terraform/plugins' \
+       -o -path '*/terraform.*.backup' \
        -o -path '*/.config/google-chrome' \
        -o -path '/usr/share/icons' \
        -o -path '/usr/share/locale' \
