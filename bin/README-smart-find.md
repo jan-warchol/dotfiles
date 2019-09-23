@@ -6,10 +6,9 @@ it takes so long? Or maybe you get a lot of crap in the results, making it
 harder to grep for what you want?
 
 `smart-find` can be used just like `find` (it accepts paths and options), but
-it will automatically prune directories like
+it will automatically ignore directories like
 
 * `~/.local/share/Trash`
-* `~/.cache`
 * `node_modules`
 * `.git/objects`
 
@@ -25,11 +24,30 @@ results:
     real 0m1.677s
 
 
-### Finding directories to prune
+
+### Installation and usage
+
+Simply clone the repo and ensure the script is in your PATH (Note: **Mac
+users** should update `~/.bash_profile` instead of `~/.bashrc`):
+
+    git clone https://github.com/jan-warchol/smart-find.git
+    echo 'export PATH=$PATH:$HOME/smart-find' >> ~/.bashrc
+
+**That's it!** New shell sessions should have `smart-find` command available.
+
+You may want to add an alias to override ordinary find:
+
+    echo 'alias find=smart-find' >> ~/.bashrc
+
+Note that aliases usually work only in interactive sessions, not in scripts.
+
+### Adjusting ignored directories
 
 `smart-find` comes with a list of patters to use for pruning the results, but
 you can easily customize it. I wrote a helper script for finding directories
 with lots of files - use like this:
 
     cd <directory to analyze>
-    find-multifile-dirs
+    analyze-file-count
+
+then edit `smart-find`, adding options as you like.
