@@ -33,8 +33,8 @@ fi
 
 __merge_history_file() {
   [ $# -ne 1 ] && echo "Missing argument" && return 1
-  file="$1"
-  echo "flushing $(basename $file)"
+  [ -e "$1" ] && file="$1" || return 0
+  echo "Flushing $(basename $file)"
   cat "$file" >> "$HISTMERGED"
   \rm "$file"
 }
