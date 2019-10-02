@@ -117,7 +117,7 @@
     pu = push
     puf = push --force-with-lease
     # push to a new branch with the same name
-    psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+    pub = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
     # tags have to be pushed explicitly
     put = !git push --tags && git push
 
