@@ -175,6 +175,8 @@
     # get name of the default branch (from origin/HEAD), with fallback to "master"
     mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|master|'
 
+    mine = !git ls --author=\"$(git config --get user.name)\"
+
 
 
     # PRETTY LOGS
