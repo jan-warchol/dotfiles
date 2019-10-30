@@ -15,7 +15,7 @@ while [ $# -gt 0 ]; do
   arg="$1"; shift
   case "$arg" in
     # options that take arguments - get the argument, too
-    -c|-C|--*message|-m|--fixup|--squash|-f|--file|--author|--date|-t|--template)
+    -c|-C|--*message|-m|--fixup|--squash|-F|--file|--author|--date|-t|--template)
       COMMIT_OPTS="$COMMIT_OPTS $arg $1"; shift
       ;;
     # options mutually exclusive with --all
