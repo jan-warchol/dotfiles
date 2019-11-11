@@ -6,7 +6,7 @@
 # which moves files to system trash.  It can be installed with pip or apt-get.
 alias tp='trash-put --verbose'
 
-alias mw='\mv --backup=numbered --verbose'
+alias mw='\mv --interactive --verbose'
 alias kp='\cp --recursive --backup=numbered --verbose'
 
 # Make sure that I won't accidentally use plain rm, mv or cp
