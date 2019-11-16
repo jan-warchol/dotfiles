@@ -1,53 +1,78 @@
 #!/bin/bash
 
-# Groom bash history file, removing entries that are not interesting and
-# duplicated.
-if [ $# != 1 ]; then
-  echo "Wrong number of arguments."
-  echo "Usage: $0 <history file to process>"
-fi
+normalize() {
+  # # normalize "g" alias to "git"
+  # sed 's/^g /git /' |
+  # trim leading and trailing whitespace
+  sed -r 's/^\s+//; s/\s+$//'
+}
 
-cat "$1" |
+handle-whitespace-issues() {
+  if grep -E "^#[0-9]{10}$" </dev/stdin >/dev/null; then
+    # figuring multiline commands is possible only with timestamps (enabled by HISTTIMEFORMAT)
+    echo >/dev/stderr "Squashing multiline commands (for line-oriented search)"
+    tr '\n' ' ' | sed -r 's/ ?(#[0-9]{9,}) /\n\1\n/g' | grep -v "^$"
+  else cat; fi |
 
-# Normalize commands for better deduplication
+  # See https://stackoverflow.com/a/48631831/2058424
+  perl -pe 's/[ ]+(?=[^"]*(?:"[^"]*"[^"]*)*$)/ /g'
+  echo >/dev/stderr "Squashing multiple spaces (except inside double quotes)"
+}
 
-# trim leading and trailing whitespace
-sed -r 's/^\s+//; s/\s+$//' |
+rubbish-removal() {
+  # remove short commands (up to 6 characters)
+  sed -r '/^#[0-9]* .{,6}$/d' |
+  sed -r '/^#[0-9]* [a-Z0-9 _/.]{,12}$/d' |
 
-# normalize "git" to "g"
-sed 's/^git /g /' |
+  # remove git grep for simple patterns
+  sed -r '/^#[0-9]* git g[ a-Z0-9_./"]*$/d' |
 
+  # remove git commmands with just commit hash
+  sed -r '/^#[0-9]* git (c|co|chp|show|ls|lp|ll) [a-z0-9 ]*$/d' |
+  # remove commit messages (except when options are used)
+  sed -r '/^#[0-9]* git (ci|cim|cam) [^-]*$/d' |
 
-# Remove uninteresting commands
+  # remove trivial commands with just filenames
+  sed -r '/^#[0-9]* (cd|ll|ls|vim) [a-Z0-9/_. -]*$/d' |
 
-# prepend placeholder timestamp to commands that didn't have one;
-# join timestamp and command into one line for further processing
-sed -n '/^#[0-9]*$/!{s/^/#0000000001 /; p}; /^#[0-9]*$/{N; s/\n/ /g; p;}' |
+  # remove man commands
+  sed -r '/^#[0-9]* man (git )?.[a-z_\-]*$/d'
+}
 
-# remove short commands (up to 6 characters)
-sed -r '/^#[0-9]* .{0,6}$/d' |
+deduplication() {
+  # normalize "g" alias to "git"
+  sed 's/^g /git /' |
 
-# remove short git commands
-sed -r '/^#[0-9]* g .{1,8}$/d' |
+  # prepend placeholder timestamp to commands that didn't have one;
+  # join timestamp and command into one line for further processing
+  sed -n '/^#[0-9]*$/!{s/^/#0000000000 /; p}; /^#[0-9]*$/{N; s/\n/ /g; p;}' |
 
-# remove short cd commands
-sed -r '/^#[0-9]* cd (\/home\/)?.{1,16}$/d' |
+  rubbish-removal |
 
-# remove man commands
-sed -r '/^#[0-9]* man (git )?.[a-z_\-]*$/d' |
+  # sort by timestamp, keeping untimestamped commands at the beginning in
+  # original order
+  sort --stable --key=1,1 |
 
+  # remove duplicates (keeping *last* occurrence). See
+  # https://stackoverflow.com/questions/39076336/bash-remove-duplicates-preserve-order
+  tac | awk '!uniq[substr($0, 12)]++' | tac |
 
-# Deduplicate
+  # split entries in two lines again, remove placeholder timestamps
+  sed -r 's/^(#[0-9]*) /\1\n/' | grep -v "^#0000000000$"
 
-# sort by timestamp, keeping untimestamped commands at the beginning in
-# original order
-sort --stable --key=1,1 |
+}
 
-# remove duplicates (keeping *last* occurrence). See
-# https://stackoverflow.com/questions/39076336/bash-remove-duplicates-preserve-order
-tac | awk '!uniq[substr($0, 12)]++' | tac |
+# Remove duplicates and uninteresting entries from supplied history file.
+filter_bash_history() {
+  if [ $# != 1 ]; then
+    echo "Wrong number of arguments."
+    echo "Usage: filter_bash_history <history file to process>"
+    return 1
+  fi
 
-# split entries in two lines again, remove placeholder timestamps
-sed -r 's/^(#[0-9]*) /\1\n/' | grep -v "^#0000000001$" > "$1.filtered"
+  cat "$1" |
 
-echo Trimmed history file saved to "$1.filtered"
+  # Normalize commands for better deduplication ############
+
+  echo Trimmed history file saved to "$1.filtered"
+}
