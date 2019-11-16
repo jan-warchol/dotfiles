@@ -39,12 +39,12 @@
     amq = smart-commit --amend --no-edit
     wip = smart-commit WIP --no-verify
 
-    wish = !git smart-commit WIP "$@" && git push --quiet && true
-    paf  = !git amq --quiet && git puf --quiet
+    cip = !git smart-commit "$@" && git push --quiet && true
+    paf = !git amd --no-edit --quiet && git puf --quiet
 
     empty = commit --allow-empty --message  # handy for test commits
 
-    d = diff --find-copies-harder --inter-hunk-context=13 --submodule=log
+    d = diff --find-copies=90% --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     dm = !git d $(git mainline)
@@ -84,7 +84,7 @@
     ghw = grep --extended-regexp --textconv --ignore-case --heading --word-regexp --context 8
 
     # search, pipe the results to less and set less' search pattern (for navigating results with n/N)
-    gl = !GIT_PAGER=\"less -p $@\" git grep --extended-regexp --textconv --ignore-case --context 13
+    gl = !GIT_PAGER=\"less -p $@\" git -c color.grep.filename='blue black' grep --extended-regexp --textconv --ignore-case --heading --context 13
 
     # search whole repository, not only current directory.
     # (in `!...` construct, commands are executed from repository root dir)
@@ -117,7 +117,7 @@
     pu = push
     puf = push --force-with-lease
     # push to a new branch with the same name
-    psuo = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+    pub = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
     # tags have to be pushed explicitly
     put = !git push --tags && git push
 
@@ -174,6 +174,8 @@
     ref-name = !git rev-parse --abbrev-ref 2>/dev/null
     # get name of the default branch (from origin/HEAD), with fallback to "master"
     mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|master|'
+
+    mine = !git ls --author=\"$(git config --get user.name)\"
 
 
 
@@ -234,8 +236,9 @@
     lpw  = log --decorate --patch --submodule=log --topo-order --word-diff=color
     lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
-    lpfd = log --decorate --patch --submodule=log --topo-order --full-diff
-    lmpr = !git log --decorate --patch --reverse $(git mainline)..HEAD
+    lpd  = log --decorate --patch --submodule=log --topo-order --full-diff
+    lpr  = !GIT_PAGER='~/bin/smartless -p^commit' \
+    git log --decorate --patch --reverse $(git mainline)..HEAD
 
 
     # log unpushed/unmerged commits on all branches
@@ -345,13 +348,16 @@
     # - submodule entries (to avoid errors)
     # - symbolic links (to avoid transforming them to ordinary files)
     # usage: git sed 's/foo/bar/'
-    sed = !git ls-files --stage $GIT_PREFIX | grep -v "^160000" | grep -v "^120000" | cut -f2 | xargs --delimiter='\n' sed -i -e
+    sed = !git ls-files --stage $GIT_PREFIX | grep -v "^160000" | grep -v "^120000" | cut -f2 | xargs --delimiter='\n' sed -i -r -e 
 
     # delete current branch
     bdc = !sh -c 'BRANCH=$(git rev-parse --abbrev-ref HEAD) \
         && git checkout $(git mainline) \
         && git branch --delete $BRANCH'
 
+
+[advice]
+    detachedHead = false
 
 # configuration for managing files encrypted with ansible vault
 # See https://github.com/building5/ansible-vault-tools
