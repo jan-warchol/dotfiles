@@ -9,6 +9,8 @@ ssh_ensure_agent_running() {
     if [ -z "$SSH_CONNECTION" ]; then
       echo -n "SSH agent started. "
       eval `ssh-agent -t 24h -a $SSH_AUTH_SOCK`
+    else
+      echo "Not starting SSH agent, expecting forwarded agent"
     fi
   fi
 }
