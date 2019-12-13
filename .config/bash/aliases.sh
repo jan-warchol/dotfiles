@@ -108,6 +108,9 @@ hshow() {
   history
 }
 
+# sometimes I want to diff arbitrary files using settings familiar fom git
+alias gd="GIT_DIR='' git d"
+
 # Show a notification when a command finishes. Use like this:   sleep 5; alert
 function alert() {
     if [ $? = 0 ]; then icon=terminal; else icon=error; fi

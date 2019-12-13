@@ -113,9 +113,11 @@
 
     # unlike plain `pull`, this won't attempt a merge that may result in conflicts
     pl = pull --ff-only
+    plr = pull --rebase
 
     pu = push
     puf = push --force-with-lease
+    please = push --force-with-lease
     # push to a new branch with the same name
     pub = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
     # tags have to be pushed explicitly
@@ -175,7 +177,8 @@
     # get name of the default branch (from origin/HEAD), with fallback to "master"
     mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|master|'
 
-    mine = !git ls --author=\"$(git config --get user.name)\"
+    mine = !git ls --no-merges --author=\"$(git config --get user.name)\"
+    payroll = !git mine --date human --since '1 month ago'
 
 
 
@@ -213,6 +216,7 @@
     l   = !git ls --boundary origin/$(git mainline)..HEAD
 
 
+    ln = ls --no-merges
     # Log commits from local and/or remote branches (using git ls/lf format)
     # This is better than using --all option because I don't want stashes to be shown.
     lb   = !git ls HEAD --branches
