@@ -22,7 +22,7 @@ _PATH_append() {
   if [[ ! "$PATH" == *$1* ]]; then export PATH="$PATH:$1"; fi
 }
 _PATH_prepend() {
-  if [[ ! "$PATH" == *$1* ]]; then export PATH="$1:$PATH"; fi
+  if [[ ! "$PATH" == $1* ]]; then export PATH="$1:$PATH"; fi
 }
 
 export ARDUINO_PATH=/usr/local/arduino
@@ -30,8 +30,8 @@ export ARDUINO_PATH=/usr/local/arduino
 _PATH_append $ARDUINO_PATH
 _PATH_append $HOME/bin
 _PATH_prepend $HOME/bin/override
-# apparently user-wide pip install puts stuff there
-_PATH_append $HOME/.local/bin
+# apparently user-wide pip install puts stuff there, and I want it to have precedence
+_PATH_prepend $HOME/.local/bin
 
 # Update PATH and enable completion for Google Cloud SDK, if present
 if [ -f '/home/jan/bin/google-cloud-sdk/' ]; then
