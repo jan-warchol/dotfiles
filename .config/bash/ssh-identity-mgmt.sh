@@ -66,7 +66,7 @@ ssh_add_key_to_agent() {
     # exit to avoid leaking $key_pass when expect fails
     return 1
   fi
-  if ! key_pass="$(pass ssh-keys/${key_name}-password)"; then
+  if ! key_pass="$(pass ssh/pass/${key_name})"; then
     return 1
   fi
 expect << EOF | grep -v spawn | grep -v Enter | grep -v Lifetime

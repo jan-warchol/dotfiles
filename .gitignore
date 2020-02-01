@@ -20,7 +20,6 @@
 !/.ssh/
 /.ssh/*
 !/.ssh/config
-!/.ssh/config_codility
 
 # and the user-wide Vagrantfile
 !/.vagrant.d/
