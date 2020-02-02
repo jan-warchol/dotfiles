@@ -26,21 +26,21 @@ BR_DEFAULT="\033[99m"
 
 RESET_COLOR="\033[0m"
 
-# Using \[ and \] around color codes in prompt is necessary to prevent strange issues!
 PS1_PATH_COLOR="${CYAN}"
+PS1_HOST_COLOR="${MAGENTA}"
+PS1_SSH_KEY_COLOR="${BLUE}"
+# Using \[ and \] around color codes in prompt is necessary to prevent strange issues!
 PS1_RESET_COLOR="\[${RESET_COLOR}\]"
 
-if [ $EUID = 0 ]; then
-    PS1_USER_COLOR="${RED}"
+# Display hostname only when I'm logged in via ssh - makes it very clear
+if [ -n "$SSH_CONNECTION" ]; then
+    PS1_HOST_INFO='\u@\h '
 fi
 
-# Display host name and use different color when I'm logged in via ssh
-if [ -n "$SSH_CONNECTION" ]; then
-    PS1_USER_COLOR="${MAGENTA}"
-    PS1_USERNAME='\u@\h'
-else
-    PS1_USER_COLOR="${BLUE}"
-    PS1_USERNAME='\u'
+# warn when logged in as root user
+if [ $EUID = 0 ]; then
+    PS1_HOST_COLOR="${RED}"
+    PS1_HOST_INFO='\u '
 fi
 
 # Show notification when the shell was lauched from ranger
@@ -81,7 +81,8 @@ check_ssh_keys() {
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
 export PS1="\
-\$(echo -e \${PS1_USER_COLOR})\$(check_ssh_keys)\
+\$(echo -e \${PS1_HOST_COLOR})${PS1_HOST_INFO}\
+\$(echo -e \${PS1_SSH_KEY_COLOR})\$(check_ssh_keys)\
 \$(echo -e \${PS1_PATH_COLOR})\w\
 ${PS1_RESET_COLOR}\
 \$(__git_ps1 \"\$GIT_PS1_FMT\")\
