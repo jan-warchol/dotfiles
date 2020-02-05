@@ -35,7 +35,7 @@
     # One Alias to Commit Them All. Automatically adds --all and --message
     # when appropriate. See bin/git-smart-commit
     ci  = smart-commit
-    amd = smart-commit --amend
+    amci= smart-commit --amend
     amq = smart-commit --amend --no-edit
     wip = smart-commit WIP --no-verify
 
