@@ -55,17 +55,24 @@ ssh_get_key_path() {
     else
       echo 1>&2 "Cannot find key matching \"${1}\""
       echo 1>&2 "Provide either an absolute path or a filename from ~/.ssh/keys/"
+      return 1
     fi
   fi
 }
 
 ssh_add_key_to_agent() {
-  key_path="$(ssh_get_key_path "$1")"
-  key_name="$(basename "$1")"
-expect << EOF | grep -v Enter | grep -v spawn | grep -v Lifetime
+  local key_name="$(basename "$1")"
+  if ! key_path="$(ssh_get_key_path "$1")"; then
+    # exit to avoid leaking $key_pass when expect fails
+    return 1
+  fi
+  if ! key_pass="$(pass ssh/pass/${key_name})"; then
+    return 1
+  fi
+expect << EOF | grep -v spawn | grep -v Enter | grep -v Lifetime
   spawn ssh-add -t 10h "$key_path"
   expect "Enter passphrase"
-  send "$(pass ssh-keys/${key_name}-password)\r"
+  send "$key_pass\r"
   expect eof
 EOF
 }
