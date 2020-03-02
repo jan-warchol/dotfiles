@@ -295,6 +295,13 @@ map <C-O> <Nop>
 map K <Nop>
 map \ <Nop>
 " Leader: a c d h j l m p q u x y z
+map <leader>d :colorscheme default<CR>
+map <leader>j :colorscheme selenized_bw<CR>
+map <leader>m :colorscheme selenized<CR>
+map <leader>k :colorscheme selenized_alt<CR>
+map <leader>s :colorscheme solarized<CR>
+map <leader>e :colorscheme selenized_solarized<CR>
+map <leader>c :colorscheme selenized_old<CR>
 
 " Remap jumping in movement history, for 2 purposes:
 " - to free Ctrl-O and Ctrl-I (and Tab, which is hardwired to Ctrl-I)
@@ -306,5 +313,6 @@ nnoremap <C-N><C-I> <C-O>
 " OTHER SETTINGS =======================================================
 
 " colorscheme must be set after Vim-plug finishes its work
+let g:selenized_green_keywords=0
+set background=dark
 colorscheme selenized
-
