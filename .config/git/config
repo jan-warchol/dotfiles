@@ -259,12 +259,12 @@
     # INFORMATIVE REFLOG
 
     # reflog with dates and commit message subject
-    rf = !GIT_PAGER='less -REXS' git log --walk-reflogs --abbrev=10\
+    rf = log --walk-reflogs --abbrev=10\
     --format='%>(10)%gd %C(auto)%h %gs%d\
 %n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
 
     # one-line version of the above
-    rf1 = !GIT_PAGER='less -REXS' git log --walk-reflogs \
+    rf1 = log --walk-reflogs \
     --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(auto)%<(9)%gd \
 %h %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
