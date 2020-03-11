@@ -1,6 +1,10 @@
 #!/bin/bash
 
 case "$*" in
+  *jw-git-examples/*)
+    GIT_EMAIL=jan.warchol@gmail.com
+    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    ;;
   *jan-warchol/*)
     GIT_EMAIL=jan.warchol@gmail.com
     CLONE_OPTS="--config user.email=$GIT_EMAIL"
