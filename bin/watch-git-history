@@ -2,8 +2,10 @@
 # `watch` command doesn't work with colored git log - use shell loop
 
 TARGET=${@:-"--branches --remotes HEAD"}
-# Use "git log --oneline --graph" if you don't have "git ls" alias.
-: "${LOG_CMD:=git ls}"
+# fall back to "git log --oneline ..." if "git ls" alias is not present
+: "${LOG_CMD:=$(git config --get alias.ls >/dev/null &&
+                echo 'git ls' ||
+                echo 'git log --oneline --decorate --graph')}"
 
 # force coloring (git disables it by default when writing to a file)
 COMMAND="$LOG_CMD --color $TARGET"
