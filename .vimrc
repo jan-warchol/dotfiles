@@ -16,6 +16,9 @@ set nowrap
 " https://github.com/tpope/vim-sensible/issues/74)
 set t_Co=16
 
+" 15 because I'm using a display with high pixel density at home
+set guifont=Ubuntu\ Mono\ 15
+
 
 
 " SEARCHING ============================================================
