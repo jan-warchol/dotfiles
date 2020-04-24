@@ -6,7 +6,7 @@ alias wget='wget --continue'
 alias tree='tree -C --dirsfirst'
 
 # default settings for less.
-export LESS='-MSRi#16j.5'
+export LESS='-MSRi#16j.25'
 #             |||||  `-- center on search matches
 #             ||||`----- scroll horizontally 16 columns at a time
 #             |||`------ case-insensitive search unless pattern contains uppercase
