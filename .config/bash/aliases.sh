@@ -34,7 +34,7 @@ alias rgp13='rgp --context=13'
 # common ls aliases
 alias l='ls --file-type --ignore-backups'
 alias la='ls --almost-all --file-type'
-alias ll='ls -l --human-readable --almost-all --file-type'
+alias ll='ls -l --human-readable --all --file-type'
 alias lt='ls -thor'  # the power of Thor!
 
 # du
