@@ -190,6 +190,11 @@ endif
 
 " MAPPINGS =============================================================
 
+" Langmap is broken: it seems mappings are applied recursively. In the mapping
+" below pressing K in normal mode results in cursor moving to the left (action
+" from H key) rather than jumping to next search result (action from N key) :/
+" set langmap=frFR,tfTF,\\,t<T,nhNH,rjRJ,lkLK,hlHL,pbPB,mpMP,knKN
+
 let mapleader = "\<Space>"
 
 nmap <Leader>sa :call SyntaxAttr()<CR>
