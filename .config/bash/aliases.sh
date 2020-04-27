@@ -79,7 +79,7 @@ alias -- -='cd -'
 alias _='cd -'  # sometimes I accidentally press shift when typing `-`
 
 # miscellaneous
-mdc() { mkdir --parents "$@"; cd "$@"; }
+mdc() { mkdir --parents "$@"; cd "$1"; }
 # I keep forgetting whether it's mcd or mdc, so let's have both :P
 alias mcd=mdc
 ap() {
