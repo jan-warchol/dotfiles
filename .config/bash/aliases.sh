@@ -129,3 +129,11 @@ alias force-tty='LD_PRELOAD=$HOME/bin/libisatty.so'
 alias rs1='redshift -x; redshift -O 3000 -b 0.6'
 alias rs2='redshift -x; redshift -O 3500 -b 0.8'
 alias rs3='redshift -x; redshift -O 4000'
+
+slugify() {
+    echo "$@" |
+      iconv -t ascii//TRANSLIT |
+      sed -E 's/[^a-zA-Z0-9]+/-/g' |
+      sed -E 's/^-+|-+$//g' |
+      tr A-Z a-z
+}
