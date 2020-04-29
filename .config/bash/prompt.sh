@@ -82,7 +82,7 @@ ${PS1_RESET_COLOR}\
 \$(__git_ps1 \"\$GIT_PS1_FMT\")\
 ${ranger_notice}\n${smartdollar}"
 
-export PS4="$(tput bold)>>> $(tput sgr0)"
+export PS4=">>>> "
 
 
 #reset color
