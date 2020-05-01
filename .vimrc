@@ -102,7 +102,6 @@ Plug 'berdandy/ansiesc.vim'  " defines 'AnsiEsc' command that evaluates Ansi col
 Plug 'sheerun/vim-polyglot'  " set of syntax rules for many languages
 Plug 'ap/vim-css-color'  " display approximation of hex color codes inside vim
 Plug 'posva/vim-vue'  " syntax highlighting for JavaScript framework Vue
-Plug 'chase/vim-ansible-yaml'  " syntax highlighting for Ansible
 Plug 'derekwyatt/vim-scala'  " syntax highlighting for scala
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'vim-scripts/SyntaxAttr.vim'  " for debugging syntax highlighting
@@ -123,7 +122,6 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-fugitive'
 
 " General behavior -----------------------------------------------------
-Plug 'Carpetsmoker/auto_autoread.vim' " autodetect changes in file (bugged, needs enabling)
 
 " New text objects definitions -----------------------------------------
 Plug 'michaeljsmith/vim-indent-object'
