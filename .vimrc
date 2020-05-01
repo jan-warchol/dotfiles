@@ -105,10 +105,6 @@ Plug 'posva/vim-vue'  " syntax highlighting for JavaScript framework Vue
 Plug 'derekwyatt/vim-scala'  " syntax highlighting for scala
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'vim-scripts/SyntaxAttr.vim'  " for debugging syntax highlighting
-Plug 'vim-scripts/vim-airline'
-let g:airline#extensions#branch#displayed_head_limit = 18
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
 
 " Additional interface elements ----------------------------------------
 " Plug 'scrooloose/nerdtree'
