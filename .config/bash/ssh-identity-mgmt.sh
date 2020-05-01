@@ -70,7 +70,7 @@ ssh_add_key_to_agent() {
     return 1
   fi
 expect << EOF | grep -v spawn | grep -v Enter | grep -v Lifetime
-  spawn ssh-add -t 10h "$key_path"
+  spawn ssh-add -t 18h "$key_path"
   expect "Enter passphrase"
   send "$key_pass\r"
   expect eof
