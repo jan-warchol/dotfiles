@@ -38,6 +38,8 @@ cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
 " Search highlighting
 set hlsearch
 
+" Use <F8> to clear search highlighting
+nnoremap <silent> <F8> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
  
 " BEHAVIOUR ============================================================
@@ -105,13 +107,9 @@ Plug 'posva/vim-vue'  " syntax highlighting for JavaScript framework Vue
 Plug 'derekwyatt/vim-scala'  " syntax highlighting for scala
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'vim-scripts/SyntaxAttr.vim'  " for debugging syntax highlighting
-Plug 'vim-scripts/vim-airline'
-let g:airline#extensions#branch#displayed_head_limit = 18
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
 
 " Additional interface elements ----------------------------------------
-" Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
@@ -133,11 +131,6 @@ Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline ch
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'  " required by vim-easyclip (and useful on its own)
-Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
-" TODO: make easymotion don't try so many words so that i don't loose
-" single-letter shortcuts
-" also, I think I want to replace default F and T bindings with easymotion!
 
 Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
 
@@ -190,14 +183,24 @@ endif
 
 " MAPPINGS =============================================================
 
+" Langmap is broken: it seems mappings are applied recursively. In the mapping
+" below pressing K in normal mode results in cursor moving to the left (action
+" from H key) rather than jumping to next search result (action from N key) :/
+" set langmap=frFR,tfTF,\\,t<T,nhNH,rjRJ,lkLK,hlHL,pbPB,mpMP,knKN
+
 let mapleader = "\<Space>"
 
-nmap <Leader>sa :call SyntaxAttr()<CR>
-map <Leader> <Plug>(easymotion-prefix)
+nmap <Leader>a :call SyntaxAttr()<CR>
 
 " NERDTree
-nmap <Leader>it :NERDTreeToggle<CR>
-nmap <Leader>if :NERDTreeFocus<CR>
+
+" don't switch to opened file when using Enter to open it
+let NERDTreeCustomOpenArgs = {'file': {'where':'p', 'keepopen':1, 'stay':1}}
+" close Vim if the only open window is NERDtree
+" https://github.com/preservim/nerdtree/wiki/F.A.Q.
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" remember that <tab> == <C-I>
+map <tab> :NERDTreeFind<CR>
 
 " Fuzzy-find in all files (including hidden)
 command! -bang -nargs=? -complete=dir FilteredFiles call
@@ -212,14 +215,28 @@ command! -bang -nargs=? -complete=dir DotFiles call
   \     <bang>0)
 
 " FZF
-nmap <Leader><Tab> :Buffers<CR>
 
-nmap <Leader>on :FilteredFiles<CR>
-nmap <Leader>oa :Files<CR>
-nmap <Leader>oh :FilteredFiles ~<CR>
-nmap <Leader>oe :Files /etc<CR>
-nmap <Leader>og :GFiles<CR>
-nmap <Leader>od :DotFiles<CR>
+" Avoid opening files in NERDTree buffer.
+" https://github.com/junegunn/fzf/issues/453#issuecomment-354634207
+function! FZFOpen(command_str)
+  if (expand('%') =~# 'NERD_tree' && winnr('$') > 1)
+    exe "normal! \<c-w>\<c-w>"
+  endif
+  exe 'normal! ' . a:command_str . "\<cr>"
+endfunction
+
+" This may also be interesting:
+" " If more than one window and previous buffer was NERDTree, go back to it.
+" autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
+nmap <Leader><Tab> :call FZFOpen(':Buffers')<CR>
+
+nmap <Leader>on :call FZFOpen(':FilteredFiles')<CR>
+nmap <Leader>oa :call FZFOpen(':Files')<CR>
+nmap <Leader>oh :call FZFOpen(':FilteredFiles ~')<CR>
+nmap <Leader>oe :call FZFOpen(':Files /etc')<CR>
+nmap <Leader>og :call FZFOpen(':GFiles')<CR>
+nmap <Leader>od :call FZFOpen(':DotFiles')<CR>
 
 nmap <Leader>ow :Windows<CR>
 
@@ -267,11 +284,12 @@ autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 set virtualedit=onemore
 
+" move by visual lines when the text is wrapped
+noremap <Down> gj
+noremap <Up> gk
 
 " other ----------------------------------------------------------------
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
-" Automatically reload .vimrc after writing it
-autocmd BufWritePost .vimrc source %
 
 set pastetoggle=<F5>
 
@@ -289,11 +307,10 @@ nmap ga <Plug>(EasyAlign)
 map , <Nop>
 map - <Nop>
 map _ <Nop>
-" remember that <tab> == <C-I>
-map <tab> <Nop>
 map <C-O> <Nop>
 " default K binding is useless...
 map K <Nop>
+map <C-l> <Nop>
 map \ <Nop>
 " Leader: a c d h j l m p q u x y z
 map <leader>d :colorscheme default<CR>
