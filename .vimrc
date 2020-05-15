@@ -108,6 +108,11 @@ Plug 'derekwyatt/vim-scala'  " syntax highlighting for scala
 Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'vim-scripts/SyntaxAttr.vim'  " for debugging syntax highlighting
 
+Plug 'itchyny/lightline.vim'
+let g:lightline = { 'mode_map': { 'R' : 'OVERWR', }, }
+let g:lightline.colorscheme = '16color'
+set noshowmode  " status info is no longer needed with lightline
+
 " Additional interface elements ----------------------------------------
 Plug 'preservim/nerdtree'
 Plug 'sjl/gundo.vim'
