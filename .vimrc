@@ -290,6 +290,9 @@ autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 set virtualedit=onemore
 
+" move by visual lines when the text is wrapped
+noremap <Down> gj
+noremap <Up> gk
 
 " other ----------------------------------------------------------------
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
