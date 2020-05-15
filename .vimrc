@@ -190,7 +190,7 @@ endif
 
 let mapleader = "\<Space>"
 
-nmap <Leader>sa :call SyntaxAttr()<CR>
+nmap <Leader>a :call SyntaxAttr()<CR>
 
 " NERDTree
 
@@ -290,8 +290,6 @@ noremap <Up> gk
 
 " other ----------------------------------------------------------------
 nnoremap <Leader>v :source $MYVIMRC<CR><C-L>
-" Automatically reload .vimrc after writing it
-autocmd BufWritePost .vimrc source %
 
 set pastetoggle=<F5>
 
