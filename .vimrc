@@ -131,11 +131,6 @@ Plug 'kana/vim-textobj-line' " allows selecting 'inner' line (without newline ch
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'  " required by vim-easyclip (and useful on its own)
-Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_keys = 'hlnrasetoiygqwdfujbk:,.34-xzcmvp'
-" TODO: make easymotion don't try so many words so that i don't loose
-" single-letter shortcuts
-" also, I think I want to replace default F and T bindings with easymotion!
 
 Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
 
@@ -196,7 +191,6 @@ endif
 let mapleader = "\<Space>"
 
 nmap <Leader>sa :call SyntaxAttr()<CR>
-map <Leader> <Plug>(easymotion-prefix)
 
 " NERDTree
 
