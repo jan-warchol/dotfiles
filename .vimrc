@@ -38,6 +38,8 @@ cnoremap <expr> <CR> getcmdtype() =~ '[/?]' ? '<CR>zz' : '<CR>'
 " Search highlighting
 set hlsearch
 
+" Use <F8> to clear search highlighting
+nnoremap <silent> <F8> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
  
 " BEHAVIOUR ============================================================
@@ -313,6 +315,7 @@ map _ <Nop>
 map <C-O> <Nop>
 " default K binding is useless...
 map K <Nop>
+map <C-l> <Nop>
 map \ <Nop>
 " Leader: a c d h j l m p q u x y z
 map <leader>d :colorscheme default<CR>
