@@ -107,7 +107,7 @@ Plug 'lepture/vim-jinja'  " syntax highlighting for Jinja
 Plug 'vim-scripts/SyntaxAttr.vim'  " for debugging syntax highlighting
 
 " Additional interface elements ----------------------------------------
-" Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/vim-peekaboo'  " previewing register content
 Plug 'junegunn/fzf'  " TODO: configure vim to use my FZF installation
@@ -197,8 +197,14 @@ nmap <Leader>sa :call SyntaxAttr()<CR>
 map <Leader> <Plug>(easymotion-prefix)
 
 " NERDTree
-nmap <Leader>it :NERDTreeToggle<CR>
-nmap <Leader>if :NERDTreeFocus<CR>
+
+" don't switch to opened file when using Enter to open it
+let NERDTreeCustomOpenArgs = {'file': {'where':'p', 'keepopen':1, 'stay':1}}
+" close Vim if the only open window is NERDtree
+" https://github.com/preservim/nerdtree/wiki/F.A.Q.
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" remember that <tab> == <C-I>
+map <tab> :NERDTreeFind<CR>
 
 " Fuzzy-find in all files (including hidden)
 command! -bang -nargs=? -complete=dir FilteredFiles call
@@ -290,8 +296,6 @@ nmap ga <Plug>(EasyAlign)
 map , <Nop>
 map - <Nop>
 map _ <Nop>
-" remember that <tab> == <C-I>
-map <tab> <Nop>
 map <C-O> <Nop>
 " default K binding is useless...
 map K <Nop>
