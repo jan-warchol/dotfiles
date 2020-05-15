@@ -219,14 +219,28 @@ command! -bang -nargs=? -complete=dir DotFiles call
   \     <bang>0)
 
 " FZF
-nmap <Leader><Tab> :Buffers<CR>
 
-nmap <Leader>on :FilteredFiles<CR>
-nmap <Leader>oa :Files<CR>
-nmap <Leader>oh :FilteredFiles ~<CR>
-nmap <Leader>oe :Files /etc<CR>
-nmap <Leader>og :GFiles<CR>
-nmap <Leader>od :DotFiles<CR>
+" Avoid opening files in NERDTree buffer.
+" https://github.com/junegunn/fzf/issues/453#issuecomment-354634207
+function! FZFOpen(command_str)
+  if (expand('%') =~# 'NERD_tree' && winnr('$') > 1)
+    exe "normal! \<c-w>\<c-w>"
+  endif
+  exe 'normal! ' . a:command_str . "\<cr>"
+endfunction
+
+" This may also be interesting:
+" " If more than one window and previous buffer was NERDTree, go back to it.
+" autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
+nmap <Leader><Tab> :call FZFOpen(':Buffers')<CR>
+
+nmap <Leader>on :call FZFOpen(':FilteredFiles')<CR>
+nmap <Leader>oa :call FZFOpen(':Files')<CR>
+nmap <Leader>oh :call FZFOpen(':FilteredFiles ~')<CR>
+nmap <Leader>oe :call FZFOpen(':Files /etc')<CR>
+nmap <Leader>og :call FZFOpen(':GFiles')<CR>
+nmap <Leader>od :call FZFOpen(':DotFiles')<CR>
 
 nmap <Leader>ow :Windows<CR>
 
