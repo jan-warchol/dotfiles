@@ -250,7 +250,7 @@ inoremap <C-S> <Esc>:w<CR>
 map <C-c> :BD<CR>
 " close window/split (buffer stays open)
 nnoremap <C-Q> :q<CR>
-inoremap <C-Q> <Esc>:w<CR>:q<CR>
+inoremap <C-Q> <Esc>:q<CR>
 " Alt-Q to save changes and quit
 nmap q :w<CR>:q<CR>
 imap q <ESC>:w<CR>:q<CR>
