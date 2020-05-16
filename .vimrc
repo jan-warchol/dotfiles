@@ -242,14 +242,18 @@ nmap <Leader>od :call FZFOpen(':DotFiles')<CR>
 
 nmap <Leader>ow :Windows<CR>
 
-" Ctrl-S and Ctrl-Q are unused by default
+" Ctrl-S, Ctrl-Q and Ctrl-C are unused by default! (they were used for flow
+" control in terminals.) Use them to make common operations more intuitive.
 nnoremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
-" close window (buffer stays open)
-nnoremap <C-Q> :w<CR>:q<CR>
-inoremap <C-Q> <Esc>:w<CR>:q<CR>
-" close file without affecting splits
+" close buffer without affecting splits (requires qpkorr/vim-bufkill)
 map <C-c> :BD<CR>
+" close window/split (buffer stays open)
+nnoremap <C-Q> :q<CR>
+inoremap <C-Q> <Esc>:w<CR>:q<CR>
+" Alt-Q to save changes and quit
+nmap q :w<CR>:q<CR>
+imap q <ESC>:w<CR>:q<CR>
 
 
 " consistency ----------------------------------------------------------
@@ -313,7 +317,7 @@ map _ <Nop>
 map <C-O> <Nop>
 " default K binding is useless...
 map K <Nop>
-map <C-l> <Nop>
+map <C-l> :echo "Nope, use F8"<CR>
 map \ <Nop>
 " Leader: a c d h j l m p q u x y z
 map <leader>d :colorscheme default<CR>
