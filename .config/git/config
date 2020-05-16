@@ -106,7 +106,7 @@
     mc1 = lp -U5 --reverse MERGE_HEAD..HEAD
     mc2 = lp -U5 --reverse HEAD..MERGE_HEAD
     # similarly for rebase conflicts
-    rmc1 = !git lp ORIG_HEAD..$(cat $(git rev-parse --git-dir)/rebase-apply/onto)
+    rmc1 = !git lp ORIG_HEAD..$(cat $(git rev-parse --git-dir)/rebase-merge/onto)
     rmc2 = show REBASE_HEAD
 
     mw = mv  # I'm used to using `mw` (customized mv) in shell
