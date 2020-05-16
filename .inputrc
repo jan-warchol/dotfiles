@@ -1,3 +1,7 @@
+# IMPORTANT NOTE
+# Different terminal emulators emit different escape sequences for some keys.
+# Because of that some mappings are multiplied, trying to cover all cases.
+
 # by default system-wide settings are ignored when local ~/.inputrc exists
 $include /etc/inputrc
 
@@ -8,6 +12,10 @@ $include /etc/inputrc
 "\e[5D": backward-word
 "\e\e[C": forward-word
 "\e\e[D": backward-word
+
+# make Ctrl-Backspace delete whole words, like virtually every GUI app.
+# https://superuser.com/a/837764/199573
+"^H": backward-kill-word
 
 # make Ctrl-up/down search history for commands starting with currently
 # typed prefix (unlike Ctrl-R/S, which searches entire command string).
