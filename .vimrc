@@ -194,13 +194,15 @@ nmap <Leader>a :call SyntaxAttr()<CR>
 
 " NERDTree
 
+" remember that <tab> == <C-I>
+map <tab> :NERDTreeFocus<CR>
+map <leader>f :NERDTreeFind<CR>
 " don't switch to opened file when using Enter to open it
 let NERDTreeCustomOpenArgs = {'file': {'where':'p', 'keepopen':1, 'stay':1}}
 " close Vim if the only open window is NERDtree
 " https://github.com/preservim/nerdtree/wiki/F.A.Q.
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" remember that <tab> == <C-I>
-map <tab> :NERDTreeFind<CR>
+
 
 " Fuzzy-find in all files (including hidden)
 command! -bang -nargs=? -complete=dir FilteredFiles call
