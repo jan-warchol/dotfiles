@@ -17,6 +17,9 @@ $include /etc/inputrc
 # https://superuser.com/a/837764/199573
 "\C-H": backward-kill-word
 
+# unlearn Ctrl-W (having it in muscle memory results in closing GUI apps)
+"\C-W": nop
+
 # make Ctrl-up/down search history for commands starting with currently
 # typed prefix (unlike Ctrl-R/S, which searches entire command string).
 "\e[1;5A": history-search-backward

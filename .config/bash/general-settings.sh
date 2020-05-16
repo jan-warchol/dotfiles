@@ -81,6 +81,9 @@ if [ -n "$DISPLAY" ]; then
     xset r rate 200 40   # delay [ms], frequency [Hz]
 fi
 
+# unlearn Ctrl-W (having it in muscle memory results in closing GUI apps)
+stty werase undef
+
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
 eval "$(fasd --init bash-hook)"
 
