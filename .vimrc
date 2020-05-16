@@ -188,6 +188,9 @@ endif
 " from H key) rather than jumping to next search result (action from N key) :/
 " set langmap=frFR,tfTF,\\,t<T,nhNH,rjRJ,lkLK,hlHL,pbPB,mpMP,knKN
 
+map <F3> :set wrap!<CR>
+imap <F3> <C-O>:set wrap!<CR>
+
 let mapleader = "\<Space>"
 
 nmap <Leader>a :call SyntaxAttr()<CR>
@@ -245,10 +248,11 @@ nmap <Leader>ow :Windows<CR>
 " Ctrl-S and Ctrl-Q are unused by default
 nnoremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
-nnoremap <C-Q> :w<CR>:qall<CR>
-inoremap <C-Q> <Esc>:w<CR>:qall<CR>
-map <F3> :set wrap!<CR>
-imap <F3> <C-O>:set wrap!<CR>
+" close window (buffer stays open)
+nnoremap <C-Q> :w<CR>:q<CR>
+inoremap <C-Q> <Esc>:w<CR>:q<CR>
+" close file without affecting splits
+map <C-c> :BD<CR>
 
 
 " consistency ----------------------------------------------------------
