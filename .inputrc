@@ -17,6 +17,9 @@ $include /etc/inputrc
 # https://superuser.com/a/837764/199573
 "\C-H": backward-kill-word
 
+# make ctrl-Q quit shell to match my vim binding (and GUI apps).
+"\C-Q": "\C-D"
+
 # unlearn Ctrl-W (having it in muscle memory results in closing GUI apps)
 "\C-W": nop
 
