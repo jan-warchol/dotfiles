@@ -136,9 +136,6 @@ Plug 'junegunn/vim-easy-align'  " better than godlygeek/tabular
 
 " Make register behaviour more resonable
 Plug 'svermeulen/vim-easyclip'  " requires repeat.vim
-
-Plug 'ktonga/vim-follow-my-lead'
-let g:fml_all_sources = 1
 call plug#end()
 
 
