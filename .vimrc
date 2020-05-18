@@ -251,6 +251,8 @@ map <C-c> :BD<CR>
 " close window/split (buffer stays open)
 nnoremap <C-Q> :q<CR>
 inoremap <C-Q> <Esc>:q<CR>
+" when in NERDtree, close the window with the code
+autocmd FileType nerdtree nmap <buffer> <C-Q> <C-W>p:q<CR>
 " Alt-Q to save changes and quit
 nmap q :w<CR>:q<CR>
 imap q <ESC>:w<CR>:q<CR>
