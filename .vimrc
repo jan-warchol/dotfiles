@@ -207,7 +207,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Fuzzy-find in all files (including hidden)
 command! -bang -nargs=? -complete=dir FilteredFiles call
   \ fzf#vim#files(<q-args>,
-  \     {'source': "smart-find"},
+  \     {'source': "smart-find -type f"},
   \     <bang>0)
 
 " Fuzzy-find in dotfiles
