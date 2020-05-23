@@ -260,6 +260,9 @@ imap q <ESC>:w<CR>:q<CR>
 
 " consistency ----------------------------------------------------------
 
+" unlearn word-deletion shortcut
+imap <C-W> <nop>
+
 " open new file in horizontal/vertical split. By default there is only mapping
 " for horizontal split (<C-W>n).
 nnoremap <C-W>nx :new<CR>
