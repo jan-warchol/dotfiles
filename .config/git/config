@@ -84,7 +84,10 @@
     ghw = grep --extended-regexp --textconv --ignore-case --heading --word-regexp --context 8
 
     # search, pipe the results to less and set less' search pattern (for navigating results with n/N)
-    gl = !GIT_PAGER=\"less -p $@\" git -c color.grep.filename='blue black' grep --extended-regexp --textconv --ignore-case --heading --context 13
+    gl = !GIT_PAGER=\"less -p $@\" \
+      git -c color.grep.filename='blue black' \
+      grep --extended-regexp --textconv --ignore-case \
+      --heading --before-context 8 --after-context 13
 
     # search whole repository, not only current directory.
     # (in `!...` construct, commands are executed from repository root dir)
