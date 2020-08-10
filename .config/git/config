@@ -44,7 +44,7 @@
 
     empty = commit --allow-empty --message  # handy for test commits
 
-    d = diff --find-copies=80% --find-copies-harder --inter-hunk-context=13 --submodule=log
+    d = diff --find-copies=62% --find-copies-harder --inter-hunk-context=13 --submodule=log
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     dm = !git d $(git mainline)
