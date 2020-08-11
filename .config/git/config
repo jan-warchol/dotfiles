@@ -16,8 +16,8 @@
     bdf = branch -D
     bm = !git branch --merged | grep -v '*'
     bma = !git branch --all --merged | grep -v '*'
-    # filter out current upstream (safeguard for case of bulk removal of merged branches)
-    bmr = !git branch --remote --merged | grep -v '*' | grep -v origin/`git rev-parse --abbrev-ref HEAD`$
+    # filter out main repo branch (safeguard for case of bulk removal of merged branches)
+    bmr = !git branch --remote --merged origin/HEAD | grep -v $(git rev-parse --abbrev-ref origin/HEAD)
 
     c  = checkout
     co = checkout
