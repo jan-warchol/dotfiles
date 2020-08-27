@@ -7,6 +7,9 @@
 # - uses preexisting draft message if available
 #
 # Note that supplied message cannot contain filenames (unless you quote it).
+# Example usage (with suggested git alias ci=smart-commit):
+#
+#     git ci This is super simple
 
 CHANGE_SELECTOR=false   # does some argument specify what to commit?
 COMMIT_OPTS="--verbose"   # show diff (double-check what you commit)
