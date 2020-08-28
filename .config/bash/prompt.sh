@@ -74,10 +74,7 @@ check_ssh_keys() {
 
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
-export PS1="\
-\$(echo -e \${PS1_HOST_COLOR})${PS1_HOST_INFO}\
-\$(echo -e \${PS1_SSH_KEY_COLOR})\$(check_ssh_keys)\
-\$(echo -e \${PS1_PATH_COLOR})\w\
+export PS1="\$(echo -e \${PS1_PATH_COLOR})\w\
 ${PS1_RESET_COLOR}\
 \$(__git_ps1 \"\$GIT_PS1_FMT\")\
 ${ranger_notice}\n${smartdollar}"
