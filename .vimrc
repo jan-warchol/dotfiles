@@ -229,7 +229,8 @@ command! -bang -nargs=? -complete=dir FilteredFiles call
 " Fuzzy-find in dotfiles
 command! -bang -nargs=? -complete=dir DotFiles call
   \ fzf#vim#files(<q-args>,
-  \     {'source': "ls-dotfiles"},
+  \     {'source': "ls-dotfiles",
+  \     'options': '--prompt="Dotfiles: "'},
   \     <bang>0)
 
 " FZF
