@@ -224,7 +224,7 @@
     lb   = !git ls HEAD --branches
     la   = !git ls HEAD --branches --remotes
     lm   = !git ls HEAD $(git mainline) origin/$(git mainline)
-    lw   = !git ls HEAD --branches --not origin/$(git mainline) --boundary
+    lw   = !git ls HEAD --branches --not origin/$(git mainline)~1
 
     lbf  = !git lf HEAD --branches
     laf  = !git lf HEAD --branches --remotes
