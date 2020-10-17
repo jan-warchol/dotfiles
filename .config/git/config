@@ -127,9 +127,11 @@
     rba  = rebase --abort
     rbc  = rebase --continue
     rbo  = rebase --onto        # quite useful, see examples in 'git help rebase'
+    rbd  = rebase devel
     rbu  = rebase @{upstream}
     rbm  = !git rebase $(git mainline)
     rbi  = rebase --interactive
+    rbid = rebase --interactive devel
     rbiu = rebase --interactive @{upstream}
     rbim = !git rebase --interactive $(git mainline)
 
