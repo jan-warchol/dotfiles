@@ -215,7 +215,7 @@
 
 
     # what I'm usually most interested in - commits from current branch unmerged to master
-    l   = !git ls --boundary origin/$(git mainline)..HEAD
+    l   = !git ls origin/$(git mainline)~1..HEAD
 
 
     ln = ls --no-merges
