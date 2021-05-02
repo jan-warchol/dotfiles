@@ -20,3 +20,4 @@ application/x-shellscript=xed.desktop;
 x-content/blank-dvd=brasero.desktop;
 image/jpeg=xviewer.desktop;
 audio/midi=mscore.desktop;
+x-content/audio-cdda=rhythmbox-device.desktop;
