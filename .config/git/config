@@ -276,6 +276,7 @@
 
     # Configure which email to use in current repo
     gmail    = config user.email jan.warchol@gmail.com
+    scramjet = config user.email jan.warchol@scramjet.org
     nethone  = config user.email jan.warchol@nhx.bz
     codility = config user.email jan.warchol@codility.com
 
