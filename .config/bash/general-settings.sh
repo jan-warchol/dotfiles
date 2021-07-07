@@ -33,6 +33,11 @@ _prepend_path $HOME/bin/override
 # apparently user-wide pip install puts stuff there, and I want it to have precedence
 _prepend_path $HOME/.local/bin
 
+# Node.js Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
 # Update PATH and enable completion for Google Cloud SDK, if present
 if [ -f '/home/jan/bin/google-cloud-sdk/' ]; then
   source '/home/jan/bin/google-cloud-sdk/path.bash.inc';
