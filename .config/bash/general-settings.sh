@@ -18,20 +18,20 @@ shopt -s globstar
 # let "*" match hidden files as well
 shopt -s dotglob
 
-_PATH_append() {
+_append_path() {
   if [[ ! "$PATH" == *$1* ]]; then export PATH="$PATH:$1"; fi
 }
-_PATH_prepend() {
+_prepend_path() {
   if [[ ! "$PATH" == $1* ]]; then export PATH="$1:$PATH"; fi
 }
 
 export ARDUINO_PATH=/usr/local/arduino
 
-_PATH_append $ARDUINO_PATH
-_PATH_append $HOME/bin
-_PATH_prepend $HOME/bin/override
+_append_path $ARDUINO_PATH
+_append_path $HOME/bin
+_prepend_path $HOME/bin/override
 # apparently user-wide pip install puts stuff there, and I want it to have precedence
-_PATH_prepend $HOME/.local/bin
+_prepend_path $HOME/.local/bin
 
 # Update PATH and enable completion for Google Cloud SDK, if present
 if [ -f '/home/jan/bin/google-cloud-sdk/' ]; then
@@ -51,10 +51,10 @@ export EDITOR="vim"
 export _FASD_DATA="$HOME/data/fasd-data-$DISAMBIG_SUFFIX"
 
 # chef paths and completion. Let chef override default ruby
-_PATH_prepend /opt/chefdk/embedded/bin
-_PATH_prepend $HOME/.chefdk/gem/ruby/2.5.0/bin
-_PATH_prepend /opt/chefdk/bin
-_PATH_append /opt/chefdk/gitbin
+_prepend_path /opt/chefdk/embedded/bin
+_prepend_path $HOME/.chefdk/gem/ruby/2.5.0/bin
+_prepend_path /opt/chefdk/bin
+_append_path /opt/chefdk/gitbin
 export GEM_ROOT="/opt/chefdk/embedded/lib/ruby/gems/2.5.0"
 export GEM_HOME="/home/jan/.chefdk/gem/ruby/2.5.0"
 export GEM_PATH="/home/jan/.chefdk/gem/ruby/2.5.0:/opt/chefdk/embedded/lib/ruby/gems/2.5.0"

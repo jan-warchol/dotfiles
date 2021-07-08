@@ -9,7 +9,7 @@ export FZF_DEFAULT_OPTS="\
 
 # Setup fzf
 # ---------
-_PATH_append "$FZF_HOME/bin"
+_append_path "$FZF_HOME/bin"
 
 # Key bindings
 # ------------
