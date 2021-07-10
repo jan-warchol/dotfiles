@@ -14,6 +14,7 @@ text/x-arduino=arduino-arduinoide.desktop
 x-scheme-handler/slack=slack.desktop
 x-scheme-handler/webcal=google-chrome.desktop
 x-scheme-handler/mailto=google-chrome.desktop
+application/x-keepass2=org.keepassxc.KeePassXC.desktop
 
 [Added Associations]
 application/x-shellscript=xed.desktop;
@@ -21,3 +22,4 @@ x-content/blank-dvd=brasero.desktop;
 image/jpeg=xviewer.desktop;
 audio/midi=mscore.desktop;
 x-content/audio-cdda=rhythmbox-device.desktop;
+application/x-keepass2=org.keepassxc.KeePassXC.desktop;
