@@ -3,10 +3,10 @@
 # see commit fa30e5fbbc433db4fd22e.
 g() { git "$@"; }
 
-# make sure the autocompletion function (`_git`) is loaded
-type -t _git >/dev/null || . /usr/share/bash-completion/completions/git
-
-complete -o default -o nospace -F _git g
+# make sure the autocompletion function (`__git_complete`) is loaded
+type -t __git_complete >/dev/null || . /usr/share/bash-completion/completions/git
+# use git's completion engine, see /usr/share/bash-completion/completions/git
+__git_complete g __git_main
 
 # I want NO line wrapping on these two, so I pipe them to less with
 # line-wrapping disabled and exit less immediately without clearing screen.
