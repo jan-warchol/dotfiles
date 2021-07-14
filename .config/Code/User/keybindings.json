@@ -1,0 +1,26 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.inspectTMScopes"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.navigateBack",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.navigateForward",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "ctrl+k ctrl+=",
+        "command": "workbench.action.toggleEditorWidths"
+    }
+]

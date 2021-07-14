@@ -1,0 +1,14 @@
+{
+    "editor.minimap.enabled": false,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/generated/**": true
+    },
+    "workbench.tree.indent": 16,
+    "workbench.tree.renderIndentGuides": "always",
+    "workbench.colorCustomizations": {
+        "tree.indentGuidesStroke": "#808080"
+    }
+}
