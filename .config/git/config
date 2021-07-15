@@ -160,12 +160,14 @@
 
     sm = submodule
 
-    # "Submodule Update"
+    # "SUbmodule UPdate"
     # submodule init and submodule sync are needed because some submodules may
     # have been added in the other branch or their remotes changed.
-    su = "!sh -c 'git submodule init $@ && \
+    sup = "!sh -c 'git submodule init $@ && \
         git submodule sync --recursive $@ > /dev/null && \
         git submodule update --recursive $@' -"
+
+    spush = push --recurse-submodules=on-demand
 
     # "Checkout with Submodules"
     # Handles uncommitted changes gracefully (if they don't conflict, they are
@@ -433,6 +435,9 @@
 
 [status]
     submoduleSummary = true
+
+[submodule]
+    recurse = true
 
 [merge]
     # in case of merge conflict also show how common ancestor looked like

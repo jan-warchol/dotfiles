@@ -20,7 +20,7 @@ case "$*" in
   *)
 esac
 
-git clone $CLONE_OPTS "$@" &&
+git clone --recurse-submodules $CLONE_OPTS "$@" &&
 
 if [ -n "$GIT_EMAIL" ]; then
   echo -e "user.email set to \e[1;37m$GIT_EMAIL\e[0m"
