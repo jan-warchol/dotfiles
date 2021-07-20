@@ -55,21 +55,6 @@ export EDITOR="vim"
 
 export _FASD_DATA="$HOME/data/fasd-data-$DISAMBIG_SUFFIX"
 
-# chef paths and completion. Let chef override default ruby
-_prepend_path /opt/chefdk/embedded/bin
-_prepend_path $HOME/.chefdk/gem/ruby/2.5.0/bin
-_prepend_path /opt/chefdk/bin
-_append_path /opt/chefdk/gitbin
-export GEM_ROOT="/opt/chefdk/embedded/lib/ruby/gems/2.5.0"
-export GEM_HOME="/home/jan/.chefdk/gem/ruby/2.5.0"
-export GEM_PATH="/home/jan/.chefdk/gem/ruby/2.5.0:/opt/chefdk/embedded/lib/ruby/gems/2.5.0"
-_chef_comp() {
-  # you are so ugly, chef...
-  local COMMANDS="exec env gem generate shell-init install update push push-archive show-policy diff provision export clean-policy-revisions clean-policy-cookbooks delete-policy-group delete-policy undelete describe-cookbook verify"
-  COMPREPLY=($(compgen -W "$COMMANDS" -- ${COMP_WORDS[COMP_CWORD]} ))
-}
-complete -F _chef_comp chef
-
 # fix dircolors for selenized
 export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
 

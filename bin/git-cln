@@ -9,10 +9,6 @@ case "$*" in
     GIT_EMAIL=jan.warchol@gmail.com
     CLONE_OPTS="--config user.email=$GIT_EMAIL"
     ;;
-  git@gitlab.codility.net:*)
-    GIT_EMAIL=jan.warchol@codility.com
-    CLONE_OPTS="--config user.email=$GIT_EMAIL"
-    ;;
   git@github.com:scramjet-cloud-platform/*)
     GIT_EMAIL=jan.warchol@scramjet.org
     CLONE_OPTS="--config user.email=$GIT_EMAIL"

@@ -10,7 +10,6 @@ load_config "00-paths-override.sh" 2>/dev/null  # optional
 load_config "aliases.sh"
 load_config "cd-with-history.sh"
 load_config "dotfiles.sh"
-load_config "fzf-chef-functions.sh"
 load_config "fzf-git-functions.sh"
 load_config "fzf-settings.sh"
 load_config "git-aliases.sh"
