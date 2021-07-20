@@ -2,15 +2,19 @@
 
 # start my own agent because the one used by default on Xenial doesn't support
 # ed25519 keys. To avoid spawning multiple agents I use specific socket path.
-export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
 ssh_ensure_agent_running() {
-  if [ ! -S $SSH_AUTH_SOCK ]; then
-    # make sure we don't override forwarded agent
-    if [ -z "$SSH_CONNECTION" ]; then
-      echo -n "SSH agent started. "
+  # make sure we don't override forwarded agent
+  if [ -z "$SSH_CONNECTION" ]; then
+    export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+    if [ ! -S $SSH_AUTH_SOCK ]; then
+      echo -n "Starting SSH agent... "
       eval `ssh-agent -t 18h -a $SSH_AUTH_SOCK`
+    fi
+  else
+    if [ -e "$SSH_AUTH_SOCK" ]; then
+      echo "Found forwarded SSH agent at $SSH_AUTH_SOCK"
     else
-      echo "Not starting SSH agent, expecting forwarded agent"
+      echo "Expecting forwarded SSH agent but none found."
     fi
   fi
 }
