@@ -4,7 +4,7 @@
 
 # Instead of rm, I use trash-cli (https://github.com/andreafrancia/trash-cli)
 # which moves files to system trash.  It can be installed with pip or apt-get.
-alias tp='trash-put --verbose'
+alias tp='trash-put'
 
 alias mw='\mv --interactive --verbose'
 alias kp='\cp --recursive --backup=numbered --verbose'
