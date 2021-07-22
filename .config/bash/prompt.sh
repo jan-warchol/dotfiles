@@ -24,6 +24,14 @@ fi
 PS1_RANGER_COLOR="\[${_blue}\]"
 [ -n "$RANGER_LEVEL" ] && ranger_notice=" ${PS1_RANGER_COLOR}(in ranger)${PS1_RESET_COLOR}"
 
+highlight_exit_code()
+{
+    exit_code=$?
+    if [ $exit_code -ne 0 ]
+    then
+        echo -e "${_red}$exit_code${_reset} "
+    fi
+}
 smartdollar="\\$ \[${_strong}\]"
 
 # $(__git_ps1) displays git repository status in the prompt, which is extremely handy.
@@ -52,6 +60,7 @@ check_ssh_keys() {
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
 export PS1="\
+\$(highlight_exit_code)\
 \$(echo -e \${PS1_HOST_COLOR})${PS1_HOST_INFO}\
 \$(echo -e \${PS1_SSH_KEY_COLOR})\$(check_ssh_keys)\
 \$(echo -e \${PS1_PATH_COLOR})\w\
