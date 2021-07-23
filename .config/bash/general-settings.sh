@@ -77,18 +77,26 @@ stty werase undef
 # enable fasd for smart navigation (https://github.com/clvv/fasd)
 eval "$(fasd --init bash-hook)"
 
-# Configure escape sequences for less so that it will know how to display
-# colors for man etc. See also:
+# Configure escape sequences for less so that it will know how to color man pages. See
 # http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
-# https://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
-# http://stackoverflow.com/questions/34265221/how-to-colorize-man-page-in-fish-shell
 man() {
-	env \
-		LESS_TERMCAP_mb=$(printf "\e[1;37m") \
-		LESS_TERMCAP_md=$(printf "\e[1;37m") \
-		LESS_TERMCAP_me=$(printf "\e[0m") \
-		LESS_TERMCAP_se=$(printf "\e[0m") \
-		LESS_TERMCAP_ue=$(printf "\e[0m") \
-			man "$@"
+    # Requires color variables from .config/bash/ansi-color-codes.sh
+    #
+    # mb - start blinking text (rarely used)
+    # md - start primary emphasis
+    # so - start standout mode
+    # us - start secondary emphasis
+    # me - reset all formatting
+    # se - leave standout mode
+    # ue - end secondary emphasis
+    env \
+        LESS_TERMCAP_mb=$(printf "$_blink") \
+        LESS_TERMCAP_md=$(printf "$_bold") \
+        LESS_TERMCAP_so=$(printf "$_reverse") \
+        LESS_TERMCAP_us=$(printf "$_underline") \
+        LESS_TERMCAP_me=$(printf "$_reset") \
+        LESS_TERMCAP_se=$(printf "$_reset") \
+        LESS_TERMCAP_ue=$(printf "$_reset") \
+        man "$@"
 }
 

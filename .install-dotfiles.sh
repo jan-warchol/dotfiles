@@ -2,9 +2,9 @@
 
 set -e
 IFS=$(echo -en "\n\b")
-normal="\e[00m"; bold="\e[1;37m"; green="\e[00;32m"
-
 REPO_PATH=$(dirname $(readlink --canonicalize "$0"))
+source $REPO_PATH/.config/bash/ansi-color-codes.sh
+
 TARGET="$HOME"; PATH_CONFIG="$TARGET/.config/bash/00-paths-override.sh"
 echo -e "\nInstalling dotfiles \nfrom $REPO_PATH \nto $TARGET."
 
@@ -31,9 +31,9 @@ echo ""
 for f in `dotfiles ls-files`; do
     if [[ -f "$f" && $(dotfiles diff "$f") ]]; then
         if [ "$1" == "--overwrite" ]; then
-            echo -e "Warning: your ${bold}${f}${normal} will be overwritten!"
+            echo -e "Warning: your ${_bold}$f${_reset} will be overwritten!"
         else
-            echo -e "Renaming your existing ${bold}${f}${normal} to $f.old"
+            echo -e "Renaming your existing ${_bold}$f${_reset} to $f.old"
             mv "./$f" "./$f.old" --backup=numbered
         fi; sleep 0.03
     fi
@@ -45,4 +45,4 @@ dotfiles reset --hard --quiet
 if ! grep --quiet DOTFILES_HOME "$PATH_CONFIG" 2>/dev/null; then
   echo "export DOTFILES_HOME=$REPO_PATH" >> "$PATH_CONFIG"
 fi
-echo -e "\n${green}Done. Open a new terminal to see the effects.${normal}"
+echo -e "\n${_green}Done. Open a new terminal to see the effects.${_reset}"

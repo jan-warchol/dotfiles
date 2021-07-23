@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Requires color variables from .config/bash/ansi-color-codes.sh
+
 case "$*" in
   *jw-git-examples/*)
     GIT_EMAIL=jan.warchol@gmail.com
@@ -19,7 +21,7 @@ esac
 git clone --recurse-submodules $CLONE_OPTS "$@" &&
 
 if [ -n "$GIT_EMAIL" ]; then
-  echo -e "user.email set to \e[1;37m$GIT_EMAIL\e[0m"
+  echo -e "user.email set to ${_bold}$GIT_EMAIL${_reset}"
 else
   echo Not possible to guess which email address to use. Set it manually.
 fi

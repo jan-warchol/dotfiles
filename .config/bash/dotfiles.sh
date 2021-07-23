@@ -37,7 +37,7 @@ don() {
     }
     pushd ~ 1>/dev/null  # remember location
     export GIT_DIR=$DOTFILES_HOME; export GIT_WORK_TREE=$HOME
-    export GIT_PS1_FMT=" (${BR_YELLOW}dotfiles:${RESET_COLOR} %s)"
+    export GIT_PS1_FMT=" (${_br_yellow}dotfiles:${_reset} %s)"
 
     set +u
     . $HOME/.bashrc  # refresh aliases such as g=git to include the safeguard
