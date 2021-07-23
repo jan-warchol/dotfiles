@@ -31,9 +31,9 @@ echo ""
 for f in `dotfiles ls-files`; do
     if [[ -f "$f" && $(dotfiles diff "$f") ]]; then
         if [ "$1" == "--overwrite" ]; then
-            echo -e "Warning: your ${_bold}$f${_reset} will be overwritten!"
+            echo -e "Warning: your ${_strong}$f${_reset} will be overwritten!"
         else
-            echo -e "Renaming your existing ${_bold}$f${_reset} to $f.old"
+            echo -e "Renaming your existing ${_strong}$f${_reset} to $f.old"
             mv "./$f" "./$f.old" --backup=numbered
         fi; sleep 0.03
     fi

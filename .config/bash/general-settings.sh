@@ -91,7 +91,7 @@ man() {
     # ue - end secondary emphasis
     env \
         LESS_TERMCAP_mb=$(printf "$_blink") \
-        LESS_TERMCAP_md=$(printf "$_bold") \
+        LESS_TERMCAP_md=$(printf "$_strong") \
         LESS_TERMCAP_so=$(printf "$_reverse") \
         LESS_TERMCAP_us=$(printf "$_underline") \
         LESS_TERMCAP_me=$(printf "$_reset") \

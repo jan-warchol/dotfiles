@@ -407,7 +407,7 @@
 
 [color "grep"]
     filename = white black
-    match = white bold
+    match = yellow bold
     separator = cyan black
 
 [commit]

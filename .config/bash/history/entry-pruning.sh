@@ -46,7 +46,7 @@ history_remove_matching_entries() {
     fi
 
     if [ -n "$line_numbers" ]; then
-      echo -e "\n${_bold}$file${_reset}"  # header with filename
+      echo -e "\n${_strong}$file${_reset}"  # header with filename
       sed -n "$(echo "$line_numbers" | sed 's/;/p;/g')" "$file" |
         # color timestamps for easier reading
         sed "s/#[0-9]\+/[37m&1[0m/"

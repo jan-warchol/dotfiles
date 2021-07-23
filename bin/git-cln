@@ -21,7 +21,7 @@ esac
 git clone --recurse-submodules $CLONE_OPTS "$@" &&
 
 if [ -n "$GIT_EMAIL" ]; then
-  echo -e "user.email set to ${_bold}$GIT_EMAIL${_reset}"
+  echo -e "user.email set to ${_strong}$GIT_EMAIL${_reset}"
 else
   echo Not possible to guess which email address to use. Set it manually.
 fi
