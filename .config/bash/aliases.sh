@@ -137,3 +137,16 @@ slugify() {
       sed -E 's/^-+|-+$//g' |
       tr A-Z a-z
 }
+
+# generate a time-based one-time password from secret in passwordstore
+opass() {
+  pass "$1" | head -1 | xargs oathtool --base32 --totp
+}
+
+# combine a password with matching OTP and put into clipboard
+pass_with_otp() {
+  echo -n "$(pass "$1")$(opass "$1-otp")" | xclip -selection clipboard
+  echo "Copied $1 + OTP to clipboard. Will clear in 20 seconds."
+  # Clear the clipboard after 20 seconds. Hide info about bg process.
+  ( (sleep 20; xclip -selection clipboard < /dev/null) & ) > /dev/null
+}
