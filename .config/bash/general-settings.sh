@@ -26,6 +26,7 @@ _prepend_path() {
 }
 
 export ARDUINO_PATH=/usr/local/arduino
+export KALEIDOSCOPE_DIR=$HOME/src/Kaleidoscope/
 
 _append_path $ARDUINO_PATH
 _append_path $HOME/bin
