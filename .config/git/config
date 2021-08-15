@@ -185,7 +185,7 @@
     # get name of the default branch (from origin/HEAD), with fallback to "master"
     mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|master|'
 
-    mine = !git ls --no-merges --author=\"$(git config --get user.name)\"
+    mine = !git log2 --no-merges --author=\"$(git config --get user.name)\"
     payroll = !git mine --date human --since '1 month ago'
 
     # Fix: "smart amend". See ~/bin/git-smart-amend
@@ -206,65 +206,63 @@
 
     # compact log with line wrapping. Two lines per commit work better for me
     # than one line, as it fits narrower windows.
-    ls  = log --decorate --graph --date=relative \
-    --format='%C(auto)%h%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    log2 = log --graph --date=relative --format='%C(auto)%h%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
     # one-line version, useful when you want to squeeze a lot of commits on the screen
-    ls1 = log --decorate --graph --date=relative \
-    --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
+    log1 = log --graph --date=relative --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
 
     # and a variant following just the first parent of each merge, which
     # results in a very nice condensed overview of the history if the
     # developers are following Git Flow, GitHub Flow or another organized way
     # of committing stuff
-    lf  = log --decorate --date=relative --first-parent \
-    --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
+    lf  = log --first-parent --date=relative --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
 
     # "Long" format - full commit message and summary of changes
-    ll  = log --decorate --graph --stat-graph-width=30 --date=iso --stat-count=30
+    ll  = log --graph --stat-graph-width=30 --date=iso --stat-count=30
     # variant with unlimited stat summary length
-    lll = log --decorate --graph --stat-graph-width=30 --date=iso
+    lll = log --graph --stat-graph-width=30 --date=iso
     # and a first-parent version, with '-m' so that merge commit diffs will be shown if requested with '-p'
-    llf = log --decorate --stat-graph-width=30 --date=iso --stat-count=30 --first-parent -m
+    llf = log --stat-graph-width=30 --date=iso --stat-count=30 --first-parent -m
 
 
     # what I'm usually most interested in - commits from current branch unmerged to master
-    l   = !git ls origin/$(git mainline)~1..HEAD
+    l = !git log2 origin/$(git mainline)~1..HEAD
 
 
-    ln = ls --no-merges
+    ln  = log2 --no-merges
     # Log commits from local and/or remote branches (using git ls/lf format)
     # This is better than using --all option because I don't want stashes to be shown.
-    lb   = !git ls HEAD --branches
-    la   = !git ls HEAD --branches --remotes
-    lm   = !git ls HEAD $(git mainline) origin/$(git mainline)
-    lw   = !git ls HEAD --branches --not origin/$(git mainline)~1
+    lb  = !git log2 HEAD --branches
+    la  = !git log2 HEAD --branches --remotes
+    lm  = !git log2 HEAD $(git mainline) origin/$(git mainline)
+    lw  = !git log2 HEAD --branches --not origin/$(git mainline)~1
 
-    lbf  = !git lf HEAD --branches
-    laf  = !git lf HEAD --branches --remotes
-    lmf  = !git lf HEAD $(git mainline) origin/$(git mainline)
+    lbf = !git lf HEAD --branches
+    laf = !git lf HEAD --branches --remotes
+    lmf = !git lf HEAD $(git mainline) origin/$(git mainline)
 
     # log commits that differ between current branch and its upstream
-    lu   = !git ls HEAD...@{upstream}
+    lu   = log2 HEAD...@{upstream}
     # also show parents of displayed commits (makes graph more informative)
-    lub  = !git ls --boundary HEAD...@{upstream}
+    lub  = log2 --boundary HEAD...@{upstream}
+
 
     # Log showing commit diff. Doesn't use --graph because sometimes I want to
     # copy some code from the diff, and each commit is so long that the graph
     # is not readable anyway.
-    lp   = log --decorate --patch --submodule=log --topo-order
-    lpp  = log --decorate --patch --submodule=diff --topo-order
-    lpw  = log --decorate --patch --submodule=log --topo-order --word-diff=color
-    lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
+    lp  = log --patch --submodule=log --topo-order
+    lpp = log --patch --submodule=diff --topo-order
+    lpw = log --patch --submodule=log --topo-order --word-diff=color
+    lpf = log --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
-    lpd  = log --decorate --patch --submodule=log --topo-order --full-diff
-    lpr  = !GIT_PAGER='~/bin/smartless -p^commit' \
-    git log --decorate --patch --reverse $(git mainline)..HEAD
+    lpd = log --patch --submodule=log --topo-order --full-diff
+    lpr = !GIT_PAGER='~/bin/smartless -p^commit' \
+          git log --patch --reverse $(git mainline)..HEAD
 
 
     # log unpushed/unmerged commits on all branches
-    unp = !GIT_PAGER='less -REXS' git ls --boundary --date-order --branches --not --remotes
-    unm = !GIT_PAGER='less -REXS' git ls --boundary --date-order --remotes --not --branches
+    unp = !GIT_PAGER='less -REXS' git log2 --boundary --date-order --branches --not --remotes
+    unm = !GIT_PAGER='less -REXS' git log2 --boundary --date-order --remotes --not --branches
 
     # GUI versions of the above (simply runs gitk)
     divk = !gitk HEAD...@{upstream}
@@ -277,13 +275,11 @@
 
     # reflog with dates and commit message subject
     rf = log --walk-reflogs --abbrev=10\
-    --format='%>(10)%gd %C(auto)%h %gs%d\
-%n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
+         --format='%>(10)%gd %C(auto)%h %gs%d%n     %C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %<(60,trunc)%s%C(reset)'
 
     # one-line version of the above
     rf1 = log --walk-reflogs \
-    --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(auto)%<(9)%gd \
-%h %gs %C(white)- %<(33,trunc)%s%C(reset)'
+          --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(auto)%<(9)%gd %h %gs %C(white)- %<(33,trunc)%s%C(reset)'
 
 
 
