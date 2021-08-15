@@ -331,11 +331,6 @@
     # usage: git sed 's/foo/bar/'
     sed = !git ls-files --stage $GIT_PREFIX | grep -v "^160000" | grep -v "^120000" | cut -f2 | xargs --delimiter='\n' sed -i -r -e 
 
-    # Open file for drafting commit message (or append args if provided)
-    dr = ![ "$#" = 0 ] \
-      && vim $(git rev-parse --git-dir)/COMMIT_MSGDRAFT \
-      || echo >> $(git rev-parse --git-dir)/COMMIT_MSGDRAFT
-
     # delete current branch
     bdc = !sh -c 'BRANCH=$(git rev-parse --abbrev-ref HEAD) \
         && git checkout $(git mainline) \
