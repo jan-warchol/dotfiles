@@ -1,5 +1,7 @@
 #!/bin/sh
-# `watch` command doesn't work with colored git log - use shell loop
+
+# Show continuously refreshed graph of git history (like `watch` command,
+# but it doesn't work with colored git log, so we use shell loop)
 
 TARGET=${@:-"--branches --remotes HEAD"}
 # fall back to "git log --oneline ..." if "git ls" alias is not present
@@ -9,7 +11,7 @@ TARGET=${@:-"--branches --remotes HEAD"}
 
 # force coloring (git disables it by default when writing to a file)
 COMMAND="$LOG_CMD --color $TARGET"
-OUTPUT="/tmp/git-log-output`pwd`"
+OUTPUT="/tmp/watch-git-history/$(pwd | tr '/' '_')"
 mkdir -p `dirname "$OUTPUT"`
 
 while true; do
