@@ -45,6 +45,7 @@
     empty = commit --allow-empty --message  # handy for test commits
 
     d = diff --find-copies=62% --find-copies-harder --inter-hunk-context=13 --submodule=log
+    dd = diff --find-copies=62% --find-copies-harder --inter-hunk-context=13 --submodule=diff
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     dm = !git d $(git mainline)
@@ -153,7 +154,7 @@
     shp = stash pop
 
     s = status --short   # see also --branch option
-    st = status
+    st = !git -c status.submodulesummary=false status && git submodule-details
     su = status --short --untracked-files=all
     si = status --short --ignored
     sa = status --short --untracked-files=all --ignored
@@ -252,6 +253,7 @@
     # copy some code from the diff, and each commit is so long that the graph
     # is not readable anyway.
     lp   = log --decorate --patch --submodule=log --topo-order
+    lpp  = log --decorate --patch --submodule=diff --topo-order
     lpw  = log --decorate --patch --submodule=log --topo-order --word-diff=color
     lpf  = log --decorate --patch --submodule=log --topo-order --first-parent
     # when using a pathspec to limit commits, still show changes in all files
