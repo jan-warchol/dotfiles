@@ -10,5 +10,8 @@
     "workbench.tree.renderIndentGuides": "always",
     "workbench.colorCustomizations": {
         "tree.indentGuidesStroke": "#808080"
-    }
+    },
+    "editor.fontFamily": "Ubuntu mono",
+    "editor.fontSize": 16,
+    "editor.lineHeight": 18,
 }
