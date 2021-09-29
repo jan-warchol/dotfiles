@@ -17,4 +17,6 @@
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.lineHeight": 1.1,
     "terminal.integrated.fontFamily": "'UbuntuMono Nerd Font'",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
 }
