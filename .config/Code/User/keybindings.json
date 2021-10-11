@@ -22,5 +22,9 @@
     {
         "key": "ctrl+k ctrl+=",
         "command": "workbench.action.toggleEditorWidths"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "-workbench.action.quit"
     }
 ]
