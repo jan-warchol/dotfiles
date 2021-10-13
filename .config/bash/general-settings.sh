@@ -22,7 +22,7 @@ _append_path() {
   if [[ ! "$PATH" == *$1* ]]; then export PATH="$PATH:$1"; fi
 }
 _prepend_path() {
-  if [[ ! "$PATH" == $1* ]]; then export PATH="$1:$PATH"; fi
+  if [[ ! "$PATH" == *$1*:/usr/local/sbin:* ]]; then export PATH="$1:$PATH"; fi
 }
 
 export ARDUINO_PATH=/usr/local/arduino
