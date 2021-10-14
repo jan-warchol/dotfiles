@@ -2,6 +2,8 @@
 # This file must be loaded first, because some other settings depend on it
 # (for example some aliases can be defined only after fasd initialization).
 
+setxkbmap -option shift:both_capslock
+
 # enable autocompletion
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
