@@ -3,7 +3,6 @@
 
 # Requires color variables from .config/bash/ansi-color-codes.sh
 
-PS1_PATH_COLOR="${_cyan}"
 # Using \[ and \] around color codes in prompt is necessary to prevent strange issues!
 PS1_RESET_COLOR="\[${_reset}\]"
 smartdollar="\\$ \[${_strong}\]"
@@ -108,12 +107,49 @@ _ps1_status_bar() {
   echo -en "${_unreverse}${_bar_end}${_reset} "
 }
 
+# show shortened path in case of narrow terminal
+# ~/src/transform-hub/python/reference-apps
+# transform-hub/.../reference-apps
+# transfor…/reference-apps
+_ps1_show_path() {
+  echo -en "${_cyan}"
+  full_path="${PWD/$HOME/\~}"
+  half_screen=$((($COLUMNS - ${#USER} - 6) / 2 - 1))
+  if [ ${#full_path} -le $half_screen ]; then
+    echo -n $full_path
+  else
+    repo_path="$(git rev-parse --show-toplevel 2> /dev/null)"
+    if [ -n "$repo_path" ] && [ "$repo_path" != "$PWD" ]; then
+      echo -n $(basename "$repo_path")/
+      if [ "." != $(realpath --relative-to="$repo_path" "..") ]; then
+        echo -n ".../"
+      fi
+    fi
+    echo -n $(basename "$PWD")
+  fi
+  echo -en "${_reset}"
+}
+
+
 # $(__git_ps1) displays git repository status in the prompt, which is extremely handy.
 # Read more: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
+
+type -t __git_submodules_ps1 >/dev/null || echo "__git_submodules_ps1 not found!"
+
+_ps1_git_status() {
+  output=$(__git_ps1 "${GIT_PS1_FMT:-%s}")
+  [ -z "$output" ] && return
+  if git symbolic-ref HEAD &>/dev/null; then  # if on a branch
+    bname="$(git symbolic-ref --short HEAD)"
+    [ ${#bname} -gt 25 ] && short_name="${bname:0:23}…" || short_name=$bname
+  fi
+  echo -n " (${output/$bname/$short_name})"
+  type -t __git_submodules_ps1 >/dev/null && __git_submodules_ps1
+}
 
 highlight_exit_code() {
   exit_code=$?
@@ -130,9 +166,8 @@ fi
 # (so that I can dynamically change the color just by changing the variable).
 export PS1="\
 \$(_ps1_status_bar)\
-\$(echo -e \${PS1_PATH_COLOR})\w\
-${PS1_RESET_COLOR}\
-\$(__git_ps1 \"\$GIT_PS1_FMT\")\
+\$(_ps1_show_path)\
+\$(_ps1_git_status)\
 ${ranger_notice}\n${smartdollar}"
 
 #reset color
