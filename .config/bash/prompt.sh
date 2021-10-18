@@ -42,7 +42,7 @@ GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="verbose git"
 
 check_ssh_keys() {
-  if [ -S $SSH_AUTH_SOCK ]; then
+  if [ -S "$SSH_AUTH_SOCK" ]; then
     if key_listing=$(ssh-add -l); then
       echo "$key_listing" |
         # get key "name" (comment or filename)
@@ -51,7 +51,7 @@ check_ssh_keys() {
         xargs echo | sed 's/$/ /'
     fi
   else
-    echo "(no ssh agent) "
+    echo -n "(no ssh agent) "
   fi
 }
 # set defaults so that we don't have uninitialized variables

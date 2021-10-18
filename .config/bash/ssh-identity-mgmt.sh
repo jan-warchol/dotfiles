@@ -11,6 +11,7 @@ ssh_ensure_agent_running() {
       eval `ssh-agent -t 18h -a $SSH_AUTH_SOCK`
     fi
   else
+    echo ""
     if [ -e "$SSH_AUTH_SOCK" ]; then
       echo "Found forwarded SSH agent at $SSH_AUTH_SOCK"
     else
