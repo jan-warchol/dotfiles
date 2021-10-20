@@ -19,4 +19,6 @@
     "terminal.integrated.fontFamily": "'UbuntuMono Nerd Font'",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }
