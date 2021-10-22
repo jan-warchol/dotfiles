@@ -4,6 +4,7 @@
 
 (
   GIT_DIR=$DOTFILES_HOME git ls-files | sed s:^:$HOME/:
+  GIT_DIR=$GIT_TOOLS/.git git ls-files | sed s:^:$GIT_TOOLS/:
   echo ~/.config/terminator/config
   echo ~/.config/bash/00-paths-override.sh
   find $HOME/.ssh

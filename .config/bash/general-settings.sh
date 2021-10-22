@@ -28,11 +28,14 @@ _prepend_path() {
 export ARDUINO_PATH=/usr/local/arduino
 export KALEIDOSCOPE_DIR=$HOME/src/Kaleidoscope/
 
+_append_path $GIT_TOOLS
 _append_path $ARDUINO_PATH
 _append_path $HOME/bin
 _prepend_path $HOME/bin/override
 # apparently user-wide pip install puts stuff there, and I want it to have precedence
 _prepend_path $HOME/.local/bin
+
+source "$GIT_TOOLS/bash-completion.sh"
 
 # Node.js Version Manager
 export NVM_DIR="$HOME/.nvm"
