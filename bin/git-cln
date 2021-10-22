@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Requires color variables from .config/bash/ansi-color-codes.sh
+source "$HOME/.config/bash/ansi-color-codes.sh"
 
 case "$*" in
   *jw-git-examples/*)
@@ -15,13 +15,18 @@ case "$*" in
     GIT_EMAIL=jan.warchol@scramjet.org
     CLONE_OPTS="--config user.email=$GIT_EMAIL"
     ;;
+  git@github.com:scramjetorg/*)
+    GIT_EMAIL=jan.warchol@scramjet.org
+    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    ;;
   *)
 esac
 
-git clone --recurse-submodules $CLONE_OPTS "$@" &&
+# --no-local -> don't confuse filter-repo
+git clone --recurse-submodules --no-local $CLONE_OPTS "$@" &&
 
 if [ -n "$GIT_EMAIL" ]; then
-  echo -e "user.email set to ${_strong}$GIT_EMAIL${_reset}"
+  echo -e "config: user.email set to ${_strong}$GIT_EMAIL${_reset}."
 else
-  echo Not possible to guess which email address to use. Set it manually.
+  echo -e "\nFailed to guess which email address to use. Set it manually."
 fi
