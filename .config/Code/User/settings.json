@@ -10,5 +10,15 @@
     "workbench.tree.renderIndentGuides": "always",
     "workbench.colorCustomizations": {
         "tree.indentGuidesStroke": "#808080"
-    }
+    },
+    "editor.fontFamily": "Ubuntu mono",
+    "editor.fontSize": 16,
+    "editor.lineHeight": 18,
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.lineHeight": 1.1,
+    "terminal.integrated.fontFamily": "'UbuntuMono Nerd Font'",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }
