@@ -150,3 +150,12 @@ pass_with_otp() {
   # Clear the clipboard after 20 seconds. Hide info about bg process.
   ( (sleep 20; xclip -selection clipboard < /dev/null) & ) > /dev/null
 }
+
+# helper for Scramjet Sequences
+pack_and_run() {
+  fname="$(basename "$1").tar.gz"
+  si pack "$1" -o "$fname"
+  si seq send "$fname"
+  si seq start -
+  si inst output -
+}
