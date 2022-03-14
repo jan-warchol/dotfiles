@@ -62,6 +62,8 @@ vtp() { time vagrant provision "$@"; alert; }
 
 sshumount() { fusermount -u "$@" && rmdir "$@"; }
 alias mkd='mkdir --parents'
+alias path='realpath'
+alias open=xdg-open
 
 # Some commands are so common that they deserve one-letter shortcuts :)
 
