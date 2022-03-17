@@ -151,7 +151,7 @@
     shp = stash pop
 
     s = status --short   # see also --branch option
-    st = !git -c status.submodulesummary=false status && git submodule-details
+    st = !git log --oneline --no-decorate -1 && git -c status.submodulesummary=false status && git submodule-details
     su = status --short --untracked-files=all
     si = status --short --ignored
     sa = status --short --untracked-files=all --ignored
