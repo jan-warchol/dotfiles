@@ -162,9 +162,19 @@ if [[ "$PROMPT_COMMAND" != *highlight_exit_code* ]]; then
   export PROMPT_COMMAND="highlight_exit_code; $PROMPT_COMMAND"
 fi
 
+# https://github.com/dylanaraps/pure-bash-bible#get-the-current-cursor-position
+_ps1_ensure_newline() {
+  local _ y x _
+  IFS='[;' read -p $'\e[6n' -d R -rs _ y x _
+  if [[ "$x" != 1 ]]; then
+    echo -e "${_dim} << no newline${_reset}"
+  fi
+}
+
 # wrap PS1_USER_COLOR inside an echo call so that it will be evaluated on every command
 # (so that I can dynamically change the color just by changing the variable).
 export PS1="\
+\$(_ps1_ensure_newline)\
 \$(_ps1_status_bar)\
 \$(_ps1_show_path)\
 \$(_ps1_git_status)\
