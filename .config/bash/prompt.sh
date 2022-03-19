@@ -18,6 +18,7 @@ if fc-list | grep -i nerd >/dev/null; then
   _dotfiles_icon=" "
   _pstore_icon=" "
   _pyvenv_icon=" "
+  _scramjet_icon=" "
   _bar_end=""
 else
   _ssh_icon="SSH✓ "
@@ -25,6 +26,7 @@ else
   _dotfiles_icon="dots:"
   _pstore_icon="pass:"
   _pyvenv_icon="py:"
+  _scramjet_icon="si:"
   _bar_end="█"
 fi
 
@@ -77,6 +79,30 @@ _ps1_venv_status() {
   fi
 }
 
+# show shortened apiUrl configuration for scramjet CLI
+_ps1_scramjet_api() {
+  ! which si &>/dev/null && return
+  : "${_scramjet_icon:=🚀 }"  # set default if undefined
+
+  api_url_quoted="$(si config get apiUrl)"
+  [ $api_url_quoted == undefined ] && return
+  api_url="${api_url_quoted:1:-1}"
+
+  api_host="$(echo "$api_url" | awk -F/ '{print $3}')"
+  api_hostname="$(echo "$api_host" | awk -F: '{print $1}')"
+  api_port="$(echo "$api_host" | awk -F: '{print $2}')"
+
+  echo -n "$_scramjet_icon"
+  if [ "$api_hostname" != "localhost" ]; then
+    echo -n "$api_hostname" | sed 's|.scp.ovh$|…|'
+  fi
+  if [ "$api_port" != "8000" ]; then
+    echo -n ":$api_port"
+  fi
+  api_path="/$(echo "$api_url" | cut -d/ -f4-)"
+  echo -n "$api_path " | sed 's|/api/v1/cpm/|…|;s|/api/v1/sth/|…|;s|/api/v1 $| |'
+}
+
 _ps1_user_info() {
   # Display hostname only when I'm logged in via ssh - makes it very clear
   if [ -n "$SSH_CONNECTION" ]; then
@@ -103,6 +129,7 @@ _ps1_status_bar() {
   _ps1_passwordstore_status
   _ps1_dotfiles_status
   _ps1_venv_status
+  _ps1_scramjet_api
   _ps1_user_info
   echo -en "${_unreverse}${_bar_end}${_reset} "
 }
