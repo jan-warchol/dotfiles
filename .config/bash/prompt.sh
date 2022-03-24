@@ -11,6 +11,7 @@ if fc-list | grep -i nerd >/dev/null; then
   _pstore_icon=" "
   _pyvenv_icon=" "
   _scramjet_icon=" "
+  _kubernetes_icon="ﴱ "
   _bar_end=""
   _bar_section=" "
   _token_icon="  "
@@ -21,6 +22,7 @@ else
   _pstore_icon="pass:"
   _pyvenv_icon="py:"
   _scramjet_icon="si:"
+  _kubernetes_icon="k8s:"
   _bar_end="█"
   _bar_section="▕"
 fi
