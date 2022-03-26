@@ -8,6 +8,7 @@
     },
     "workbench.tree.indent": 16,
     "workbench.tree.renderIndentGuides": "always",
+    "workbench.editor.wrapTabs": true,
     "workbench.colorCustomizations": {
         "tree.indentGuidesStroke": "#808080",
         "terminal.background":"#181818",
@@ -36,6 +37,7 @@
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.lineHeight": 1.1,
     "terminal.integrated.fontFamily": "'UbuntuMono Nerd Font'",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "editor.suggestSelection": "first",
