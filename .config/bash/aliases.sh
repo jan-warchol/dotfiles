@@ -3,7 +3,7 @@ alias ls='ls --color=auto --group-directories-first'
 alias df='df --human-readable'
 alias du='du --human-readable'
 alias wget='wget --continue'
-alias tree='tree -C --dirsfirst'
+alias tree='tree -C --dirsfirst -I node_modules'
 
 # default settings for less.
 export LESS='-MSRi#16j.38'
