@@ -1,5 +1,4 @@
 {
-    "editor.minimap.enabled": false,
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
@@ -21,4 +20,8 @@
     "explorer.confirmDragAndDrop": false,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.lineDecorationsWidth": 8,
+    "editor.glyphMargin": false,
+    "editor.folding": false,
+    "editor.minimap.enabled": false,
 }
