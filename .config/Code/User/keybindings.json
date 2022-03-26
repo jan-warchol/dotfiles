@@ -20,11 +20,15 @@
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
-        "key": "ctrl+k ctrl+=",
+        "key": "ctrl+alt+=",
         "command": "workbench.action.toggleEditorWidths"
+    },
+    {
+        "key": "ctrl+alt+m",
+        "command": "workbench.action.toggleMaximizedPanel"
     },
     {
         "key": "ctrl+q",
         "command": "-workbench.action.quit"
-    }
+    },
 ]
