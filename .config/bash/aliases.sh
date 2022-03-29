@@ -159,5 +159,5 @@ pack_and_run() {
   si pack "$1" -o "$fname"
   si seq send "$fname"
   si seq start -
-  si inst output -
+  # si inst output -
 }
