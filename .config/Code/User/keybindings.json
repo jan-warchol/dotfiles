@@ -5,12 +5,12 @@
         "command": "editor.action.inspectTMScopes"
     },
     {
-        "key": "alt+left",
+        "key": "alt+home",
         "command": "workbench.action.navigateBack",
         "when": "!terminalFocus"
     },
     {
-        "key": "alt+right",
+        "key": "alt+end",
         "command": "workbench.action.navigateForward",
         "when": "!terminalFocus"
     },
@@ -33,15 +33,24 @@
     },
     // Window navigation
     {
-        "key": "shift+alt+left",
+        "key": "alt+left",
         "command": "workbench.action.navigateLeft",
         "when": "!terminalFocus"
     },
     {
-        "key": "shift+alt+right",
+        "key": "alt+right",
         "command": "workbench.action.navigateRight",
         "when": "!terminalFocus"
     },
+    {
+        "key": "alt+up",  // was: moving lines
+        "command": "workbench.action.navigateUp",
+    },
+    {
+        "key": "alt+down",  // was: moving lines
+        "command": "workbench.action.navigateDown",
+    },
+    // Navigating to and from terminal
     {
         "key": "shift+alt+left",
         "command": "workbench.action.terminal.focusPreviousPane",
@@ -59,5 +68,16 @@
     {
         "key": "shift+alt+down",
         "command": "workbench.action.navigateDown",
+    },
+    // Replacement bindings
+    {
+        "key": "ctrl+shift+up",  // was: adding cursor
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+down",  // was: adding cursor
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
     },
 ]
