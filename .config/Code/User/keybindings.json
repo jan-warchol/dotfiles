@@ -50,25 +50,6 @@
         "key": "alt+down",  // was: moving lines
         "command": "workbench.action.navigateDown",
     },
-    // Navigating to and from terminal
-    {
-        "key": "shift+alt+left",
-        "command": "workbench.action.terminal.focusPreviousPane",
-        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
-    },
-    {
-        "key": "shift+alt+right",
-        "command": "workbench.action.terminal.focusNextPane",
-        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
-    },
-    {
-        "key": "shift+alt+up",
-        "command": "workbench.action.navigateUp",
-    },
-    {
-        "key": "shift+alt+down",
-        "command": "workbench.action.navigateDown",
-    },
     // Replacement bindings
     {
         "key": "ctrl+shift+up",  // was: adding cursor

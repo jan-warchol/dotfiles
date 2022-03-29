@@ -46,4 +46,7 @@
     "editor.glyphMargin": false,
     "editor.folding": false,
     "editor.minimap.enabled": false,
+    // without disabling menu alt+arrow shortcuts in terminal result in focusing menu.
+    "window.customMenuBarAltFocus": false,
+    "window.menuBarVisibility": "hidden",
 }
