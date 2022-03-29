@@ -20,11 +20,44 @@
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
-        "key": "ctrl+k ctrl+=",
+        "key": "ctrl+alt+=",
         "command": "workbench.action.toggleEditorWidths"
+    },
+    {
+        "key": "ctrl+alt+m",
+        "command": "workbench.action.toggleMaximizedPanel"
     },
     {
         "key": "ctrl+q",
         "command": "-workbench.action.quit"
-    }
+    },
+    // Window navigation
+    {
+        "key": "shift+alt+left",
+        "command": "workbench.action.navigateLeft",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "workbench.action.navigateRight",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "shift+alt+left",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "workbench.action.navigateUp",
+    },
+    {
+        "key": "shift+alt+down",
+        "command": "workbench.action.navigateDown",
+    },
 ]
