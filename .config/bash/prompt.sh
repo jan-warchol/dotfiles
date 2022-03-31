@@ -158,6 +158,10 @@ _ps1_shortened_path() {
     echo -n $full_path
   else
     repo_path="$(git rev-parse --show-toplevel 2> /dev/null)"
+    # echo $repo_path
+    # echo $PWD
+    # TODO: obsłużyć przypadek, kiedy jesteśmy podsymlinkowani do części repo
+    # if [ -n "$repo_path" ] && [ "$repo_path" != "$PWD" ] && [[ "$repo_path/*" =~ "$PWD" ]]; then
     if [ -n "$repo_path" ] && [ "$repo_path" != "$PWD" ]; then
       echo -n $(basename "$repo_path")/
       if [ "." != $(realpath --relative-to="$repo_path" "..") ]; then
