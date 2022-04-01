@@ -13,6 +13,7 @@ if fc-list | grep -i nerd >/dev/null; then
   _scramjet_icon=" "
   _bar_end=""
   _bar_section=" "
+  _token_icon="  "
 else
   _ssh_icon="SSH✓"
   _gpg_icon="GPG✓"
@@ -95,6 +96,22 @@ _ps1_scramjet_api() {
   fi
   api_path="/$(echo "$api_url" | cut -d/ -f4-)"
   echo -n "$api_path" | sed 's|/api/v1/cpm/|…|;s|/api/v1/sth/|…|;s|/api/v1$||'
+}
+
+_ps1_scramjet_token() {
+  : "${_token_icon:=💳 }"  # set default if undefined
+  if [ -n "$SCRAMJET_API_TOKEN" ]; then
+    # check expiration date if https://github.com/mike-engel/jwt-cli is installed
+    if which jwt &>/dev/null; then
+      expiration=$(jwt decode $SCRAMJET_API_TOKEN --json | jq -r .payload.exp)
+      if [ $(($expiration - $(date '+%s'))) -gt 0 ]; then
+        echo -n " ✔"
+      else
+        echo -n " ✘"
+      fi
+    fi
+    echo -n " $_token_icon…${SCRAMJET_API_TOKEN: -7}"
+  fi
 }
 
 _ps1_user_info() {
@@ -204,6 +221,7 @@ _modular_prompt() {
     _ps1_venv_status
   _ps1_end_status_bar
   _ps1_scramjet_api
+  _ps1_scramjet_token
   _ps1_shortened_path
   _ps1_git_status
   _ps1_ranger_notice
