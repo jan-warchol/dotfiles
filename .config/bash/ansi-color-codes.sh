@@ -7,6 +7,7 @@ _italic="\033[3m"
 _underline="\033[4m"
 _blink="\033[5m"
 _reverse="\033[7m"
+_unreverse="\033[27m"
 
 _red="\033[31m"
 _green="\033[32m"
