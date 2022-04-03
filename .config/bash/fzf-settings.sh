@@ -22,6 +22,13 @@ if [ -e "$FZF_HOME" ]; then
 fi
 
 export FZF_ALT_C_OPTS="--preview 'tree -C -L 2 --dirsfirst {} | head -200'"
+export FZF_CTRL_R_OPTS="
+  --height 50%
+  --preview='echo {} | cut -f2-'
+  --preview-window=up:6:wrap:hidden
+  --bind=ctrl-v:toggle-preview
+  --header='toggle preview with ctrl-V'
+"
 
 ls-passwords() {
   cd $PASSWORD_STORE_DIR
