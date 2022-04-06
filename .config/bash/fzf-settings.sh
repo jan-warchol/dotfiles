@@ -1,11 +1,15 @@
-: "${FZF_HOME:=$HOME/.fzf}"  # default value
+# set defaults
+: "${FZF_HOME:=$HOME/.fzf}"
 : "${FZF_HISTORY:=$HOME/fzf-history-$DISAMBIG_SUFFIX}"
 : "${FZF_VIM_HISTORY:=$HOME/.local/share/fzf-history}"
 
 export FZF_DEFAULT_OPTS="\
   --history=$FZF_HISTORY \
   --bind \"ctrl-u:abort+execute(cd ..; echo -n ../; find . | fzf --prompt \`pwd\`/)\"\
-  --bind \"ctrl-o:abort+execute(cd \`echo {} | sed 's|~|/home/jan/|'\`; echo -n {}/; find . | fzf --prompt {}/)\""
+  --bind \"ctrl-o:abort+execute(cd \`echo {} | sed 's|~|/home/jan/|'\`; echo -n {}/; find . | fzf --prompt {}/)\"
+  --bind ctrl-z:ignore
+  --bind ctrl-s:toggle-sort
+"
 
 # Setup fzf
 # ---------
@@ -27,8 +31,9 @@ ls-passwords() {
 # override default __fzf_select__ (add some extra path processing)
 __fzf_select__() {
   eval "${FZF_CTRL_T_COMMAND:-"smart-find"}" |
+  sed "s|^\./||" |
   sed "s|^$HOME|~|" |
-  FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --height 40% --reverse --multi" $(__fzfcmd) |
+  $(__fzfcmd) --height 50% --reverse --multi "$@" |
   while read -r item; do
     # escape special chars and un-escape tilde
     printf '%q ' "$item" | sed 's|^\\~|~|'
@@ -43,7 +48,7 @@ bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'
 bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="ls-passwords" fzf-file-widget'
-bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl" FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-sort --bind ctrl-s:toggle-sort" fzf-file-widget'
+bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl" fzf-file-widget --tiebreak=index'
 
 
 # bindings for git - see functions defined in fzf-git-functions.sh
