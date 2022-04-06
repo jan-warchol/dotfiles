@@ -24,6 +24,17 @@ ls-passwords() {
   find . -name "*.gpg" | cut -c3- | sed s/\.gpg$//
 }
 
+# override default __fzf_select__ (add some extra path processing)
+__fzf_select__() {
+  eval "${FZF_CTRL_T_COMMAND:-"smart-find"}" |
+  sed "s|^$HOME|~|" |
+  FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --height 40% --reverse --multi" $(__fzfcmd) |
+  while read -r item; do
+    # escape special chars and un-escape tilde
+    printf '%q ' "$item" | sed 's|^\\~|~|'
+  done
+}
+
 # fuzzy-search starting in various directories
 bind -x '"\C-o\C-n": FZF_CTRL_T_COMMAND="smart-find" fzf-file-widget'
 bind -x '"\C-o\C-a": FZF_CTRL_T_COMMAND="find" fzf-file-widget'
@@ -32,7 +43,7 @@ bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'
 bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="ls-passwords" fzf-file-widget'
-bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl | sed \"s:^$HOME:~:\"" FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-sort --bind ctrl-s:toggle-sort" fzf-file-widget'
+bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl" FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-sort --bind ctrl-s:toggle-sort" fzf-file-widget'
 
 
 # bindings for git - see functions defined in fzf-git-functions.sh
