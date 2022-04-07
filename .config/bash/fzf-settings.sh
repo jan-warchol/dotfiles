@@ -40,6 +40,10 @@ __fzf_select__() {
   done
 }
 
+fasd_relative() {
+  fasd -Rl | sed "s|$PWD/||"
+}
+
 # fuzzy-search starting in various directories
 bind -x '"\C-o\C-n": FZF_CTRL_T_COMMAND="smart-find" fzf-file-widget'
 bind -x '"\C-o\C-a": FZF_CTRL_T_COMMAND="find" fzf-file-widget'
@@ -48,7 +52,7 @@ bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'
 bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="ls-passwords" fzf-file-widget'
-bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd -Rl" fzf-file-widget --tiebreak=index'
+bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd_relative" fzf-file-widget --tiebreak=index'
 
 
 # bindings for git - see functions defined in fzf-git-functions.sh
