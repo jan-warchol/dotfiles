@@ -33,7 +33,7 @@ __fzf_select__() {
   eval "${FZF_CTRL_T_COMMAND:-"smart-find"}" |
   sed "s|^\./||" |
   sed "s|^$HOME|~|" |
-  $(__fzfcmd) --height 50% --reverse --multi --tiebreak=end "$@" |
+  $(__fzfcmd) --height 50% --reverse --multi --tiebreak=end,length "$@" |
   while read -r item; do
     # escape special chars and un-escape tilde
     printf '%q ' "$item" | sed 's|^\\~|~|'
