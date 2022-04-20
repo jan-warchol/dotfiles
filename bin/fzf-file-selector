@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sed "s|^\./||" |
+sed "s|^$HOME|~|" |
+fzf --height 50% --reverse --multi --tiebreak=end,length "$@" |
+while read -r item; do
+  # escape special chars and un-escape tilde
+  printf '%q ' "$item" | sed 's|^\\~|~|'
+done

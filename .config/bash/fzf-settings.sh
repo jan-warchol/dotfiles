@@ -3,13 +3,30 @@
 : "${FZF_HISTORY:=$HOME/fzf-history-$DISAMBIG_SUFFIX}"
 : "${FZF_VIM_HISTORY:=$HOME/.local/share/fzf-history}"
 
+# TODO: parse resulting path relative to CWD
+
+go_inside='reload(
+  echo -n {}/ >> ~/.fzf-temp;
+  cd $(cat ~/.fzf-temp);
+  smart-find . | sed \"s|^\./||\"
+)+clear-query'
+
+go_up='reload(
+  cd $(cat ~/.fzf-temp)/..;
+  echo -n $PWD/ > ~/.fzf-temp;
+  smart-find . | sed \"s|^\./||\"
+)+clear-query'
+
 export FZF_DEFAULT_OPTS="\
   --history=$FZF_HISTORY \
-  --bind \"ctrl-u:abort+execute(cd ..; echo -n ../; find . | fzf --prompt \`pwd\`/)\"\
-  --bind \"ctrl-o:abort+execute(cd \`echo {} | sed 's|~|/home/jan/|'\`; echo -n {}/; find . | fzf --prompt {}/)\"
+  --bind \"ctrl-u:$go_up\"
+  --bind \"ctrl-o:$go_inside\"
   --bind ctrl-z:ignore
   --bind ctrl-s:toggle-sort
 "
+
+  # --bind \"ctrl-u:abort+execute(cd ..; echo -n ../; smart-find . | fzf-file-selector --prompt \`pwd\`/)\"\
+  # --bind \"ctrl-o:abort+execute(cd {}; smart-find . | fzf-file-selector --prompt {}/)\"
 
 # Setup fzf
 # ---------
@@ -37,13 +54,18 @@ ls-passwords() {
 
 # override default __fzf_select__ (add some extra path processing)
 __fzf_select__() {
+  : > ~/.fzf-temp
   eval "${FZF_CTRL_T_COMMAND:-"smart-find"}" |
   sed "s|^\./||" |
   sed "s|^$HOME|~|" |
-  $(__fzfcmd) --height 50% --reverse --multi --tiebreak=end,length "$@" |
+  $(__fzfcmd) --height 50% --reverse --multi --tiebreak=end,length --header='Ctrl-U Ctrl-O to move around' \
+  --preview='([ -d $(cat ~/.fzf-temp){} ] && tree --dirsfirst $(cat ~/.fzf-temp){} || cat $(cat ~/.fzf-temp){}) | head -1000' \
+  --preview-window=right:33% \
+  --bind=ctrl-v:toggle-preview \
+  "$@" |
   while read -r item; do
     # escape special chars and un-escape tilde
-    printf '%q ' "$item" | sed 's|^\\~|~|'
+    printf '%q ' "$(cat ~/.fzf-temp)$item" | sed 's|^\\~|~|'
   done
 }
 
