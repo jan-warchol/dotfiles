@@ -30,10 +30,20 @@ fi
 
 command find $FIND_SYMLINK_OPTS $FIND_PATHS \
     -mindepth 1 \
-    \( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
+    \( -fstype 'sysfs' \
+       -o -fstype 'devfs' \
+       -o -fstype 'devtmpfs' \
+       -o -fstype 'proc' \
        -o -name '.git' \
+       -o -name '.npm' \
+       -o -name '.cache' \
+       -o -name '.chefdk' \
+       -o -name '.berkshelf' \
+       -o -name 'snap' \
        -o -name 'node_modules' \
        -o -name 'python_modules' \
+       -o -name 'site-packages' \
+       -o -name 'dist-packages' \
        -o -path '*venv*/lib' \
        -o -path '*/deployment/env3' \
        -o -path '*/vendor/cookbooks' \
@@ -56,13 +66,6 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -path '*usr/share/locale' \
        -o -path '*usr/src/linux*headers*' \
        -o -path '*opt/chefdk/embedded/lib/ruby/gems' \
-       -o -name '.npm' \
-       -o -name '.cache' \
-       -o -name '.chefdk' \
-       -o -name '.berkshelf' \
-       -o -name 'site-packages' \
-       -o -name 'dist-packages' \
-       -o -name 'snap' \
     \) -prune \
     -o $FIND_OPTS $PRINT_MTD \
     2> >(grep -v "Permission denied")
