@@ -41,21 +41,28 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -path '*/vendor/bundle' \
        -o -path '*/.local/share/Zeal' \
        -o -path '*/.local/share/Trash' \
+       -o -path '*/.local/share/Steam' \
        -o -path '*/.vim/plugged' \
        -o -path '*/.vim/undo' \
+       -o -path '*/.vscode/extensions' \
        -o -path '*/.terraform/modules' \
        -o -path '*/.terraform/plugins' \
        -o -path '*/terraform.*.backup' \
        -o -path '*/.config/google-chrome' \
+       -o -path '*/.config/Microsoft*' \
        -o -path '*usr/share/icons' \
+       -o -path '*usr/share/doc' \
+       -o -path '*usr/share/help' \
        -o -path '*usr/share/locale' \
-       -o -path '*usr/src/linux-headers-*' \
+       -o -path '*usr/src/linux*headers*' \
        -o -path '*opt/chefdk/embedded/lib/ruby/gems' \
        -o -name '.npm' \
        -o -name '.cache' \
        -o -name '.chefdk' \
        -o -name '.berkshelf' \
        -o -name 'site-packages' \
+       -o -name 'dist-packages' \
+       -o -name 'snap' \
     \) -prune \
     -o $FIND_OPTS $PRINT_MTD \
     2> >(grep -v "Permission denied")
