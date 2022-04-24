@@ -39,6 +39,7 @@ blacklist="
   -o -name .cache
   -o -name .chefdk
   -o -name .berkshelf
+  -o -name .terraform
   -o -name snap
   -o -name node_modules
   -o -name python_modules
@@ -46,19 +47,12 @@ blacklist="
   -o -name dist-packages
 
   -o -path *venv*/lib
-  -o -path */deployment/env3
-  -o -path */vendor/cookbooks
-  -o -path */build/mkdocs.venv
-  -o -path */vendor/bundle
   -o -path */.local/share/Zeal
   -o -path */.local/share/Trash
   -o -path */.local/share/Steam
   -o -path */.vim/plugged
   -o -path */.vim/undo
   -o -path */.vscode/extensions
-  -o -path */.terraform/modules
-  -o -path */.terraform/plugins
-  -o -path */terraform.*.backup
   -o -path */.config/google-chrome
   -o -path */.config/Microsoft*
   -o -path *usr/share/icons
