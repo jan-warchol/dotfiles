@@ -37,9 +37,6 @@ blacklist="
   -o -name .git
   -o -name .npm
   -o -name .cache
-  -o -name .chefdk
-  -o -name .berkshelf
-  -o -name .terraform
   -o -name snap
   -o -name node_modules
   -o -name python_modules
@@ -47,7 +44,6 @@ blacklist="
   -o -name dist-packages
 
   -o -path *venv*/lib
-  -o -path */.local/share/Zeal
   -o -path */.local/share/Trash
   -o -path */.local/share/Steam
   -o -path */.vim/plugged
@@ -60,7 +56,6 @@ blacklist="
   -o -path *usr/share/help
   -o -path *usr/share/locale
   -o -path *usr/src/linux*headers*
-  -o -path *opt/chefdk/embedded/lib/ruby/gems
 "
 
 command find $FIND_SYMLINK_OPTS $FIND_PATHS \
