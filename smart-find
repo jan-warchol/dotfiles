@@ -47,10 +47,10 @@ command find $FIND_SYMLINK_OPTS $FIND_PATHS \
        -o -path '*/.terraform/plugins' \
        -o -path '*/terraform.*.backup' \
        -o -path '*/.config/google-chrome' \
-       -o -path '/usr/share/icons' \
-       -o -path '/usr/share/locale' \
-       -o -path '/usr/src/linux-headers-*' \
-       -o -path '/opt/chefdk/embedded/lib/ruby/gems' \
+       -o -path '*usr/share/icons' \
+       -o -path '*usr/share/locale' \
+       -o -path '*usr/src/linux-headers-*' \
+       -o -path '*opt/chefdk/embedded/lib/ruby/gems' \
        -o -name '.npm' \
        -o -name '.cache' \
        -o -name '.chefdk' \
