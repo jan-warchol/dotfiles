@@ -58,7 +58,29 @@ blacklist="
   -o -path *usr/src/linux*headers*
 "
 
-command find $FIND_SYMLINK_OPTS $FIND_PATHS \
-    -mindepth 1 \
-    \( $blacklist \) -prune -o $FIND_OPTS $PRINT_MTD \
-    2> >(grep -v "Permission denied")
+# often I'm most interested in the items that are direct children of the
+# starting point, so show them first and then go deeper.
+run_find() {
+  # # first sorted toplevel directories
+  # command find $FIND_SYMLINK_OPTS $FIND_PATHS -maxdepth 1 \
+  #   \( $blacklist \) -prune -o -type d $FIND_OPTS $PRINT_MTD |
+  #   LC_ALL=C sort
+  #
+  # # then sorted toplevel files
+  # command find $FIND_SYMLINK_OPTS $FIND_PATHS -maxdepth 1 \
+  #   \( $blacklist \) -prune -o $FIND_OPTS $PRINT_MTD |
+  #   LC_ALL=C sort
+
+  # finally everything else
+  command find $FIND_SYMLINK_OPTS $FIND_PATHS \
+    \( $blacklist \) -prune -o $FIND_OPTS $PRINT_MTD
+}
+
+# postprocessing
+run_find 2> >(grep -v "Permission denied") |
+  # deduplicate
+  perl -n -l -e 'print . "\t$_" if !$seen{$_}++' |
+  # remove . and .. - they are not interesting
+  grep -v '^\.*$' |
+  # remove leading ./ - less visual clutter
+  sed 's|^\./||'
