@@ -27,6 +27,7 @@
 !/.config/
 /.config/*
 !/.config/bash
+/.config/bash/local/*
 !/.config/git
 !/.config/ranger
 !/.config/pulse/presets/*

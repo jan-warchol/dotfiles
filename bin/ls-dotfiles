@@ -9,6 +9,7 @@
   echo ~/.config/bash/00-paths-override.sh
   find $HOME/.ssh
   find $HOME/bin -maxdepth 1 -type f
+  find $HOME/.config/bash -type f
   if [ -e $FZF_HOME ]; then find $FZF_HOME/shell; fi
   if [ -e $HOME/.aws ]; then find $HOME/.aws; fi
   if [ -e $HOME/.config/xkb ]; then find $HOME/.config/xkb -name .git -prune -o -print; fi

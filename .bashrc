@@ -1,11 +1,15 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# load local untracked files (environment etc.)
+for file in $HOME/.config/bash/00-paths-override.sh $HOME/.config/bash/local/*; do
+    source "$file" 2>/dev/null
+done
+
 load_config() {
   source "$HOME/.config/bash/$@"
 }
 
-load_config "00-paths-override.sh" 2>/dev/null  # optional
 load_config "general-settings.sh"  # should come first but depends on paths
 load_config "ansi-color-codes.sh"
 load_config "aliases.sh"
