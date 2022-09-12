@@ -42,19 +42,21 @@ _ps1_ssh_agent_status() {
 }
 
 _ps1_passwordstore_status() {
+  if [ -z $PASSWORD_STORE_DIR ]; then return 1; fi
   unset behind ahead
   (
     export GIT_DIR=$PASSWORD_STORE_DIR/.git
     behind_count=$(git rev-list --count ..origin/master)
     ahead_count=$(git rev-list --count origin/master..)
     [ $behind_count -ne 0 ] && behind="-${behind_count}"
-    [ $ahead_count -ne 0 ] && ahead="${ahead_count}"
+    [ $ahead_count -ne 0 ] && ahead="+${ahead_count}"
     [ -n "$behind$ahead" ] && echo -n " $_pstore_icon$ahead$behind"
     unset GIT_DIR
   )
 }
 
 _ps1_dotfiles_status() {
+  if [ -z $DOTFILES_HOME ]; then return 1; fi
   unset behind ahead
   (
     export GIT_DIR=$DOTFILES_HOME
@@ -220,8 +222,6 @@ _modular_prompt() {
     _ps1_dotfiles_status
     _ps1_venv_status
   _ps1_end_status_bar
-  _ps1_scramjet_api
-  _ps1_scramjet_token
   _ps1_shortened_path
   _ps1_git_status
   _ps1_ranger_notice
