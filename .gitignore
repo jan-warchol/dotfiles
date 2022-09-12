@@ -3,13 +3,10 @@
 # Since the worktree is HOME, by default ignore everything...
 /*
 
-# except some specific subdirectories of .config/
-!/.config/
-/.config/*
-!/.config/bash
-!/.config/git
-!/.config/ranger
-!/.config/pulse/presets/*
+# except some specific files
+!/.*rc
+!/.gitignore
+!/.global_gitignore
 
 # and gpg configuration
 !/.gnupg/
@@ -21,14 +18,18 @@
 /.ssh/*
 !/.ssh/config
 
-# and the user-wide Vagrantfile
+# and user-wide Vagrantfile
 !/.vagrant.d/
 /.vagrant.d/*
 !/.vagrant.d/Vagrantfile
 
-# and a selection of hidden configuration files.
-!/.*rc
-!/.global_gitignore
+# and some specific subdirectories of .config/
+!/.config/
+/.config/*
+!/.config/bash
+!/.config/git
+!/.config/ranger
+!/.config/pulse/presets/*
 
 # however, do ignore these:
 .config/git/gitk
