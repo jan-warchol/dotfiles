@@ -33,6 +33,8 @@ export KALEIDOSCOPE_DIR=$HOME/src/Kaleidoscope/
 _append_path $GIT_TOOLS
 _append_path $ARDUINO_PATH
 _append_path $HOME/bin
+_append_path /usr/local/go/bin
+_append_path $HOME/go/bin
 _prepend_path $HOME/bin/override
 # apparently user-wide pip install puts stuff there, and I want it to have precedence
 _prepend_path $HOME/.local/bin
