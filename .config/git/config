@@ -202,6 +202,8 @@
     # compact log with line wrapping. Two lines per commit -> fits narrow windows
     log2 = log --graph --date=relative --format='%C(auto)%h%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
 
+    l = log2
+
     # one-line version, useful when you want to squeeze a lot of commits on the screen
     log1 = log --graph --date=relative --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
 
@@ -398,7 +400,7 @@
     blame = "less -SR"
 
 [push]
-    default = simple
+    default = upstream
 
 [rebase]
     # automatically process "fixup!" commits when rebasing interactively

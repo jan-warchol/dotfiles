@@ -36,7 +36,7 @@
     "editor.lineHeight": 18,
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.lineHeight": 1.1,
-    "terminal.integrated.fontFamily": "'UbuntuMono Nerd Font'",
+    "terminal.integrated.fontFamily": "Ubuntu mono",
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -46,4 +46,5 @@
     "editor.glyphMargin": false,
     "editor.folding": false,
     "editor.minimap.enabled": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
 }
