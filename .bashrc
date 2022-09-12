@@ -14,7 +14,7 @@ load_config "general-settings.sh"  # should come first but depends on paths
 load_config "ansi-color-codes.sh"
 load_config "aliases.sh"
 load_config "cd-with-history.sh"
-load_config "dotfiles.sh"
+load_config "working-on-dotfiles.sh"
 load_config "fzf-git-functions.sh"
 load_config "fzf-settings.sh"
 load_config "git-aliases.sh"
