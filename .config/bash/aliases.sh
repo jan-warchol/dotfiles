@@ -161,6 +161,3 @@ pack_and_run() {
   si seq start -
   # si inst output -
 }
-
-# override find with smart-find if it's available
-which smart-find &>/dev/null && alias find='smart-find'
