@@ -153,18 +153,21 @@ _ps1_status_bar_section() {
 _ps1_shortened_path() {
   echo -en "${_cyan} "
   full_path="${PWD/$HOME/\~}"
-  half_screen=$((($COLUMNS - ${#USER} - 6) / 2 - 1))
-  if [ ${#full_path} -le $half_screen ]; then
+  avail_space=$(($COLUMNS - ${#USER} - 45))
+  if [ ${#full_path} -le $avail_space ]; then
     echo -n $full_path
   else
     repo_path="$(git rev-parse --show-toplevel 2> /dev/null)"
     if [ -n "$repo_path" ] && [ "$repo_path" != "$PWD" ]; then
-      echo -n $(basename "$repo_path")/
-      if [ "." != $(realpath --relative-to="$repo_path" "..") ]; then
-        echo -n ".../"
+      repo_name="$(basename "$repo_path")"
+      avail_space=$(($avail_space - ${#repo_name}))
+      rel_path=$(realpath --relative-to="$repo_path" "$PWD")
+      if [ ${#rel_path} -le $avail_space ]; then
+        echo -n $repo_name/$rel_path
+      else
+        echo -n "$repo_name/…${rel_path: -$avail_space}"
       fi
     fi
-    echo -n $(basename "$PWD")
   fi
   echo -en "${_reset}"
 }
