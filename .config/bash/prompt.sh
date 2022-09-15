@@ -12,7 +12,6 @@ if fc-list | grep -i nerd >/dev/null; then
   _pyvenv_icon=" "
   _scramjet_icon=" "
   _bar_end=""
-  _bar_section=" "
   _token_icon="  "
 else
   _ssh_icon="SSH✓"
@@ -22,7 +21,6 @@ else
   _pyvenv_icon="py:"
   _scramjet_icon="si:"
   _bar_end="█"
-  _bar_section="▕"
 fi
 
 _ps1_gpg_agent_status() {
@@ -117,33 +115,17 @@ _ps1_scramjet_token() {
 }
 
 _ps1_user_info() {
-  # Display hostname only when I'm logged in via ssh - makes it very clear
+  # Change color and display hostname when I'm logged in via ssh - makes it
+  # very clear whether I'm working on a remote host
   if [ -n "$SSH_CONNECTION" ]; then
-    echo -n " $USER@$HOSTNAME"
+    _color="${_cyan}"
+    _info="$USER@$HOSTNAME"
   else
-    echo -n " $USER"
-  fi
-}
-
-_ps1_start_status_bar() {
-  # Change color depending on context
-  if [ $EUID = 0 ]; then
-      _prompt_bar_color="${_red}"
-  elif [ -n "$SSH_CONNECTION" ]; then
-      _prompt_bar_color="${_cyan}"
-  else
-      _prompt_bar_color="${_blue}"
+    _color="${_blue}"
+    _info="$USER"
   fi
 
-  echo -en "${_reverse}${_prompt_bar_color}"
-}
-
-_ps1_end_status_bar() {
-  echo -en "${_unreverse}${_bar_end}${_reset}"
-}
-
-_ps1_status_bar_section() {
-  echo -n "$_bar_section"
+  echo -en "${_reverse}${_color} ${_info}${_unreverse}${_bar_end}${_reset}"
 }
 
 # show shortened path in case of narrow terminal
@@ -216,15 +198,13 @@ _ps1_ranger_notice() {
 _modular_prompt() {
   _ps1_highlight_error_code
   _ps1_ensure_newline
-  _ps1_start_status_bar
-    _ps1_user_info
-    _ps1_status_bar_section
-    _ps1_ssh_agent_status
-    _ps1_gpg_agent_status
-    _ps1_passwordstore_status
-    _ps1_dotfiles_status
-    _ps1_venv_status
-  _ps1_end_status_bar
+  _ps1_user_info
+  echo -en "${_blue}"
+  _ps1_ssh_agent_status
+  _ps1_gpg_agent_status
+  _ps1_passwordstore_status
+  _ps1_dotfiles_status
+  _ps1_venv_status
   _ps1_shortened_path
   _ps1_git_status
   _ps1_ranger_notice
