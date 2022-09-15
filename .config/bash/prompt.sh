@@ -37,7 +37,7 @@ _ps1_ssh_agent_status() {
       # echo -n $(wc -l <<< "$key_listing")
     fi
   else
-    echo -n "(no ssh agent) "
+    echo -n " (no ssh agent)"
   fi
 }
 
