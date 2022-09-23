@@ -1,0 +1,31 @@
+#!/bin/bash
+
+file="$1"
+
+find_unmatched_quotes() {
+  for char in '`' '"' "'"; do
+    # exclude escaped quotes
+    sed "s/\\\\$char//g" < "$file"  | tr -cd "$char\n" | awk 'length%2==1 {print NR-1; print NR}'
+  done
+}
+
+find_multiline_entries() {
+  prev_nr='-1'
+  for timestamp_line in $(awk '/^#[0-9]*$/ {print NR}' "$file"); do
+    line_diff=$(($timestamp_line - $prev_nr))
+    if [ $line_diff != "2" ]; then
+      for line_nr in $(seq $prev_nr $(($timestamp_line - 1))); do
+        echo $line_nr
+      done
+    fi
+    prev_nr=$timestamp_line
+  done
+}
+
+run_filtering() {
+  line_nrs="$( (find_unmatched_quotes; find_multiline_entries) | sort -u | sed 's/$/;/')"
+  sed -n "$(echo "$line_nrs" | sed 's/;/p;/g')" "$file" > "$file.removed_entries"
+  sed "$(echo "$line_nrs" | sed 's/;/d;/g')" "$file" > "$file.filtered"
+}
+
+run_filtering
