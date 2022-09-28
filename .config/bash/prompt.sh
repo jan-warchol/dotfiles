@@ -208,6 +208,7 @@ _modular_prompt() {
   _ps1_shortened_path
   _ps1_git_status
   _ps1_ranger_notice
+  echo -en "${_italic}${_dim} Ctrl-XR to undo${_reset}"
 }
 
 # show $ for regular users, # for root
