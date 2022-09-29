@@ -1,0 +1,17 @@
+!.*ignore
+!.*rc
+!.ssh
+!.gitmodules
+!.gitattributes
+!.gitconfig
+!.github
+!.bash_history
+!.config/bash
+!.config/bash
+!.gnupg
+*.git
+
+.local/share/Trash
+.cache
+.config/google-chrome
+.config/Code/CachedData
