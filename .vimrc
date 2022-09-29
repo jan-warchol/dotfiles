@@ -223,7 +223,7 @@ autocmd FileType nerdtree nmap <buffer> <C-Q> <C-W>p:q<CR>
 " Fuzzy-find in all files (including hidden)
 command! -bang -nargs=? -complete=dir FilteredFiles call
   \ fzf#vim#files(<q-args>,
-  \     {'source': "smart-find -type f"},
+  \     {'source': "fd --type f"},
   \     <bang>0)
 
 " Fuzzy-find in dotfiles
