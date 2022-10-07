@@ -275,7 +275,7 @@
 
     # Configure which email to use in current repo
     gmail    = config user.email jan.warchol@gmail.com
-    travelyn = config user.email jan.warchol@fat.ninja
+    fatninja = config user.email jan.warchol@fat.ninja
     scramjet = config user.email jan.warchol@scramjet.org
 
 
