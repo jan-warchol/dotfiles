@@ -13,4 +13,4 @@ sed -i '
     /^$/ d
   }
 ' $1
-goimports -w $1
+/home/jan/go/bin/goimports -w $1
