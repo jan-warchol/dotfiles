@@ -40,4 +40,5 @@ __remove_last_history_entry() {
 
 bind -x '"\C-x\C-r": __remove_last_history_entry'
 bind '"\C-x\C-t": "\C-x\C-r"'
+bind '"\C-x\C-x": "\C-x\C-r"'
 bind '"\C-x\C-v": "\C-x\C-r\C-p"'
