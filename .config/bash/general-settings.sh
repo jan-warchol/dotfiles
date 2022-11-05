@@ -2,8 +2,6 @@
 # This file must be loaded first, because some other settings depend on it
 # (for example some aliases can be defined only after fasd initialization).
 
-setxkbmap -option shift:both_capslock
-
 # enable autocompletion
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
@@ -77,6 +75,8 @@ export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
 if [ -n "$DISPLAY" ]; then
     # faster key repetition - life is too short to wait!
     xset r rate 200 40   # delay [ms], frequency [Hz]
+    # smart capslock substitution
+    setxkbmap -option shift:both_capslock
 fi
 
 # unlearn Ctrl-W (having it in muscle memory results in closing GUI apps)
