@@ -154,7 +154,6 @@ _ps1_shortened_path() {
   echo -en "${_reset}"
 }
 
-type -t __git_submodules_ps1 >/dev/null || echo "__git_submodules_ps1 not found!"
 _ps1_git_status() {
   # $(__git_ps1) displays git repository status in the prompt, which is extremely handy.
   # Read more: https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
@@ -170,8 +169,6 @@ _ps1_git_status() {
     [ ${#bname} -gt 25 ] && short_name="${bname:0:23}…" || short_name=$bname
   fi
   echo -n " (${output/$bname/$short_name})"
-
-  type -t __git_submodules_ps1 >/dev/null && __git_submodules_ps1
 }
 
 _ps1_highlight_error_code() {
@@ -208,6 +205,7 @@ _modular_prompt() {
   _ps1_shortened_path
   _ps1_git_status
   _ps1_ranger_notice
+  echo -en "${_italic}${_dim} Ctrl-XR to undo${_reset}"
 }
 
 # show $ for regular users, # for root

@@ -13,7 +13,7 @@ fzf-down() {
   fzf --height 50% "$@" --border
 }
 
-gf() {
+g_file() {
   is_in_git_repo || return
   git -c color.status=always status --short |
   fzf-down -m --ansi --nth 2..,.. \
@@ -43,7 +43,7 @@ __fzf_git_checkout__() {
   xargs git checkout
 }
 
-gb() {
+g_branch() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
   fzf-down --ansi --multi --tac --preview-window right:50% \
@@ -59,7 +59,7 @@ fzf_git_tag() {
     --preview 'git show --color=always {} | head -'$LINES
 }
 
-gh() {
+g_hash() {
   is_in_git_repo || return
   git log --branches --remotes --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
   fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \

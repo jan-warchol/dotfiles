@@ -107,8 +107,8 @@
     mbm = merge-base HEAD MERGE_HEAD  # merge base of current ongoing merge
 
     # displaying changes that led to merge conflict
-    mc1 = explain-conflict --left
-    mc2 = explain-conflict --right
+    ecl = explain-conflict --left
+    ecr = explain-conflict --right
 
     mw = mv  # I'm used to using `mw` (customized mv) in shell
 
@@ -275,7 +275,7 @@
 
     # Configure which email to use in current repo
     gmail    = config user.email jan.warchol@gmail.com
-    travelyn = config user.email jan.warchol@fat.ninja
+    fatninja = config user.email jan.warchol@fat.ninja
     scramjet = config user.email jan.warchol@scramjet.org
 
 

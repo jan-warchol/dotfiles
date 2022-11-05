@@ -65,9 +65,9 @@ bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd_relative" fzf-file-widget --tiebre
 
 # bindings for git - see functions defined in fzf-git-functions.sh
 bind '"\er": redraw-current-line'
-bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
-bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
-bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
+bind '"\C-g\C-f": "$(g_file)\e\C-e\er"'
+bind '"\C-g\C-b": "$(g_branch)\e\C-e\er"'
+bind '"\C-g\C-h": "$(g_hash)\e\C-e\er"'
 bind '"\C-g\C-s": "$(g_stash)\e\C-e\er"'
 bind '"\C-g\C-t": "$(fzf_git_tag)\e\C-e\er"'
 bind '"\C-g\C-g": "__fzf_git_checkout__\n"'
