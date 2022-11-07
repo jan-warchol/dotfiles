@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=bash -c 'systemctl restart --user redshift.service'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=redshift-restarter
+Name=redshift-restarter
+Comment[en_US]=
+Comment=
