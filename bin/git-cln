@@ -19,6 +19,9 @@ case "$*" in
     GIT_EMAIL=jan.warchol@scramjet.org
     CLONE_OPTS="--config user.email=$GIT_EMAIL"
     ;;
+  git@github.com:FatNinjas/*)
+    GIT_EMAIL=jan.warchol@fat.ninja
+    CLONE_OPTS="--config user.email=$GIT_EMAIL"
   *)
 esac
 
