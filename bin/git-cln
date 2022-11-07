@@ -2,34 +2,62 @@
 
 source "$HOME/.config/bash/ansi-color-codes.sh"
 
-case "$*" in
+# Parse arguments, find which one represents repo URL.
+while [ $# -gt 0 ]; do
+  arg="$1"; shift
+
+  case "$arg" in
+    -*)
+      options="$options $arg" ;;
+    # see "GIT URLS" in git clone manpage for possible formats
+    ssh://*|git://*|http://*|https://*|git@*)
+      repo_url="$arg" ;;
+    **)
+      if [ -n "$repo_url" ]; then
+        # directory can only be at the end, after repo url
+        directory="$arg"
+      else
+        options="$options $arg"
+      fi ;;
+  esac
+done
+
+# Select email matching project namespace.
+case "$repo_url" in
   *jw-git-examples/*)
-    GIT_EMAIL=jan.warchol@gmail.com
-    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    git_email=jan.warchol@gmail.com
     ;;
   *jan-warchol/*)
-    GIT_EMAIL=jan.warchol@gmail.com
-    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    git_email=jan.warchol@gmail.com
     ;;
   git@github.com:scramjet-cloud-platform/*)
-    GIT_EMAIL=jan.warchol@scramjet.org
-    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    git_email=jan.warchol@scramjet.org
     ;;
   git@github.com:scramjetorg/*)
-    GIT_EMAIL=jan.warchol@scramjet.org
-    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    git_email=jan.warchol@scramjet.org
     ;;
   git@github.com:FatNinjas/*)
-    GIT_EMAIL=jan.warchol@fat.ninja
-    CLONE_OPTS="--config user.email=$GIT_EMAIL"
+    git_email=jan.warchol@fat.ninja
+    ;;
   *)
 esac
+if [ -n "$git_email" ]; then
+  options="$options --config user.email=$git_email"
+fi
+
+# Clone into a specific subdir of ~/src.
+namespace=$(echo $repo_url | cut -d: -f 2 | rev | cut -d/ -f 2 | rev)
+if [ -n "$namespace" ]; then
+  cd ~/src
+  mkdir -p $namespace
+  cd $namespace
+fi
 
 # --no-local -> don't confuse filter-repo
-git clone --recurse-submodules --no-local $CLONE_OPTS "$@" &&
+git clone --recurse-submodules --no-local $options $repo_url $directory &&
 
-if [ -n "$GIT_EMAIL" ]; then
-  echo -e "config: user.email set to ${_strong}$GIT_EMAIL${_reset}."
+if [ -n "$git_email" ]; then
+  echo -e "\nconfig: user.email set to ${_strong}$git_email${_reset}."
 else
   echo -e "\nFailed to guess which email address to use. Set it manually."
 fi
