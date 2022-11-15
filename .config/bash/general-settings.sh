@@ -27,6 +27,7 @@ _prepend_path() {
 
 export ARDUINO_PATH=/usr/local/arduino
 export KALEIDOSCOPE_DIR=$HOME/src/Kaleidoscope/
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 _append_path $GIT_TOOLS
 _append_path $ARDUINO_PATH

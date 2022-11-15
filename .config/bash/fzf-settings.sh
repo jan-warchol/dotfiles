@@ -35,6 +35,18 @@ ls-passwords() {
   find . -name "*.gpg" | cut -c3- | sed s/\.gpg$//
 }
 
+_fzf_passwords() {
+  cd $PASSWORD_STORE_DIR
+  fd -t f | sed s/\.gpg$// |
+    fzf --reverse \
+      --header='enter to show, ctrl-Y to copy' \
+      --bind="enter:execute(pass_or_cat {})+abort" \
+      --bind="ctrl-y:execute(pass -c {})+abort"
+}
+
+bind -x '"\C-o\C-p": _fzf_passwords'
+bind -x '"\C-x\C-p": FZF_CTRL_T_COMMAND="ls-passwords" fzf-file-widget'
+
 # override default __fzf_select__ (add some extra path processing)
 __fzf_select__() {
   eval "${FZF_CTRL_T_COMMAND:-"smart-find"}" |
@@ -58,7 +70,6 @@ bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="smart-find ~" fzf-file-widget'
 bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'
-bind -x '"\C-o\C-p": FZF_CTRL_T_COMMAND="ls-passwords" fzf-file-widget'
 bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd_relative" fzf-file-widget --tiebreak=index'
 
 

@@ -26,3 +26,9 @@ load_config "ranger-automatic-cd.sh"
 load_config "safeguards.sh"
 load_config "ssh-identity-mgmt.sh"
 load_config "the-one-ring.sh"
+# BEGIN ANSIBLE MANAGED BLOCK
+# setup Google Cloud CLI autocompletion
+if [ -e '/snap/google-cloud-cli/' ]; then
+  source '/snap/google-cloud-cli/current/completion.bash.inc';
+fi
+# END ANSIBLE MANAGED BLOCK
