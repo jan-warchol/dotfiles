@@ -37,11 +37,13 @@ ls-passwords() {
 
 _fzf_passwords() {
   cd $PASSWORD_STORE_DIR
-  fd -t f | sed s/\.gpg$// |
-    fzf --reverse \
-      --header='enter to show, ctrl-Y to copy' \
-      --bind="enter:execute(pass_or_cat {})+abort" \
-      --bind="ctrl-y:execute(pass -c {})+abort"
+  selection=$(
+      fd -t f | sed s/\.gpg$// |
+        fzf --height=50% --reverse \
+          --header='enter to show, ctrl-Y to copy' \
+          --bind="ctrl-y:execute(echo '{} -c')+abort"
+    )
+  [[ -n "$selection" ]] && pass_or_cat $selection
 }
 
 bind -x '"\C-o\C-p": _fzf_passwords'
