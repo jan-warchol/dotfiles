@@ -167,8 +167,10 @@ _ps1_git_status() {
   if git symbolic-ref HEAD &>/dev/null; then  # if on a branch
     bname="$(git symbolic-ref --short HEAD)"
     [ ${#bname} -gt 25 ] && short_name="${bname:0:23}…" || short_name=$bname
+    echo -n " (${output/$bname/$short_name})"
+  else
+    echo -n " (${output/remotes\/origin/o…})"
   fi
-  echo -n " (${output/$bname/$short_name})"
 }
 
 _ps1_highlight_error_code() {
