@@ -48,7 +48,8 @@
     dd = diff --find-copies=62% --find-copies-harder --inter-hunk-context=13 --submodule=diff
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
-    dm = !git d $(git mainline)
+    # would be great if it included non-committed changes...
+    dm = !git d $(git mainline)...
     du = !git d @{upstream}
     dsm = !git ds $(git mainline)
     dsu = !git ds @{upstream}

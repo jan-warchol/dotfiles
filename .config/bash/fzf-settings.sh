@@ -44,6 +44,7 @@ _fzf_passwords() {
           --bind="ctrl-y:execute(echo '{} -c')+abort"
     )
   [[ -n "$selection" ]] && pass_or_cat $selection
+  cd -
 }
 
 bind -x '"\C-o\C-p": _fzf_passwords'

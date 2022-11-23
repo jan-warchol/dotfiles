@@ -71,6 +71,10 @@ alias open=xdg-open
 # alias c='fasd_cd -d'
 # _fasd_bash_hook_cmd_complete v c
 
+python() {
+  time env python "$@"
+}
+
 alias u='cd ..'  # (u)p one directory level
 alias uu='cd ../..'
 alias uuu='cd ../../..'
