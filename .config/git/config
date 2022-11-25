@@ -275,9 +275,10 @@
     # MULTIPLE IDENTITY MANAGEMENT
 
     # Configure which email to use in current repo
-    gmail    = config user.email jan.warchol@gmail.com
-    fatninja = config user.email jan.warchol@fat.ninja
-    scramjet = config user.email jan.warchol@scramjet.org
+    id-gmail    = config user.email jan.warchol@gmail.com
+    id-fatninja = config user.email jan.warchol@fat.ninja
+    id-scramjet = config user.email jan.warchol@scramjet.org
+    id-daftcode = config user.email jan.warchol@daftcode.pl
 
 
 
@@ -383,6 +384,9 @@
 [help]
     # correct and run mistyped commands after 1.2 sec delay
     autocorrect = 12
+
+[log]
+    decorate = false
 
 [status]
     submoduleSummary = true
