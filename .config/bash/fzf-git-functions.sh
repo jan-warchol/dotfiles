@@ -39,7 +39,7 @@ __fzf_git_checkout__() {
   # also include tags and color them yellow
   git tag | xargs -I{} echo -e "${_yellow}{}"
   ) |
-  fzf-down --ansi --no-sort --bind 'ctrl-s:toggle-sort' |
+  fzf-down --ansi --no-sort --bind 'ctrl-s:toggle-sort' --bind "ctrl-r:execute(echo ' --no-guess origin/{}')+abort" |
   xargs git checkout
 }
 
