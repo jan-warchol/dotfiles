@@ -47,4 +47,5 @@
     "editor.folding": false,
     "editor.minimap.enabled": false,
     "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.colorTheme": "Selenized (WIP)",
 }
