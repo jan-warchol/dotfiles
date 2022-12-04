@@ -53,6 +53,12 @@ fi
 
 # Clone into a specific subdir of ~/src.
 namespace=$(echo $repo_url | cut -d: -f 2 | rev | cut -d/ -f 2 | rev)
+case "$namespace" in
+  ColorfulOctoscorpions)
+    namespace="jan-warchol"
+    ;;
+  *)
+esac
 if [ -n "$namespace" ]; then
   cd ~/src
   mkdir -p $namespace
