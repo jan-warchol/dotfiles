@@ -70,17 +70,12 @@
     # (which in case of grep changes the behaviour, as it searches only inside
     # path from which it's ran).
     g   = grep --extended-regexp --textconv --ignore-case
-    g2  = grep --extended-regexp --textconv --ignore-case --line-number --context 2
-    g3  = grep --extended-regexp --textconv --ignore-case --line-number --context 3
-    g5  = grep --extended-regexp --textconv --ignore-case --line-number --context 5
-    gl8 = grep --extended-regexp --textconv --ignore-case --line-number --context 8
+    g1  = grep --extended-regexp --textconv --ignore-case --line-number --context 1
     # when I want to see more context, I don't want filenames obscuring my
     # view.  This also makes it possible to copy-and-paste code snippets.
-    gh  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading
-    gh5 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 5
-    g8  = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 8
-    g13 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 13
-    g21 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 21
+    g2  = grep --extended-regexp --textconv --ignore-case --heading --context 3
+    g3 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 5
+    g4 = -c color.grep.filename='magenta bold' grep --extended-regexp --textconv --ignore-case --heading --context 13
     # matches pattern only at word boundaries
     gw  = grep --extended-regexp --textconv --ignore-case --line-number --word-regexp
     ghw = grep --extended-regexp --textconv --ignore-case --heading --word-regexp --context 8
