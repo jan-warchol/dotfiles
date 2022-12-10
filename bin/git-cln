@@ -45,6 +45,12 @@ if [ -n "$git_email" ]; then
   options="$options --config user.email=$git_email"
 fi
 
+# namespace mapping
+# junegunn -> różne
+# organizer -> jan-warchol
+# passwordstorne -> jan-warchol
+
+
 # Clone into a specific subdir of ~/src.
 namespace=$(echo $repo_url | cut -d: -f 2 | rev | cut -d/ -f 2 | rev)
 if [ -n "$namespace" ]; then
