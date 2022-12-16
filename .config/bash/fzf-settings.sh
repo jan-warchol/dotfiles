@@ -75,6 +75,19 @@ bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'
 bind -x '"\C-o\C-i": FZF_CTRL_T_COMMAND="fasd_relative" fzf-file-widget --tiebreak=index'
 
+_fzf_kubectl() {
+  kubectl get pods |
+    tail +2 |
+    fzf \
+      --reverse \
+      --nth=1 \
+      --header='ctrl-L: stream logs,  ctrl-D: describe pod' \
+      --bind="enter:abort+execute(echo {1})" \
+      --bind="ctrl-l:abort+execute(echo kubectl logs -f {1})" \
+      --bind="ctrl-d:abort+execute(echo kubectl describe pod {1})"
+}
+
+bind '"\C-o\C-k": "$(_fzf_kubectl)\e\C-e\er"'
 
 # bindings for git - see functions defined in fzf-git-functions.sh
 bind '"\er": redraw-current-line'
