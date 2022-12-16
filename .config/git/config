@@ -49,7 +49,7 @@
     dc = !git d --cached   # preview changes staged for commit
     ds = !git d --stat   # force coloring for use with less -R
     # would be great if it included non-committed changes...
-    dm = !git d $(git merge-base $(git mainline) HEAD)
+    dm = !git d $(git merge-base origin/HEAD HEAD)
     du = !git d @{upstream}
     dsm = !git ds $(git mainline)
     dsu = !git ds @{upstream}
