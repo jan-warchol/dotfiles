@@ -380,9 +380,6 @@
     # correct and run mistyped commands after 1.2 sec delay
     autocorrect = 12
 
-# [log]
-#     decorate = false
-
 [status]
     submoduleSummary = true
 
