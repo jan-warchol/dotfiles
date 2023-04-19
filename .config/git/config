@@ -53,9 +53,9 @@
     du = !git d @{upstream}
     dsm = !git ds $(git mainline)
     dsu = !git ds @{upstream}
-    wd = !git d --word-diff=color   # mnemonic: Word-Diff
-    wdc = !git d --word-diff=color --cached
-    coldif = !git d --word-diff=color --word-diff-regex="[0-9a-zA-Z]+"
+    # better word-diff regex
+    dcw = !git d --color-words='[0-9a-zA-Z]+|[0-9.]+|[^[:space:]]'
+    dcwc = !git d --color-words='[0-9a-zA-Z]+|[0-9.]+|[^[:space:]]' --cached
 
     d5 = !git d --unified=5
     d8 = !git d --unified=8
