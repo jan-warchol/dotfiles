@@ -36,7 +36,7 @@
     # when appropriate. See bin/git-smart-commit
     ci  = smart-commit
     amci= smart-commit --amend
-    amq = smart-commit --amend --no-edit
+    amq = smart-commit --amend --no-edit --no-verify
     wip = smart-commit WIP --no-verify
 
     cip = !git smart-commit "$@" && git push --quiet && true
@@ -54,8 +54,8 @@
     dsm = !git ds $(git mainline)
     dsu = !git ds @{upstream}
     # better word-diff regex
-    dcw = !git d --color-words='[0-9a-zA-Z]+|[0-9.]+|[^[:space:]]'
-    dcwc = !git d --color-words='[0-9a-zA-Z]+|[0-9.]+|[^[:space:]]' --cached
+    dcw = !git -c color.diff.new='green reverse' -c color.diff.old='red reverse' d --ignore-all-space --color-words='[a-zA-Z][0-9a-zA-Z_-]+|[0-9.]+|[^[:space:]]'
+    dcwc = !git -c color.diff.new='green reverse' -c color.diff.old='red reverse' d --ignore-all-space --color-words='[a-zA-Z][0-9a-zA-Z_-]+|[0-9.]+|[^[:space:]]' --cached
 
     d5 = !git d --unified=5
     d8 = !git d --unified=8
@@ -375,6 +375,7 @@
     # detect renamed files and show only actual differences between versions
     renames = copies
     submodule = log
+    noprefix = true
 
 [help]
     # correct and run mistyped commands after 1.2 sec delay

@@ -47,4 +47,10 @@
     "editor.folding": false,
     "editor.minimap.enabled": false,
     "typescript.updateImportsOnFileMove.enabled": "always",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
 }
