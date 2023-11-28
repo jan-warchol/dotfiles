@@ -56,6 +56,7 @@
     wd = !git d --word-diff=color   # mnemonic: Word-Diff
     wdc = !git d --word-diff=color --cached
     coldif = !git d --word-diff=color --word-diff-regex="[0-9a-zA-Z]+"
+    dcw = diff --find-renames=10% --color-words="[a-zA-Z][0-9a-zA-Z_-]+|[0-9.]+|[^[:space:]]"
 
     d5 = !git d --unified=5
     d8 = !git d --unified=8
