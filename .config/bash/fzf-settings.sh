@@ -43,7 +43,7 @@ _fzf_passwords() {
           --header='enter to show, ctrl-Y to copy' \
           --bind="ctrl-y:execute(echo '{} -c')+abort"
     )
-  [[ -n "$selection" ]] && pass_or_cat $selection
+  [[ -n "$selection" ]] && pass $selection
   cd -
 }
 
