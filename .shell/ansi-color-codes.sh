@@ -8,6 +8,8 @@ _underline="\033[4m"
 _blink="\033[5m"
 _reverse="\033[7m"
 _unreverse="\033[27m"
+_default="\033[39m"
+_strong="\033[1;97m"
 
 _red="\033[31m"
 _green="\033[32m"
@@ -24,8 +26,5 @@ _br_blue="\033[94m"
 _br_magenta="\033[95m"
 _br_cyan="\033[96m"
 _br_white="\033[97m"
-
-_default="\033[39m"
-_strong="\033[1;97m"
 
 _reset="\033[0m"

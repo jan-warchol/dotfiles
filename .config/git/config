@@ -1,0 +1,114 @@
+# Note that ancient versions of git may not load configuration from
+# ~/.config/git/config, loading only ~/.gitconfig.  Using git >= 2.0 is
+# _strongly_ recommended!
+
+[alias]
+    # SIMPLE "SHORTCUT" ALIASES
+
+    ap = add --patch   # interactively select hunks to add, very useful
+    au = add --update   # stage all changes in already tracked files
+
+    bd = branch --delete
+    bdf = branch -D
+
+    co = checkout
+    c1 = checkout HEAD~1
+    cb = checkout -b
+    cm = !git checkout $(git mainline)
+    cu = checkout @{upstream}
+
+    dt = checkout --detach   # e.g. for throw-away experiments
+
+    chp = cherry-pick
+
+    # One Alias to Commit Them All. Automatically adds --all and --message
+    # when appropriate. See bin/git-smart-commit
+    ci  = smart-commit
+    amci= smart-commit --amend
+    amq = smart-commit --amend --no-edit
+    wip = smart-commit WIP --no-verify
+
+    d = diff --find-copies=62% --find-copies-harder --inter-hunk-context=13 --submodule=log
+    dc = !git d --cached   # preview changes staged for commit
+    ds = !git d --stat   # force coloring for use with less -R
+
+    f = fetch --prune
+
+    po = push origin
+    please = push --force-with-lease
+
+    rba  = rebase --abort
+    rbc  = rebase --continue
+    rbi  = rebase --interactive
+
+    rss = reset --soft
+
+    s = status --short   # see also --branch option
+
+    # translate HEAD to branch/tag name
+    ref-name = !git rev-parse --abbrev-ref 2>/dev/null
+    # get name of the default branch (from origin/HEAD), with fallback to "main"
+    mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|main|'
+
+
+
+    # PRETTY LOGS
+
+    # Inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
+
+    # compact log with line wrapping. Two lines per commit -> fits narrow windows
+    l2 = log --graph --date=relative --format='%C(auto)%h%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
+    # one-line version, useful when you want to squeeze a lot of commits on the screen
+    l1 = log --graph --date=relative --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
+    # "Long" format - full commit message and summary of changes.
+    ll  = log --graph --stat-graph-width=30 --date=iso --stat-count=100
+
+
+    # Common commit sets
+
+    # commits from all local branches unmerged to mainline
+    lb  = !git l2 HEAD --branches origin/$(git mainline)^!
+    # better than using --all because I don't want stashes to be shown
+    la  = !git l2 HEAD --branches --remotes
+
+
+
+    # MULTIPLE IDENTITY MANAGEMENT
+
+    # Configure which email to use in current repo
+    id-gmail    = config user.email jan.warchol@gmail.com
+    id-fatninja = config user.email jan.warchol@fat.ninja
+    id-scramjet = config user.email jan.warchol@scramjet.org
+    id-daftcode = config user.email jan.warchol@daftcode.pl
+
+
+
+[color]
+    ui = auto
+
+[color "branch"]
+    remote = blue
+
+[color "decorate"]
+    remoteBranch = blue
+
+[color "diff"]
+    meta = white
+
+[color "status"]
+    changed = yellow
+    untracked = cyan
+
+[color "grep"]
+    filename = white black
+    match = yellow bold
+    separator = cyan black
+
+[merge]
+    # in case of merge conflict also show how common ancestor looked like
+    conflictstyle = diff3
+
+[user]
+    # require explicit name and email in config, don't guess silly values
+    useConfigOnly = true
+    name = Jan Warchoł
