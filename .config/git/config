@@ -113,7 +113,8 @@
     pl = pull --ff-only
     plr = pull --rebase
 
-    pu = push
+    po = push origin
+    pof = push origin --force-with-lease
     puf = push --force-with-lease
     please = push --force-with-lease
     # push to a new branch with the same name
