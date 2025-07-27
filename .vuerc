@@ -1,0 +1,70 @@
+{
+  "useTaobaoRegistry": false,
+  "packageManager": "npm",
+  "presets": {
+    "base": {
+      "useConfigFiles": true,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-router": {
+          "historyMode": true
+        }
+      },
+      "vueVersion": "2"
+    },
+    "TS class-style": {
+      "useConfigFiles": true,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-typescript": {
+          "classComponent": true,
+          "useTsWithBabel": true
+        },
+        "@vue/cli-plugin-router": {
+          "historyMode": true
+        }
+      },
+      "vueVersion": "2"
+    },
+    "TS no-class": {
+      "useConfigFiles": true,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-typescript": {
+          "classComponent": false,
+          "useTsWithBabel": true
+        },
+        "@vue/cli-plugin-router": {
+          "historyMode": true
+        }
+      },
+      "vueVersion": "2"
+    },
+    "TS+PWA": {
+      "useConfigFiles": true,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-typescript": {
+          "classComponent": false,
+          "useTsWithBabel": true
+        },
+        "@vue/cli-plugin-pwa": {},
+        "@vue/cli-plugin-router": {
+          "historyMode": true
+        }
+      },
+      "vueVersion": "2"
+    },
+    "PWA": {
+      "useConfigFiles": true,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-pwa": {},
+        "@vue/cli-plugin-router": {
+          "historyMode": true
+        }
+      },
+      "vueVersion": "2"
+    }
+  }
+}
