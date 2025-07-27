@@ -5,49 +5,25 @@
 [alias]
     # SIMPLE "SHORTCUT" ALIASES
 
-    a = add
     aa = add --all
     an = add --all --intent-to-add   # start tracking all files but don't stage their content yet
-    ap = add --patch   # interactively select hunks to add, very useful
-    au = add --update   # stage all changes in already tracked files
 
-    b = branch
-    bd = branch --delete
-    bdf = branch -D
     bm = !git branch --merged | grep -v '*'
     bma = !git branch --all --merged | grep -v '*'
     # filter out main repo branch (safeguard for case of bulk removal of merged branches)
     bmr = !git branch --remote --merged origin/HEAD | grep -v $(git rev-parse --abbrev-ref origin/HEAD)
 
     c  = checkout
-    co = checkout
-    c1 = checkout HEAD~1
-    cb = checkout -b
     cd = checkout devel
-    cm = !git checkout $(git mainline)
     com = !git checkout origin/$(git mainline)
-    cu = checkout @{upstream}
 
-    dt = checkout --detach   # e.g. for throw-away experiments
-
-    chp = cherry-pick
-
-    # One Alias to Commit Them All. Automatically adds --all and --message
-    # when appropriate. See bin/git-smart-commit
-    ci  = smart-commit
-    amci= smart-commit --amend
-    amq = smart-commit --amend --no-edit
-    wip = smart-commit WIP --no-verify
 
     cip = !git smart-commit "$@" && git push --quiet && true
     paf = !git amd --no-edit --quiet && git puf --quiet
 
     empty = commit --allow-empty --message  # handy for test commits
 
-    d = diff --find-copies=62% --find-copies-harder --inter-hunk-context=13 --submodule=log
     dd = diff --find-copies=62% --find-copies-harder --inter-hunk-context=13 --submodule=diff
-    dc = !git d --cached   # preview changes staged for commit
-    ds = !git d --stat   # force coloring for use with less -R
     # would be great if it included non-committed changes...
     dm = !git d $(git merge-base origin/HEAD HEAD)
     du = !git d @{upstream}
@@ -62,7 +38,6 @@
     d8 = !git d --unified=8
     d13 = !git d --unified=13
 
-    f = fetch --prune
     fa = fetch --all --prune
 
     # I tried do define 'g2', 'g3' etc. using 'g' alias to reduce duplication
@@ -113,43 +88,30 @@
     pl = pull --ff-only
     plr = pull --rebase
 
-    po = push origin
     pof = push origin --force-with-lease
     puf = push --force-with-lease
-    please = push --force-with-lease
     # push to a new branch with the same name
     pub = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
     # tags have to be pushed explicitly
     put = !git push --tags && git push
 
-    rb   = rebase
-    rba  = rebase --abort
-    rbc  = rebase --continue
-    rbo  = rebase --onto        # quite useful, see examples in 'git help rebase'
     rbd  = rebase devel
     rbu  = rebase @{upstream}
     rbm  = !git rebase $(git mainline)
-    rbi  = rebase --interactive
     rbid = rebase --interactive devel
     rbiu = rebase --interactive @{upstream}
     rbim = !git rebase --interactive $(git mainline)
 
     rt = remote --verbose
 
-    rs = reset
     rs1 = reset HEAD~1   # "soft undo" - remove last commit, but keep its changes
 
-    rss = reset --soft
     rss1 = reset --soft HEAD~1
 
     sr  = safe-branch-reset
     sru = safe-branch-reset @{upstream}
 
-    sh = stash
-    shp = stash pop
 
-    s = status --short   # see also --branch option
-    st = !git log --oneline --no-decorate -1 && git -c status.submodulesummary=false status && git submodule-details
     su = status --short --untracked-files=all
     si = status --short --ignored
     sa = status --short --untracked-files=all --ignored
@@ -175,11 +137,6 @@
 
     who = shortlog --summary --numbered
 
-    # translate HEAD to branch/tag name
-    ref-name = !git rev-parse --abbrev-ref 2>/dev/null
-    # get name of the default branch (from origin/HEAD), with fallback to "master"
-    mainline = !git ref-name origin/HEAD | sed 's|origin/||' | sed 's|^HEAD$|master|'
-
     mine = !git log2 --no-merges --author=\"$(git config --get user.name)\"
     payroll = !git mine --date human --since '1 month ago'
 
@@ -194,21 +151,6 @@
 
 
     # PRETTY LOGS
-
-    # Inspired by http://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
-
-    # compact log with line wrapping. Two lines per commit -> fits narrow windows
-    log2 = log --graph --date=relative --format='%C(auto)%h%d %C(white)%an, %ad%C(reset)%n%w(80,2,2)%s'
-
-    l = log2
-
-    # one-line version, useful when you want to squeeze a lot of commits on the screen
-    log1 = log --graph --date=relative --format='%C(auto)%h -%d %s %C(white)- %an, %ad%C(reset)'
-
-    # "Long" format - full commit message and summary of changes.
-    ll  = log --graph --stat-graph-width=30 --date=iso --stat-count=100
-
-
     # Common commit sets
 
     # commit divergence between current branch, its upstream and mainline
@@ -266,16 +208,6 @@
     # one-line version of the above
     rf1 = log --walk-reflogs \
           --format='%C(white)%<(21,trunc)%ci%x08%x08%x08%x08%x08 %C(auto)%<(9)%gd %h %gs %C(white)- %<(33,trunc)%s%C(reset)'
-
-
-
-    # MULTIPLE IDENTITY MANAGEMENT
-
-    # Configure which email to use in current repo
-    id-gmail    = config user.email jan.warchol@gmail.com
-    id-fatninja = config user.email jan.warchol@fat.ninja
-    id-scramjet = config user.email jan.warchol@scramjet.org
-    id-daftcode = config user.email jan.warchol@daftcode.pl
 
 
 
@@ -340,27 +272,6 @@
     textconv=pandoc --to=markdown
     prompt = false
 
-[color]
-    ui = auto
-
-[color "branch"]
-    remote = blue
-
-[color "decorate"]
-    remoteBranch = blue
-
-[color "diff"]
-    meta = white
-
-[color "status"]
-    changed = yellow
-    untracked = cyan
-
-[color "grep"]
-    filename = white black
-    match = yellow bold
-    separator = cyan black
-
 [commit]
     template = ~/.config/git/commit-message-template
 
@@ -389,9 +300,6 @@
     recurse = true
 
 [merge]
-    # in case of merge conflict also show how common ancestor looked like
-    conflictstyle = diff3
-
     # Add summaries of merged commits to the merge commit message.
     log = true
 
@@ -408,11 +316,6 @@
 
     # stash unstaged changes if rebasing a dirty tree
     autostash = true
-
-[user]
-    # require explicit name and email in config, don't guess silly values
-    useConfigOnly = true
-    name = Jan Warchoł
 
 # When connecting to my private repos, use `personal.*` alias so that SSH will
 # use correct key to authenticate. See SSH config for more details.
