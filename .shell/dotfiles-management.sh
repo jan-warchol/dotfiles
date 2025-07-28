@@ -33,3 +33,7 @@ dof() {
     unset GIT_PS1_FMT
     popd 1>/dev/null  # restore previous location
 }
+
+dotfiles() {
+    GIT_DIR=$DOTFILES_HOME GIT_WORK_TREE=$HOME git "$@"
+}
