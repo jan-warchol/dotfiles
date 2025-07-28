@@ -52,7 +52,7 @@ bind -x '"\C-x\C-p": FZF_CTRL_T_COMMAND="ls-passwords" fzf-file-widget'
 
 # override default __fzf_select__ (add some extra path processing)
 __fzf_select__() {
-  eval "${FZF_CTRL_T_COMMAND:-"smart-find"}" |
+  eval "${FZF_CTRL_T_COMMAND:-$FIND_COMMAND}" |
   sed "s|^\./||" |
   sed "s|^$HOME|~|" |
   $(__fzfcmd) --height 50% --reverse --multi --tiebreak=end,length "$@" |
@@ -67,9 +67,9 @@ fasd_relative() {
 }
 
 # fuzzy-search starting in various directories
-bind -x '"\C-o\C-n": FZF_CTRL_T_COMMAND="smart-find" fzf-file-widget'
+bind -x '"\C-o\C-n": FZF_CTRL_T_COMMAND="$FIND_COMMAND" fzf-file-widget'
 bind -x '"\C-o\C-a": FZF_CTRL_T_COMMAND="find" fzf-file-widget'
-bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="smart-find ~" fzf-file-widget'
+bind -x '"\C-o\C-h": FZF_CTRL_T_COMMAND="$FIND_COMMAND ~" fzf-file-widget'
 bind -x '"\C-o\C-e": FZF_CTRL_T_COMMAND="find /etc 2>/dev/null" fzf-file-widget'
 bind -x '"\C-o\C-g": FZF_CTRL_T_COMMAND="git ls-files" fzf-file-widget'
 bind -x '"\C-o\C-d": FZF_CTRL_T_COMMAND="ls-dotfiles" fzf-file-widget'

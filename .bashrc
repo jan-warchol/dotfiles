@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export FIND_COMMAND="smart-find"
+
 source ~/.bashrc.local  # local settings (environment etc.)
 source ~/.shell/general-settings.sh  # should come first but depends on paths
 source ~/.shell/prompt.sh

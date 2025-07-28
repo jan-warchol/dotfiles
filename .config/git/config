@@ -40,6 +40,7 @@
     rba  = rebase --abort
     rbc  = rebase --continue
     rbi  = rebase --interactive
+    rbo  = rebase --onto
 
     rss = reset --soft
 
