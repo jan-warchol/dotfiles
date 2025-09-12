@@ -69,4 +69,9 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "github.copilot.nextEditSuggestions.enabled": false,
+    "editor.unicodeHighlight.allowedCharacters": {
+        "›": true,
+        "‹": true
+    },
+    "terminal.integrated.defaultLocation": "editor",
 }

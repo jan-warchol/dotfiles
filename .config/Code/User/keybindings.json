@@ -60,4 +60,60 @@
         "key": "shift+alt+down",
         "command": "workbench.action.navigateDown",
     },
+    {
+        "key": "ctrl+alt+meta+left",
+        "command": "workbench.action.focusLeftGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+n",
+        "command": "workbench.action.focusLeftGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+right",
+        "command": "workbench.action.focusRightGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+h",
+        "command": "workbench.action.focusRightGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+up",
+        "command": "workbench.action.focusAboveGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+r",
+        "command": "workbench.action.focusAboveGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+down",
+        "command": "workbench.action.focusBelowGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+l",
+        "command": "workbench.action.focusBelowGroup"
+    },
+    {
+        "key": "ctrl+shift+\\",
+        "command": "workbench.action.splitEditorDown"
+    },
+    {
+        "key": "ctrl+shift+alt+meta+left",
+        "command": "workbench.action.moveEditorToLeftGroup"
+    },
+    {
+        "key": "ctrl+shift+alt+meta+right",
+        "command": "workbench.action.moveEditorToRightGroup"
+    },
+    {
+        "key": "ctrl+shift+alt+meta+up",
+        "command": "workbench.action.moveEditorToAboveGroup"
+    },
+    {
+        "key": "ctrl+shift+alt+meta+down",
+        "command": "workbench.action.moveEditorToBelowGroup"
+    },
+    {
+        "key": "ctrl+alt+meta+a",
+        "command": "workbench.panel.chat.view.copilot.focus"
+    },
 ]
