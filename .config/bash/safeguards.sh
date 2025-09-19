@@ -9,8 +9,8 @@ alias tp='trash-put'
 alias mw='\mv --interactive --verbose'
 alias kp='\cp --recursive --backup=numbered --verbose'
 
-# Make sure that I won't accidentally use plain rm, mv or cp
-alias rm='echo "This is not the command you are looking for."; false'
-alias mv='echo "This is not the command you are looking for."; false'
-alias cp='echo "This is not the command you are looking for."; false'
-# Bypass these aliases by prepending a slash, e.g. \rm file-without-hope
+# # Make sure that I won't accidentally use plain rm, mv or cp
+alias rm='rm --interactive'
+alias mv='mv --interactive --verbose'
+alias cp='cp --recursive --backup=numbered --verbose'
+# # Bypass these aliases by prepending a slash, e.g. \rm file-without-hope

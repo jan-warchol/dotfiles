@@ -136,6 +136,8 @@ alias rs1='redshift -x; redshift -O 3000 -b 0.6'
 alias rs2='redshift -x; redshift -O 3500 -b 0.8'
 alias rs3='redshift -x; redshift -O 4000'
 
+alias nrd='npm run dev'
+
 slugify() {
     echo "$@" |
       iconv -t ascii//TRANSLIT |

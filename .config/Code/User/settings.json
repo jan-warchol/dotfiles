@@ -63,12 +63,17 @@
     "workbench.colorTheme": "Default Dark+",
     "editor.minimap.enabled": false,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "github.copilot.nextEditSuggestions.enabled": false,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "chat.agent.maxRequests": 50,
+    "python.defaultInterpreterPath": "/bin/python3.12",
     "editor.unicodeHighlight.allowedCharacters": {
         "›": true,
         "‹": true

@@ -115,7 +115,6 @@
 
     po = push origin
     pof = push origin --force-with-lease
-    puf = push --force-with-lease
     please = push --force-with-lease
     # push to a new branch with the same name
     pub = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
